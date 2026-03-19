@@ -4,7 +4,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { SafeImage, plantDatabase as fallbackDatabase } from '../components/Shared';
 import { useAuth } from '../AuthContext';
 import { db } from '../firebase';
-import { collection, addDoc, serverTimestamp, doc, updateDoc, arrayUnion, arrayRemove, query, getDocs, getDoc } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp, doc, updateDoc, arrayUnion, arrayRemove, query, getDocs, getDoc, where, setDoc } from 'firebase/firestore';
 
 export function CollectionPage() {
   const navigate = useNavigate();
@@ -15,7 +15,8 @@ export function CollectionPage() {
   useEffect(() => {
     const fetchPlants = async () => {
       try {
-        const q = query(collection(db, 'plants'));
+        // Query only public plants to satisfy Firestore security rules for unauthenticated users
+        const q = query(collection(db, 'plants'), where('isPublic', '==', true));
         const snapshot = await getDocs(q);
         let plantsData = snapshot.docs.map(doc => ({ id: doc.id, ...(doc.data() as any) }));
         
@@ -23,8 +24,6 @@ export function CollectionPage() {
         if (plantsData.length === 0) {
           plantsData = fallbackDatabase;
         } else {
-          // Filter public plants
-          plantsData = plantsData.filter(p => p.isPublic);
           // Sort
           plantsData.sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
         }
@@ -166,7 +165,7 @@ export function SinglePlantPage() {
     }
     setLoading(true);
     try {
-      await addDoc(collection(db, 'applications'), {
+      await addDoc(collection(db, 'memberApplications'), {
         userId: user.uid,
         plantId: plant.id,
         status: 'pending',
@@ -188,18 +187,22 @@ export function SinglePlantPage() {
       return;
     }
     
-    const isTracked = userProfile?.favorites?.includes(plant.id);
-    if (isTracked) {
-      navigate('/member');
-      return;
-    }
-
     setLoading(true);
     try {
-      await updateDoc(doc(db, 'users', user.uid), {
-        favorites: arrayUnion(plant.id)
-      });
-      navigate('/member');
+      const favId = `${user.uid}_${plant.id}`;
+      const favRef = doc(db, 'favorites', favId);
+      const favDoc = await getDoc(favRef);
+      
+      if (favDoc.exists()) {
+        navigate('/member');
+      } else {
+        await setDoc(favRef, {
+          uid: user.uid,
+          plantId: plant.id,
+          createdAt: new Date().toISOString()
+        });
+        navigate('/member');
+      }
     } catch (error) {
       console.error("Error tracking plant:", error);
       alert('操作失敗，請稍後再試。');
@@ -208,9 +211,18 @@ export function SinglePlantPage() {
     }
   };
 
+  const [isTracked, setIsTracked] = useState(false);
+  useEffect(() => {
+    if (user && plant) {
+      const favId = `${user.uid}_${plant.id}`;
+      getDoc(doc(db, 'favorites', favId)).then(doc => {
+        setIsTracked(doc.exists());
+      });
+    }
+  }, [user, plant]);
+
   const renderCTA = () => {
     if (!plant) return null;
-    const isTracked = userProfile?.favorites?.includes(plant.id);
     
     // Map Firestore status to categories
     const statusMap: Record<string, string> = {

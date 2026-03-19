@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Routes, Route, Link, useParams } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
-import { db } from '../firebase';
-import { collection, query, getDocs, updateDoc, doc, addDoc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { db, functions } from '../firebase';
+import { collection, query, getDocs, updateDoc, doc, addDoc, getDoc, serverTimestamp, setDoc, deleteDoc } from 'firebase/firestore';
+import { httpsCallable } from 'firebase/functions';
 import { ArrowLeft, Plus, Save, Trash2 } from 'lucide-react';
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
@@ -39,6 +40,8 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
             <>
               <Link to="/admin/applications" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Applications</Link>
               <Link to="/admin/inquiries" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Inquiries</Link>
+              <Link to="/admin/orders" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Orders</Link>
+              <Link to="/admin/notifications" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Notifications</Link>
               <Link to="/admin/users" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Users</Link>
             </>
           )}
@@ -86,6 +89,18 @@ export function AdminPlants() {
     fetchPlants();
   }, []);
 
+  const handleDelete = async (plantId: string) => {
+    if (window.confirm('Are you sure you want to delete this plant?')) {
+      try {
+        await deleteDoc(doc(db, 'plants', plantId));
+        setPlants(plants.filter(p => p.id !== plantId));
+      } catch (error) {
+        console.error("Error deleting plant:", error);
+        alert('Error deleting plant');
+      }
+    }
+  };
+
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
@@ -119,7 +134,8 @@ export function AdminPlants() {
                   <td className="px-6 py-4 font-mono">${plant.price}</td>
                   <td className="px-6 py-4">{plant.isPublic ? 'Yes' : 'No'}</td>
                   <td className="px-6 py-4 text-right">
-                    <button onClick={() => navigate(`/admin/plants/${plant.id}`)} className="text-[#5A6B58] hover:underline">Edit</button>
+                    <button onClick={() => navigate(`/admin/plants/${plant.id}`)} className="text-[#5A6B58] hover:underline mr-4">Edit</button>
+                    <button onClick={() => handleDelete(plant.id)} className="text-red-600 hover:underline">Delete</button>
                   </td>
                 </tr>
               ))}
@@ -331,7 +347,7 @@ export function AdminUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const q = query(collection(db, 'users'));
+        const q = query(collection(db, 'profiles'));
         const snapshot = await getDocs(q);
         setUsers(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
       } catch (error) {
@@ -345,7 +361,9 @@ export function AdminUsers() {
 
   const handleRoleChange = async (userId: string, newRole: string) => {
     try {
-      await updateDoc(doc(db, 'users', userId), { role: newRole });
+      const setUserRole = httpsCallable(functions, 'setUserRole');
+      await setUserRole({ uid: userId, role: newRole });
+      await updateDoc(doc(db, 'profiles', userId), { role: newRole });
       setUsers(users.map(u => u.id === userId ? { ...u, role: newRole } : u));
       alert('Role updated');
     } catch (error) {
@@ -402,7 +420,7 @@ export function AdminApplications() {
   useEffect(() => {
     const fetchApps = async () => {
       try {
-        const q = query(collection(db, 'applications'));
+        const q = query(collection(db, 'memberApplications'));
         const snapshot = await getDocs(q);
         setApplications(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
       } catch (error) {
@@ -416,7 +434,7 @@ export function AdminApplications() {
 
   const handleStatusChange = async (appId: string, newStatus: string) => {
     try {
-      await updateDoc(doc(db, 'applications', appId), { status: newStatus });
+      await updateDoc(doc(db, 'memberApplications', appId), { status: newStatus });
       setApplications(apps => apps.map(app => app.id === appId ? { ...app, status: newStatus } : app));
     } catch (error) {
       console.error("Error updating status:", error);
@@ -544,6 +562,202 @@ export function AdminInquiries() {
           </table>
         </div>
       )}
+    </div>
+  );
+}
+
+export function AdminOrders() {
+  const [orders, setOrders] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const q = query(collection(db, 'orders'));
+        const snapshot = await getDocs(q);
+        setOrders(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchOrders();
+  }, []);
+
+  const handleStatusChange = async (orderId: string, newStatus: string) => {
+    try {
+      await updateDoc(doc(db, 'orders', orderId), { status: newStatus, updatedAt: serverTimestamp() });
+      setOrders(orders.map(o => o.id === orderId ? { ...o, status: newStatus } : o));
+    } catch (error) {
+      console.error("Error updating order status:", error);
+      alert("Error updating order status");
+    }
+  };
+
+  if (loading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h1 className="text-3xl font-light tracking-tight mb-8">Manage Orders</h1>
+      <div className="bg-white border border-[#1A1A1A]/10">
+        <table className="w-full text-sm text-left">
+          <thead className="text-xs tracking-widest uppercase text-[#1A1A1A]/50 border-b border-[#1A1A1A]/10">
+            <tr>
+              <th className="px-6 py-4 font-normal">Order ID</th>
+              <th className="px-6 py-4 font-normal">User ID</th>
+              <th className="px-6 py-4 font-normal">Total</th>
+              <th className="px-6 py-4 font-normal">Status</th>
+              <th className="px-6 py-4 font-normal">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map(order => (
+              <tr key={order.id} className="border-b border-[#1A1A1A]/5">
+                <td className="px-6 py-4 font-mono">{order.id}</td>
+                <td className="px-6 py-4 font-mono">{order.uid}</td>
+                <td className="px-6 py-4">${order.total}</td>
+                <td className="px-6 py-4">
+                  <select 
+                    value={order.status || 'pending'} 
+                    onChange={(e) => handleStatusChange(order.id, e.target.value)}
+                    className="bg-transparent border border-[#1A1A1A]/20 px-2 py-1 text-xs uppercase tracking-widest"
+                  >
+                    <option value="pending">Pending</option>
+                    <option value="processing">Processing</option>
+                    <option value="shipped">Shipped</option>
+                    <option value="delivered">Delivered</option>
+                    <option value="cancelled">Cancelled</option>
+                  </select>
+                </td>
+                <td className="px-6 py-4">
+                  <button className="text-[#5A6B58] hover:underline text-xs tracking-widest uppercase">View Details</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  );
+}
+
+export function AdminNotifications() {
+  const [notifications, setNotifications] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [newNotification, setNewNotification] = useState({ uid: '', title: '', message: '' });
+
+  useEffect(() => {
+    const fetchNotifications = async () => {
+      try {
+        const q = query(collection(db, 'notifications'));
+        const snapshot = await getDocs(q);
+        setNotifications(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
+      } catch (error) {
+        console.error("Error fetching notifications:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchNotifications();
+  }, []);
+
+  const handleCreate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const docRef = await addDoc(collection(db, 'notifications'), {
+        ...newNotification,
+        read: false,
+        createdAt: serverTimestamp()
+      });
+      setNotifications([{ id: docRef.id, ...newNotification, read: false }, ...notifications]);
+      setNewNotification({ uid: '', title: '', message: '' });
+    } catch (error) {
+      console.error("Error creating notification:", error);
+      alert("Error creating notification");
+    }
+  };
+
+  const handleDelete = async (id: string) => {
+    if (window.confirm('Are you sure you want to delete this notification?')) {
+      try {
+        await deleteDoc(doc(db, 'notifications', id));
+        setNotifications(notifications.filter(n => n.id !== id));
+      } catch (error) {
+        console.error("Error deleting notification:", error);
+        alert("Error deleting notification");
+      }
+    }
+  };
+
+  if (loading) return <div>Loading...</div>;
+
+  return (
+    <div>
+      <h1 className="text-3xl font-light tracking-tight mb-8">Manage Notifications</h1>
+      
+      <div className="bg-white border border-[#1A1A1A]/10 p-6 mb-8">
+        <h2 className="text-lg mb-4">Create Notification</h2>
+        <form onSubmit={handleCreate} className="space-y-4">
+          <div>
+            <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">User ID (or 'all')</label>
+            <input 
+              type="text" 
+              value={newNotification.uid} 
+              onChange={e => setNewNotification({...newNotification, uid: e.target.value})}
+              className="w-full border border-[#1A1A1A]/20 p-3 text-sm focus:outline-none focus:border-[#1A1A1A]"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">Title</label>
+            <input 
+              type="text" 
+              value={newNotification.title} 
+              onChange={e => setNewNotification({...newNotification, title: e.target.value})}
+              className="w-full border border-[#1A1A1A]/20 p-3 text-sm focus:outline-none focus:border-[#1A1A1A]"
+              required
+            />
+          </div>
+          <div>
+            <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">Message</label>
+            <textarea 
+              value={newNotification.message} 
+              onChange={e => setNewNotification({...newNotification, message: e.target.value})}
+              className="w-full border border-[#1A1A1A]/20 p-3 text-sm focus:outline-none focus:border-[#1A1A1A] h-24"
+              required
+            />
+          </div>
+          <button type="submit" className="bg-[#1A1A1A] text-white px-6 py-3 text-xs tracking-widest uppercase hover:bg-black transition-colors">
+            Send Notification
+          </button>
+        </form>
+      </div>
+
+      <div className="bg-white border border-[#1A1A1A]/10">
+        <table className="w-full text-sm text-left">
+          <thead className="text-xs tracking-widest uppercase text-[#1A1A1A]/50 border-b border-[#1A1A1A]/10">
+            <tr>
+              <th className="px-6 py-4 font-normal">User ID</th>
+              <th className="px-6 py-4 font-normal">Title</th>
+              <th className="px-6 py-4 font-normal">Status</th>
+              <th className="px-6 py-4 font-normal">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {notifications.map(notification => (
+              <tr key={notification.id} className="border-b border-[#1A1A1A]/5">
+                <td className="px-6 py-4 font-mono">{notification.uid}</td>
+                <td className="px-6 py-4">{notification.title}</td>
+                <td className="px-6 py-4">{notification.read ? 'Read' : 'Unread'}</td>
+                <td className="px-6 py-4">
+                  <button onClick={() => handleDelete(notification.id)} className="text-red-500 hover:underline text-xs tracking-widest uppercase">Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

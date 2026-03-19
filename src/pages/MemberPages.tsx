@@ -93,40 +93,39 @@ export function MemberPage() {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    if (userProfile?.favorites && userProfile.favorites.length > 0) {
-      import('firebase/firestore').then(({ collection, query, where, getDocs }) => {
-        // Firestore 'in' query supports up to 10 elements. For simplicity, we fetch all and filter if > 10, or chunk it.
-        // Since it's a small app, we can just fetch all plants and filter locally, or use 'in' for small arrays.
+    if (user && activeTab === 'favorites') {
+      import('firebase/firestore').then(({ collection, query, where, getDocs, doc, getDoc }) => {
         const fetchFavs = async () => {
           try {
-            const q = query(collection(db, 'plants'));
+            const q = query(collection(db, 'favorites'), where('uid', '==', user.uid));
             const snapshot = await getDocs(q);
-            const allPlants = snapshot.docs.map(doc => ({ id: doc.id, ...(doc.data() as any) }));
-            const favs = allPlants.filter(p => userProfile.favorites?.includes(p.id));
-            
-            if (favs.length === 0) {
-              const localFavs = plantDatabase.filter(p => userProfile.favorites?.includes(p.id));
-              setFavoritePlants(localFavs);
-            } else {
-              setFavoritePlants(favs);
+            const favs = [];
+            for (const favDoc of snapshot.docs) {
+              const plantId = favDoc.data().plantId;
+              try {
+                const plantRef = doc(db, 'plants', plantId);
+                const plantSnap = await getDoc(plantRef);
+                if (plantSnap.exists()) {
+                  favs.push({ id: plantSnap.id, ...(plantSnap.data() as any) });
+                }
+              } catch (err) {
+                console.error("Error fetching favorite plant", plantId, err);
+              }
             }
+            setFavoritePlants(favs);
           } catch (error) {
             console.error("Error fetching favorites:", error);
-            const localFavs = plantDatabase.filter(p => userProfile.favorites?.includes(p.id));
-            setFavoritePlants(localFavs);
           }
         };
         fetchFavs();
       });
-    } else {
-      setFavoritePlants([]);
     }
-  }, [userProfile]);
+  }, [user, activeTab]);
 
   React.useEffect(() => {
     if (user && activeTab === 'applications') {
       import('firebase/firestore').then(({ collection, query, where, getDocs }) => {
-        const q = query(collection(db, 'applications'), where('userId', '==', user.uid));
+        const q = query(collection(db, 'memberApplications'), where('userId', '==', user.uid));
         getDocs(q).then(snapshot => {
           const apps = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
           setApplications(apps);

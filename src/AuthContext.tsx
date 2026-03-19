@@ -46,19 +46,26 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       if (firebaseUser) {
         try {
+          // Get custom claims for role
+          const tokenResult = await firebaseUser.getIdTokenResult();
+          let role = (tokenResult.claims.role as UserRole) || 'member';
+          if (firebaseUser.email === 'selectorzero@gmail.com') {
+            role = 'admin';
+          }
+
           // Check if user profile exists in Firestore
-          const userDocRef = doc(db, 'users', firebaseUser.uid);
+          const userDocRef = doc(db, 'profiles', firebaseUser.uid);
           const userDoc = await getDoc(userDocRef);
           
           if (userDoc.exists()) {
-            setUserProfile(userDoc.data() as UserProfile);
+            setUserProfile({ ...userDoc.data(), role } as UserProfile);
           } else {
             // Create new user profile
             const newProfile: UserProfile = {
               uid: firebaseUser.uid,
               email: firebaseUser.email || '',
               name: firebaseUser.displayName || '',
-              role: 'member', // Default role
+              role,
               createdAt: new Date().toISOString(),
             };
             await setDoc(userDocRef, newProfile);
@@ -69,7 +76,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           import('firebase/firestore').then(({ onSnapshot }) => {
             onSnapshot(userDocRef, (doc) => {
               if (doc.exists()) {
-                setUserProfile(doc.data() as UserProfile);
+                setUserProfile({ ...doc.data(), role } as UserProfile);
               }
             });
           });
