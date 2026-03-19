@@ -4,12 +4,14 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { auth, db } from './firebase';
 
 export type UserRole = 'member' | 'editor' | 'admin';
+export type UserStatus = 'pending' | 'approved' | 'rejected';
 
 export interface UserProfile {
   uid: string;
   email: string;
   name?: string;
   role: UserRole;
+  status: UserStatus;
   favorites?: string[];
   profile?: {
     phone?: string;
@@ -49,16 +51,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           // Get custom claims for role
           const tokenResult = await firebaseUser.getIdTokenResult();
           let role = (tokenResult.claims.role as UserRole) || 'member';
-          if (firebaseUser.email === 'selectorzero@gmail.com') {
-            role = 'admin';
-          }
 
           // Check if user profile exists in Firestore
           const userDocRef = doc(db, 'profiles', firebaseUser.uid);
           const userDoc = await getDoc(userDocRef);
           
           if (userDoc.exists()) {
-            setUserProfile({ ...userDoc.data(), role } as UserProfile);
+            const data = userDoc.data();
+            setUserProfile({ ...data, role, status: data.status || 'pending' } as UserProfile);
           } else {
             // Create new user profile
             const newProfile: UserProfile = {
@@ -66,6 +66,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
               email: firebaseUser.email || '',
               name: firebaseUser.displayName || '',
               role,
+              status: 'pending',
               createdAt: new Date().toISOString(),
             };
             await setDoc(userDocRef, newProfile);
@@ -76,7 +77,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           import('firebase/firestore').then(({ onSnapshot }) => {
             onSnapshot(userDocRef, (doc) => {
               if (doc.exists()) {
-                setUserProfile({ ...doc.data(), role } as UserProfile);
+                const data = doc.data();
+                setUserProfile({ ...data, role, status: data.status || 'pending' } as UserProfile);
               }
             });
           });

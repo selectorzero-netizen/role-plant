@@ -163,6 +163,11 @@ export function SinglePlantPage() {
       navigate('/login');
       return;
     }
+    if (userProfile?.status !== 'approved') {
+      alert('成為正式會員後即可發送植物申請，請至會員中心提出審核。');
+      navigate('/member');
+      return;
+    }
     setLoading(true);
     try {
       await addDoc(collection(db, 'memberApplications'), {
@@ -184,6 +189,11 @@ export function SinglePlantPage() {
   const handleTrack = async () => {
     if (!user) {
       navigate('/login');
+      return;
+    }
+    if (userProfile?.status !== 'approved') {
+      alert('成為正式會員後即可追蹤植物狀態，請至會員中心提出審核。');
+      navigate('/member');
       return;
     }
     

@@ -143,27 +143,38 @@ export function MemberPage() {
         </div>
         <div className="text-right">
           <p className="text-sm font-medium mb-1">{userProfile?.name || 'User'}</p>
-          <p className="text-xs text-[#1A1A1A]/50 font-mono">{userProfile?.role || 'member'}</p>
+          <div className="flex items-center gap-2 justify-end">
+            <span className={`text-[10px] tracking-widest uppercase px-2 py-0.5 border ${
+              userProfile?.status === 'approved' ? 'border-[#5A6B58] text-[#5A6B58]' : 'border-orange-500 text-orange-500'
+            }`}>
+              {userProfile?.status === 'approved' ? '正式會員' : '審核中'}
+            </span>
+            <p className="text-xs text-[#1A1A1A]/50 font-mono">{userProfile?.role || 'member'}</p>
+          </div>
         </div>
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
         {/* Sidebar */}
         <div className="md:col-span-1 space-y-2">
-          <button 
-            onClick={() => setActiveTab('favorites')}
-            className={`w-full text-left px-4 py-3 text-sm tracking-widest flex items-center gap-3 transition-colors ${activeTab === 'favorites' ? 'bg-[#1A1A1A] text-white' : 'hover:bg-[#1A1A1A]/5'}`}
-          >
-            <Heart size={16} />
-            <span>追蹤清單</span>
-          </button>
-          <button 
-            onClick={() => setActiveTab('applications')}
-            className={`w-full text-left px-4 py-3 text-sm tracking-widest flex items-center gap-3 transition-colors ${activeTab === 'applications' ? 'bg-[#1A1A1A] text-white' : 'hover:bg-[#1A1A1A]/5'}`}
-          >
-            <Clock size={16} />
-            <span>申請紀錄</span>
-          </button>
+          {userProfile?.status === 'approved' && (
+            <>
+              <button 
+                onClick={() => setActiveTab('favorites')}
+                className={`w-full text-left px-4 py-3 text-sm tracking-widest flex items-center gap-3 transition-colors ${activeTab === 'favorites' ? 'bg-[#1A1A1A] text-white' : 'hover:bg-[#1A1A1A]/5'}`}
+              >
+                <Heart size={16} />
+                <span>追蹤清單</span>
+              </button>
+              <button 
+                onClick={() => setActiveTab('applications')}
+                className={`w-full text-left px-4 py-3 text-sm tracking-widest flex items-center gap-3 transition-colors ${activeTab === 'applications' ? 'bg-[#1A1A1A] text-white' : 'hover:bg-[#1A1A1A]/5'}`}
+              >
+                <Clock size={16} />
+                <span>申請紀錄</span>
+              </button>
+            </>
+          )}
           <button 
             onClick={() => setActiveTab('settings')}
             className={`w-full text-left px-4 py-3 text-sm tracking-widest flex items-center gap-3 transition-colors ${activeTab === 'settings' ? 'bg-[#1A1A1A] text-white' : 'hover:bg-[#1A1A1A]/5'}`}
@@ -200,7 +211,36 @@ export function MemberPage() {
 
         {/* Content Area */}
         <div className="md:col-span-3">
-          {activeTab === 'favorites' && (
+          {userProfile?.status === 'pending' && activeTab === 'favorites' && (
+            <div className="bg-orange-50 border border-orange-100 p-8 text-center rounded-sm">
+              <h2 className="text-xl font-light mb-4 text-orange-800">會員資格審核中</h2>
+              <p className="text-orange-900/70 text-sm leading-relaxed mb-6">
+                您的帳號目前尚未成為正式會員。為確保交流品質與植物知識基礎，我們需確認每位成員的意向。<br />
+                成為正式會員後，您才能使用「收藏植物」、「追蹤檔案」以及「發送植物申請」等功能。
+              </p>
+              <button 
+                onClick={async () => {
+                   try {
+                     const { addDoc, collection } = await import('firebase/firestore');
+                     await addDoc(collection(db, 'memberApplications'), {
+                       userId: user?.uid,
+                       type: 'membership_upgrade',
+                       status: 'pending',
+                       createdAt: new Date().toISOString()
+                     });
+                     alert('申請已送出！我們會盡快為您審核。');
+                   } catch (e) {
+                     alert('申請送出失敗，請稍後再試。');
+                   }
+                }}
+                className="bg-orange-600 text-white px-6 py-3 text-sm tracking-widest uppercase hover:bg-orange-700 transition-colors"
+              >
+                發送正式會員申請
+              </button>
+            </div>
+          )}
+
+          {userProfile?.status === 'approved' && activeTab === 'favorites' && (
             <div>
               <h2 className="text-xl font-light mb-8">追蹤清單</h2>
               {favoritePlants.length > 0 ? (
@@ -230,7 +270,7 @@ export function MemberPage() {
             </div>
           )}
 
-          {activeTab === 'applications' && (
+          {userProfile?.status === 'approved' && activeTab === 'applications' && (
             <div>
               <h2 className="text-xl font-light mb-8">申請紀錄</h2>
               <div className="overflow-x-auto">
@@ -273,7 +313,7 @@ export function MemberPage() {
                 const newName = formData.get('name') as string;
                 if (userProfile && newName !== userProfile.name) {
                   try {
-                    await updateDoc(doc(db, 'users', userProfile.uid), {
+                    await updateDoc(doc(db, 'profiles', userProfile.uid), {
                       name: newName
                     });
                     alert('設定已儲存');

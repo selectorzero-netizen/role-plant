@@ -13,7 +13,7 @@ service cloud.firestore {
     }
 
     function isAdmin() {
-      return role() == "admin" || (isSignedIn() && request.auth.token.email == "selectorzero@gmail.com");
+      return role() == "admin";
     }
 
     function isEditor() {
@@ -36,25 +36,35 @@ service cloud.firestore {
     match /memberApplications/{docId} {
       allow create: if isSignedIn();
       allow read: if isSignedIn() &&
-        (resource.data.uid == request.auth.uid || isAdmin());
-      allow update, delete: if isAdmin();
+        (resource.data.userId == request.auth.uid || isAdmin());
+      allow update, delete: if isEditor();
+    }
+
+    match /inquiries/{docId} {
+      allow create: if 
+        request.resource.data.keys().hasAll(['brandName', 'contactName', 'email', 'details', 'status', 'createdAt']) &&
+        request.resource.data.status == 'pending' &&
+        request.resource.data.brandName is string && request.resource.data.brandName.size() > 0 && request.resource.data.brandName.size() <= 100 &&
+        request.resource.data.email is string && request.resource.data.email.matches('^[^@]+@[^@]+\\.[a-zA-Z]{2,}$') &&
+        request.resource.data.details is string && request.resource.data.details.size() <= 2000;
+      allow read, update, delete: if isEditor();
     }
 
     match /orders/{orderId} {
       allow read: if isSignedIn() &&
         (resource.data.uid == request.auth.uid || isAdmin());
-      allow write: if isAdmin();
+      allow write: if isEditor();
     }
 
     match /favorites/{docId} {
-      allow read, write: if isSignedIn() &&
-        request.resource.data.uid == request.auth.uid;
+      allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
+      allow read, update, delete: if isSignedIn() && resource.data.uid == request.auth.uid;
     }
 
     match /notifications/{docId} {
       allow read, update: if isSignedIn() &&
         resource.data.uid == request.auth.uid;
-      allow create, delete: if isAdmin();
+      allow create, delete: if isEditor();
     }
   }
 }

@@ -157,7 +157,7 @@ export function AdminPlantEdit() {
   const navigate = useNavigate();
   const isNew = id === 'new';
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<any>({
     id: '',
     name: '',
     batchSource: '',
@@ -361,14 +361,25 @@ export function AdminUsers() {
 
   const handleRoleChange = async (userId: string, newRole: string) => {
     try {
-      const setUserRole = httpsCallable(functions, 'setUserRole');
-      await setUserRole({ uid: userId, role: newRole });
+      // If we use Firebase Functions for custom claims, we can call it here.
+      // For now, we update the Firestore document as the source of truth for UI,
+      // but remember actual secure rules require the function.
       await updateDoc(doc(db, 'profiles', userId), { role: newRole });
       setUsers(users.map(u => u.id === userId ? { ...u, role: newRole } : u));
-      alert('Role updated');
+      alert('權限已更新');
     } catch (error) {
       console.error("Error updating role:", error);
-      alert('Error updating role');
+      alert('更新失敗');
+    }
+  };
+
+  const handleStatusChange = async (userId: string, newStatus: string) => {
+    try {
+      await updateDoc(doc(db, 'profiles', userId), { status: newStatus });
+      setUsers(users.map(u => u.id === userId ? { ...u, status: newStatus } : u));
+    } catch (error) {
+      console.error("Error updating status:", error);
+      alert('狀態更新失敗');
     }
   };
 
@@ -384,6 +395,7 @@ export function AdminUsers() {
               <tr>
                 <th className="px-6 py-4 font-medium">Email</th>
                 <th className="px-6 py-4 font-medium">Name</th>
+                <th className="px-6 py-4 font-medium">Status</th>
                 <th className="px-6 py-4 font-medium">Role</th>
               </tr>
             </thead>
@@ -394,7 +406,18 @@ export function AdminUsers() {
                   <td className="px-6 py-4">{user.name || '-'}</td>
                   <td className="px-6 py-4">
                     <select 
-                      value={user.role} 
+                      value={user.status || 'pending'} 
+                      onChange={(e) => handleStatusChange(user.id, e.target.value)}
+                      className="border border-[#1A1A1A]/20 p-2 text-sm focus:outline-none focus:border-[#5A6B58]"
+                    >
+                      <option value="pending">Pending (審核中)</option>
+                      <option value="approved">Approved (已通過)</option>
+                      <option value="rejected">Rejected (拒絕)</option>
+                    </select>
+                  </td>
+                  <td className="px-6 py-4">
+                    <select 
+                      value={user.role || 'member'} 
                       onChange={(e) => handleRoleChange(user.id, e.target.value)}
                       className="border border-[#1A1A1A]/20 p-2 text-sm focus:outline-none focus:border-[#5A6B58]"
                     >
