@@ -1,0 +1,104 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "A user of the application (Member, Editor, Admin).",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "email": { "type": "string", "format": "email" },
+        "role": { "type": "string", "enum": ["member", "editor", "admin"] },
+        "profile": {
+          "type": "object",
+          "properties": {
+            "name": { "type": "string" },
+            "phone": { "type": "string" },
+            "shippingAddress": { "type": "string" }
+          }
+        },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role", "createdAt"]
+    },
+    "Plant": {
+      "title": "Plant",
+      "description": "A single Dioscorea elephantipes plant.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "batchSource": { "type": "string" },
+        "status": { "type": "string", "enum": ["培育中", "可申請", "可售", "保留中", "已售", "Archive"] },
+        "price": { "type": "number" },
+        "size": { "type": "string" },
+        "stats": {
+          "type": "object",
+          "properties": {
+            "expression": { "type": "string" },
+            "balance": { "type": "string" },
+            "proportion": { "type": "string" }
+          }
+        },
+        "details": {
+          "type": "object",
+          "properties": {
+            "summary": { "type": "string" },
+            "cultivationNotes": { "type": "string" },
+            "suitableFor": { "type": "string" }
+          }
+        },
+        "image": { "type": "string" },
+        "isPublic": { "type": "boolean" },
+        "sortOrder": { "type": "number" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["id", "name", "batchSource", "status", "price", "size", "stats", "details", "image", "isPublic", "sortOrder", "createdAt"]
+    },
+    "Application": {
+      "title": "Application",
+      "description": "A user's application for a plant (waitlist, purchase, inquiry).",
+      "type": "object",
+      "properties": {
+        "plantId": { "type": "string" },
+        "userId": { "type": "string" },
+        "type": { "type": "string", "enum": ["waitlist", "purchase", "inquiry"] },
+        "status": { "type": "string", "enum": ["pending", "reviewing", "approved", "rejected"] },
+        "notes": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["plantId", "userId", "type", "status", "createdAt"]
+    },
+    "Inquiry": {
+      "title": "Inquiry",
+      "description": "Business inquiry form submission.",
+      "type": "object",
+      "properties": {
+        "brandName": { "type": "string" },
+        "contactName": { "type": "string" },
+        "email": { "type": "string", "format": "email" },
+        "message": { "type": "string" },
+        "status": { "type": "string", "enum": ["unread", "processing", "done"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["contactName", "email", "message", "status", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/User" },
+      "description": "Stores user profiles and roles."
+    },
+    "/plants/{plantId}": {
+      "schema": { "$ref": "#/entities/Plant" },
+      "description": "Stores all plant records."
+    },
+    "/applications/{applicationId}": {
+      "schema": { "$ref": "#/entities/Application" },
+      "description": "Stores user applications for plants."
+    },
+    "/inquiries/{inquiryId}": {
+      "schema": { "$ref": "#/entities/Inquiry" },
+      "description": "Stores business inquiries."
+    }
+  }
+}
