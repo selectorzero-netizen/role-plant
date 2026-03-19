@@ -1,10 +1,10 @@
 {
-  "projectId": "project-6797f120-1480-429d-9ee",
+  "projectId": "role-plant",
   "appId": "1:476055859097:web:f914e658211ebafcb66d08",
   "apiKey": "AIzaSyDV1qEMIShZqDKEWCRacmty_B04ePmcdZc",
-  "authDomain": "project-6797f120-1480-429d-9ee.firebaseapp.com",
-  "firestoreDatabaseId": "ai-studio-27c1cf59-b327-4628-97b6-cf06c4d39620",
-  "storageBucket": "project-6797f120-1480-429d-9ee.firebasestorage.app",
+  "authDomain": "role-plant.firebaseapp.com",
+  "firestoreDatabaseId": "(default)",
+  "storageBucket": "role-plant.firebasestorage.app",
   "messagingSenderId": "476055859097",
   "measurementId": ""
 }

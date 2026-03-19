@@ -17,11 +17,18 @@ export function LoginPage() {
     setLoading(true);
     try {
       const provider = new GoogleAuthProvider();
+      provider.setCustomParameters({ prompt: 'select_account' });
       await signInWithPopup(auth, provider);
       navigate('/member');
     } catch (err: any) {
       console.error("Google auth error:", err);
-      setError('Google 登入失敗，請稍後再試。');
+      if (err.code === 'auth/unauthorized-domain') {
+        setError('【待手動設定】目前網域未經授權。請至 Firebase Console > Authentication > Settings 將此網域 (如 localhost) 加入 Authorized domains。');
+      } else if (err.code === 'auth/popup-closed-by-user') {
+        setError(''); // 用戶自行關閉，不一定要報大錯
+      } else {
+        setError(`【待手動驗證排錯】Google 登入失敗 (${err.code || '未知錯誤'})`);
+      }
     } finally {
       setLoading(false);
     }
