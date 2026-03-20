@@ -4,16 +4,16 @@ import { getFirestore } from 'firebase/firestore';
 import { getFunctions } from 'firebase/functions';
 
 const firebaseConfig = {
-  projectId: "role-plant",
-  appId: "1:476055859097:web:f914e658211ebafcb66d08", // 若您的新專案有了不同的 appId，請在此更新
-  apiKey: "AIzaSyDV1qEMIShZqDKEWCRacmty_B04ePmcdZc",     // 若您的新專案有了不同的 apiKey，請在此更新
+  apiKey: "AIzaSyC-zSo8zwc4husVpiT5V-R3I5VvouypoZk",
   authDomain: "role-plant.firebaseapp.com",
+  projectId: "role-plant",
   storageBucket: "role-plant.firebasestorage.app",
-  messagingSenderId: "476055859097",
-  measurementId: ""
+  messagingSenderId: "495394835377",
+  appId: "1:495394835377:web:6ec658862d5b879f9ecb90",
+  measurementId: "G-3HQ5KTQGP4"
 };
 
 const app = initializeApp(firebaseConfig);
-export const db = getFirestore(app); // 移除舊的非預設 firestoreDatabaseId
+export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const functions = getFunctions(app);

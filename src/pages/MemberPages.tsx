@@ -23,14 +23,13 @@ export function LoginPage() {
       await login();
       navigate('/member');
     } catch (err: any) {
-      console.error("Login error:", err);
-      if (err?.response?.status === 500) {
-        setError('伺服器發生錯誤 (500 模擬)。請稍後再試。');
-      } else if (err?.response?.status === 401) {
-        setError('未經授權或 Token 失效 (401 模擬)。');
-      } else {
-        setError('登入失敗，請確認已由 Dev Panel 賦予測試態。');
-      }
+      console.error("Login Error:", err);
+      import('../firebase').then(({ auth }) => {
+        const origin = window.location.origin;
+        const pid = auth?.app?.options?.projectId;
+        const dom = auth?.app?.options?.authDomain;
+        setError(`[${err.code}] ${err.message}. | ORIGIN: ${origin} | PROJ: ${pid} | DOMAIN: ${dom}`);
+      });
     } finally {
       setLoading(false);
     }

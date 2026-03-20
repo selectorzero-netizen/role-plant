@@ -6,7 +6,6 @@ import { AdminLayout, AdminDashboard, AdminPlants, AdminPlantEdit, AdminUsers, A
 import { Layout } from './components/Shared';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from './AuthContext';
-import { DevPanel } from './components/DevPanel';
 
 const ProtectedRoute = ({ children, requireRole, requireApproved }: { children: React.ReactNode, requireRole?: 'admin' | 'editor' | 'member', requireApproved?: boolean }) => {
   const { userProfile, isAuthReady } = useAuth();
@@ -43,7 +42,6 @@ export default function App() {
         <Route path="/login" element={<Layout><LoginPage /></Layout>} />
         <Route path="/member" element={<ProtectedRoute><Layout><MemberPage /></Layout></ProtectedRoute>} />
       </Routes>
-      <DevPanel />
     </>
   );
 }
