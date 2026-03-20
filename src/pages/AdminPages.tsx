@@ -331,7 +331,7 @@ export function AdminUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const q = query(collection(db, 'users'));
+        const q = query(collection(db, 'profiles'));
         const snapshot = await getDocs(q);
         setUsers(snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
       } catch (error) {
@@ -345,12 +345,22 @@ export function AdminUsers() {
 
   const handleRoleChange = async (userId: string, newRole: string) => {
     try {
-      await updateDoc(doc(db, 'users', userId), { role: newRole });
+      await updateDoc(doc(db, 'profiles', userId), { role: newRole });
       setUsers(users.map(u => u.id === userId ? { ...u, role: newRole } : u));
-      alert('Role updated');
+      // Removed noisy success alert
     } catch (error) {
       console.error("Error updating role:", error);
       alert('Error updating role');
+    }
+  };
+
+  const handleStatusChange = async (userId: string, newStatus: string) => {
+    try {
+      await updateDoc(doc(db, 'profiles', userId), { status: newStatus });
+      setUsers(users.map(u => u.id === userId ? { ...u, status: newStatus } : u));
+    } catch (error) {
+      console.error("Error updating status:", error);
+      alert('Error updating status');
     }
   };
 
@@ -367,6 +377,7 @@ export function AdminUsers() {
                 <th className="px-6 py-4 font-medium">Email</th>
                 <th className="px-6 py-4 font-medium">Name</th>
                 <th className="px-6 py-4 font-medium">Role</th>
+                <th className="px-6 py-4 font-medium">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -378,11 +389,21 @@ export function AdminUsers() {
                     <select 
                       value={user.role} 
                       onChange={(e) => handleRoleChange(user.id, e.target.value)}
-                      className="border border-[#1A1A1A]/20 p-2 text-sm focus:outline-none focus:border-[#5A6B58]"
+                      className="border border-[#1A1A1A]/20 p-2 text-sm focus:outline-none focus:border-[#5A6B58] w-full"
                     >
                       <option value="member">Member</option>
                       <option value="editor">Editor</option>
                       <option value="admin">Admin</option>
+                    </select>
+                  </td>
+                  <td className="px-6 py-4">
+                    <select 
+                      value={user.status || 'pending'} 
+                      onChange={(e) => handleStatusChange(user.id, e.target.value)}
+                      className="border border-[#1A1A1A]/20 p-2 text-sm focus:outline-none focus:border-[#5A6B58] w-full"
+                    >
+                      <option value="pending">Pending</option>
+                      <option value="approved">Approved</option>
                     </select>
                   </td>
                 </tr>

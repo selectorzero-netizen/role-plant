@@ -5,6 +5,8 @@ import { SafeImage, plantDatabase as fallbackDatabase } from '../components/Shar
 import { useAuth } from '../AuthContext';
 import { db } from '../firebase';
 import { collection, addDoc, serverTimestamp, doc, updateDoc, arrayUnion, arrayRemove, query, getDocs, getDoc } from 'firebase/firestore';
+import { favoritesService } from '../services/favoritesService';
+import { memberApplicationService } from '../services/memberApplicationService';
 
 export function CollectionPage() {
   const navigate = useNavigate();
@@ -15,17 +17,19 @@ export function CollectionPage() {
   useEffect(() => {
     const fetchPlants = async () => {
       try {
+        // TODO (Phase 3): Extract to plantService.getPlants()
         const q = query(collection(db, 'plants'));
         const snapshot = await getDocs(q);
         let plantsData = snapshot.docs.map(doc => ({ id: doc.id, ...(doc.data() as any) }));
         
-        // If no plants in Firestore, use fallback
         if (plantsData.length === 0) {
+          // 1. Fallback / Mock 資料顯示邏輯：當遠端完全無資料時，直接使用本機備案
           plantsData = fallbackDatabase;
         } else {
-          // Filter public plants
-          plantsData = plantsData.filter(p => p.isPublic);
-          // Sort
+          // 2. Firestore 真資料顯示邏輯：向下相容舊資料
+          // 若 isPublic 明確為 false 則隱藏；若缺漏此欄位(undefined)或為 true 則視為可見
+          plantsData = plantsData.filter(p => p.isPublic !== false);
+          // 排除隱藏植物後，進行排序
           plantsData.sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
         }
         setPlants(plantsData);
@@ -164,13 +168,17 @@ export function SinglePlantPage() {
       navigate('/login');
       return;
     }
+    if (userProfile?.status === 'pending') {
+      alert('您的帳號尚在審核中，無法送出申請。');
+      return;
+    }
     setLoading(true);
     try {
-      await addDoc(collection(db, 'applications'), {
+      await memberApplicationService.createApplication({
         userId: user.uid,
         plantId: plant.id,
-        status: 'pending',
-        createdAt: new Date().toISOString()
+        requestType: 'application',
+        status: 'pending'
       });
       alert('申請已送出，我們將盡快與您聯繫。');
       navigate('/member');
@@ -187,6 +195,10 @@ export function SinglePlantPage() {
       navigate('/login');
       return;
     }
+    if (userProfile?.status === 'pending') {
+      alert('您的帳號尚在審核中，無法加入追蹤。');
+      return;
+    }
     
     const isTracked = userProfile?.favorites?.includes(plant.id);
     if (isTracked) {
@@ -196,9 +208,7 @@ export function SinglePlantPage() {
 
     setLoading(true);
     try {
-      await updateDoc(doc(db, 'users', user.uid), {
-        favorites: arrayUnion(plant.id)
-      });
+      await favoritesService.addFavorite(user.uid, plant.id);
       navigate('/member');
     } catch (error) {
       console.error("Error tracking plant:", error);

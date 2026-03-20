@@ -1,21 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { apiClient } from './api/client';
-
-export type UserRole = 'member' | 'editor' | 'admin';
-export type UserStatus = 'pending' | 'approved' | 'rejected';
-
-export interface UserProfile {
-  uid: string;
-  email: string;
-  name?: string;
-  role: UserRole;
-  status: UserStatus;
-  favorites?: string[];
-  createdAt: string;
-}
+import { auth } from './firebase';
+import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, User } from 'firebase/auth';
+import { UserProfile, Role, Status } from './types';
+import { authService } from './services/authService';
 
 interface AuthContextType {
-  user: any | null; // Keep a lightweight user object to mimic firebase user
+  user: User | null;
   userProfile: UserProfile | null;
   loading: boolean;
   isAuthReady: boolean;
@@ -35,46 +25,44 @@ const AuthContext = createContext<AuthContextType>({
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [user, setUser] = useState<User | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAuthReady, setIsAuthReady] = useState(false);
 
-  const fetchProfile = async () => {
-    try {
-      const token = localStorage.getItem('MOCK_TOKEN');
-      if (!token) throw new Error('No token exists');
-      
-      const res = await apiClient.get('/api/auth/me');
-      setUserProfile(res.data);
-    } catch (error: any) {
-      console.warn("Auth check failed (or user not logged in):", error.message);
-      setUserProfile(null);
-      // Clean token if validation fails
-      localStorage.removeItem('MOCK_TOKEN');
-    } finally {
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+      setUser(firebaseUser);
+      if (firebaseUser) {
+        try {
+          // Auto-provision profile if new, defaulting to pending status
+          const profile = await authService.initializeProfileIfNew(
+            firebaseUser.uid,
+            firebaseUser.email,
+            firebaseUser.displayName
+          );
+          setUserProfile(profile);
+        } catch (error) {
+          console.error("Error fetching or initializing profile:", error);
+          setUserProfile(null);
+        }
+      } else {
+        setUserProfile(null);
+      }
       setLoading(false);
       setIsAuthReady(true);
-    }
-  };
-
-  useEffect(() => {
-    fetchProfile();
+    });
+    return () => unsubscribe();
   }, []);
 
   const login = async () => {
-    const res = await apiClient.post('/api/auth/login');
-    if (res.data.token) {
-      localStorage.setItem('MOCK_TOKEN', res.data.token);
-      await fetchProfile();
-    }
+    const provider = new GoogleAuthProvider();
+    await signInWithPopup(auth, provider);
   };
 
   const logout = () => {
-    localStorage.removeItem('MOCK_TOKEN');
-    setUserProfile(null);
+    signOut(auth);
   };
-
-  const user = userProfile ? { uid: userProfile.uid, email: userProfile.email } : null;
 
   return (
     <AuthContext.Provider value={{ user, userProfile, loading, isAuthReady, login, logout }}>

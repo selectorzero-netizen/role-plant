@@ -6,6 +6,9 @@ import { SafeImage, plantDatabase } from '../components/Shared';
 // (Firebase Auth imports removed because auth is now abstracted to AuthContext and MSW)
 import { db } from '../firebase';
 import { doc, updateDoc } from 'firebase/firestore';
+import { profileService } from '../services/profileService';
+import { favoritesService } from '../services/favoritesService';
+import { memberApplicationService } from '../services/memberApplicationService';
 
 export function LoginPage() {
   const [error, setError] = useState('');
@@ -52,11 +55,11 @@ export function LoginPage() {
           disabled={loading}
           className="w-full bg-[#1A1A1A] text-white py-4 text-sm tracking-widest hover:bg-[#5A6B58] transition-colors flex items-center justify-center gap-3 disabled:opacity-50"
         >
-          {loading ? '驗證中...' : '進行 Mock 登入'}
+          {loading ? '驗證中...' : '進行 Google 登入'}
         </button>
         <p className="text-center text-xs text-gray-400 mt-4 leading-relaxed">
-          目前採用 MSW (Mock Service Worker) 攔截 API。<br/>
-          請點擊右下角 <strong className="text-gray-600">Dev API Panel</strong> 設定情境。
+          採用 Google 帳戶驗證您的身分。<br/>
+          (自動核發 Member 權限與 Pending 狀態)
         </p>
       </div>
     </div>
@@ -72,29 +75,11 @@ export function MemberPage() {
 
   React.useEffect(() => {
     if (userProfile?.favorites && userProfile.favorites.length > 0) {
-      import('firebase/firestore').then(({ collection, query, where, getDocs }) => {
-        // Firestore 'in' query supports up to 10 elements. For simplicity, we fetch all and filter if > 10, or chunk it.
-        // Since it's a small app, we can just fetch all plants and filter locally, or use 'in' for small arrays.
-        const fetchFavs = async () => {
-          try {
-            const q = query(collection(db, 'plants'));
-            const snapshot = await getDocs(q);
-            const allPlants = snapshot.docs.map(doc => ({ id: doc.id, ...(doc.data() as any) }));
-            const favs = allPlants.filter(p => userProfile.favorites?.includes(p.id));
-            
-            if (favs.length === 0) {
-              const localFavs = plantDatabase.filter(p => userProfile.favorites?.includes(p.id));
-              setFavoritePlants(localFavs);
-            } else {
-              setFavoritePlants(favs);
-            }
-          } catch (error) {
-            console.error("Error fetching favorites:", error);
-            const localFavs = plantDatabase.filter(p => userProfile.favorites?.includes(p.id));
-            setFavoritePlants(localFavs);
-          }
-        };
-        fetchFavs();
+      favoritesService.getFavoritePlants(userProfile.favorites).then(favs => {
+        setFavoritePlants(favs);
+      }).catch(err => {
+        console.error("Error fetching favorites:", err);
+        setFavoritePlants([]);
       });
     } else {
       setFavoritePlants([]);
@@ -103,12 +88,11 @@ export function MemberPage() {
 
   React.useEffect(() => {
     if (user && activeTab === 'applications') {
-      import('firebase/firestore').then(({ collection, query, where, getDocs }) => {
-        const q = query(collection(db, 'applications'), where('userId', '==', user.uid));
-        getDocs(q).then(snapshot => {
-          const apps = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-          setApplications(apps);
-        }).catch(err => console.error("Error fetching applications:", err));
+      memberApplicationService.getApplicationsByUser(user.uid).then(apps => {
+        setApplications(apps);
+      }).catch(err => {
+        console.error("Error fetching applications:", err);
+        setApplications([]);
       });
     }
   }, [user, activeTab]);
@@ -179,6 +163,13 @@ export function MemberPage() {
 
         {/* Content Area */}
         <div className="md:col-span-3">
+          {userProfile?.status === 'pending' && (
+            <div className="bg-[#EBEBE8] p-6 mb-8 border-l-4 border-[#5A6B58]">
+              <h3 className="text-xl font-light mb-2">審核中 (Pending)</h3>
+              <p className="text-sm text-[#1A1A1A]/70">您的帳號目前正在等待管理員審核。在審核通過前，部分進階功能將暫時受限，但您仍可自由瀏覽公開檔案。</p>
+            </div>
+          )}
+          
           {activeTab === 'favorites' && (
             <div>
               <h2 className="text-xl font-light mb-8">追蹤清單</h2>
@@ -252,7 +243,8 @@ export function MemberPage() {
                 const newName = formData.get('name') as string;
                 if (userProfile && newName !== userProfile.name) {
                   try {
-                    await updateDoc(doc(db, 'users', userProfile.uid), {
+                    // TODO (Phase 3): Extract to profileService.updateProfile()
+                    await profileService.updateProfile(userProfile.uid, {
                       name: newName
                     });
                     alert('設定已儲存');

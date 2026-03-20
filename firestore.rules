@@ -1,70 +1,61 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-
-    function isSignedIn() {
+    
+    // Core Helper Functions
+    function isAuthenticated() {
       return request.auth != null;
     }
-
-    function role() {
-      return isSignedIn() && request.auth.token.role != null
-        ? request.auth.token.role
-        : "";
-    }
-
+    
     function isAdmin() {
-      return role() == "admin";
+      return isAuthenticated() 
+             && get(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.role == 'admin';
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
     }
 
-    function isEditor() {
-      return role() == "editor" || isAdmin();
-    }
-
-    match /plants/{plantId} {
-      allow read: if resource.data.isPublic == true
-                  || role() in ["member", "editor", "admin"]
-                  || isAdmin();
-      allow create, update, delete: if isEditor();
-    }
-
+    // 1. Profiles (Users)
     match /profiles/{userId} {
-      allow read, update: if isSignedIn() && request.auth.uid == userId;
-      allow read, update: if isAdmin();
-      allow create: if isSignedIn() && request.auth.uid == userId;
+      allow read: if isOwner(userId) || isAdmin();
+      
+      // 首次登入建檔：強制限定建立自己的 profile，且值必須妥善預設為 member/pending
+      allow create: if isOwner(userId) 
+                    && request.resource.data.role == 'member' 
+                    && request.resource.data.status == 'pending';
+                    
+      // 更新：Admin 擁有全開寫入權限；User 只能修改「非權限參數」，且其本身狀態必須已被 approve 才能做更動 (涵蓋改名、Favorites 陣列)
+      allow update: if isAdmin() || (isOwner(userId) 
+                    && request.resource.data.role == resource.data.role 
+                    && request.resource.data.status == resource.data.status
+                    && resource.data.status == 'approved');
+      
+      allow delete: if isAdmin();
     }
 
-    match /memberApplications/{docId} {
-      allow create: if isSignedIn();
-      allow read: if isSignedIn() &&
-        (resource.data.userId == request.auth.uid || isAdmin());
-      allow update, delete: if isEditor();
+    // 2. Plants Collection (Public viewing, admin writing)
+    match /plants/{plantId} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
 
-    match /inquiries/{docId} {
-      allow create: if 
-        request.resource.data.keys().hasAll(['brandName', 'contactName', 'email', 'details', 'status', 'createdAt']) &&
-        request.resource.data.status == 'pending' &&
-        request.resource.data.brandName is string && request.resource.data.brandName.size() > 0 && request.resource.data.brandName.size() <= 100 &&
-        request.resource.data.email is string && request.resource.data.email.matches('^[^@]+@[^@]+\\.[a-zA-Z]{2,}$') &&
-        request.resource.data.details is string && request.resource.data.details.size() <= 2000;
-      allow read, update, delete: if isEditor();
+    // 3. Member Applications
+    match /applications/{appId} {
+      // 建立：只能建立掛載在自己 UID 名下的申請，且本身 profile 必須是 approved。
+      allow create: if isAuthenticated() 
+                    && request.resource.data.userId == request.auth.uid 
+                    && get(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.status == 'approved';
+                    
+      // 讀取：允許 User 自行讀取本身的歷史清單，Admin 可全讀。
+      allow read: if (isAuthenticated() && resource.data.userId == request.auth.uid) || isAdmin();
+      
+      allow update, delete: if isAdmin();
     }
-
-    match /orders/{orderId} {
-      allow read: if isSignedIn() &&
-        (resource.data.uid == request.auth.uid || isAdmin());
-      allow write: if isEditor();
-    }
-
-    match /favorites/{docId} {
-      allow create: if isSignedIn() && request.resource.data.uid == request.auth.uid;
-      allow read, update, delete: if isSignedIn() && resource.data.uid == request.auth.uid;
-    }
-
-    match /notifications/{docId} {
-      allow read, update: if isSignedIn() &&
-        resource.data.uid == request.auth.uid;
-      allow create, delete: if isEditor();
+    
+    // 4. Fallback default (Close all unexpected paths, allow Admin superuser)
+    match /{document=**} {
+      allow read, write: if isAdmin();
     }
   }
 }

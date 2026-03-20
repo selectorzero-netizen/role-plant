@@ -8,7 +8,7 @@ import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import { DevPanel } from './components/DevPanel';
 
-const ProtectedRoute = ({ children, requireRole }: { children: React.ReactNode, requireRole?: 'admin' | 'editor' | 'member' }) => {
+const ProtectedRoute = ({ children, requireRole, requireApproved }: { children: React.ReactNode, requireRole?: 'admin' | 'editor' | 'member', requireApproved?: boolean }) => {
   const { userProfile, isAuthReady } = useAuth();
   const location = useLocation();
 
@@ -16,6 +16,9 @@ const ProtectedRoute = ({ children, requireRole }: { children: React.ReactNode, 
   if (!userProfile) return <Navigate to="/login" state={{ from: location }} replace />;
   if (requireRole && userProfile.role !== requireRole && userProfile.role !== 'admin') {
     return <div className="h-screen flex items-center justify-center flex-col"><h1 className="text-4xl mb-4 font-light">403</h1><p className="text-sm tracking-widest uppercase text-gray-500">Access Denied</p></div>;
+  }
+  if (requireApproved && userProfile.status !== 'approved') {
+    return <div className="h-screen flex items-center justify-center flex-col bg-[#F7F7F5]"><h1 className="text-2xl mb-2 font-light tracking-widest text-[#1A1A1A]">Pending Approval</h1><p className="text-sm tracking-widest text-[#1A1A1A]/50">您的帳號仍在審核中</p></div>;
   }
   return children;
 };
