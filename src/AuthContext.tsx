@@ -1,28 +1,26 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
-import { User, onAuthStateChanged } from 'firebase/auth';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { auth, db } from './firebase';
+import { apiClient } from './api/client';
 
 export type UserRole = 'member' | 'editor' | 'admin';
+export type UserStatus = 'pending' | 'approved' | 'rejected';
 
 export interface UserProfile {
   uid: string;
   email: string;
   name?: string;
   role: UserRole;
+  status: UserStatus;
   favorites?: string[];
-  profile?: {
-    phone?: string;
-    shippingAddress?: string;
-  };
   createdAt: string;
 }
 
 interface AuthContextType {
-  user: User | null;
+  user: any | null; // Keep a lightweight user object to mimic firebase user
   userProfile: UserProfile | null;
   loading: boolean;
   isAuthReady: boolean;
+  login: () => Promise<void>;
+  logout: () => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -30,65 +28,56 @@ const AuthContext = createContext<AuthContextType>({
   userProfile: null,
   loading: true,
   isAuthReady: false,
+  login: async () => {},
+  logout: () => {},
 });
 
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAuthReady, setIsAuthReady] = useState(false);
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
-      setUser(firebaseUser);
+  const fetchProfile = async () => {
+    try {
+      const token = localStorage.getItem('MOCK_TOKEN');
+      if (!token) throw new Error('No token exists');
       
-      if (firebaseUser) {
-        try {
-          // Check if user profile exists in Firestore
-          const userDocRef = doc(db, 'users', firebaseUser.uid);
-          const userDoc = await getDoc(userDocRef);
-          
-          if (userDoc.exists()) {
-            setUserProfile(userDoc.data() as UserProfile);
-          } else {
-            // Create new user profile
-            const newProfile: UserProfile = {
-              uid: firebaseUser.uid,
-              email: firebaseUser.email || '',
-              name: firebaseUser.displayName || '',
-              role: 'member', // Default role
-              createdAt: new Date().toISOString(),
-            };
-            await setDoc(userDocRef, newProfile);
-            setUserProfile(newProfile);
-          }
-
-          // Listen for profile updates
-          import('firebase/firestore').then(({ onSnapshot }) => {
-            onSnapshot(userDocRef, (doc) => {
-              if (doc.exists()) {
-                setUserProfile(doc.data() as UserProfile);
-              }
-            });
-          });
-        } catch (error) {
-          console.error("Error fetching/creating user profile:", error);
-        }
-      } else {
-        setUserProfile(null);
-      }
-      
+      const res = await apiClient.get('/api/auth/me');
+      setUserProfile(res.data);
+    } catch (error: any) {
+      console.warn("Auth check failed (or user not logged in):", error.message);
+      setUserProfile(null);
+      // Clean token if validation fails
+      localStorage.removeItem('MOCK_TOKEN');
+    } finally {
       setLoading(false);
       setIsAuthReady(true);
-    });
+    }
+  };
 
-    return () => unsubscribe();
+  useEffect(() => {
+    fetchProfile();
   }, []);
 
+  const login = async () => {
+    const res = await apiClient.post('/api/auth/login');
+    if (res.data.token) {
+      localStorage.setItem('MOCK_TOKEN', res.data.token);
+      await fetchProfile();
+    }
+  };
+
+  const logout = () => {
+    localStorage.removeItem('MOCK_TOKEN');
+    setUserProfile(null);
+  };
+
+  const user = userProfile ? { uid: userProfile.uid, email: userProfile.email } : null;
+
   return (
-    <AuthContext.Provider value={{ user, userProfile, loading, isAuthReady }}>
+    <AuthContext.Provider value={{ user, userProfile, loading, isAuthReady, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

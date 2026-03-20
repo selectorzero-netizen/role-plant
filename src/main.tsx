@@ -5,12 +5,22 @@ import App from './App.tsx';
 import { AuthProvider } from './AuthContext';
 import './index.css';
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <BrowserRouter>
-      <AuthProvider>
-        <App />
-      </AuthProvider>
-    </BrowserRouter>
-  </StrictMode>,
-);
+async function enableMocking() {
+  // @ts-ignore
+  if (import.meta.env.DEV) {
+    const { worker } = await import('./mocks/browser');
+    return worker.start({ onUnhandledRequest: 'bypass' });
+  }
+}
+
+enableMocking().then(() => {
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <BrowserRouter>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </BrowserRouter>
+    </StrictMode>,
+  );
+});
