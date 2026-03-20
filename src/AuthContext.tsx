@@ -4,14 +4,12 @@ import { doc, getDoc, setDoc } from 'firebase/firestore';
 import { auth, db } from './firebase';
 
 export type UserRole = 'member' | 'editor' | 'admin';
-export type UserStatus = 'pending' | 'approved' | 'rejected';
 
 export interface UserProfile {
   uid: string;
   email: string;
   name?: string;
   role: UserRole;
-  status: UserStatus;
   favorites?: string[];
   profile?: {
     phone?: string;
@@ -48,25 +46,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       
       if (firebaseUser) {
         try {
-          // Get custom claims for role
-          const tokenResult = await firebaseUser.getIdTokenResult();
-          let role = (tokenResult.claims.role as UserRole) || 'member';
-
           // Check if user profile exists in Firestore
-          const userDocRef = doc(db, 'profiles', firebaseUser.uid);
+          const userDocRef = doc(db, 'users', firebaseUser.uid);
           const userDoc = await getDoc(userDocRef);
           
           if (userDoc.exists()) {
-            const data = userDoc.data();
-            setUserProfile({ ...data, role, status: data.status || 'pending' } as UserProfile);
+            setUserProfile(userDoc.data() as UserProfile);
           } else {
             // Create new user profile
             const newProfile: UserProfile = {
               uid: firebaseUser.uid,
               email: firebaseUser.email || '',
               name: firebaseUser.displayName || '',
-              role,
-              status: 'pending',
+              role: 'member', // Default role
               createdAt: new Date().toISOString(),
             };
             await setDoc(userDocRef, newProfile);
@@ -77,8 +69,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           import('firebase/firestore').then(({ onSnapshot }) => {
             onSnapshot(userDocRef, (doc) => {
               if (doc.exists()) {
-                const data = doc.data();
-                setUserProfile({ ...data, role, status: data.status || 'pending' } as UserProfile);
+                setUserProfile(doc.data() as UserProfile);
               }
             });
           });

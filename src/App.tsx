@@ -2,7 +2,7 @@ import React from 'react';
 import { HomePage, AboutPage, BusinessPage, LearnPage } from './pages/PublicPages';
 import { CollectionPage, SinglePlantPage } from './pages/CollectionPages';
 import { MemberPage, LoginPage } from './pages/MemberPages';
-import { AdminLayout, AdminDashboard, AdminPlants, AdminPlantEdit, AdminUsers, AdminApplications, AdminInquiries, AdminOrders, AdminNotifications } from './pages/AdminPages';
+import { AdminLayout, AdminDashboard, AdminPlants, AdminPlantEdit, AdminUsers, AdminApplications, AdminInquiries } from './pages/AdminPages';
 import { Layout } from './components/Shared';
 import { Routes, Route } from 'react-router-dom';
 
@@ -15,8 +15,6 @@ export default function App() {
       <Route path="/admin/users" element={<AdminLayout><AdminUsers /></AdminLayout>} />
       <Route path="/admin/applications" element={<AdminLayout><AdminApplications /></AdminLayout>} />
       <Route path="/admin/inquiries" element={<AdminLayout><AdminInquiries /></AdminLayout>} />
-      <Route path="/admin/orders" element={<AdminLayout><AdminOrders /></AdminLayout>} />
-      <Route path="/admin/notifications" element={<AdminLayout><AdminNotifications /></AdminLayout>} />
       
       <Route path="/" element={<Layout><HomePage /></Layout>} />
       <Route path="/collection" element={<Layout><CollectionPage /></Layout>} />
