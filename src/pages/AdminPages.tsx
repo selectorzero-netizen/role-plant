@@ -141,7 +141,7 @@ export function AdminPlantEdit() {
   const navigate = useNavigate();
   const isNew = id === 'new';
   
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<any>({
     id: '',
     name: '',
     batchSource: '',

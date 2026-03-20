@@ -1,0 +1,6 @@
+* [33m3569d2b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mrescue-chaos[m[33m)[m feat: Implement admin panel with plant management, new collection and member pages, authentication context, and update Firestore rules and Firebase deployment.
+* [33mde44e84[m feat: Implement admin panel with plant management, new collection and member pages, authentication context, and update Firestore rules and Firebase deployment.
+* [33mb17c872[m feat: Implement admin panel with plant management, new collection and member pages, authentication context, and update Firestore rules and Firebase deployment.
+* [33m763fd02[m feat: Add admin order and notification routes
+* [33m1f4426e[m feat: Initialize role plant AI Studio project
+* [33m4c853af[m Initial commit
