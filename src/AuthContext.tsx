@@ -9,8 +9,10 @@ interface AuthContextType {
   userProfile: UserProfile | null;
   loading: boolean;
   isAuthReady: boolean;
+  authError: string | null;
   login: () => Promise<void>;
   logout: () => void;
+  retryInit: () => void;
 }
 
 const AuthContext = createContext<AuthContextType>({
@@ -18,8 +20,10 @@ const AuthContext = createContext<AuthContextType>({
   userProfile: null,
   loading: true,
   isAuthReady: false,
+  authError: null,
   login: async () => {},
   logout: () => {},
+  retryInit: () => {},
 });
 
 export const useAuth = () => useContext(AuthContext);
@@ -29,31 +33,55 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [isAuthReady, setIsAuthReady] = useState(false);
+  const [authError, setAuthError] = useState<string | null>(null);
+  const [retryTrigger, setRetryTrigger] = useState(0);
+
+  const initProfile = async (firebaseUser: User) => {
+    setLoading(true);
+    setAuthError(null);
+    setIsAuthReady(false);
+    try {
+      const profilePromise = authService.initializeProfileIfNew(
+        firebaseUser.uid,
+        firebaseUser.email,
+        firebaseUser.displayName
+      );
+      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Profile fetch timeout')), 5000));
+      const profile = await Promise.race([profilePromise, timeoutPromise]) as UserProfile;
+      setUserProfile(profile);
+      setIsAuthReady(true);
+    } catch (error) {
+      console.error("Error fetching or initializing profile:", error);
+      setUserProfile(null);
+      setAuthError("無法載入會員資料 (連線超時或初始失敗)。");
+      setIsAuthReady(false);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
       setUser(firebaseUser);
       if (firebaseUser) {
-        try {
-          // Auto-provision profile if new, defaulting to pending status
-          const profile = await authService.initializeProfileIfNew(
-            firebaseUser.uid,
-            firebaseUser.email,
-            firebaseUser.displayName
-          );
-          setUserProfile(profile);
-        } catch (error) {
-          console.error("Error fetching or initializing profile:", error);
-          setUserProfile(null);
-        }
+        await initProfile(firebaseUser);
       } else {
         setUserProfile(null);
+        setAuthError(null);
+        setIsAuthReady(true);
+        setLoading(false);
       }
-      setLoading(false);
-      setIsAuthReady(true);
     });
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    if (retryTrigger > 0 && user) {
+      initProfile(user);
+    }
+  }, [retryTrigger]);
+
+  const retryInit = () => setRetryTrigger(prev => prev + 1);
 
   const login = async () => {
     const provider = new GoogleAuthProvider();
@@ -65,7 +93,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, userProfile, loading, isAuthReady, login, logout }}>
+    <AuthContext.Provider value={{ user, userProfile, loading, isAuthReady, authError, login, logout, retryInit }}>
       {children}
     </AuthContext.Provider>
   );

@@ -1,15 +1,28 @@
 import React from 'react';
-import { HomePage, AboutPage, BusinessPage, LearnPage } from './pages/PublicPages';
+import { HomePage, AboutPage, BusinessPage, LearnPage, MembershipPage } from './pages/PublicPages';
 import { CollectionPage, SinglePlantPage } from './pages/CollectionPages';
 import { MemberPage, LoginPage } from './pages/MemberPages';
 import { AdminLayout, AdminDashboard, AdminPlants, AdminPlantEdit, AdminUsers, AdminApplications, AdminInquiries } from './pages/AdminPages';
-import { Layout } from './components/Shared';
+import { Layout, AuthLayout } from './components/Shared';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 
 const ProtectedRoute = ({ children, requireRole, requireApproved }: { children: React.ReactNode, requireRole?: 'admin' | 'editor' | 'member', requireApproved?: boolean }) => {
-  const { userProfile, isAuthReady } = useAuth();
+  const { userProfile, isAuthReady, authError, retryInit } = useAuth();
   const location = useLocation();
+
+  if (authError) {
+    return (
+      <div className="h-screen flex flex-col items-center justify-center bg-[#F7F7F5] px-6">
+        <h1 className="text-2xl mb-2 font-light tracking-widest text-red-800">登入驗證失敗</h1>
+        <p className="text-sm tracking-widest text-[#1A1A1A]/50 mb-8">無法載入會員資料 (連線超時或初始失敗)。</p>
+        <div className="flex gap-4">
+          <button onClick={retryInit} className="px-6 py-3 bg-[#1A1A1A] text-white text-xs tracking-widest hover:bg-[#5A6B58] transition-colors">重新嘗試 (Retry)</button>
+          <a href="/login" className="px-6 py-3 border border-[#1A1A1A]/20 text-xs tracking-widest hover:bg-[#1A1A1A]/5 transition-colors">返回登入 (Back)</a>
+        </div>
+      </div>
+    );
+  }
 
   if (!isAuthReady) return <div className="h-screen flex items-center justify-center text-sm tracking-widest uppercase">載入權限中... Loading...</div>;
   if (!userProfile) return <Navigate to="/login" state={{ from: location }} replace />;
@@ -39,7 +52,8 @@ export default function App() {
         <Route path="/learn" element={<Layout><LearnPage /></Layout>} />
         <Route path="/business" element={<Layout><BusinessPage /></Layout>} />
         <Route path="/about" element={<Layout><AboutPage /></Layout>} />
-        <Route path="/login" element={<Layout><LoginPage /></Layout>} />
+        <Route path="/membership" element={<Layout><MembershipPage /></Layout>} />
+        <Route path="/login" element={<AuthLayout><LoginPage /></AuthLayout>} />
         <Route path="/member" element={<ProtectedRoute><Layout><MemberPage /></Layout></ProtectedRoute>} />
       </Routes>
     </>

@@ -17,20 +17,18 @@ export function CollectionPage() {
   useEffect(() => {
     const fetchPlants = async () => {
       try {
-        // TODO (Phase 3): Extract to plantService.getPlants()
         const q = query(collection(db, 'plants'));
-        const snapshot = await getDocs(q);
-        let plantsData = snapshot.docs.map(doc => ({ id: doc.id, ...(doc.data() as any) }));
+        const docsPromise = getDocs(q);
+        const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 5000));
+        const snapshot = await Promise.race([docsPromise, timeoutPromise]) as any;
+        
+        let plantsData = snapshot.docs.map((doc: any) => ({ id: doc.id, ...(doc.data() as any) }));
         
         if (plantsData.length === 0) {
-          // 1. Fallback / Mock 資料顯示邏輯：當遠端完全無資料時，直接使用本機備案
           plantsData = fallbackDatabase;
         } else {
-          // 2. Firestore 真資料顯示邏輯：向下相容舊資料
-          // 若 isPublic 明確為 false 則隱藏；若缺漏此欄位(undefined)或為 true 則視為可見
-          plantsData = plantsData.filter(p => p.isPublic !== false);
-          // 排除隱藏植物後，進行排序
-          plantsData.sort((a, b) => (a.sortOrder || 0) - (b.sortOrder || 0));
+          plantsData = plantsData.filter((p: any) => p.isPublic !== false);
+          plantsData.sort((a: any, b: any) => (a.sortOrder || 0) - (b.sortOrder || 0));
         }
         setPlants(plantsData);
       } catch (error) {
@@ -91,38 +89,48 @@ export function CollectionPage() {
         <p className="text-sm text-[#1A1A1A]/60 font-light">{currentCategory?.desc}</p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-        {filteredPlants.map((item) => (
-          <div key={item.id} className="group cursor-pointer" onClick={() => navigate(`/collection/${item.id}`)}>
-            <div className="relative aspect-[3/4] overflow-hidden mb-4 bg-[#EBEBE8]">
-              <SafeImage src={item.image} alt={item.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" fallbackText={item.image.split('/').pop() || ''} />
-            </div>
-            <div className="flex justify-between items-start mb-4">
-              <div>
-                <h3 className="font-mono text-sm mb-1">{item.id}</h3>
-                <p className="text-xs text-[#1A1A1A]/50 italic">{item.name}</p>
+      {loading ? (
+        <div className="py-24 text-center">
+          <p className="text-sm tracking-widest uppercase text-[#1A1A1A]/50">載入檔案中... Loading Archive...</p>
+        </div>
+      ) : filteredPlants.length === 0 ? (
+        <div className="py-24 text-center border border-dashed border-[#1A1A1A]/20">
+          <p className="text-sm tracking-widest uppercase text-[#1A1A1A]/50">查無植物檔案 No Plants Found</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+          {filteredPlants.map((item) => (
+            <div key={item.id} className="group cursor-pointer" onClick={() => navigate(`/collection/${item.id}`)}>
+              <div className="relative aspect-[3/4] overflow-hidden mb-4 bg-[#EBEBE8]">
+                <SafeImage src={item.image} alt={item.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" fallbackText={item.image.split('/').pop() || ''} />
+              </div>
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h3 className="font-mono text-sm mb-1">{item.id}</h3>
+                  <p className="text-xs text-[#1A1A1A]/50 italic">{item.name}</p>
+                </div>
+              </div>
+              <div className="grid grid-cols-3 gap-2 pt-4 border-t border-[#1A1A1A]/10">
+                <div className="text-center">
+                  <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">表現</p>
+                  <p className="font-mono text-sm">{item.stats.expression}</p>
+                </div>
+                <div className="text-center border-l border-r border-[#1A1A1A]/10">
+                  <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">面相</p>
+                  <p className="font-mono text-sm">{item.stats.balance}</p>
+                </div>
+                <div className="text-center">
+                  <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">比例</p>
+                  <p className="font-mono text-sm">{item.stats.proportion}</p>
+                </div>
+              </div>
+              <div className="mt-4 flex items-center justify-center gap-2 text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 group-hover:text-[#5A6B58] transition-colors border border-[#1A1A1A]/10 py-2 group-hover:border-[#5A6B58]/30">
+                <span>查看資訊</span><ArrowRight size={12} className="transform group-hover:translate-x-1 transition-transform" />
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-2 pt-4 border-t border-[#1A1A1A]/10">
-              <div className="text-center">
-                <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">表現</p>
-                <p className="font-mono text-sm">{item.stats.expression}</p>
-              </div>
-              <div className="text-center border-l border-r border-[#1A1A1A]/10">
-                <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">面相</p>
-                <p className="font-mono text-sm">{item.stats.balance}</p>
-              </div>
-              <div className="text-center">
-                <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">比例</p>
-                <p className="font-mono text-sm">{item.stats.proportion}</p>
-              </div>
-            </div>
-            <div className="mt-4 flex items-center justify-center gap-2 text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 group-hover:text-[#5A6B58] transition-colors border border-[#1A1A1A]/10 py-2 group-hover:border-[#5A6B58]/30">
-              <span>查看資訊</span><ArrowRight size={12} className="transform group-hover:translate-x-1 transition-transform" />
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -140,7 +148,10 @@ export function SinglePlantPage() {
       if (!id) return;
       try {
         const docRef = doc(db, 'plants', id);
-        const docSnap = await getDoc(docRef);
+        const docPromise = getDoc(docRef);
+        const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 5000));
+        const docSnap = await Promise.race([docPromise, timeoutPromise]) as any;
+
         if (docSnap.exists()) {
           setPlant({ id: docSnap.id, ...docSnap.data() });
         } else {
@@ -149,19 +160,20 @@ export function SinglePlantPage() {
           if (localPlant) {
             setPlant(localPlant);
           } else {
-            navigate('/collection');
+            setPlant(null);
           }
         }
       } catch (error) {
         console.error("Error fetching plant:", error);
+        // Fallback robustly
         const localPlant = fallbackDatabase.find(p => p.id === id);
-        if (localPlant) setPlant(localPlant);
+        setPlant(localPlant || null);
       } finally {
         setFetching(false);
       }
     };
     fetchPlant();
-  }, [id, navigate]);
+  }, [id]);
 
   const handleApply = async () => {
     if (!user) {

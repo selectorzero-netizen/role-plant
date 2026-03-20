@@ -27,6 +27,19 @@ export const SafeImage = ({ src, alt, className, fallbackText }: { src: string, 
   );
 };
 
+export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <div className="min-h-screen bg-[#F7F7F5] text-[#1A1A1A] font-sans selection:bg-[#5A6B58] selection:text-white flex flex-col justify-center items-center relative">
+      <Link to="/" className="absolute top-8 left-6 md:left-12 text-lg tracking-widest font-medium">
+        ROLE PLANT<span className="text-[#5A6B58]">.</span>
+      </Link>
+      <main className="w-full">
+        {children}
+      </main>
+    </div>
+  );
+};
+
 export const Layout = ({ children }: { children: React.ReactNode }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -48,6 +61,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   const navLinks = [
     { name: 'Collection', path: '/collection', label: '龜甲龍' },
     { name: 'Learn', path: '/learn', label: '判讀與培育' },
+    { name: 'Membership', path: '/membership', label: '會員制度' },
     { name: 'About', path: '/about', label: '關於我們' },
     { name: 'Business', path: '/business', label: '合作' },
   ];
@@ -72,14 +86,26 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
               </Link>
             ))}
             <div className="w-px h-4 bg-[#1A1A1A]/20 mx-2"></div>
-            {user ? (
-              <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium flex items-center gap-2">
-                <span>Member</span>
-                <span className="text-[10px] opacity-50">{userProfile?.role || 'Guest'}</span>
-              </Link>
-            ) : (
+            <div className="w-px h-4 bg-[#1A1A1A]/20 mx-2"></div>
+            {(!user || !userProfile) && (
               <Link to="/login" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A]/60 hover:text-[#5A6B58] transition-colors">
-                Login / Join
+                Sign In
+              </Link>
+            )}
+            {user && userProfile?.role === 'admin' && (
+              <Link to="/admin" className="text-xs tracking-[0.15em] uppercase text-[#5A6B58] hover:text-[#1A1A1A] transition-colors font-medium flex items-center gap-2">
+                <span>Admin Panel</span>
+              </Link>
+            )}
+            {user && userProfile?.role !== 'admin' && userProfile?.status === 'pending' && (
+              <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium flex items-center gap-3">
+                <span>Member Area</span>
+                <span className="text-[9px] bg-[#EBEBE8] text-[#1A1A1A]/50 px-1.5 py-0.5 leading-none">PENDING</span>
+              </Link>
+            )}
+            {user && userProfile?.role !== 'admin' && userProfile?.status === 'approved' && (
+              <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium flex items-center gap-2">
+                <span>Member Area</span>
               </Link>
             )}
           </div>
@@ -103,10 +129,30 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                   <ChevronRight size={20} className="text-[#1A1A1A]/30" />
                 </Link>
               ))}
-              <Link to={user ? "/member" : "/login"} className="text-left text-xl tracking-widest uppercase text-[#5A6B58] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
-                <span>{user ? 'Member Center' : 'Login / Join'}</span>
-                <ChevronRight size={20} className="text-[#1A1A1A]/30" />
-              </Link>
+              {(!user || !userProfile) && (
+                <Link to="/login" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A]/50 border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+                  <span>Sign In</span>
+                  <ChevronRight size={20} className="text-[#1A1A1A]/30" />
+                </Link>
+              )}
+              {user && userProfile?.role === 'admin' && (
+                <Link to="/admin" className="text-left text-xl tracking-widest uppercase text-[#5A6B58] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+                  <span>Admin Panel</span>
+                  <ChevronRight size={20} className="text-[#1A1A1A]/30" />
+                </Link>
+              )}
+              {user && userProfile?.role !== 'admin' && userProfile?.status === 'pending' && (
+                <Link to="/member" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+                  <span>Member Area <span className="text-[10px] tracking-widest bg-[#EBEBE8] text-[#1A1A1A]/50 px-2 py-1 ml-2 align-middle">PENDING</span></span>
+                  <ChevronRight size={20} className="text-[#1A1A1A]/30" />
+                </Link>
+              )}
+              {user && userProfile?.role !== 'admin' && userProfile?.status === 'approved' && (
+                <Link to="/member" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+                  <span>Member Area</span>
+                  <ChevronRight size={20} className="text-[#1A1A1A]/30" />
+                </Link>
+              )}
             </div>
           </motion.div>
         )}

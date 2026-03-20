@@ -9,6 +9,7 @@ import { doc, updateDoc } from 'firebase/firestore';
 import { profileService } from '../services/profileService';
 import { favoritesService } from '../services/favoritesService';
 import { memberApplicationService } from '../services/memberApplicationService';
+import { MEMBERSHIP_POLICY } from '../config/policy';
 
 export function LoginPage() {
   const [error, setError] = useState('');
@@ -56,9 +57,8 @@ export function LoginPage() {
         >
           {loading ? '驗證中...' : '進行 Google 登入'}
         </button>
-        <p className="text-center text-xs text-gray-400 mt-4 leading-relaxed">
-          採用 Google 帳戶驗證您的身分。<br/>
-          (自動核發 Member 權限與 Pending 狀態)
+        <p className="text-center text-xs text-[#1A1A1A]/50 mt-4 leading-relaxed whitespace-pre-line">
+          {MEMBERSHIP_POLICY.loginNotice.text}
         </p>
       </div>
     </div>
@@ -164,8 +164,10 @@ export function MemberPage() {
         <div className="md:col-span-3">
           {userProfile?.status === 'pending' && (
             <div className="bg-[#EBEBE8] p-6 mb-8 border-l-4 border-[#5A6B58]">
-              <h3 className="text-xl font-light mb-2">審核中 (Pending)</h3>
-              <p className="text-sm text-[#1A1A1A]/70">您的帳號目前正在等待管理員審核。在審核通過前，部分進階功能將暫時受限，但您仍可自由瀏覽公開檔案。</p>
+              <h3 className="text-xl font-light mb-2">{MEMBERSHIP_POLICY.pendingBanner.title}</h3>
+              <p className="text-sm text-[#1A1A1A]/70 leading-relaxed whitespace-pre-line">
+                {MEMBERSHIP_POLICY.pendingBanner.description}
+              </p>
             </div>
           )}
           

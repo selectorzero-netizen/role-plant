@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, BookOpen, Leaf, Briefcase } from 'lucide-react';
 import { SafeImage, plantDatabase } from '../components/Shared';
 import { motion, AnimatePresence } from 'motion/react';
+import { MEMBERSHIP_POLICY } from '../config/policy';
 
 export function HomePage() {
   const navigate = useNavigate();
@@ -96,6 +97,72 @@ export function HomePage() {
           </div>
         </div>
       </section>
+    </div>
+  );
+}
+
+export function MembershipPage() {
+  const navigate = useNavigate();
+  return (
+    <div className="max-w-4xl mx-auto px-6 md:px-12 pt-12 pb-32">
+      <header className="mb-20">
+        <h1 className="text-4xl font-light tracking-tight mb-4">{MEMBERSHIP_POLICY.hero.title}</h1>
+        <p className="text-xs tracking-[0.2em] uppercase text-[#1A1A1A]/50 mb-8">{MEMBERSHIP_POLICY.hero.subtitle}</p>
+        <p className="text-[#1A1A1A]/70 font-light leading-relaxed max-w-2xl text-lg">
+          {MEMBERSHIP_POLICY.hero.description}
+        </p>
+      </header>
+
+      <section className="mb-20">
+        <h2 className="text-2xl font-light mb-8 border-b border-[#1A1A1A]/10 pb-4">{MEMBERSHIP_POLICY.audience.title}</h2>
+        <div className="bg-[#EBEBE8]/50 p-8 text-[#1A1A1A]/80 font-light leading-relaxed space-y-4">
+          <p>{MEMBERSHIP_POLICY.audience.description}</p>
+          <ul className="list-disc pl-5 space-y-2">
+            {MEMBERSHIP_POLICY.audience.items.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+        <div>
+          <h2 className="text-2xl font-light mb-8 border-b border-[#1A1A1A]/10 pb-4">{MEMBERSHIP_POLICY.process.title}</h2>
+          <ul className="space-y-6">
+            {MEMBERSHIP_POLICY.process.steps.map(step => (
+              <li key={step.id} className="flex gap-4 font-light text-sm text-[#1A1A1A]/80 leading-relaxed">
+                <span className="text-[#5A6B58] font-medium mt-0.5 whitespace-nowrap">{step.label}</span>
+                <div>
+                  <h3 className="font-medium text-[#1A1A1A] mb-1">{step.title}</h3>
+                  <p>{step.content}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2 className="text-2xl font-light mb-8 border-b border-[#1A1A1A]/10 pb-4">{MEMBERSHIP_POLICY.approvedBenefits.title}</h2>
+          <ul className="space-y-6">
+            {MEMBERSHIP_POLICY.approvedBenefits.items.map((benefit, index) => (
+              <li key={index} className="flex gap-4">
+                <span className="text-[#5A6B58] mt-1 shrink-0">❖</span>
+                <div>
+                  <h3 className="font-medium mb-1">{benefit.title}</h3>
+                  <p className="text-sm text-[#1A1A1A]/60 font-light leading-relaxed">{benefit.content}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div className="bg-[#1A1A1A] p-12 text-center text-white">
+        <h2 className="text-2xl font-light mb-4">準備好加入了嗎？</h2>
+        <p className="text-white/60 font-light mb-8 text-sm">點擊下方按鈕以 Google 帳號授權，即刻進入審核列隊。</p>
+        <button onClick={() => navigate('/login')} className="bg-white text-[#1A1A1A] px-8 py-4 text-sm tracking-widest uppercase hover:bg-[#EBEBE8] transition-colors">
+          前往登入 / 申請加入
+        </button>
+      </div>
     </div>
   );
 }
