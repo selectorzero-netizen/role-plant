@@ -2,7 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { plantService } from '../services/plantService';
 import { Plant } from '../types';
-import { ArrowLeft, Save, AlertTriangle, Image as ImageIcon, Star, Upload, Trash2, GripVertical, X } from 'lucide-react';
+import { ArrowLeft, Save, AlertTriangle, Image as ImageIcon, Star, Upload, Trash2, GripVertical, X, Loader2 } from 'lucide-react';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+import { storage } from '../firebase';
 
 export function AdminPlantEditor() {
   const { id } = useParams<{ id: string }>();
@@ -14,6 +16,7 @@ export function AdminPlantEditor() {
   const [saving, setSaving] = useState(false);
   const [newTag, setNewTag] = useState('');
   const [newImageUrl, setNewImageUrl] = useState('');
+  const [uploadingImage, setUploadingImage] = useState(false);
   const [msg, setMsg] = useState({ text: '', type: '' });
 
   useEffect(() => {
@@ -81,6 +84,26 @@ export function AdminPlantEditor() {
     const newImgs = [...plant.images, { url: newImageUrl.trim(), isCover: plant.images.length === 0, index: plant.images.length }];
     updateField('images', newImgs);
     setNewImageUrl('');
+  };
+
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !plant || !id) return;
+    setUploadingImage(true);
+    try {
+      const fileRef = ref(storage, `plants/${id}/${Date.now()}_${file.name}`);
+      await uploadBytes(fileRef, file);
+      const url = await getDownloadURL(fileRef);
+      const newImgs = [...plant.images, { url, isCover: plant.images.length === 0, index: plant.images.length }];
+      updateField('images', newImgs);
+      setMsg({ text: '圖片上傳成功', type: 'success' });
+    } catch (error: any) {
+      console.error("Upload failed", error);
+      setMsg({ text: '圖片上傳失敗: ' + error.message, type: 'error' });
+    } finally {
+      setUploadingImage(false);
+      e.target.value = '';
+    }
   };
 
   const setAsCover = (idx: number) => {
@@ -160,12 +183,18 @@ export function AdminPlantEditor() {
             <div className="flex gap-2 mb-6">
               <input 
                 type="text" 
-                placeholder="貼上圖片 URL (暫代上傳器)" 
+                placeholder="貼上圖片 URL 或由右側直接上傳" 
                 className="flex-1 border p-2 text-sm focus:border-[#5A6B58] outline-none bg-gray-50"
                 value={newImageUrl}
                 onChange={e => setNewImageUrl(e.target.value)}
               />
-              <button onClick={handleAddImage} className="bg-[#F7F7F5] border border-[#1A1A1A]/10 px-4 text-sm hover:bg-gray-100 transition-colors flex items-center gap-1"><Upload size={14}/> 加入</button>
+              <button onClick={handleAddImage} className="bg-[#F7F7F5] border border-[#1A1A1A]/10 px-4 text-sm hover:bg-gray-100 transition-colors flex items-center gap-1"><Upload size={14}/> URL</button>
+              
+              <label className="bg-[#1A1A1A] text-white px-4 py-2 text-sm hover:bg-[#5A6B58] transition-colors flex items-center gap-2 cursor-pointer whitespace-nowrap">
+                {uploadingImage ? <Loader2 size={14} className="animate-spin" /> : <Upload size={14}/>}
+                <span>{uploadingImage ? '上傳中...' : '本機上傳'}</span>
+                <input type="file" accept="image/*" className="hidden" onChange={handleFileUpload} disabled={uploadingImage} />
+              </label>
             </div>
 
             {plant.images.length === 0 ? (
