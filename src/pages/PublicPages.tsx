@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, BookOpen, Leaf, Briefcase } from 'lucide-react';
 import { SafeImage, plantDatabase } from '../components/Shared';
 import { motion, AnimatePresence } from 'motion/react';
-import { MEMBERSHIP_POLICY } from '../config/policy';
+import { usePolicy } from '../PolicyContext';
 
 export function HomePage() {
   const navigate = useNavigate();
@@ -103,6 +103,8 @@ export function HomePage() {
 
 export function MembershipPage() {
   const navigate = useNavigate();
+  const { membershipPolicy: MEMBERSHIP_POLICY } = usePolicy();
+  
   return (
     <div className="max-w-4xl mx-auto px-6 md:px-12 pt-12 pb-32">
       <header className="mb-20">

@@ -9,13 +9,14 @@ import { doc, updateDoc } from 'firebase/firestore';
 import { profileService } from '../services/profileService';
 import { favoritesService } from '../services/favoritesService';
 import { memberApplicationService } from '../services/memberApplicationService';
-import { MEMBERSHIP_POLICY } from '../config/policy';
+import { usePolicy } from '../PolicyContext';
 
 export function LoginPage() {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
+  const { membershipPolicy: MEMBERSHIP_POLICY } = usePolicy();
 
   const handleLogin = async () => {
     setError('');
@@ -71,6 +72,7 @@ export function MemberPage() {
   const [applications, setApplications] = useState<any[]>([]);
   const [favoritePlants, setFavoritePlants] = useState<any[]>([]);
   const navigate = useNavigate();
+  const { membershipPolicy: MEMBERSHIP_POLICY } = usePolicy();
 
   React.useEffect(() => {
     if (userProfile?.favorites && userProfile.favorites.length > 0) {

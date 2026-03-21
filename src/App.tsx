@@ -3,6 +3,7 @@ import { HomePage, AboutPage, BusinessPage, LearnPage, MembershipPage } from './
 import { CollectionPage, SinglePlantPage } from './pages/CollectionPages';
 import { MemberPage, LoginPage } from './pages/MemberPages';
 import { AdminLayout, AdminDashboard, AdminPlants, AdminPlantEdit, AdminUsers, AdminApplications, AdminInquiries } from './pages/AdminPages';
+import { AdminSettings } from './pages/AdminSettings';
 import { Layout, AuthLayout } from './components/Shared';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from './AuthContext';
@@ -45,6 +46,7 @@ export default function App() {
         <Route path="/admin/users" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminUsers /></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/applications" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminApplications /></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/inquiries" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminInquiries /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/settings" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminSettings /></AdminLayout></ProtectedRoute>} />
         
         <Route path="/" element={<Layout><HomePage /></Layout>} />
         <Route path="/collection" element={<Layout><CollectionPage /></Layout>} />

@@ -3,6 +3,7 @@ import {createRoot} from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.tsx';
 import { AuthProvider } from './AuthContext';
+import { PolicyProvider } from './PolicyContext';
 import './index.css';
 
 async function enableMocking() {
@@ -18,7 +19,9 @@ enableMocking().then(() => {
     <StrictMode>
       <BrowserRouter>
         <AuthProvider>
-          <App />
+          <PolicyProvider>
+            <App />
+          </PolicyProvider>
         </AuthProvider>
       </BrowserRouter>
     </StrictMode>,

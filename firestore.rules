@@ -53,7 +53,13 @@ service cloud.firestore {
       allow update, delete: if isAdmin();
     }
     
-    // 4. Fallback default (Close all unexpected paths, allow Admin superuser)
+    // 4. Settings (Public read, admin write)
+    match /settings/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // 5. Fallback default (Close all unexpected paths, allow Admin superuser)
     match /{document=**} {
       allow read, write: if isAdmin();
     }

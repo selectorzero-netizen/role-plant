@@ -1,4 +1,40 @@
-export const MEMBERSHIP_POLICY = {
+export interface MembershipPolicySchema {
+  hero: {
+    title: string;
+    subtitle: string;
+    description: string;
+  };
+  audience: {
+    title: string;
+    description: string;
+    items: string[];
+  };
+  process: {
+    title: string;
+    steps: Array<{
+      id: string;
+      label: string;
+      title: string;
+      content: string;
+    }>;
+  };
+  approvedBenefits: {
+    title: string;
+    items: Array<{
+      title: string;
+      content: string;
+    }>;
+  };
+  loginNotice: {
+    text: string;
+  };
+  pendingBanner: {
+    title: string;
+    description: string;
+  };
+}
+
+export const MEMBERSHIP_POLICY: MembershipPolicySchema = {
   hero: {
     title: '收藏級植物檔案庫',
     subtitle: 'ROLE PLANT ARCHIVE MEMBERSHIP',

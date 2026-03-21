@@ -93,9 +93,15 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
               </Link>
             )}
             {user && userProfile?.role === 'admin' && (
-              <Link to="/admin" className="text-xs tracking-[0.15em] uppercase text-[#5A6B58] hover:text-[#1A1A1A] transition-colors font-medium flex items-center gap-2">
-                <span>Admin Panel</span>
-              </Link>
+              <div className="flex items-center gap-4">
+                <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium">
+                  Member Area
+                </Link>
+                <div className="w-px h-3 bg-[#1A1A1A]/20"></div>
+                <Link to="/admin" className="text-xs tracking-[0.15em] uppercase text-[#5A6B58] hover:text-[#1A1A1A] transition-colors font-medium">
+                  Admin Panel
+                </Link>
+              </div>
             )}
             {user && userProfile?.role !== 'admin' && userProfile?.status === 'pending' && (
               <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium flex items-center gap-3">
@@ -136,10 +142,16 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 </Link>
               )}
               {user && userProfile?.role === 'admin' && (
-                <Link to="/admin" className="text-left text-xl tracking-widest uppercase text-[#5A6B58] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
-                  <span>Admin Panel</span>
-                  <ChevronRight size={20} className="text-[#1A1A1A]/30" />
-                </Link>
+                <>
+                  <Link to="/member" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+                    <span>Member Area</span>
+                    <ChevronRight size={20} className="text-[#1A1A1A]/30" />
+                  </Link>
+                  <Link to="/admin" className="text-left text-xl tracking-widest uppercase text-[#5A6B58] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+                    <span>Admin Panel</span>
+                    <ChevronRight size={20} className="text-[#1A1A1A]/30" />
+                  </Link>
+                </>
               )}
               {user && userProfile?.role !== 'admin' && userProfile?.status === 'pending' && (
                 <Link to="/member" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
