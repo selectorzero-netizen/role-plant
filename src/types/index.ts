@@ -3,40 +3,72 @@ export type Status = 'pending' | 'approved';
 
 export interface UserProfile {
   uid: string;
-  email: string | null;
-  name?: string | null;
+  email: string;
+  name: string;
   role: Role;
   status: Status;
-  favorites?: string[];
-  createdAt?: string | number;
+  joinedAt?: string;
+  [key: string]: any;
 }
 
 export interface Plant {
   id: string;
   name: string;
-  status: string;
-  image: string;
-  size: string;
-  source: string;
-  stats: {
-    expression: string;
-    balance: string;
-    proportion: string;
-  };
-  details: {
-    summary: string;
-    suitableFor: string;
-    cultivationNotes: string;
-  };
-  isPublic?: boolean;
-  sortOrder?: number;
+  scientificName?: string;
+  description?: string;
+  detailedDescription?: string;
+
+  // Level 1: Fixed Statuses
+  status: 'draft' | 'exhibiting' | 'sold' | 'hidden';
+  visibility: 'public' | 'private';
+  featuredOnHome: boolean;
+  availableForApplication: boolean;
+
+  // Level 2: Controlled Categories
+  grade: 'S' | 'A' | 'B' | 'Starter' | '';
+  category: string;
+
+  // Level 3: Free Tags
+  tags: string[];
+
+  // Media
+  images: { url: string; isCover: boolean; index: number }[];
+
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Article {
+  id: string;
+  title: string;
+  slug: string;
+  coverImage?: string;
+  body: string;
+  excerpt?: string;
+  status: 'draft' | 'published' | 'archived';
+  publishedAt?: string;
+  authorId?: string;
+  featuredOnHome: boolean;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface Notice {
+  id: string;
+  title: string;
+  body: string;
+  status: 'draft' | 'published';
+  publishedAt?: string;
+  pinned: boolean;
+  link?: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface MemberApplication {
-  id?: string;
+  id: string;
   userId: string;
-  plantId?: string;
-  requestType?: string;
-  status: string;
-  createdAt?: number | string;
+  status: 'pending' | 'approved' | 'rejected';
+  createdAt: string;
+  [key: string]: any;
 }

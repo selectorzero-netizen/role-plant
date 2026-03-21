@@ -1,12 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, BookOpen, Leaf, Briefcase } from 'lucide-react';
 import { SafeImage, plantDatabase } from '../components/Shared';
 import { motion, AnimatePresence } from 'motion/react';
 import { usePolicy } from '../PolicyContext';
+import { plantService } from '../services/plantService';
+import { Plant } from '../types';
 
 export function HomePage() {
   const navigate = useNavigate();
+  const [featuredPlants, setFeaturedPlants] = useState<Plant[]>([]);
+  
+  useEffect(() => {
+    plantService.getFeaturedPlants().then(setFeaturedPlants).catch(console.error);
+  }, []);
+
+  const displayPlants = featuredPlants.length > 0 ? featuredPlants : plantDatabase.slice(0, 3);
+
   return (
     <div className="space-y-32">
       <section className="relative pt-12 md:pt-24 px-6 md:px-12 max-w-7xl mx-auto">
@@ -56,10 +66,17 @@ export function HomePage() {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {plantDatabase.map((plant) => (
+          {displayPlants.map((plant: any) => (
             <div key={plant.id} className="group cursor-pointer" onClick={() => navigate(`/collection/${plant.id}`)}>
-              <div className="aspect-[4/5] bg-[#EBEBE8] mb-4 overflow-hidden relative">
-                <SafeImage src={plant.image} alt={plant.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" fallbackText={plant.image.split('/').pop() || ''} />
+              <div className="aspect-[4/5] bg-[#EBEBE8] mb-4 overflow-hidden relative border border-[#1A1A1A]/5">
+                {plant.images && plant.images.length > 0 ? (
+                  <img src={plant.images.find((i: any) => i.isCover)?.url || plant.images[0].url} alt={plant.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                ) : (
+                  <SafeImage src={plant.image} alt={plant.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" fallbackText={plant.name || plant.id} />
+                )}
+                {plant.status === 'sold' && (
+                  <div className="absolute top-4 right-4 bg-red-800 text-white text-[10px] uppercase tracking-widest px-2 py-1 shadow shadow-red-900/20">已釋出</div>
+                )}
               </div>
               <div className="flex justify-between items-end mt-4">
                 <div>

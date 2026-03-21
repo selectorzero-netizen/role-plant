@@ -2,7 +2,9 @@ import React from 'react';
 import { HomePage, AboutPage, BusinessPage, LearnPage, MembershipPage } from './pages/PublicPages';
 import { CollectionPage, SinglePlantPage } from './pages/CollectionPages';
 import { MemberPage, LoginPage } from './pages/MemberPages';
-import { AdminLayout, AdminDashboard, AdminPlants, AdminPlantEdit, AdminUsers, AdminApplications, AdminInquiries } from './pages/AdminPages';
+import { AdminLayout, AdminDashboard, AdminUsers, AdminApplications, AdminInquiries } from './pages/AdminPages';
+import { AdminPlants } from './pages/AdminPlants';
+import { AdminPlantEditor } from './pages/AdminPlantEditor';
 import { AdminSettings } from './pages/AdminSettings';
 import { Layout, AuthLayout } from './components/Shared';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
@@ -42,7 +44,7 @@ export default function App() {
       <Routes>
         <Route path="/admin" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminDashboard /></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/plants" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminPlants /></AdminLayout></ProtectedRoute>} />
-        <Route path="/admin/plants/:id" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminPlantEdit /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/plants/:id" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminPlantEditor /></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/users" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminUsers /></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/applications" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminApplications /></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/inquiries" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminInquiries /></AdminLayout></ProtectedRoute>} />

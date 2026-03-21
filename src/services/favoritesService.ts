@@ -14,20 +14,20 @@ export const favoritesService = {
       favorites: arrayRemove(plantId)
     });
   },
-  getFavoritePlants: async (favoriteIds: string[]): Promise<Plant[]> => {
+  getFavoritePlants: async (favoriteIds: string[]): Promise<any[]> => {
     if (!favoriteIds || favoriteIds.length === 0) return [];
     try {
       const q = query(collection(db, 'plants'));
       const snapshot = await getDocs(q);
-      const allPlants = snapshot.docs.map(d => ({ id: d.id, ...(d.data() as any) } as Plant));
+      const allPlants = snapshot.docs.map(d => ({ id: d.id, ...(d.data() as any) }));
       const favs = allPlants.filter(p => favoriteIds.includes(p.id));
       if (favs.length === 0) {
-        return plantDatabase.filter(p => favoriteIds.includes(p.id)) as Plant[];
+        return plantDatabase.filter(p => favoriteIds.includes(p.id));
       }
       return favs;
     } catch (e) {
       console.error("Error fetching favs:", e);
-      return plantDatabase.filter(p => favoriteIds.includes(p.id)) as Plant[];
+      return plantDatabase.filter(p => favoriteIds.includes(p.id));
     }
   }
 };

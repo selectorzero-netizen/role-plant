@@ -4,9 +4,11 @@ import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { SafeImage, plantDatabase as fallbackDatabase } from '../components/Shared';
 import { useAuth } from '../AuthContext';
 import { db } from '../firebase';
-import { collection, addDoc, serverTimestamp, doc, updateDoc, arrayUnion, arrayRemove, query, getDocs, getDoc } from 'firebase/firestore';
+import { collection, doc, query, getDocs, getDoc } from 'firebase/firestore';
 import { favoritesService } from '../services/favoritesService';
 import { memberApplicationService } from '../services/memberApplicationService';
+import { plantService } from '../services/plantService';
+import { Plant } from '../types';
 
 export function CollectionPage() {
   const navigate = useNavigate();
@@ -17,20 +19,12 @@ export function CollectionPage() {
   useEffect(() => {
     const fetchPlants = async () => {
       try {
-        const q = query(collection(db, 'plants'));
-        const docsPromise = getDocs(q);
-        const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 5000));
-        const snapshot = await Promise.race([docsPromise, timeoutPromise]) as any;
-        
-        let plantsData = snapshot.docs.map((doc: any) => ({ id: doc.id, ...(doc.data() as any) }));
-        
-        if (plantsData.length === 0) {
-          plantsData = fallbackDatabase;
+        const livePlants = await plantService.getPublicPlants();
+        if (livePlants.length > 0) {
+          setPlants(livePlants);
         } else {
-          plantsData = plantsData.filter((p: any) => p.isPublic !== false);
-          plantsData.sort((a: any, b: any) => (a.sortOrder || 0) - (b.sortOrder || 0));
+          setPlants(fallbackDatabase);
         }
-        setPlants(plantsData);
       } catch (error) {
         console.error("Error fetching plants:", error);
         setPlants(fallbackDatabase);
@@ -48,14 +42,13 @@ export function CollectionPage() {
     { id: 'Archived', name: '已收藏', desc: '具有特殊表現或已由其他收藏者養護的歷史檔案，保留作為判讀與標準建立的參考。' }
   ];
 
-  // Map Firestore status to categories
   const statusMap: Record<string, string> = {
     '培育中': 'Observation',
-    '可申請': 'Available',
+    'exhibiting': 'Available',
+    'sold': 'Archived',
+    'hidden': 'Observation',
     '可售': 'Available',
-    '保留中': 'Observation',
-    '已售': 'Archived',
-    'Archive': 'Archived'
+    '已售': 'Archived'
   };
 
   const filteredPlants = filter === 'All' ? plants : plants.filter(p => {
@@ -101,8 +94,15 @@ export function CollectionPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
           {filteredPlants.map((item) => (
             <div key={item.id} className="group cursor-pointer" onClick={() => navigate(`/collection/${item.id}`)}>
-              <div className="relative aspect-[3/4] overflow-hidden mb-4 bg-[#EBEBE8]">
-                <SafeImage src={item.image} alt={item.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" fallbackText={item.image.split('/').pop() || ''} />
+              <div className="relative aspect-[3/4] overflow-hidden mb-4 bg-[#EBEBE8] border border-[#1A1A1A]/5">
+                {item.images && item.images.length > 0 ? (
+                  <img src={item.images.find((i:any) => i.isCover)?.url || item.images[0].url} alt={item.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                ) : (
+                  <SafeImage src={item.image} alt={item.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" fallbackText={item.name || item.id} />
+                )}
+                {item.status === 'sold' && (
+                  <div className="absolute top-4 right-4 bg-red-800 text-white text-[10px] uppercase tracking-widest px-2 py-1 shadow shadow-red-900/20">已釋出</div>
+                )}
               </div>
               <div className="flex justify-between items-start mb-4">
                 <div>
@@ -112,16 +112,16 @@ export function CollectionPage() {
               </div>
               <div className="grid grid-cols-3 gap-2 pt-4 border-t border-[#1A1A1A]/10">
                 <div className="text-center">
-                  <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">表現</p>
-                  <p className="font-mono text-sm">{item.stats.expression}</p>
+                  <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">分級</p>
+                  <p className="font-mono text-sm">{item.grade || 'N/A'}</p>
                 </div>
                 <div className="text-center border-l border-r border-[#1A1A1A]/10">
-                  <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">面相</p>
-                  <p className="font-mono text-sm">{item.stats.balance}</p>
+                  <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">分類</p>
+                  <p className="font-mono text-sm">{item.category?.slice(0,4) || '植物'}</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">比例</p>
-                  <p className="font-mono text-sm">{item.stats.proportion}</p>
+                  <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">開放申請</p>
+                  <p className="font-mono text-sm">{item.availableForApplication ? 'YES' : 'NO'}</p>
                 </div>
               </div>
               <div className="mt-4 flex items-center justify-center gap-2 text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 group-hover:text-[#5A6B58] transition-colors border border-[#1A1A1A]/10 py-2 group-hover:border-[#5A6B58]/30">
