@@ -3,8 +3,6 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { SafeImage, plantDatabase as fallbackDatabase } from '../components/Shared';
 import { useAuth } from '../AuthContext';
-import { db } from '../firebase';
-import { collection, doc, query, getDocs, getDoc } from 'firebase/firestore';
 import { favoritesService } from '../services/favoritesService';
 import { memberApplicationService } from '../services/memberApplicationService';
 import { plantService } from '../services/plantService';
@@ -150,25 +148,17 @@ export function SinglePlantPage() {
     const fetchPlant = async () => {
       if (!id) return;
       try {
-        const docRef = doc(db, 'plants', id);
-        const docPromise = getDoc(docRef);
-        const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 5000));
-        const docSnap = await Promise.race([docPromise, timeoutPromise]) as any;
-
-        if (docSnap.exists()) {
-          setPlant({ id: docSnap.id, ...docSnap.data() });
+        // Use plantService for consistency—single source of truth
+        const data = await plantService.getPlantById(id);
+        if (data) {
+          setPlant(data);
         } else {
-          // Fallback to local database
+          // Fallback to static mock data for legacy IDs
           const localPlant = fallbackDatabase.find(p => p.id === id);
-          if (localPlant) {
-            setPlant(localPlant);
-          } else {
-            setPlant(null);
-          }
+          setPlant(localPlant || null);
         }
       } catch (error) {
         console.error("Error fetching plant:", error);
-        // Fallback robustly
         const localPlant = fallbackDatabase.find(p => p.id === id);
         setPlant(localPlant || null);
       } finally {
@@ -329,32 +319,38 @@ export function SinglePlantPage() {
           <div className="space-y-10">
             <div>
               <h3 className="text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-4">判讀摘要 Evaluation</h3>
-              <div className="grid grid-cols-3 gap-4 mb-6 bg-white p-4 border border-[#1A1A1A]/5">
-                <div className="text-center">
-                  <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">龜甲表現</p>
-                  <p className="font-mono text-lg">{plant.stats.expression}</p>
+              {plant.stats && (
+                <div className="grid grid-cols-3 gap-4 mb-6 bg-white p-4 border border-[#1A1A1A]/5">
+                  <div className="text-center">
+                    <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">龜甲表現</p>
+                    <p className="font-mono text-lg">{plant.stats.expression}</p>
+                  </div>
+                  <div className="text-center border-l border-r border-[#1A1A1A]/10">
+                    <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">面相平衡</p>
+                    <p className="font-mono text-lg">{plant.stats.balance}</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">塊根比例</p>
+                    <p className="font-mono text-lg">{plant.stats.proportion}</p>
+                  </div>
                 </div>
-                <div className="text-center border-l border-r border-[#1A1A1A]/10">
-                  <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">面相平衡</p>
-                  <p className="font-mono text-lg">{plant.stats.balance}</p>
-                </div>
-                <div className="text-center">
-                  <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">塊根比例</p>
-                  <p className="font-mono text-lg">{plant.stats.proportion}</p>
-                </div>
+              )}
+              <p className="text-[#1A1A1A]/80 font-light leading-relaxed text-sm">{plant.details?.summary || plant.description || ''}</p>
+            </div>
+
+            {plant.details?.suitableFor && (
+              <div>
+                <h3 className="text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-3">適合對象 Suitable For</h3>
+                <p className="text-[#1A1A1A]/80 font-light leading-relaxed text-sm">{plant.details.suitableFor}</p>
               </div>
-              <p className="text-[#1A1A1A]/80 font-light leading-relaxed text-sm">{plant.details.summary}</p>
-            </div>
+            )}
 
-            <div>
-              <h3 className="text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-3">適合對象 Suitable For</h3>
-              <p className="text-[#1A1A1A]/80 font-light leading-relaxed text-sm">{plant.details.suitableFor}</p>
-            </div>
-
-            <div>
-              <h3 className="text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-3">培育提醒 Cultivation Notes</h3>
-              <p className="text-[#1A1A1A]/80 font-light leading-relaxed text-sm">{plant.details.cultivationNotes}</p>
-            </div>
+            {plant.details?.cultivationNotes && (
+              <div>
+                <h3 className="text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-3">培育提醒 Cultivation Notes</h3>
+                <p className="text-[#1A1A1A]/80 font-light leading-relaxed text-sm">{plant.details.cultivationNotes}</p>
+              </div>
+            )}
 
             {renderCTA()}
           </div>

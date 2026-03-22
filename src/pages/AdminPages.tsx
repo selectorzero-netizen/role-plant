@@ -38,9 +38,10 @@ export function AdminLayout({ children }: { children: React.ReactNode }) {
           {userProfile.role === 'admin' && (
             <>
               <Link to="/admin/applications" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Applications</Link>
-              <Link to="/admin/inquiries" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Inquiries</Link>
-              <Link to="/admin/users" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Users</Link>
-              <Link to="/admin/settings" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Settings</Link>
+               <Link to="/admin/inquiries" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Inquiries</Link>
+               <Link to="/admin/users" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Users</Link>
+               <Link to="/admin/content" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Content</Link>
+               <Link to="/admin/settings" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Settings</Link>
             </>
           )}
         </nav>

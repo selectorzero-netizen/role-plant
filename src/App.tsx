@@ -6,6 +6,7 @@ import { AdminLayout, AdminDashboard, AdminUsers, AdminApplications, AdminInquir
 import { AdminPlants } from './pages/AdminPlants';
 import { AdminPlantEditor } from './pages/AdminPlantEditor';
 import { AdminSettings } from './pages/AdminSettings';
+import { AdminContentList, AdminContentEditor } from './pages/AdminContentEditor';
 import { Layout, AuthLayout } from './components/Shared';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from './AuthContext';
@@ -47,8 +48,10 @@ export default function App() {
         <Route path="/admin/plants/:id" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminPlantEditor /></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/users" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminUsers /></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/applications" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminApplications /></AdminLayout></ProtectedRoute>} />
-        <Route path="/admin/inquiries" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminInquiries /></AdminLayout></ProtectedRoute>} />
-        <Route path="/admin/settings" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminSettings /></AdminLayout></ProtectedRoute>} />
+         <Route path="/admin/inquiries" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminInquiries /></AdminLayout></ProtectedRoute>} />
+         <Route path="/admin/content" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminContentList /></AdminLayout></ProtectedRoute>} />
+         <Route path="/admin/content/:pageId" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminContentEditor /></AdminLayout></ProtectedRoute>} />
+         <Route path="/admin/settings" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminSettings /></AdminLayout></ProtectedRoute>} />
         
         <Route path="/" element={<Layout><HomePage /></Layout>} />
         <Route path="/collection" element={<Layout><CollectionPage /></Layout>} />

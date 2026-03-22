@@ -4,6 +4,25 @@ import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, User 
 import { UserProfile, Role, Status } from './types';
 import { authService } from './services/authService';
 
+// ─── DEV ONLY ────────────────────────────────────────────────────────────────
+// This entire block is dead code in production: import.meta.env.DEV === false
+// at build time, and Vite/esbuild will tree-shake it completely.
+const DEV_ADMIN_PROFILE: UserProfile | null = import.meta.env.DEV
+  ? {
+      uid: 'dev-admin-bypass',
+      email: 'dev@roleplant.local',
+      name: 'DEV Admin',
+      role: 'admin' as Role,
+      status: 'approved' as Status,
+      favorites: [],
+      createdAt: '',
+    }
+  : null;
+
+const isDevAdminBypass = () =>
+  import.meta.env.DEV && localStorage.getItem('__dev_admin__') === '1';
+// ─────────────────────────────────────────────────────────────────────────────
+
 interface AuthContextType {
   user: User | null;
   userProfile: UserProfile | null;
@@ -29,6 +48,33 @@ const AuthContext = createContext<AuthContextType>({
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  // DEV bypass: short-circuit everything if localStorage flag is set
+  if (import.meta.env.DEV && isDevAdminBypass()) {
+    return (
+      <AuthContext.Provider value={{
+        user: null,
+        userProfile: DEV_ADMIN_PROFILE,
+        loading: false,
+        isAuthReady: true,
+        authError: null,
+        login: async () => {},
+        logout: () => {
+          localStorage.removeItem('__dev_admin__');
+          window.location.reload();
+        },
+        retryInit: () => {},
+      }}>
+        {children}
+      </AuthContext.Provider>
+    );
+  }
+
+  return <AuthProviderReal>{children}</AuthProviderReal>;
+};
+
+// Moved real Firebase logic into a separate internal component so the bypass
+// path above never initializes Firebase listeners at all.
+const AuthProviderReal: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);

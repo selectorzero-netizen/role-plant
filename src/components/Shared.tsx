@@ -79,7 +79,27 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
       {import.meta.env.DEV && (
         <div className="fixed top-0 inset-x-0 bg-red-600 text-white text-[10px] md:text-sm font-mono py-1 md:py-1.5 px-4 z-[100] flex justify-between tracking-wider shadow-md items-center">
           <span className="font-bold flex items-center gap-2">⚠️ <span className="hidden md:inline">DEVELOPMENT / FIREBASE EMULATOR ACTIVE</span><span className="md:hidden">DEV MODE</span></span>
-          <span className="opacity-90 bg-black/20 px-2 py-0.5 rounded">Admin: admin@roleplant.dev</span>
+          <div className="flex items-center gap-3">
+            <span className="opacity-90 bg-black/20 px-2 py-0.5 rounded">Admin: admin@roleplant.dev</span>
+            <button
+              onClick={() => {
+                const active = localStorage.getItem('__dev_admin__') === '1';
+                if (active) {
+                  localStorage.removeItem('__dev_admin__');
+                } else {
+                  localStorage.setItem('__dev_admin__', '1');
+                }
+                window.location.reload();
+              }}
+              className={`text-[10px] font-bold px-2 py-0.5 rounded border transition-colors ${
+                localStorage.getItem('__dev_admin__') === '1'
+                  ? 'bg-yellow-400 text-black border-yellow-300'
+                  : 'bg-white/20 text-white border-white/40 hover:bg-white/30'
+              }`}
+            >
+              {localStorage.getItem('__dev_admin__') === '1' ? '🔓 DEV ADMIN ON' : '🔒 DEV ADMIN OFF'}
+            </button>
+          </div>
         </div>
       )}
 
