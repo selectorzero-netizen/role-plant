@@ -91,7 +91,9 @@ export function HomePage() {
             {displayPlants.map((plant: any) => (
               <div key={plant.id} className="group cursor-pointer" onClick={() => navigate(`/collection/${plant.id}`)}>
                 <div className="aspect-[4/5] bg-[#EBEBE8] mb-4 overflow-hidden relative border border-[#1A1A1A]/5">
-                  {plant.images && plant.images.length > 0 ? (
+                  {plant.coverImageUrl ? (
+                    <img src={plant.coverImageUrl} alt={plant.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  ) : plant.images && plant.images.length > 0 ? (
                     <img src={plant.images.find((i: any) => i.isCover)?.url || plant.images[0].url} alt={plant.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   ) : (
                     <SafeImage src="" alt={plant.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" fallbackText={plant.name || plant.id} />
@@ -102,8 +104,9 @@ export function HomePage() {
                 </div>
                 <div className="flex justify-between items-end mt-4">
                   <div>
-                    <h3 className="font-mono text-sm">{plant.id}</h3>
-                    <p className="text-xs text-[#1A1A1A]/50 mt-1">{plant.name}</p>
+                    <h3 className="font-mono text-sm">{plant.name} {plant.localName && <span className="text-[10px] text-[#1A1A1A]/60">/ {plant.localName}</span>}</h3>
+                    <p className="text-xs text-[#1A1A1A]/50 mt-1 font-serif italic truncate">{plant.scientificName}</p>
+                    <p className="text-[10px] text-[#1A1A1A]/30 font-mono mt-1">{plant.serialNumber || plant.id}</p>
                   </div>
                   <div className="flex items-center gap-1 text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 group-hover:text-[#5A6B58] transition-colors">
                     <span>查看檔案</span><ArrowRight size={14} className="transform group-hover:translate-x-1 transition-transform" />

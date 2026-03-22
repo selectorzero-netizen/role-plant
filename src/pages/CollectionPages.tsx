@@ -95,8 +95,10 @@ export function CollectionPage() {
           {filteredPlants.map((item) => (
             <div key={item.id} className="group cursor-pointer" onClick={() => navigate(`/collection/${item.id}`)}>
               <div className="relative aspect-[3/4] overflow-hidden mb-4 bg-[#EBEBE8] border border-[#1A1A1A]/5">
-                {item.images && item.images.length > 0 ? (
-                  <img src={item.images.find((i:any) => i.isCover)?.url || item.images[0].url} alt={item.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                {item.coverImageUrl ? (
+                  <img src={item.coverImageUrl} alt={item.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                ) : item.images && item.images.length > 0 ? (
+                  <img src={item.images.find((i:any) => i.isCover)?.url || item.images[0].url} alt={item.name} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 ) : (
                   <SafeImage src={item.image} alt={item.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" fallbackText={item.name || item.id} />
                 )}
@@ -106,8 +108,9 @@ export function CollectionPage() {
               </div>
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <h3 className="font-mono text-sm mb-1">{item.id}</h3>
-                  <p className="text-xs text-[#1A1A1A]/50 italic">{item.name}</p>
+                  <h3 className="font-mono text-sm mb-1">{item.name} {item.localName && <span className="text-[10px] text-[#1A1A1A]/60">/ {item.localName}</span>}</h3>
+                  <p className="text-xs text-[#1A1A1A]/40 font-serif italic truncate">{item.scientificName}</p>
+                  <p className="text-[10px] text-[#1A1A1A]/30 font-mono mt-1">{item.serialNumber || item.id}</p>
                 </div>
               </div>
               <div className="grid grid-cols-3 gap-2 pt-4 border-t border-[#1A1A1A]/10">
@@ -290,18 +293,26 @@ export function SinglePlantPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
         <div className="relative aspect-[3/4] bg-[#EBEBE8]">
-          <SafeImage src={plant.image} alt={plant.id} className="w-full h-full object-cover" fallbackText={plant.image.split('/').pop() || ''} />
+          {plant.coverImageUrl ? (
+            <img src={plant.coverImageUrl} alt={plant.name} className="w-full h-full object-cover" />
+          ) : plant.images && plant.images.length > 0 ? (
+            <img src={plant.images.find((i:any) => i.isCover)?.url || plant.images[0].url} alt={plant.name} className="w-full h-full object-cover" />
+          ) : (
+            <SafeImage src={plant.image} alt={plant.id} className="w-full h-full object-cover" fallbackText={plant.name || plant.id} />
+          )}
         </div>
 
         <div>
           <div className="mb-12 border-b border-[#1A1A1A]/10 pb-8">
             <div className="flex justify-between items-start mb-2">
-              <h1 className="font-mono text-3xl">{plant.id}</h1>
+              <h1 className="font-mono text-3xl">{plant.name}</h1>
               <span className={`text-[10px] tracking-widest uppercase px-2 py-1 border ${plant.status === 'Available' ? 'border-[#5A6B58] text-[#5A6B58]' : 'border-[#1A1A1A]/20 text-[#1A1A1A]/50'}`}>
                 {plant.status}
               </span>
             </div>
-            <p className="text-sm text-[#1A1A1A]/50 italic mb-6">{plant.name}</p>
+            <p className="text-sm text-[#1A1A1A]/50 italic mb-1 font-serif">{plant.scientificName}</p>
+            {plant.localName && <p className="text-sm text-[#1A1A1A]/60 mb-6 font-medium">{plant.localName}</p>}
+            <p className="text-xs text-[#1A1A1A]/40 font-mono mb-6 pb-6 border-b border-[#1A1A1A]/5">S/N: {plant.serialNumber || plant.id}</p>
             
             <div className="grid grid-cols-2 gap-4 text-sm">
               <div>

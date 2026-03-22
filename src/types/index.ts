@@ -14,9 +14,13 @@ export interface UserProfile {
 export interface Plant {
   id: string;
   name: string;
+  localName?: string;
   scientificName?: string;
+  serialNumber?: string;
   description?: string;
   detailedDescription?: string;
+  price?: number;
+  coverImageUrl?: string;
 
   // Level 1: Fixed Statuses
   status: 'draft' | 'exhibiting' | 'sold' | 'hidden';

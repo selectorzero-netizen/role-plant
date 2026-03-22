@@ -41,9 +41,13 @@ export const plantService = {
   async createDraftPlant(initialName: string = '未命名植株'): Promise<string> {
     const newDocRef = await addDoc(collection(db, PLANTS_COLLECTION), {
       name: initialName,
+      localName: '',
       scientificName: '',
+      serialNumber: '',
       description: '',
       detailedDescription: '',
+      price: null,
+      coverImageUrl: '',
       status: 'draft',
       visibility: 'private',
       featuredOnHome: false,

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { plantService } from '../services/plantService';
 import { Plant } from '../types';
-import { ArrowLeft, Save, AlertTriangle, Image as ImageIcon, Star, Upload, Trash2, GripVertical, X, Loader2 } from 'lucide-react';
+import { ArrowLeft, Save, AlertTriangle, Image as ImageIcon, Star, Upload, Trash2, GripVertical, X, Loader2, CheckCircle2 } from 'lucide-react';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '../firebase';
 
@@ -14,6 +14,8 @@ export function AdminPlantEditor() {
   const [original, setOriginal] = useState<Plant | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [saveStatus, setSaveStatus] = useState<'idle' | 'saved' | 'error'>('idle');
+  const [lastSavedTime, setLastSavedTime] = useState('');
   const [newTag, setNewTag] = useState('');
   const [newImageUrl, setNewImageUrl] = useState('');
   const [uploadingImage, setUploadingImage] = useState(false);
@@ -50,12 +52,23 @@ export function AdminPlantEditor() {
   const handleSave = async () => {
     if (!plant || !id) return;
     setSaving(true);
+    setSaveStatus('idle');
     try {
-      await plantService.updatePlant(id, plant);
-      setOriginal(JSON.parse(JSON.stringify(plant)));
-      setMsg({ text: '檔案儲存成功！', type: 'success' });
-      setTimeout(() => setMsg({ text: '', type: '' }), 3000);
+      // Ensure coverImageUrl is synced before saving
+      const coverImage = plant.images.find(img => img.isCover) || plant.images[0];
+      const plantToSave = { ...plant, coverImageUrl: coverImage?.url || '' };
+      
+      await plantService.updatePlant(id, plantToSave);
+      setPlant(plantToSave);
+      setOriginal(JSON.parse(JSON.stringify(plantToSave)));
+      
+      const now = new Date();
+      setLastSavedTime(`${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`);
+      setSaveStatus('saved');
+      
+      setTimeout(() => setSaveStatus('idle'), 3000);
     } catch (err: any) {
+      setSaveStatus('error');
       setMsg({ text: '儲存失敗：' + err.message, type: 'error' });
     } finally {
       setSaving(false);
@@ -128,7 +141,7 @@ export function AdminPlantEditor() {
   return (
     <div className="max-w-5xl pb-32">
       {/* Header Bar */}
-      <div className="sticky top-0 z-10 bg-[#F7F7F5] pt-4 pb-4 border-b border-[#1A1A1A]/10 flex justify-between items-center mb-8">
+      <div className="sticky top-0 z-50 bg-[#F7F7F5] pt-4 pb-4 border-b border-[#1A1A1A]/10 flex justify-between items-center mb-8 px-4 -mx-4">
         <div className="flex items-center gap-4">
           <button onClick={() => navigate('/admin/plants')} className="text-[#1A1A1A]/50 hover:text-[#1A1A1A]">
             <ArrowLeft size={20} />
@@ -139,22 +152,25 @@ export function AdminPlantEditor() {
           </div>
         </div>
         <div className="flex items-center gap-4">
-          {isDirty && <span className="text-xs text-orange-600 flex items-center gap-1"><AlertTriangle size={14}/> 未儲存變更</span>}
-          {!isDirty && <span className="text-xs text-green-600 flex items-center gap-1">已同步</span>}
+          {isDirty && !saving && saveStatus !== 'error' && <span className="text-sm text-amber-600 flex items-center gap-1 font-medium"><AlertTriangle size={16}/> ⚠️ 有未儲存的變更</span>}
+          {saveStatus === 'saved' && <span className="text-sm text-emerald-600 flex items-center gap-1 font-medium"><CheckCircle2 size={16}/> ✅ 已儲存 ({lastSavedTime})</span>}
+          {saveStatus === 'error' && <span className="text-sm text-red-600 flex items-center gap-1 font-medium"><AlertTriangle size={16}/> ❌ 儲存失敗，請重試</span>}
+          
           <button
             onClick={handleSave}
-            disabled={saving || !isDirty}
+            disabled={saving || (!isDirty && saveStatus !== 'error')}
             className={`px-6 py-2.5 text-sm uppercase tracking-widest flex items-center gap-2 transition-colors
-              ${isDirty ? 'bg-[#1A1A1A] text-white hover:bg-[#5A6B58]' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}
+              ${isDirty || saveStatus === 'error' ? 'bg-[#1A1A1A] text-white hover:bg-[#5A6B58]' : 'bg-gray-200 text-gray-400 cursor-not-allowed'}
             `}
           >
-            <Save size={16} /> {saving ? '儲存中...' : '儲存檔案'}
+            {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
+            {saving ? '💾 儲存中...' : '儲存檔案'}
           </button>
         </div>
       </div>
 
-      {msg.text && (
-        <div className={`p-4 mb-6 text-sm ${msg.type === 'success' ? 'bg-green-50 text-green-800 border-l-4 border-green-500' : 'bg-red-50 text-red-800 border-l-4 border-red-500'}`}>
+      {msg.text && saveStatus === 'error' && (
+        <div className="p-4 mb-6 text-sm bg-red-50 text-red-800 border-l-4 border-red-500">
           {msg.text}
         </div>
       )}
@@ -167,10 +183,16 @@ export function AdminPlantEditor() {
           <section className="bg-white p-6 border border-[#1A1A1A]/10 shadow-sm">
             <h2 className="text-lg font-medium mb-6">基礎資料</h2>
             <div className="space-y-4">
-              <div><label className="block text-xs text-[#1A1A1A]/50 mb-1">植物名稱 (Name)</label><input className="w-full border p-2 text-sm focus:border-[#5A6B58] outline-none" value={plant.name} onChange={e => updateField('name', e.target.value)} /></div>
-              <div><label className="block text-xs text-[#1A1A1A]/50 mb-1">學名 (Scientific Name)</label><input className="w-full border p-2 text-sm focus:border-[#5A6B58] outline-none font-serif italic" value={plant.scientificName} onChange={e => updateField('scientificName', e.target.value)} /></div>
-              <div><label className="block text-xs text-[#1A1A1A]/50 mb-1">短述簡介 (Description - 用於清單與首頁)</label><textarea className="w-full border p-2 text-sm h-20 focus:border-[#5A6B58] outline-none" value={plant.description} onChange={e => updateField('description', e.target.value)} /></div>
-              <div><label className="block text-xs text-[#1A1A1A]/50 mb-1">高階判讀與長篇細節 (Detailed Description)</label><textarea className="w-full border p-2 text-sm h-40 focus:border-[#5A6B58] outline-none" value={plant.detailedDescription} onChange={e => updateField('detailedDescription', e.target.value)} /></div>
+              <div className="grid grid-cols-2 gap-4">
+                <div><label className="block text-xs text-[#1A1A1A]/50 mb-1">植物名稱 / 檔案名稱 (Name)</label><input className="w-full border p-2 text-sm focus:border-[#5A6B58] outline-none" value={plant.name} onChange={e => updateField('name', e.target.value)} /></div>
+                <div><label className="block text-xs text-[#1A1A1A]/50 mb-1">檔案編號 (Serial Number)</label><input className="w-full border p-2 text-sm focus:border-[#5A6B58] outline-none" value={plant.serialNumber || ''} onChange={e => updateField('serialNumber', e.target.value)} /></div>
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div><label className="block text-xs text-[#1A1A1A]/50 mb-1">中文名/俗名 (Local Name)</label><input className="w-full border p-2 text-sm focus:border-[#5A6B58] outline-none" value={plant.localName || ''} onChange={e => updateField('localName', e.target.value)} /></div>
+                <div><label className="block text-xs text-[#1A1A1A]/50 mb-1">學名 (Scientific Name)</label><input className="w-full border p-2 text-sm focus:border-[#5A6B58] outline-none font-serif italic" value={plant.scientificName || ''} onChange={e => updateField('scientificName', e.target.value)} /></div>
+              </div>
+              <div><label className="block text-xs text-[#1A1A1A]/50 mb-1">售價 (Price) - 若無請留空</label><input type="number" className="w-full border p-2 text-sm focus:border-[#5A6B58] outline-none" value={plant.price || ''} onChange={e => updateField('price', e.target.value ? Number(e.target.value) : undefined)} /></div>
+              <div><label className="block text-xs text-[#1A1A1A]/50 mb-1">摘要簡介 (Description - 用於清單與首頁)</label><textarea className="w-full border p-2 text-sm h-20 focus:border-[#5A6B58] outline-none" value={plant.description || ''} onChange={e => updateField('description', e.target.value)} /></div>
             </div>
           </section>
 
@@ -205,11 +227,11 @@ export function AdminPlantEditor() {
             ) : (
               <div className="grid grid-cols-2 gap-4">
                 {plant.images.map((img, idx) => (
-                  <div key={idx} className={`relative border p-2 group ${img.isCover ? 'border-[#5A6B58] bg-[#5A6B58]/5' : 'border-[#1A1A1A]/10'}`}>
+                  <div key={idx} className={`relative border p-2 group ${img.isCover ? 'border-[#5A6B58] bg-[#5A6B58]/5 ring-2 ring-[#5A6B58]' : 'border-[#1A1A1A]/10'}`}>
                     <img src={img.url} alt="" className="w-full h-40 object-cover bg-gray-100" />
-                    {img.isCover && <div className="absolute top-4 left-4 bg-[#5A6B58] text-white text-[10px] px-2 py-1 uppercase tracking-wider">首圖封面</div>}
+                    {img.isCover && <div className="absolute top-4 left-4 bg-[#5A6B58] shadow-md text-white text-[10px] px-2 py-1 uppercase tracking-wider flex items-center gap-1 font-bold z-10"><Star size={10} fill="currentColor"/> 👑 面向首頁/列表的封面圖片</div>}
                     
-                    <div className="absolute top-4 right-4 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="absolute top-4 right-4 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity z-10">
                       {!img.isCover && (
                         <button onClick={() => setAsCover(idx)} className="bg-white/90 p-1.5 hover:bg-white text-gray-700 shadow flex items-center gap-1 text-[10px]"><Star size={12}/> 設封面</button>
                       )}
@@ -273,7 +295,16 @@ export function AdminPlantEditor() {
               </div>
               <div>
                 <label className="block text-xs text-[#1A1A1A]/50 mb-1">主要屬系 (Category/Type)</label>
-                <input className="w-full border p-2 text-sm focus:border-[#5A6B58] outline-none" placeholder="例如：塊根植物 / 天南星科" value={plant.category} onChange={e => updateField('category', e.target.value)} />
+                <select className="w-full border p-2 outline-none focus:border-[#5A6B58] bg-[#F7F7F5]" value={plant.category || ''} onChange={e => updateField('category', e.target.value)}>
+                  <option value="" disabled>請選擇分類</option>
+                  <option value="Acaulescent">無莖植物 (Acaulescent)</option>
+                  <option value="Aroid">天南星科 (Aroid)</option>
+                  <option value="Bonsai">盆景 (Bonsai)</option>
+                  <option value="Caudex">塊根植物 (Caudex)</option>
+                  <option value="Fern">蕨類 (Fern)</option>
+                  <option value="Succulent">多肉植物 (Succulent)</option>
+                  <option value="Other">其他 (Other)</option>
+                </select>
               </div>
             </div>
           </section>

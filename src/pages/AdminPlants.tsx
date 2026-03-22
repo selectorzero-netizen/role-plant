@@ -137,7 +137,7 @@ export function AdminPlants() {
             <thead className="bg-[#F7F7F5] border-b border-[#1A1A1A]/10">
               <tr>
                 <th className="p-4 font-medium text-[#1A1A1A]/60 w-16">封面</th>
-                <th className="p-4 font-medium text-[#1A1A1A]/60">識別名稱</th>
+                <th className="p-4 font-medium text-[#1A1A1A]/60">識別名稱 / 編號</th>
                 <th className="p-4 font-medium text-[#1A1A1A]/60">營運狀態</th>
                 <th className="p-4 font-medium text-[#1A1A1A]/60">分級屬系</th>
                 <th className="p-4 font-medium text-[#1A1A1A]/60 text-center">前台公開</th>
@@ -154,15 +154,17 @@ export function AdminPlants() {
                 filteredPlants.map(plant => (
                   <tr key={plant.id} className="border-b border-[#1A1A1A]/5 hover:bg-[#F7F7F5]/50 transition-colors group">
                     <td className="p-4">
-                      <div className="w-12 h-16 bg-[#EBEBE8] border border-[#1A1A1A]/10 flex items-center justify-center text-[#1A1A1A]/30 overflow-hidden">
-                        {plant.images?.length > 0 ? (
+                      <div className="w-12 h-16 bg-[#EBEBE8] border border-[#1A1A1A]/10 flex items-center justify-center text-[#1A1A1A]/30 overflow-hidden relative">
+                        {plant.coverImageUrl ? (
+                          <img src={plant.coverImageUrl} alt="" className="w-full h-full object-cover" />
+                        ) : plant.images?.length > 0 ? (
                           <img src={plant.images.find(img => img.isCover)?.url || plant.images[0].url} alt="" className="w-full h-full object-cover" />
                         ) : <ImageIcon size={16} />}
                       </div>
                     </td>
                     <td className="p-4">
-                      <div className="font-medium text-[#1A1A1A] text-base">{plant.name}</div>
-                      <div className="text-[10px] text-[#1A1A1A]/40 font-mono mt-1">{plant.id}</div>
+                      <div className="font-medium text-[#1A1A1A] text-base">{plant.name} {plant.localName && <span className="text-xs text-[#1A1A1A]/50">({plant.localName})</span>}</div>
+                      <div className="text-[10px] text-[#1A1A1A]/40 font-mono mt-1">S/N: {plant.serialNumber || plant.id}</div>
                     </td>
                     <td className="p-4">
                       <div className="flex items-center gap-2">
