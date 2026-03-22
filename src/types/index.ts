@@ -1,5 +1,5 @@
 export type Role = 'public' | 'member' | 'editor' | 'admin';
-export type Status = 'pending' | 'approved';
+export type Status = 'pending' | 'approved' | 'rejected';
 
 export interface UserProfile {
   uid: string;

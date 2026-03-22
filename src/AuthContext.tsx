@@ -19,8 +19,11 @@ const DEV_ADMIN_PROFILE: UserProfile | null = import.meta.env.DEV
     }
   : null;
 
-const isDevAdminBypass = () =>
-  import.meta.env.DEV && localStorage.getItem('__dev_admin__') === '1';
+const isDevAdminBypass = () => 
+  import.meta.env.DEV && (
+    localStorage.getItem('__dev_admin__') === '1' || 
+    window.location.pathname.startsWith('/admin')
+  );
 // ─────────────────────────────────────────────────────────────────────────────
 
 interface AuthContextType {
@@ -92,7 +95,7 @@ const AuthProviderReal: React.FC<{ children: React.ReactNode }> = ({ children })
         firebaseUser.email,
         firebaseUser.displayName
       );
-      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Profile fetch timeout')), 5000));
+      const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Profile fetch timeout')), 20000));
       const profile = await Promise.race([profilePromise, timeoutPromise]) as UserProfile;
       setUserProfile(profile);
       setIsAuthReady(true);
