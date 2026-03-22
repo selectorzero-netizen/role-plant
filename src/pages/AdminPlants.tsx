@@ -80,102 +80,140 @@ export function AdminPlants() {
   };
 
   return (
-    <div className="max-w-6xl">
-      <div className="flex justify-between items-center mb-8">
+    <div className="max-w-6xl mx-auto pb-24">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-8 gap-4">
         <div>
-          <h1 className="text-3xl font-light tracking-tight mb-2">植物檔案庫庫存</h1>
-          <p className="text-sm text-[#1A1A1A]/50">管理所有植株的生命週期、前線展出狀態與首頁精選。</p>
+          <h1 className="text-3xl font-light tracking-tight mb-2">檔案總管 (Plants)</h1>
+          <p className="text-sm text-[#1A1A1A]/50">管理所有植株的層級、營運生命週期，與首頁前線展示狀態。</p>
         </div>
         <button 
           onClick={handleCreateDraft}
-          className="bg-[#1A1A1A] text-white px-5 py-2.5 text-sm tracking-widest flex items-center gap-2 hover:bg-[#5A6B58] transition-colors"
+          className="bg-[#1A1A1A] text-white px-5 py-3 text-sm tracking-widest flex items-center gap-2 hover:bg-[#5A6B58] transition-colors shrink-0"
         >
-          <Plus size={16} /> 建立植株履歷
+          <Plus size={16} /> 建立草稿檔案
         </button>
       </div>
 
-      <div className="bg-white border border-[#1A1A1A]/10 p-4 mb-6 flex gap-4">
-        <div className="flex-1 relative">
+      <div className="flex flex-col md:flex-row gap-4 mb-6 items-center justify-between">
+        {/* Pill Filters */}
+        <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto">
+          {[
+            { id: 'all', label: '全部檔案' },
+            { id: 'exhibiting', label: '🟢 展出中' },
+            { id: 'draft', label: '🟡 草稿' },
+            { id: 'sold', label: '🔴 已釋出' },
+            { id: 'hidden', label: '⚫ 隱藏' }
+          ].map(f => (
+            <button
+              key={f.id}
+              onClick={() => setStatusFilter(f.id)}
+              className={`px-4 py-2 text-sm tracking-widest whitespace-nowrap transition-colors border ${
+                statusFilter === f.id 
+                  ? 'bg-[#1A1A1A] text-white border-[#1A1A1A]' 
+                  : 'bg-white text-[#1A1A1A]/60 border-[#1A1A1A]/10 hover:border-[#1A1A1A]/30'
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+
+        {/* Search Input */}
+        <div className="relative w-full md:w-64 shrink-0">
           <Search className="absolute left-3 top-2.5 text-gray-400" size={16} />
           <input 
             type="text" 
-            placeholder="搜尋名稱或編號..." 
-            className="w-full pl-9 pr-4 py-2 text-sm border focus:border-[#5A6B58] outline-none"
+            placeholder="輸入編號或名稱搜尋..." 
+            className="w-full pl-9 pr-4 py-2 text-sm border border-[#1A1A1A]/10 focus:border-[#5A6B58] outline-none transition-colors"
             value={search}
             onChange={e => setSearch(e.target.value)}
           />
         </div>
-        <select 
-          className="border px-4 py-2 text-sm outline-none focus:border-[#5A6B58]"
-          value={statusFilter}
-          onChange={e => setStatusFilter(e.target.value)}
-        >
-          <option value="all">所有狀態</option>
-          <option value="draft">🟡 草稿</option>
-          <option value="exhibiting">🟢 展出中</option>
-          <option value="sold">🔴 已售出</option>
-          <option value="hidden">⚫ 隱藏</option>
-        </select>
       </div>
 
-      <div className="bg-white border border-[#1A1A1A]/10">
-        <table className="w-full text-left text-sm">
-          <thead className="bg-[#F7F7F5] border-b border-[#1A1A1A]/10">
-            <tr>
-              <th className="p-4 font-medium text-[#1A1A1A]/60">封面</th>
-              <th className="p-4 font-medium text-[#1A1A1A]/60">名稱 / ID</th>
-              <th className="p-4 font-medium text-[#1A1A1A]/60">狀態 (點擊切換)</th>
-              <th className="p-4 font-medium text-[#1A1A1A]/60">分級</th>
-              <th className="p-4 font-medium text-[#1A1A1A]/60 text-center">首頁精選</th>
-              <th className="p-4 font-medium text-[#1A1A1A]/60 text-right">操作</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
-              <tr><td colSpan={6} className="p-8 text-center text-gray-400">載入中...</td></tr>
-            ) : filteredPlants.length === 0 ? (
-              <tr><td colSpan={6} className="p-8 text-center text-gray-400">找不到相符的植株</td></tr>
-            ) : (
-              filteredPlants.map(plant => (
-                <tr key={plant.id} className="border-b border-[#1A1A1A]/5 hover:bg-gray-50 transition-colors">
-                  <td className="p-4">
-                    <div className="w-12 h-12 bg-gray-200 border border-[#1A1A1A]/10 flex items-center justify-center text-gray-400">
-                      {plant.images?.length > 0 ? (
-                        <img src={plant.images.find(img => img.isCover)?.url || plant.images[0].url} alt="" className="w-full h-full object-cover" />
-                      ) : <ImageIcon size={16} />}
-                    </div>
-                  </td>
-                  <td className="p-4">
-                    <div className="font-medium text-[#1A1A1A]">{plant.name}</div>
-                    <div className="text-[10px] text-gray-400 font-mono mt-0.5">{plant.id}</div>
-                  </td>
-                  <td className="p-4">
-                    <button 
-                      onClick={() => handleToggleStatus(plant)}
-                      className={`px-2.5 py-1 rounded text-xs tracking-wider cursor-pointer hover:opacity-80 transition-opacity ${getStatusColor(plant.status)}`}
-                    >
-                      {getStatusText(plant.status)}
-                    </button>
-                  </td>
-                  <td className="p-4 text-[#1A1A1A]/60">{plant.grade || '-'}</td>
-                  <td className="p-4 text-center">
-                    <button onClick={() => handleToggleFeature(plant)} className={`p-2 transition-colors ${plant.featuredOnHome ? 'text-yellow-500' : 'text-gray-300 hover:text-gray-400'}`}>
-                      <Star size={18} fill={plant.featuredOnHome ? 'currentColor' : 'none'} />
-                    </button>
-                  </td>
-                  <td className="p-4 text-right">
-                    <button 
-                      onClick={() => navigate(`/admin/plants/${plant.id}`)}
-                      className="text-[#5A6B58] hover:underline flex items-center justify-end gap-1 w-full"
-                    >
-                      <Edit3 size={14} /> 編輯
-                    </button>
-                  </td>
-                </tr>
-              ))
-            )}
-          </tbody>
-        </table>
+      <div className="bg-white border border-[#1A1A1A]/10 shadow-sm overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-sm whitespace-nowrap">
+            <thead className="bg-[#F7F7F5] border-b border-[#1A1A1A]/10">
+              <tr>
+                <th className="p-4 font-medium text-[#1A1A1A]/60 w-16">封面</th>
+                <th className="p-4 font-medium text-[#1A1A1A]/60">識別名稱</th>
+                <th className="p-4 font-medium text-[#1A1A1A]/60">營運狀態</th>
+                <th className="p-4 font-medium text-[#1A1A1A]/60">分級屬系</th>
+                <th className="p-4 font-medium text-[#1A1A1A]/60 text-center">前台公開</th>
+                <th className="p-4 font-medium text-[#1A1A1A]/60 text-center">首頁精選</th>
+                <th className="p-4 font-medium text-[#1A1A1A]/60 text-right">管理</th>
+              </tr>
+            </thead>
+            <tbody>
+              {loading ? (
+                <tr><td colSpan={7} className="p-12 text-center tracking-widest text-[#1A1A1A]/40 uppercase text-xs">載入中 Loading...</td></tr>
+              ) : filteredPlants.length === 0 ? (
+                <tr><td colSpan={7} className="p-12 text-center tracking-widest text-[#1A1A1A]/40 uppercase text-xs">查無檔案 No Results</td></tr>
+              ) : (
+                filteredPlants.map(plant => (
+                  <tr key={plant.id} className="border-b border-[#1A1A1A]/5 hover:bg-[#F7F7F5]/50 transition-colors group">
+                    <td className="p-4">
+                      <div className="w-12 h-16 bg-[#EBEBE8] border border-[#1A1A1A]/10 flex items-center justify-center text-[#1A1A1A]/30 overflow-hidden">
+                        {plant.images?.length > 0 ? (
+                          <img src={plant.images.find(img => img.isCover)?.url || plant.images[0].url} alt="" className="w-full h-full object-cover" />
+                        ) : <ImageIcon size={16} />}
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div className="font-medium text-[#1A1A1A] text-base">{plant.name}</div>
+                      <div className="text-[10px] text-[#1A1A1A]/40 font-mono mt-1">{plant.id}</div>
+                    </td>
+                    <td className="p-4">
+                      <div className="flex items-center gap-2">
+                        <span className={`inline-flex items-center px-2 py-1 text-xs tracking-wider border ${getStatusColor(plant.status).includes('green') ? 'border-green-200 bg-green-50 text-green-700' : getStatusColor(plant.status).includes('red') ? 'border-red-200 bg-red-50 text-red-700' : getStatusColor(plant.status).includes('yellow') ? 'border-yellow-200 bg-yellow-50 text-yellow-700' : 'border-gray-200 bg-gray-50 text-gray-700'}`}>
+                          {getStatusText(plant.status)}
+                        </span>
+                        {/* Status Toggle Button (explicitly cycle just to ease operations without deep diving) */}
+                        <button 
+                          onClick={() => handleToggleStatus(plant)}
+                          className="text-[#1A1A1A]/30 hover:text-[#5A6B58] transition-colors p-1 bg-white border border-transparent hover:border-[#5A6B58]/30 rounded-full"
+                          title="切換狀態"
+                        >
+                          <Edit3 size={12} />
+                        </button>
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div className="flex flex-col gap-1">
+                        <span className="font-medium text-[#1A1A1A]/80">{plant.grade || '-'}</span>
+                        <span className="text-[10px] text-[#1A1A1A]/50">{plant.category || '未分類'}</span>
+                      </div>
+                    </td>
+                    <td className="p-4 text-center">
+                      {plant.visibility === 'public' ? (
+                        <span className="text-xs bg-blue-50 text-blue-700 border border-blue-200 px-2.5 py-1">公開</span>
+                      ) : (
+                        <span className="text-xs bg-gray-50 text-gray-500 border border-gray-200 px-2.5 py-1">私密</span>
+                      )}
+                    </td>
+                    <td className="p-4 text-center">
+                      <button 
+                        onClick={() => handleToggleFeature(plant)} 
+                        className={`p-2 transition-all duration-300 rounded ${plant.featuredOnHome ? 'bg-yellow-50 border border-yellow-200 shadow-sm' : 'hover:bg-gray-100 border border-transparent'}`}
+                      >
+                        <Star size={16} fill={plant.featuredOnHome ? '#ca8a04' : 'none'} className={plant.featuredOnHome ? 'text-yellow-600' : 'text-gray-300'} />
+                      </button>
+                    </td>
+                    <td className="p-4 text-right">
+                      <button 
+                        onClick={() => navigate(`/admin/plants/${plant.id}`)}
+                        className="bg-[#1A1A1A] text-white px-4 py-2 text-xs tracking-widest hover:bg-[#5A6B58] transition-colors inline-block"
+                      >
+                        進入編輯
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   );

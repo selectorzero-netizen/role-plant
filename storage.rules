@@ -1,0 +1,21 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    
+    // 與 firestore.rules 同源的嚴格權限檢驗
+    // 完全不使用 request.auth.token.role
+    // 必須擁有 Profiles Document 且 field role == 'admin' 
+    function isAdmin() {
+      return request.auth != null && 
+             firestore.exists(/databases/(default)/documents/profiles/$(request.auth.uid)) &&
+             firestore.get(/databases/(default)/documents/profiles/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    match /plants/{plantId}/{allPaths=**} {
+      // 圖片需公開以供前台顯示
+      allow read: if true;
+      // 僅限系統內建的 admin 方可上傳或刪除植物圖片
+      allow write: if isAdmin();
+    }
+  }
+}

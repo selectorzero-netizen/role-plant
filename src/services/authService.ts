@@ -14,6 +14,14 @@ export const authService = {
         favorites: [],
         createdAt: Date.now()
       };
+
+      // Seed admin for local emulator DEV testing
+      if (import.meta.env.DEV && email === 'admin@roleplant.dev') {
+        profile.role = 'admin';
+        profile.status = 'approved';
+        profile.name = 'DEV Admin Emulator';
+      }
+
       await profileService.createProfile(uid, profile);
     }
     return profile;

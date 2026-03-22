@@ -58,6 +58,37 @@ export function LoginPage() {
         >
           {loading ? '驗證中...' : '進行 Google 登入'}
         </button>
+
+        {import.meta.env.DEV && (
+          <button
+            onClick={async () => {
+              setLoading(true);
+              try {
+                const { auth } = await import('../firebase');
+                const { signInWithEmailAndPassword, createUserWithEmailAndPassword } = await import('firebase/auth');
+                try {
+                  // Attempt to sign in directly
+                  await signInWithEmailAndPassword(auth, 'admin@roleplant.dev', 'emulator123');
+                } catch (e: any) {
+                  // If user doesn't exist in emulator, create it and it will auto-sign in
+                  if (e.code === 'auth/user-not-found' || e.code === 'auth/invalid-credential') {
+                    await createUserWithEmailAndPassword(auth, 'admin@roleplant.dev', 'emulator123');
+                  } else {
+                    throw e;
+                  }
+                }
+                navigate('/admin');
+              } catch (e: any) {
+                setError('DEV Emulator Login Error: ' + e.message);
+              } finally {
+                setLoading(false);
+              }
+            }}
+            className="w-full bg-red-800 text-white py-4 text-sm tracking-widest hover:bg-red-700 transition-colors mt-2"
+          >
+            ⚠️ DEV: 一鍵創建並登入 Local Admin
+          </button>
+        )}
         <p className="text-center text-xs text-[#1A1A1A]/50 mt-4 leading-relaxed whitespace-pre-line">
           {MEMBERSHIP_POLICY.loginNotice.text}
         </p>

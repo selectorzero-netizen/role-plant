@@ -38,6 +38,10 @@ export interface Plant {
   updatedAt: string;
 }
 
+export type ArticleCategory = 'knowledge' | 'guide' | 'story' | 'interview';
+export type NoticeCategory = 'system' | 'event' | 'release';
+export type AccessLevel = 'public' | 'member' | 'vip';
+
 export interface Article {
   id: string;
   title: string;
@@ -46,6 +50,8 @@ export interface Article {
   body: string;
   excerpt?: string;
   status: 'draft' | 'published' | 'archived';
+  category: ArticleCategory;
+  accessLevel: AccessLevel;
   publishedAt?: string;
   authorId?: string;
   featuredOnHome: boolean;
@@ -58,6 +64,8 @@ export interface Notice {
   title: string;
   body: string;
   status: 'draft' | 'published';
+  category: NoticeCategory;
+  accessLevel: AccessLevel;
   publishedAt?: string;
   pinned: boolean;
   link?: string;

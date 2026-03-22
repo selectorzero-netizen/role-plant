@@ -10,12 +10,24 @@ import { Plant } from '../types';
 export function HomePage() {
   const navigate = useNavigate();
   const [featuredPlants, setFeaturedPlants] = useState<Plant[]>([]);
-  
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    plantService.getFeaturedPlants().then(setFeaturedPlants).catch(console.error);
+    plantService.getFeaturedPlants()
+      .then(async (plants) => {
+        if (plants.length > 0) {
+          setFeaturedPlants(plants);
+        } else {
+          // If no featured plants, fallback to the latest 3 public plants
+          const publicPlants = await plantService.getPublicPlants();
+          setFeaturedPlants(publicPlants.slice(0, 3));
+        }
+      })
+      .catch(console.error)
+      .finally(() => setLoading(false));
   }, []);
 
-  const displayPlants = featuredPlants.length > 0 ? featuredPlants : plantDatabase.slice(0, 3);
+  const displayPlants = featuredPlants;
 
   return (
     <div className="space-y-32">
@@ -65,31 +77,42 @@ export function HomePage() {
             <span>View All</span><ArrowRight size={16} />
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {displayPlants.map((plant: any) => (
-            <div key={plant.id} className="group cursor-pointer" onClick={() => navigate(`/collection/${plant.id}`)}>
-              <div className="aspect-[4/5] bg-[#EBEBE8] mb-4 overflow-hidden relative border border-[#1A1A1A]/5">
-                {plant.images && plant.images.length > 0 ? (
-                  <img src={plant.images.find((i: any) => i.isCover)?.url || plant.images[0].url} alt={plant.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                ) : (
-                  <SafeImage src={plant.image} alt={plant.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" fallbackText={plant.name || plant.id} />
-                )}
-                {plant.status === 'sold' && (
-                  <div className="absolute top-4 right-4 bg-red-800 text-white text-[10px] uppercase tracking-widest px-2 py-1 shadow shadow-red-900/20">已釋出</div>
-                )}
-              </div>
-              <div className="flex justify-between items-end mt-4">
-                <div>
-                  <h3 className="font-mono text-sm">{plant.id}</h3>
-                  <p className="text-xs text-[#1A1A1A]/50 mt-1">{plant.name}</p>
+        
+        {displayPlants.length === 0 ? (
+          <div className="bg-white border border-[#1A1A1A]/5 p-16 text-center">
+            <Leaf size={32} className="mx-auto text-[#1A1A1A]/20 mb-6" />
+            <h3 className="text-lg font-medium mb-3">檔案整理中</h3>
+            <p className="text-[#1A1A1A]/60 font-light text-sm max-w-md mx-auto leading-relaxed">
+              目前無公開的精選植物檔案。這些隨時間緩慢生長的塊根，可能正處於休眠期或進行換盆修整，暫不開放前台展示。<br/><br/>請稍後再回來查看最新的釋出動態。
+            </p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {displayPlants.map((plant: any) => (
+              <div key={plant.id} className="group cursor-pointer" onClick={() => navigate(`/collection/${plant.id}`)}>
+                <div className="aspect-[4/5] bg-[#EBEBE8] mb-4 overflow-hidden relative border border-[#1A1A1A]/5">
+                  {plant.images && plant.images.length > 0 ? (
+                    <img src={plant.images.find((i: any) => i.isCover)?.url || plant.images[0].url} alt={plant.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  ) : (
+                    <SafeImage src="" alt={plant.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" fallbackText={plant.name || plant.id} />
+                  )}
+                  {plant.status === 'sold' && (
+                    <div className="absolute top-4 right-4 bg-red-800 text-white text-[10px] uppercase tracking-widest px-2 py-1 shadow shadow-red-900/20">已釋出</div>
+                  )}
                 </div>
-                <div className="flex items-center gap-1 text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 group-hover:text-[#5A6B58] transition-colors">
-                  <span>查看檔案</span><ArrowRight size={14} className="transform group-hover:translate-x-1 transition-transform" />
+                <div className="flex justify-between items-end mt-4">
+                  <div>
+                    <h3 className="font-mono text-sm">{plant.id}</h3>
+                    <p className="text-xs text-[#1A1A1A]/50 mt-1">{plant.name}</p>
+                  </div>
+                  <div className="flex items-center gap-1 text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 group-hover:text-[#5A6B58] transition-colors">
+                    <span>查看檔案</span><ArrowRight size={14} className="transform group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </section>
 
       <section className="px-6 md:px-12 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">

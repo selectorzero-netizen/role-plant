@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'motion/react';
 export const SafeImage = ({ src, alt, className, fallbackText }: { src: string, alt: string, className: string, fallbackText: string }) => {
   const [error, setError] = useState(false);
   
-  if (error) {
+  if (error || !src) {
     return (
       <div className={`flex flex-col items-center justify-center bg-[#EBEBE8] text-[#1A1A1A]/50 p-4 text-center ${className}`}>
         <span className="text-xs tracking-widest uppercase mb-2">Image Missing</span>
@@ -33,6 +33,14 @@ export const AuthLayout = ({ children }: { children: React.ReactNode }) => {
       <Link to="/" className="absolute top-8 left-6 md:left-12 text-lg tracking-widest font-medium">
         ROLE PLANT<span className="text-[#5A6B58]">.</span>
       </Link>
+      
+      {import.meta.env.DEV && (
+        <div className="fixed top-0 inset-x-0 bg-red-600 text-white text-xs font-mono py-1 px-4 z-[100] flex justify-between tracking-wider shadow-md">
+          <span>⚠️ DEV / EMULATOR MODE ACTIVE</span>
+          <span>ADMIN SEED: admin@roleplant.dev</span>
+        </div>
+      )}
+
       <main className="w-full">
         {children}
       </main>
@@ -67,8 +75,15 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
   ];
 
   return (
-    <div className="min-h-screen bg-[#F7F7F5] text-[#1A1A1A] font-sans selection:bg-[#5A6B58] selection:text-white flex flex-col">
-      <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-[#F7F7F5]/90 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-6'}`}>
+    <div className="min-h-screen bg-[#F7F7F5] text-[#1A1A1A] font-sans selection:bg-[#5A6B58] selection:text-white flex flex-col pt-6">
+      {import.meta.env.DEV && (
+        <div className="fixed top-0 inset-x-0 bg-red-600 text-white text-[10px] md:text-sm font-mono py-1 md:py-1.5 px-4 z-[100] flex justify-between tracking-wider shadow-md items-center">
+          <span className="font-bold flex items-center gap-2">⚠️ <span className="hidden md:inline">DEVELOPMENT / FIREBASE EMULATOR ACTIVE</span><span className="md:hidden">DEV MODE</span></span>
+          <span className="opacity-90 bg-black/20 px-2 py-0.5 rounded">Admin: admin@roleplant.dev</span>
+        </div>
+      )}
+
+      <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-[#F7F7F5]/90 backdrop-blur-md shadow-sm' : 'bg-transparent'} ${import.meta.env.DEV ? 'top-6' : 'top-0'} py-4`}>
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
           <Link to="/" className="text-lg tracking-widest font-medium">
             ROLE PLANT<span className="text-[#5A6B58]">.</span>
