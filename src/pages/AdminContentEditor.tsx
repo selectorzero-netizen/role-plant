@@ -5,7 +5,8 @@
  */
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Save, ArrowLeft, Plus, Trash2, Eye, EyeOff } from 'lucide-react';
+import { Save, ArrowLeft, Plus, Trash2, Eye, EyeOff, Image as ImageIcon } from 'lucide-react';
+import { MediaPicker } from '../components/MediaPicker';
 import { 
   contentService, 
   HomeContent, 
@@ -135,6 +136,7 @@ const Toggle = ({ active, onToggle, label }: any) => (
 
 function HomeForm({ onSaveStatus }: any) {
   const [data, setData] = useState<HomeContent | null>(null);
+  const [showMediaPicker, setShowMediaPicker] = useState(false);
 
   useEffect(() => {
     contentService.getPageContent<HomeContent>('home').then(setData);
@@ -160,8 +162,26 @@ function HomeForm({ onSaveStatus }: any) {
         <Input label="Hero Label" value={data.heroLabel} onChange={(v:any) => setData({...data, heroLabel: v})} />
         <Input label="Hero Title" value={data.heroTitle} onChange={(v:any) => setData({...data, heroTitle: v})} multiline />
         <Input label="Hero Description" value={data.heroDescription} onChange={(v:any) => setData({...data, heroDescription: v})} multiline />
-        <Input label="Hero Image URL" value={data.heroImageUrl} onChange={(v:any) => setData({...data, heroImageUrl: v})} />
+        <div className="flex gap-2 items-end">
+          <div className="flex-1">
+            <Input label="Hero Image URL" value={data.heroImageUrl} onChange={(v:any) => setData({...data, heroImageUrl: v})} />
+          </div>
+          <button 
+            onClick={() => setShowMediaPicker(true)}
+            className="mb-6 p-4 bg-[#5A6B58] text-white hover:bg-[#1A1A1A] transition-colors flex items-center gap-2"
+          >
+            <ImageIcon size={16} /> <span className="text-[10px] uppercase tracking-widest">Select</span>
+          </button>
+        </div>
       </section>
+
+      {showMediaPicker && (
+        <MediaPicker 
+          usage="content" 
+          onSelect={(url) => { setData({...data, heroImageUrl: url}); setShowMediaPicker(false); }} 
+          onClose={() => setShowMediaPicker(false)} 
+        />
+      )}
 
       <section className="bg-white p-8 border border-[#1A1A1A]/5">
         <h2 className="text-sm tracking-[0.2em] uppercase font-medium mb-8 border-b border-[#1A1A1A]/10 pb-4">Tagline Section</h2>

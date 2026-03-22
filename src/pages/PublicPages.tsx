@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRight, BookOpen, Leaf, Briefcase, Minus, Plus } from 'lucide-react';
+import { ArrowRight, BookOpen, Leaf, Briefcase, Minus, Plus, Mail, CheckCircle, AlertCircle } from 'lucide-react';
 import { SafeImage, plantDatabase } from '../components/Shared';
 import { motion, AnimatePresence } from 'motion/react';
 import { usePolicy } from '../PolicyContext';
 import { plantService } from '../services/plantService';
 import { Plant } from '../types';
 import { contentService, HomeContent, AboutContent, BusinessContent, MembershipContent, LearnContent, FaqContent } from '../services/contentService';
+import { inquiryService, InquiryType } from '../services/inquiryService';
 
 export function HomePage() {
   const navigate = useNavigate();
@@ -263,12 +264,17 @@ export function AboutPage() {
     <div className="max-w-3xl mx-auto px-6 md:px-12 pt-12 text-center pb-32">
       <h1 className="text-4xl font-light tracking-tight mb-4">{cms.title}</h1>
       <p className="text-xs tracking-[0.2em] uppercase text-[#1A1A1A]/50 mb-16">{cms.subtitle}</p>
-      <div className="space-y-12 text-left">
+      <div className="space-y-12 text-left mb-24">
         {cms.paragraphs.map((p, i) => (
           <p key={i} className={`font-light leading-relaxed ${i === 0 ? 'text-[#1A1A1A]/80 text-lg' : 'text-[#1A1A1A]/70'}`}>
             {p}
           </p>
         ))}
+      </div>
+
+      <div className="text-left border-t border-[#1A1A1A]/10 pt-24">
+        <h2 className="text-2xl font-light mb-8">聯絡我們</h2>
+        <GeneralContactForm />
       </div>
     </div>
   );
@@ -292,30 +298,26 @@ export function BusinessPage() {
     });
   }, []);
 
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
+    setSubmitStatus('loading');
     const formData = new FormData(e.currentTarget);
-    const data = {
-      brandName: formData.get('brandName'),
-      contactName: formData.get('contactName'),
-      email: formData.get('email'),
-      details: formData.get('details'),
-      status: 'pending',
-      createdAt: new Date().toISOString()
-    };
-
+    
     try {
-      const { db } = await import('../firebase');
-      const { collection, addDoc } = await import('firebase/firestore');
-      await addDoc(collection(db, 'inquiries'), data);
-      alert('洽詢已送出，我們將盡快與您聯繫。');
+      await inquiryService.submitInquiry({
+        type: 'business',
+        name: formData.get('contactName') as string,
+        email: formData.get('email') as string,
+        message: formData.get('details') as string,
+        company: formData.get('brandName') as string
+      });
+      setSubmitStatus('success');
       (e.target as HTMLFormElement).reset();
     } catch (error) {
-      console.error("Error submitting inquiry:", error);
-      alert('送出失敗，請稍後再試。');
-    } finally {
-      setLoading(false);
+      console.error("Error submitting business inquiry:", error);
+      setSubmitStatus('error');
     }
   };
 
@@ -341,30 +343,46 @@ export function BusinessPage() {
       </div>
 
       <div className="bg-white p-8 md:p-12 border border-[#1A1A1A]/10">
-        <h2 className="text-2xl font-light mb-8">聯繫我們</h2>
-        <form className="space-y-6" onSubmit={handleSubmit}>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">單位 / 品牌名稱</label>
-              <input type="text" name="brandName" required className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-3 focus:outline-none focus:border-[#1A1A1A] transition-colors" />
+        <h2 className="text-2xl font-light mb-8">商業洽詢表單</h2>
+        {submitStatus === 'success' ? (
+          <div className="bg-[#5A6B58]/5 p-12 text-center rounded-sm border border-[#5A6B58]/20">
+            <CheckCircle size={48} className="mx-auto text-[#5A6B58] mb-6" />
+            <h3 className="text-xl font-medium mb-3">洽詢已送出</h3>
+            <p className="text-[#1A1A1A]/60 font-light text-sm mb-8">感謝您的聯繫。我們已收到您的商業需求，將由專人審核後儘快與您聯繫。</p>
+            <button onClick={() => setSubmitStatus('idle')} className="text-xs tracking-widest uppercase border border-[#1A1A1A]/20 px-8 py-3 hover:bg-[#1A1A1A] hover:text-white transition-colors">再次填寫</button>
+          </div>
+        ) : (
+          <form className="space-y-6" onSubmit={handleSubmit}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">單位 / 品牌名稱</label>
+                <input type="text" name="brandName" required className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-3 focus:outline-none focus:border-[#1A1A1A] transition-colors" />
+              </div>
+              <div>
+                <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">聯絡人姓名</label>
+                <input type="text" name="contactName" required className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-3 focus:outline-none focus:border-[#1A1A1A] transition-colors" />
+              </div>
             </div>
             <div>
-              <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">聯絡人姓名</label>
-              <input type="text" name="contactName" required className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-3 focus:outline-none focus:border-[#1A1A1A] transition-colors" />
+              <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">Email</label>
+              <input type="email" name="email" required className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-3 focus:outline-none focus:border-[#1A1A1A] transition-colors" />
             </div>
-          </div>
-          <div>
-            <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">Email</label>
-            <input type="email" name="email" required className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-3 focus:outline-none focus:border-[#1A1A1A] transition-colors" />
-          </div>
-          <div>
-            <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">合作需求簡述</label>
-            <textarea name="details" required rows={4} className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-3 focus:outline-none focus:border-[#1A1A1A] transition-colors resize-none"></textarea>
-          </div>
-          <button type="submit" disabled={loading} className="bg-[#1A1A1A] text-white px-8 py-4 text-sm tracking-widest uppercase hover:bg-[#5A6B58] transition-colors w-full md:w-auto mt-4 disabled:opacity-50">
-            {loading ? '處理中...' : '送出洽詢'}
-          </button>
-        </form>
+            <div>
+              <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">合作需求簡述</label>
+              <textarea name="details" required rows={4} className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-3 focus:outline-none focus:border-[#1A1A1A] transition-colors resize-none"></textarea>
+            </div>
+            
+            {submitStatus === 'error' && (
+              <div className="flex items-center gap-2 text-red-500 text-sm">
+                <AlertCircle size={16} /> <span>抱歉，送出過程發生錯誤，請稍後再試。</span>
+              </div>
+            )}
+
+            <button type="submit" disabled={submitStatus === 'loading'} className="bg-[#1A1A1A] text-white px-8 py-4 text-sm tracking-widest uppercase hover:bg-[#5A6B58] transition-colors w-full md:w-auto mt-4 disabled:opacity-50">
+              {submitStatus === 'loading' ? '處理中...' : '送出洽詢'}
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );
@@ -485,5 +503,73 @@ export function LearnPage() {
         </motion.div>
       </AnimatePresence>
     </div>
+  );
+}
+
+function GeneralContactForm() {
+  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setStatus('loading');
+    const formData = new FormData(e.currentTarget);
+    
+    try {
+      await inquiryService.submitInquiry({
+        type: 'general',
+        name: formData.get('name') as string,
+        email: formData.get('email') as string,
+        message: formData.get('message') as string
+      });
+      setStatus('success');
+      (e.target as HTMLFormElement).reset();
+    } catch (error) {
+      console.error("Error submitting general inquiry:", error);
+      setStatus('error');
+    }
+  };
+
+  if (status === 'success') {
+    return (
+      <div className="bg-[#5A6B58]/5 p-8 border border-[#5A6B58]/20 rounded-sm">
+        <CheckCircle size={32} className="text-[#5A6B58] mb-4" />
+        <h3 className="text-lg font-medium mb-2">訊息已送出</h3>
+        <p className="text-[#1A1A1A]/60 font-light text-sm mb-6">感謝您的聯繫。我們將儘快審閱您的訊息並回覆。</p>
+        <button onClick={() => setStatus('idle')} className="text-xs uppercase tracking-widest border border-[#1A1A1A]/10 px-6 py-2 hover:bg-[#1A1A1A] hover:text-white transition-colors">再次發送</button>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl text-left">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-2">姓名 Name</label>
+          <input type="text" name="name" required className="w-full bg-white border border-[#1A1A1A]/10 p-3 text-sm focus:outline-none focus:border-[#5A6B58]" />
+        </div>
+        <div>
+          <label className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-2">Email Address</label>
+          <input type="email" name="email" required className="w-full bg-white border border-[#1A1A1A]/10 p-3 text-sm focus:outline-none focus:border-[#5A6B58]" />
+        </div>
+      </div>
+      <div>
+        <label className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-2">訊息內容 Message</label>
+        <textarea name="message" required rows={5} className="w-full bg-white border border-[#1A1A1A]/10 p-3 text-sm focus:outline-none focus:border-[#5A6B58] resize-none" />
+      </div>
+
+      {status === 'error' && (
+        <div className="flex items-center gap-2 text-red-500 text-sm">
+          <AlertCircle size={16} /> <span>送出失敗，請檢查網路連線或稍後再試。</span>
+        </div>
+      )}
+
+      <button 
+        type="submit" 
+        disabled={status === 'loading'}
+        className="bg-[#1A1A1A] text-white px-10 py-4 text-xs tracking-widest uppercase hover:bg-[#5A6B58] transition-colors disabled:opacity-50"
+      >
+        {status === 'loading' ? 'Sending...' : 'Send Message'}
+      </button>
+    </form>
   );
 }

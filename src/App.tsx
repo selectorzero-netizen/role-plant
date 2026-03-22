@@ -1,12 +1,17 @@
 import React from 'react';
 import { HomePage, AboutPage, BusinessPage, LearnPage, MembershipPage } from './pages/PublicPages';
+import { PostListPage, PostDetailPage } from './pages/PostPages';
 import { CollectionPage, SinglePlantPage } from './pages/CollectionPages';
 import { MemberPage, LoginPage } from './pages/MemberPages';
-import { AdminLayout, AdminDashboard, AdminUsers, AdminApplications, AdminInquiries } from './pages/AdminPages';
+import { AdminLayout, AdminDashboard, AdminUsers, AdminApplications } from './pages/AdminPages';
 import { AdminPlants } from './pages/AdminPlants';
 import { AdminPlantEditor } from './pages/AdminPlantEditor';
 import { AdminSettings } from './pages/AdminSettings';
 import { AdminContentList, AdminContentEditor } from './pages/AdminContentEditor';
+import { AdminInquiries } from './pages/AdminInquiries';
+import { AdminPosts } from './pages/AdminPosts';
+import { AdminPostEditor } from './pages/AdminPostEditor';
+import { AdminMedia } from './pages/AdminMedia';
 import { Layout, AuthLayout } from './components/Shared';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from './AuthContext';
@@ -48,16 +53,21 @@ export default function App() {
         <Route path="/admin/plants/:id" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminPlantEditor /></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/users" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminUsers /></AdminLayout></ProtectedRoute>} />
         <Route path="/admin/applications" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminApplications /></AdminLayout></ProtectedRoute>} />
-         <Route path="/admin/inquiries" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminInquiries /></AdminLayout></ProtectedRoute>} />
-         <Route path="/admin/content" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminContentList /></AdminLayout></ProtectedRoute>} />
-         <Route path="/admin/content/:pageId" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminContentEditor /></AdminLayout></ProtectedRoute>} />
-         <Route path="/admin/settings" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminSettings /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/inquiries" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminInquiries /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/posts" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminPosts /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/posts/:id" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminPostEditor /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/media" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminMedia /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/content" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminContentList /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/content/:pageId" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminContentEditor /></AdminLayout></ProtectedRoute>} />
+        <Route path="/admin/settings" element={<ProtectedRoute requireRole="admin"><AdminLayout><AdminSettings /></AdminLayout></ProtectedRoute>} />
         
         <Route path="/" element={<Layout><HomePage /></Layout>} />
         <Route path="/collection" element={<Layout><CollectionPage /></Layout>} />
         <Route path="/collection/:id" element={<Layout><SinglePlantPage /></Layout>} />
         <Route path="/learn" element={<Layout><LearnPage /></Layout>} />
         <Route path="/business" element={<Layout><BusinessPage /></Layout>} />
+        <Route path="/posts" element={<Layout><PostListPage /></Layout>} />
+        <Route path="/posts/:slug" element={<Layout><PostDetailPage /></Layout>} />
         <Route path="/about" element={<Layout><AboutPage /></Layout>} />
         <Route path="/membership" element={<Layout><MembershipPage /></Layout>} />
         <Route path="/login" element={<AuthLayout><LoginPage /></AuthLayout>} />

@@ -5,6 +5,7 @@ import { Plant } from '../types';
 import { ArrowLeft, Save, AlertTriangle, Image as ImageIcon, Star, Upload, Trash2, GripVertical, X, Loader2, CheckCircle2 } from 'lucide-react';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { storage } from '../firebase';
+import { MediaPicker } from '../components/MediaPicker';
 
 export function AdminPlantEditor() {
   const { id } = useParams<{ id: string }>();
@@ -19,6 +20,7 @@ export function AdminPlantEditor() {
   const [newTag, setNewTag] = useState('');
   const [newImageUrl, setNewImageUrl] = useState('');
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [showMediaPicker, setShowMediaPicker] = useState(false);
   const [msg, setMsg] = useState({ text: '', type: '' });
 
   useEffect(() => {
@@ -97,6 +99,13 @@ export function AdminPlantEditor() {
     const newImgs = [...plant.images, { url: newImageUrl.trim(), isCover: plant.images.length === 0, index: plant.images.length }];
     updateField('images', newImgs);
     setNewImageUrl('');
+  };
+
+  const handleMediaSelect = (url: string) => {
+    if (!plant) return;
+    const newImgs = [...plant.images, { url, isCover: plant.images.length === 0, index: plant.images.length }];
+    updateField('images', newImgs);
+    setShowMediaPicker(false);
   };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -212,6 +221,13 @@ export function AdminPlantEditor() {
               />
               <button onClick={handleAddImage} className="bg-[#F7F7F5] border border-[#1A1A1A]/10 px-4 text-sm hover:bg-gray-100 transition-colors flex items-center gap-1"><Upload size={14}/> URL</button>
               
+              <button 
+                onClick={() => setShowMediaPicker(true)}
+                className="bg-[#5A6B58] text-white px-4 py-2 text-sm hover:bg-[#1A1A1A] transition-colors flex items-center gap-2 cursor-pointer whitespace-nowrap"
+              >
+                <ImageIcon size={14}/> 媒體庫 Select
+              </button>
+
               <label className="bg-[#1A1A1A] text-white px-4 py-2 text-sm hover:bg-[#5A6B58] transition-colors flex items-center gap-2 cursor-pointer whitespace-nowrap">
                 {uploadingImage ? <Loader2 size={14} className="animate-spin" /> : <Upload size={14}/>}
                 <span>{uploadingImage ? '上傳中...' : '本機上傳'}</span>
@@ -335,6 +351,14 @@ export function AdminPlantEditor() {
 
         </div>
       </div>
+
+      {showMediaPicker && (
+        <MediaPicker 
+          usage="plant" 
+          onSelect={handleMediaSelect} 
+          onClose={() => setShowMediaPicker(false)} 
+        />
+      )}
     </div>
   );
 }
