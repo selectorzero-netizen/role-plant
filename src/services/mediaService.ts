@@ -92,20 +92,24 @@ export const mediaService = {
    */
   async getMediaList(filters: MediaFilters = {}) {
     const colRef = collection(db, 'media');
-    let q = query(colRef, orderBy('createdAt', 'desc'));
-
-    if (filters.usage) {
-      q = query(q, where('usage', '==', filters.usage));
-    }
-    if (filters.isActive !== undefined) {
-      q = query(q, where('isActive', '==', filters.isActive));
-    }
+    // Only orderBy — avoid composite index requirement
+    const q = query(colRef, orderBy('createdAt', 'desc'));
 
     const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
+    let results = snapshot.docs.map(d => ({
+      id: d.id,
+      ...d.data()
     })) as Media[];
+
+    // Client-side filtering (safe, no index needed)
+    if (filters.usage) {
+      results = results.filter(m => m.usage === filters.usage);
+    }
+    if (filters.isActive !== undefined) {
+      results = results.filter(m => m.isActive === filters.isActive);
+    }
+
+    return results;
   },
 
   /**
