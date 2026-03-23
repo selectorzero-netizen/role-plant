@@ -6,26 +6,38 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { postService, Post } from '../services/postService';
-import { Calendar, Tag, ArrowLeft, Clock } from 'lucide-react';
+import { Calendar, Tag, ArrowLeft, Clock, Filter } from 'lucide-react';
 import { motion } from 'motion/react';
+import { taxonomyService } from '../services/taxonomyService';
+import { Taxonomy } from '../types';
 
 export function PostListPage() {
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState<Taxonomy[]>([]);
+  const [activeCategory, setActiveCategory] = useState<string>('all');
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchData = async () => {
       try {
-        const data = await postService.getPosts({ status: 'published' });
-        setPosts(data);
+        const [postsData, catData] = await Promise.all([
+          postService.getPosts({ status: 'published' }),
+          taxonomyService.getByType('post_category')
+        ]);
+        setPosts(postsData);
+        setCategories(catData);
       } catch (error) {
-        console.error("Error fetching published posts:", error);
+        console.error("Error fetching post data:", error);
       } finally {
         setLoading(false);
       }
     };
-    fetchPosts();
+    fetchData();
   }, []);
+
+  const filteredPosts = activeCategory === 'all' 
+    ? posts 
+    : posts.filter(p => p.category === activeCategory);
 
   if (loading) {
     return (
@@ -44,18 +56,37 @@ export function PostListPage() {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-24">
-      <div className="text-center mb-24">
+      <div className="text-center mb-16">
         <h1 className="text-4xl font-light tracking-tight mb-4">品牌專欄</h1>
-        <p className="text-xs tracking-[0.2em] uppercase text-[#1A1A1A]/40">Journal & Perspectives</p>
+        <p className="text-xs tracking-[0.2em] uppercase text-[#1A1A1A]/40 mb-12">Journal & Perspectives</p>
+        
+        {/* Category Filter */}
+        <div className="flex flex-wrap justify-center gap-4 text-[10px] uppercase tracking-widest border-b border-[#1A1A1A]/5 pb-8">
+          <button 
+            onClick={() => setActiveCategory('all')}
+            className={`px-4 py-2 transition-colors ${activeCategory === 'all' ? 'bg-[#1A1A1A] text-white' : 'text-[#1A1A1A]/40 hover:text-[#1A1A1A]'}`}
+          >
+            All / 全部
+          </button>
+          {categories.map(cat => (
+            <button 
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.key)}
+              className={`px-4 py-2 transition-colors ${activeCategory === cat.key ? 'bg-[#1A1A1A] text-white' : 'text-[#1A1A1A]/40 hover:text-[#1A1A1A]'}`}
+            >
+              {cat.label}
+            </button>
+          ))}
+        </div>
       </div>
 
-      {posts.length === 0 ? (
+      {filteredPosts.length === 0 ? (
         <div className="text-center py-32 border border-dashed border-[#1A1A1A]/10">
-          <p className="text-[#1A1A1A]/30 italic font-light">目前尚無發布文章</p>
+          <p className="text-[#1A1A1A]/30 italic font-light">該分類目前尚無發布文章</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
-          {posts.map((post) => (
+          {filteredPosts.map((post) => (
             <Link key={post.id} to={`/posts/${post.slug}`} className="group space-y-6 block">
               <div className="aspect-[4/5] overflow-hidden bg-[#F7F7F5] border border-[#1A1A1A]/5">
                 {post.coverImageUrl ? (

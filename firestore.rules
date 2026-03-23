@@ -9,7 +9,8 @@ service cloud.firestore {
     
     function isAdmin() {
       return isAuthenticated() 
-             && get(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.role == 'admin';
+             && (get(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.role == 'admin'
+                 || get(/databases/$(database)/documents/profiles/$(request.auth.uid)).data.role == 'super_admin');
     }
     
     function isOwner(userId) {

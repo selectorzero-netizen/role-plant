@@ -6,35 +6,44 @@ import { useAuth } from '../AuthContext';
 import { favoritesService } from '../services/favoritesService';
 import { memberApplicationService } from '../services/memberApplicationService';
 import { plantService } from '../services/plantService';
-import { Plant } from '../types';
+import { Taxonomy } from '../types';
+import { taxonomyService } from '../services/taxonomyService';
+import { Filter } from 'lucide-react';
 
 export function CollectionPage() {
   const navigate = useNavigate();
   const [filter, setFilter] = useState('All');
+  const [catFilter, setCatFilter] = useState('all');
   const [plants, setPlants] = useState<any[]>([]);
+  const [categories, setCategories] = useState<Taxonomy[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchPlants = async () => {
+    const fetchData = async () => {
       try {
-        const livePlants = await plantService.getPublicPlants();
+        const [livePlants, catData] = await Promise.all([
+          plantService.getPublicPlants(),
+          taxonomyService.getByType('plant_category')
+        ]);
+        
         if (livePlants.length > 0) {
           setPlants(livePlants);
         } else {
           setPlants(fallbackDatabase);
         }
+        setCategories(catData);
       } catch (error) {
-        console.error("Error fetching plants:", error);
+        console.error("Error fetching collection data:", error);
         setPlants(fallbackDatabase);
       } finally {
         setLoading(false);
       }
     };
-    fetchPlants();
+    fetchData();
   }, []);
 
-  const categories = [
-    { id: 'All', name: '全部', desc: '完整的龜甲龍選拔檔案紀錄。' },
+  const statusTabs = [
+    { id: 'All', name: '全部', desc: '完整的選拔檔案紀錄。' },
     { id: 'Available', name: '可釋出', desc: '經過完整休眠與生長季觀察，確認健康完成度，目前狀態穩定可供收藏的個體。' },
     { id: 'Observation', name: '觀察中', desc: '正在進行型態調整或剛換盆，需要更多時間確認培育未來性的個體，暫不釋出。' },
     { id: 'Archived', name: '已收藏', desc: '具有特殊表現或已由其他收藏者養護的歷史檔案，保留作為判讀與標準建立的參考。' }
@@ -49,11 +58,18 @@ export function CollectionPage() {
     '已售': 'Archived'
   };
 
-  const filteredPlants = filter === 'All' ? plants : plants.filter(p => {
+  const filteredPlants = plants.filter(p => {
+    // Status Filter
     const mappedStatus = statusMap[p.status] || p.status;
-    return mappedStatus === filter;
+    const statusMatch = filter === 'All' || mappedStatus === filter;
+    
+    // Taxonomy Category Filter
+    const catMatch = catFilter === 'all' || p.category === catFilter;
+    
+    return statusMatch && catMatch;
   });
-  const currentCategory = categories.find(c => c.id === filter);
+
+  const currentStatus = statusTabs.find(c => c.id === filter);
 
   return (
     <div className="max-w-7xl mx-auto px-6 md:px-12 pt-12">
@@ -65,19 +81,46 @@ export function CollectionPage() {
         </p>
       </header>
 
-      <div className="mb-12 border-b border-[#1A1A1A]/10 pb-8">
-        <div className="flex gap-6 mb-6 overflow-x-auto">
-          {categories.map(cat => (
-            <button 
-              key={cat.id}
-              onClick={() => setFilter(cat.id)}
-              className={`text-sm tracking-widest uppercase whitespace-nowrap transition-colors ${filter === cat.id ? 'text-[#1A1A1A] font-medium border-b-2 border-[#1A1A1A] pb-1' : 'text-[#1A1A1A]/40 hover:text-[#1A1A1A]'}`}
-            >
-              {cat.id} / {cat.name}
-            </button>
-          ))}
+      <div className="mb-12 border-b border-[#1A1A1A]/10 pb-8 space-y-8">
+        {/* Status Tabs (UI Categories) */}
+        <div>
+          <div className="flex gap-6 mb-4 overflow-x-auto no-scrollbar">
+            {statusTabs.map(cat => (
+              <button 
+                key={cat.id}
+                onClick={() => setFilter(cat.id)}
+                className={`text-sm tracking-widest uppercase whitespace-nowrap transition-colors ${filter === cat.id ? 'text-[#1A1A1A] font-medium border-b-2 border-[#1A1A1A] pb-1' : 'text-[#1A1A1A]/40 hover:text-[#1A1A1A]'}`}
+              >
+                {cat.id} / {cat.name}
+              </button>
+            ))}
+          </div>
+          <p className="text-sm text-[#1A1A1A]/60 font-light">{currentStatus?.desc}</p>
         </div>
-        <p className="text-sm text-[#1A1A1A]/60 font-light">{currentCategory?.desc}</p>
+
+        {/* Taxonomy Categories (Botanical Filter) */}
+        <div className="flex flex-wrap items-center gap-4 pt-4 border-t border-[#1A1A1A]/5">
+          <span className="text-[10px] uppercase tracking-[0.2em] text-[#1A1A1A]/30 flex items-center gap-2">
+            <Filter size={10} /> 屬系篩選 Type:
+          </span>
+          <div className="flex flex-wrap gap-2">
+            <button 
+              onClick={() => setCatFilter('all')}
+              className={`px-3 py-1 text-[10px] uppercase tracking-widest transition-colors border ${catFilter === 'all' ? 'bg-[#1A1A1A] text-white border-[#1A1A1A]' : 'border-[#1A1A1A]/10 text-[#1A1A1A]/40 hover:border-[#1A1A1A]/30'}`}
+            >
+              All 全部
+            </button>
+            {categories.map(cat => (
+              <button 
+                key={cat.id}
+                onClick={() => setCatFilter(cat.key)}
+                className={`px-3 py-1 text-[10px] uppercase tracking-widest transition-colors border ${catFilter === cat.key ? 'bg-[#1A1A1A] text-white border-[#1A1A1A]' : 'border-[#1A1A1A]/10 text-[#1A1A1A]/40 hover:border-[#1A1A1A]/30'}`}
+              >
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       {loading ? (

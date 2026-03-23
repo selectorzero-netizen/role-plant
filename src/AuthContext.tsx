@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { auth } from './firebase';
 import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, User } from 'firebase/auth';
-import { UserProfile, Role, Status } from './types';
+import { UserProfile, UserRole, Status } from './types';
 import { authService } from './services/authService';
 
 // ─── DEV ONLY ────────────────────────────────────────────────────────────────
@@ -12,7 +12,7 @@ const DEV_ADMIN_PROFILE: UserProfile | null = import.meta.env.DEV
       uid: 'dev-admin-bypass',
       email: 'dev@roleplant.local',
       name: 'DEV Admin',
-      role: 'admin' as Role,
+      role: 'super_admin' as UserRole,
       status: 'approved' as Status,
       favorites: [],
       createdAt: '',

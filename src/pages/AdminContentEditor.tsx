@@ -16,6 +16,10 @@ import {
   LearnContent, 
   FaqContent 
 } from '../services/contentService';
+import { useAuth } from '../AuthContext';
+import { auditService } from '../services/auditService';
+import { useBlocker } from 'react-router-dom';
+import { AlertTriangle } from 'lucide-react';
 
 const PAGE_META = [
   { id: 'home', label: 'Home 首頁' },
@@ -48,10 +52,46 @@ export function AdminContentList() {
   );
 }
 
+const NavigationBlocker = ({ isDirty }: { isDirty: boolean }) => {
+  const blocker = useBlocker(
+    ({ currentLocation, nextLocation }) =>
+      isDirty && currentLocation.pathname !== nextLocation.pathname
+  );
+
+  if (blocker.state !== 'blocked') return null;
+
+  return (
+    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+      <div className="bg-white max-w-sm w-full p-8 border border-[#1A1A1A]/10 shadow-2xl animate-in fade-in zoom-in duration-300">
+        <h3 className="text-xl font-light mb-4 flex items-center gap-2">
+          <AlertTriangle className="text-amber-500" size={24} />
+          未儲存的變更
+        </h3>
+        <p className="text-sm text-[#1A1A1A]/60 mb-8 leading-relaxed">
+          頁面內容尚未儲存。確定要離開嗎？
+        </p>
+        <div className="flex gap-4">
+          <button
+            onClick={() => blocker.proceed?.()}
+            className="flex-1 px-4 py-3 border border-red-200 text-red-700 text-xs tracking-widest hover:bg-red-50 transition-colors uppercase"
+          >
+            捨棄離開
+          </button>
+          <button
+            onClick={() => blocker.reset?.()}
+            className="flex-1 px-4 py-3 bg-[#1A1A1A] text-white text-xs tracking-widest hover:bg-[#5A6B58] transition-colors uppercase"
+          >
+            留在頁面
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export function AdminContentEditor() {
   const { pageId } = useParams<{ pageId: string }>();
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
   const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
 
   const pageMeta = PAGE_META.find(p => p.id === pageId);
@@ -83,7 +123,7 @@ export function AdminContentEditor() {
           </div>
         </div>
         {saveStatus !== 'idle' && (
-          <div className={`text-sm tracking-widest uppercase ${
+          <div className={`text-sm tracking-widest uppercase font-medium ${
             saveStatus === 'saved' ? 'text-[#5A6B58]' : 
             saveStatus === 'error' ? 'text-red-500' : 
             'text-[#1A1A1A]/50'
@@ -99,72 +139,113 @@ export function AdminContentEditor() {
 
 // ─── Shared Components ────────────────────────────────────────────────────────
 
-const Input = ({ label, value, onChange, type = 'text', multiline = false }: any) => (
-  <div className="mb-6">
-    <label className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/50 mb-2">{label}</label>
-    {multiline ? (
-      <textarea
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        rows={4}
-        className="w-full bg-white border border-[#1A1A1A]/10 p-4 text-sm font-light focus:outline-none focus:border-[#5A6B58] transition-colors resize-none"
-      />
-    ) : (
-      <input
-        type={type}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full bg-white border border-[#1A1A1A]/10 p-4 text-sm font-light focus:outline-none focus:border-[#5A6B58] transition-colors"
-      />
-    )}
-  </div>
-);
-
-const Toggle = ({ active, onToggle, label }: any) => (
-  <button 
-    onClick={onToggle}
-    className="flex items-center gap-3 group text-left mb-4"
-  >
-    <div className={`w-10 h-6 rounded-full relative transition-colors ${active ? 'bg-[#5A6B58]' : 'bg-[#1A1A1A]/10'}`}>
-      <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${active ? 'translate-x-4' : ''}`} />
+const Input = ({ label, value, originalValue, onChange, type = 'text', multiline = false }: any) => {
+  const isDirty = originalValue !== undefined && JSON.stringify(value) !== JSON.stringify(originalValue);
+  return (
+    <div className="mb-6">
+      <label className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/50 mb-2 flex justify-between">
+        {label}
+        {isDirty && <span className="text-amber-600 font-bold animate-pulse">● Modified</span>}
+      </label>
+      {multiline ? (
+        <textarea
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          rows={4}
+          className={`w-full bg-white border p-4 text-sm font-light focus:outline-none focus:border-[#5A6B58] transition-colors resize-none ${isDirty ? 'border-amber-300 bg-amber-50/20' : 'border-[#1A1A1A]/10'}`}
+        />
+      ) : (
+        <input
+          type={type}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          className={`w-full bg-white border p-4 text-sm font-light focus:outline-none focus:border-[#5A6B58] transition-colors ${isDirty ? 'border-amber-300 bg-amber-50/20' : 'border-[#1A1A1A]/10'}`}
+        />
+      )}
     </div>
-    <span className="text-xs tracking-widest uppercase text-[#1A1A1A]/60 group-hover:text-[#1A1A1A] transition-colors">{label}</span>
-  </button>
-);
+  );
+};
+
+const Toggle = ({ active, originalActive, onToggle, label }: any) => {
+  const isDirty = originalActive !== undefined && active !== originalActive;
+  return (
+    <div className="mb-4">
+      <button 
+        onClick={onToggle}
+        className="flex items-center gap-3 group text-left"
+      >
+        <div className={`w-10 h-6 rounded-full relative transition-colors ${active ? 'bg-[#5A6B58]' : 'bg-[#1A1A1A]/10'} ${isDirty ? 'ring-2 ring-amber-300 ring-offset-2' : ''}`}>
+          <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${active ? 'translate-x-4' : ''}`} />
+        </div>
+        <span className={`text-xs tracking-widest uppercase group-hover:text-[#1A1A1A] transition-colors ${isDirty ? 'text-amber-600 font-bold' : 'text-[#1A1A1A]/60'}`}>
+          {label} {isDirty && ' (Added)'}
+        </span>
+      </button>
+    </div>
+  );
+};
 
 // ─── Page Forms ───────────────────────────────────────────────────────────────
 
 function HomeForm({ onSaveStatus }: any) {
   const [data, setData] = useState<HomeContent | null>(null);
+  const [original, setOriginal] = useState<HomeContent | null>(null);
+  const { userProfile } = useAuth();
   const [showMediaPicker, setShowMediaPicker] = useState(false);
 
   useEffect(() => {
-    contentService.getPageContent<HomeContent>('home').then(setData);
+    contentService.getPageContent<HomeContent>('home').then(d => {
+      setData(d);
+      setOriginal(JSON.parse(JSON.stringify(d)));
+    });
   }, []);
 
+  const isDirty = JSON.stringify(data) !== JSON.stringify(original);
+
   const save = async () => {
-    if (!data) return;
+    if (!data || !original) return;
     onSaveStatus('saving');
     try {
       await contentService.savePageContent('home', data);
+      
+      if (userProfile) {
+        await auditService.log({
+          userId: userProfile.uid,
+          userName: userProfile.name,
+          action: 'update',
+          entityType: 'content',
+          entityId: 'home',
+          details: 'Updated Home page content',
+          before: original,
+          after: data
+        });
+      }
+
+      setOriginal(JSON.parse(JSON.stringify(data)));
       onSaveStatus('saved');
       setTimeout(() => onSaveStatus('idle'), 2000);
     } catch { onSaveStatus('error'); }
   };
 
-  if (!data) return <div>Loading...</div>;
+  if (!data || !original) return <div>Loading...</div>;
 
   return (
     <div className="space-y-12">
+      <NavigationBlocker isDirty={isDirty} />
       <section className="bg-white p-8 border border-[#1A1A1A]/5">
         <h2 className="text-sm tracking-[0.2em] uppercase font-medium mb-8 border-b border-[#1A1A1A]/10 pb-4">Hero Section</h2>
-        <Toggle active={data.sections.hero} onToggle={() => setData({...data, sections: {...data.sections, hero: !data.sections.hero}})} label="顯示 Hero 區塊" />
-        <Input label="Hero Label" value={data.heroLabel} onChange={(v:any) => setData({...data, heroLabel: v})} />
-        <Input label="Hero Title" value={data.heroTitle} onChange={(v:any) => setData({...data, heroTitle: v})} multiline />
-        <Input label="Hero Description" value={data.heroDescription} onChange={(v:any) => setData({...data, heroDescription: v})} multiline />
+        <Toggle 
+          active={data.sections.hero} 
+          originalActive={original.sections.hero}
+          onToggle={() => setData({...data, sections: {...data.sections, hero: !data.sections.hero}})} 
+          label="顯示 Hero 區塊" 
+        />
+        <Input label="Hero Label" value={data.heroLabel} originalValue={original.heroLabel} onChange={(v:any) => setData({...data, heroLabel: v})} />
+        <Input label="Hero Title" value={data.heroTitle} originalValue={original.heroTitle} onChange={(v:any) => setData({...data, heroTitle: v})} multiline />
+        <Input label="Hero Description" value={data.heroDescription} originalValue={original.heroDescription} onChange={(v:any) => setData({...data, heroDescription: v})} multiline />
         <div className="flex gap-2 items-end">
           <div className="flex-1">
-            <Input label="Hero Image URL" value={data.heroImageUrl} onChange={(v:any) => setData({...data, heroImageUrl: v})} />
+            <Input label="Hero Image URL" value={data.heroImageUrl} originalValue={original.heroImageUrl} onChange={(v:any) => setData({...data, heroImageUrl: v})} />
           </div>
           <button 
             onClick={() => setShowMediaPicker(true)}
@@ -185,13 +266,22 @@ function HomeForm({ onSaveStatus }: any) {
 
       <section className="bg-white p-8 border border-[#1A1A1A]/5">
         <h2 className="text-sm tracking-[0.2em] uppercase font-medium mb-8 border-b border-[#1A1A1A]/10 pb-4">Tagline Section</h2>
-        <Toggle active={data.sections.tagline} onToggle={() => setData({...data, sections: {...data.sections, tagline: !data.sections.tagline}})} label="顯示金句區塊" />
-        <Input label="Tagline Title" value={data.taglineTitle} onChange={(v:any) => setData({...data, taglineTitle: v})} />
-        <Input label="Tagline Description" value={data.taglineDescription} onChange={(v:any) => setData({...data, taglineDescription: v})} multiline />
+        <Toggle 
+          active={data.sections.tagline} 
+          originalActive={original.sections.tagline}
+          onToggle={() => setData({...data, sections: {...data.sections, tagline: !data.sections.tagline}})} 
+          label="顯示金句區塊" 
+        />
+        <Input label="Tagline Title" value={data.taglineTitle} originalValue={original.taglineTitle} onChange={(v:any) => setData({...data, taglineTitle: v})} />
+        <Input label="Tagline Description" value={data.taglineDescription} originalValue={original.taglineDescription} onChange={(v:any) => setData({...data, taglineDescription: v})} multiline />
       </section>
 
       <div className="flex justify-end">
-        <button onClick={save} className="bg-[#1A1A1A] text-white px-12 py-4 text-xs tracking-[0.2em] uppercase hover:bg-[#5A6B58] transition-colors flex items-center gap-3">
+        <button 
+          onClick={save} 
+          disabled={!isDirty}
+          className={`px-12 py-4 text-xs tracking-[0.2em] uppercase transition-colors flex items-center gap-3 ${isDirty ? 'bg-[#1A1A1A] text-white hover:bg-[#5A6B58]' : 'bg-gray-100 text-gray-400 cursor-not-allowed'}`}
+        >
           <Save size={16} /> 儲存 Home 內容
         </button>
       </div>
@@ -201,50 +291,76 @@ function HomeForm({ onSaveStatus }: any) {
 
 function AboutForm({ onSaveStatus }: any) {
   const [data, setData] = useState<AboutContent | null>(null);
+  const [original, setOriginal] = useState<AboutContent | null>(null);
+  const { userProfile } = useAuth();
 
   useEffect(() => {
-    contentService.getPageContent<AboutContent>('about').then(setData);
+    contentService.getPageContent<AboutContent>('about').then(d => {
+      setData(d);
+      setOriginal(JSON.parse(JSON.stringify(d)));
+    });
   }, []);
 
+  const isDirty = JSON.stringify(data) !== JSON.stringify(original);
+
   const save = async () => {
-    if (!data) return;
+    if (!data || !original) return;
     onSaveStatus('saving');
     try {
       await contentService.savePageContent('about', data);
+      
+      if (userProfile) {
+        await auditService.log({
+          userId: userProfile.uid,
+          userName: userProfile.name,
+          action: 'update',
+          entityType: 'content',
+          entityId: 'about',
+          details: 'Updated About page content',
+          before: original,
+          after: data
+        });
+      }
+
+      setOriginal(JSON.parse(JSON.stringify(data)));
       onSaveStatus('saved');
       setTimeout(() => onSaveStatus('idle'), 2000);
     } catch { onSaveStatus('error'); }
   };
 
-  if (!data) return <div>Loading...</div>;
+  if (!data || !original) return <div>Loading...</div>;
 
   return (
     <div className="space-y-12">
+      <NavigationBlocker isDirty={isDirty} />
       <section className="bg-white p-8 border border-[#1A1A1A]/5">
-        <Input label="頁面標題" value={data.title} onChange={(v:any) => setData({...data, title: v})} />
-        <Input label="副標題" value={data.subtitle} onChange={(v:any) => setData({...data, subtitle: v})} />
+        <Input label="頁面標題" value={data.title} originalValue={original.title} onChange={(v:any) => setData({...data, title: v})} />
+        <Input label="副標題" value={data.subtitle} originalValue={original.subtitle} onChange={(v:any) => setData({...data, subtitle: v})} />
         <div className="space-y-6">
           <label className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/50">內容段落</label>
-          {data.paragraphs.map((p, i) => (
-            <div key={i} className="flex gap-4">
-              <textarea
-                value={p}
-                onChange={(e) => {
-                  const newPs = [...data.paragraphs];
-                  newPs[i] = e.target.value;
-                  setData({...data, paragraphs: newPs});
-                }}
-                rows={3}
-                className="flex-1 bg-white border border-[#1A1A1A]/10 p-4 text-sm font-light focus:outline-none focus:border-[#5A6B58] transition-colors resize-none"
-              />
-              <button 
-                onClick={() => setData({...data, paragraphs: data.paragraphs.filter((_, idx) => idx !== i)})}
-                className="text-red-400 hover:text-red-600 self-start p-2"
-              >
-                <Trash2 size={18} />
-              </button>
-            </div>
-          ))}
+          {data.paragraphs.map((p, i) => {
+            const isParaDirty = original.paragraphs[i] !== p;
+            return (
+              <div key={i} className="flex gap-4">
+                <textarea
+                  value={p}
+                  onChange={(e) => {
+                    const newPs = [...data.paragraphs];
+                    newPs[i] = e.target.value;
+                    setData({...data, paragraphs: newPs});
+                  }}
+                  rows={3}
+                  className={`flex-1 bg-white border p-4 text-sm font-light focus:outline-none focus:border-[#5A6B58] transition-colors resize-none ${isParaDirty ? 'border-amber-300 bg-amber-50/20' : 'border-[#1A1A1A]/10'}`}
+                />
+                <button 
+                  onClick={() => setData({...data, paragraphs: data.paragraphs.filter((_, idx) => idx !== i)})}
+                  className="text-red-400 hover:text-red-600 self-start p-2"
+                >
+                  <Trash2 size={18} />
+                </button>
+              </div>
+            );
+          })}
           <button 
             onClick={() => setData({...data, paragraphs: [...data.paragraphs, '']})}
             className="w-full border border-dashed border-[#1A1A1A]/20 py-4 text-xs tracking-widest uppercase text-[#1A1A1A]/40 hover:text-[#5A6B58] hover:border-[#5A6B58] transition-colors"
@@ -255,7 +371,11 @@ function AboutForm({ onSaveStatus }: any) {
       </section>
 
       <div className="flex justify-end">
-        <button onClick={save} className="bg-[#1A1A1A] text-white px-12 py-4 text-xs tracking-[0.2em] uppercase hover:bg-[#5A6B58] transition-colors flex items-center gap-3">
+        <button 
+          onClick={save} 
+          disabled={!isDirty}
+          className={`px-12 py-4 text-xs tracking-[0.2em] uppercase transition-colors flex items-center gap-3 ${isDirty ? 'bg-[#1A1A1A] text-white hover:bg-[#5A6B58]' : 'bg-gray-100 text-gray-400 cursor-not-allowed'}`}
+        >
           <Save size={16} /> 儲存 About 內容
         </button>
       </div>
@@ -265,60 +385,92 @@ function AboutForm({ onSaveStatus }: any) {
 
 function BusinessForm({ onSaveStatus }: any) {
   const [data, setData] = useState<BusinessContent | null>(null);
+  const [original, setOriginal] = useState<BusinessContent | null>(null);
+  const { userProfile } = useAuth();
 
   useEffect(() => {
-    contentService.getPageContent<BusinessContent>('business').then(setData);
+    contentService.getPageContent<BusinessContent>('business').then(d => {
+      setData(d);
+      setOriginal(JSON.parse(JSON.stringify(d)));
+    });
   }, []);
 
+  const isDirty = JSON.stringify(data) !== JSON.stringify(original);
+
   const save = async () => {
-    if (!data) return;
+    if (!data || !original) return;
     onSaveStatus('saving');
     try {
       await contentService.savePageContent('business', data);
+      
+      if (userProfile) {
+        await auditService.log({
+          userId: userProfile.uid,
+          userName: userProfile.name,
+          action: 'update',
+          entityType: 'content',
+          entityId: 'business',
+          details: 'Updated Business page content',
+          before: original,
+          after: data
+        });
+      }
+
+      setOriginal(JSON.parse(JSON.stringify(data)));
       onSaveStatus('saved');
       setTimeout(() => onSaveStatus('idle'), 2000);
     } catch { onSaveStatus('error'); }
   };
 
-  if (!data) return <div>Loading...</div>;
+  if (!data || !original) return <div>Loading...</div>;
 
   return (
     <div className="space-y-12">
+      <NavigationBlocker isDirty={isDirty} />
       <section className="bg-white p-8 border border-[#1A1A1A]/5">
-        <Input label="頁面標題" value={data.title} onChange={(v:any) => setData({...data, title: v})} />
-        <Input label="副標題" value={data.subtitle} onChange={(v:any) => setData({...data, subtitle: v})} />
-        <Input label="敘述" value={data.description} onChange={(v:any) => setData({...data, description: v})} multiline />
+        <Input label="頁面標題" value={data.title} originalValue={original.title} onChange={(v:any) => setData({...data, title: v})} />
+        <Input label="副標題" value={data.subtitle} originalValue={original.subtitle} onChange={(v:any) => setData({...data, subtitle: v})} />
+        <Input label="敘述" value={data.description} originalValue={original.description} onChange={(v:any) => setData({...data, description: v})} multiline />
       </section>
 
       <section className="space-y-6">
         <h2 className="text-sm tracking-[0.2em] uppercase font-medium">服務項目</h2>
-        {data.services.map((s, i) => (
-          <div key={i} className="bg-white p-8 border border-[#1A1A1A]/5">
-            <div className="flex justify-between items-center mb-6">
-              <Toggle active={s.enabled} onToggle={() => {
+        {data.services.map((s, i) => {
+          const originalService = original.services[i] || { title: '', description: '', enabled: false };
+          const isServiceDirty = JSON.stringify(s) !== JSON.stringify(originalService);
+          return (
+            <div key={i} className={`bg-white p-8 border transition-colors ${isServiceDirty ? 'border-amber-300 bg-amber-50/5' : 'border-[#1A1A1A]/5'}`}>
+              <div className="flex justify-between items-center mb-6">
+                <Toggle 
+                  active={s.enabled} 
+                  originalActive={originalService.enabled}
+                  onToggle={() => {
+                    const newS = [...data.services];
+                    newS[i].enabled = !s.enabled;
+                    setData({...data, services: newS});
+                  }} 
+                  label={s.enabled ? '已啟用' : '已停用'} 
+                />
+                <button 
+                  onClick={() => setData({...data, services: data.services.filter((_, idx) => idx !== i)})}
+                  className="text-red-400 hover:text-red-600"
+                >
+                  <Trash2 size={18} />
+                </button>
+              </div>
+              <Input label="項目名稱" value={s.title} originalValue={originalService.title} onChange={(v:any) => {
                 const newS = [...data.services];
-                newS[i].enabled = !s.enabled;
+                newS[i].title = v;
                 setData({...data, services: newS});
-              }} label={s.enabled ? '已啟用' : '已停用'} />
-              <button 
-                onClick={() => setData({...data, services: data.services.filter((_, idx) => idx !== i)})}
-                className="text-red-400 hover:text-red-600"
-              >
-                <Trash2 size={18} />
-              </button>
+              }} />
+              <Input label="項目敘述" value={s.description} originalValue={originalService.description} onChange={(v:any) => {
+                const newS = [...data.services];
+                newS[i].description = v;
+                setData({...data, services: newS});
+              }} multiline />
             </div>
-            <Input label="項目名稱" value={s.title} onChange={(v:any) => {
-              const newS = [...data.services];
-              newS[i].title = v;
-              setData({...data, services: newS});
-            }} />
-            <Input label="項目敘述" value={s.description} onChange={(v:any) => {
-              const newS = [...data.services];
-              newS[i].description = v;
-              setData({...data, services: newS});
-            }} multiline />
-          </div>
-        ))}
+          );
+        })}
         <button 
           onClick={() => setData({...data, services: [...data.services, { title: '', description: '', enabled: true }]})}
           className="w-full border border-dashed border-[#1A1A1A]/20 py-4 text-xs tracking-widest uppercase text-[#1A1A1A]/40 hover:text-[#5A6B58] hover:border-[#5A6B58] transition-colors"
@@ -328,7 +480,11 @@ function BusinessForm({ onSaveStatus }: any) {
       </section>
 
       <div className="flex justify-end">
-        <button onClick={save} className="bg-[#1A1A1A] text-white px-12 py-4 text-xs tracking-[0.2em] uppercase hover:bg-[#5A6B58] transition-colors flex items-center gap-3">
+        <button 
+          onClick={save} 
+          disabled={!isDirty}
+          className={`px-12 py-4 text-xs tracking-[0.2em] uppercase transition-colors flex items-center gap-3 ${isDirty ? 'bg-[#1A1A1A] text-white hover:bg-[#5A6B58]' : 'bg-gray-100 text-gray-400 cursor-not-allowed'}`}
+        >
           <Save size={16} /> 儲存 Business 內容
         </button>
       </div>
@@ -338,60 +494,90 @@ function BusinessForm({ onSaveStatus }: any) {
 
 function MembershipForm({ onSaveStatus }: any) {
   const [data, setData] = useState<MembershipContent | null>(null);
+  const [original, setOriginal] = useState<MembershipContent | null>(null);
+  const { userProfile } = useAuth();
 
   useEffect(() => {
-    contentService.getPageContent<MembershipContent>('membership').then(setData);
+    contentService.getPageContent<MembershipContent>('membership').then(d => {
+      setData(d);
+      setOriginal(JSON.parse(JSON.stringify(d)));
+    });
   }, []);
 
+  const isDirty = JSON.stringify(data) !== JSON.stringify(original);
+
   const save = async () => {
-    if (!data) return;
+    if (!data || !original) return;
     onSaveStatus('saving');
     try {
       await contentService.savePageContent('membership', data);
+
+      if (userProfile) {
+        await auditService.log({
+          userId: userProfile.uid,
+          userName: userProfile.name,
+          action: 'update',
+          entityType: 'content',
+          entityId: 'membership',
+          details: 'Updated Membership page content',
+          before: original,
+          after: data
+        });
+      }
+
+      setOriginal(JSON.parse(JSON.stringify(data)));
       onSaveStatus('saved');
       setTimeout(() => onSaveStatus('idle'), 2000);
     } catch { onSaveStatus('error'); }
   };
 
-  if (!data) return <div>Loading...</div>;
+  if (!data || !original) return <div>Loading...</div>;
 
   return (
     <div className="space-y-12">
+      <NavigationBlocker isDirty={isDirty} />
       <section className="bg-white p-8 border border-[#1A1A1A]/5">
-        <Input label="頁面標題" value={data.title} onChange={(v:any) => setData({...data, title: v})} />
-        <Input label="副標題" value={data.subtitle} onChange={(v:any) => setData({...data, subtitle: v})} />
-        <Input label="簡介敘述" value={data.description} onChange={(v:any) => setData({...data, description: v})} multiline />
+        <Input label="頁面標題" value={data.title} originalValue={original.title} onChange={(v:any) => setData({...data, title: v})} />
+        <Input label="副標題" value={data.subtitle} originalValue={original.subtitle} onChange={(v:any) => setData({...data, subtitle: v})} />
+        <Input label="簡介敘述" value={data.description} originalValue={original.description} onChange={(v:any) => setData({...data, description: v})} multiline />
       </section>
 
       <section className="bg-white p-8 border border-[#1A1A1A]/5">
         <h2 className="text-sm tracking-[0.2em] uppercase font-medium mb-6">Audience 區塊</h2>
-        <Input label="區塊標題" value={data.audienceTitle} onChange={(v:any) => setData({...data, audienceTitle: v})} />
-        <Input label="區塊敘述" value={data.audienceDescription} onChange={(v:any) => setData({...data, audienceDescription: v})} multiline />
+        <Input label="區塊標題" value={data.audienceTitle} originalValue={original.audienceTitle} onChange={(v:any) => setData({...data, audienceTitle: v})} />
+        <Input label="區塊敘述" value={data.audienceDescription} originalValue={original.audienceDescription} onChange={(v:any) => setData({...data, audienceDescription: v})} multiline />
         <div className="space-y-4">
           <label className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/50">項目列表</label>
-          {data.audienceItems.map((item, i) => (
-            <div key={i} className="flex gap-4">
-              <input 
-                type="text" 
-                value={item} 
-                onChange={(e) => {
-                  const newItems = [...data.audienceItems];
-                  newItems[i] = e.target.value;
-                  setData({...data, audienceItems: newItems});
-                }}
-                className="flex-1 bg-white border border-[#1A1A1A]/10 p-4 text-sm font-light focus:outline-none focus:border-[#5A6B58]"
-              />
-              <button onClick={() => setData({...data, audienceItems: data.audienceItems.filter((_, idx) => idx !== i)})} className="text-red-400 self-center">
-                <Trash2 size={18} />
-              </button>
-            </div>
-          ))}
+          {data.audienceItems.map((item, i) => {
+            const isItemDirty = original.audienceItems[i] !== item;
+            return (
+              <div key={i} className="flex gap-4">
+                <input 
+                  type="text" 
+                  value={item} 
+                  onChange={(e) => {
+                    const newItems = [...data.audienceItems];
+                    newItems[i] = e.target.value;
+                    setData({...data, audienceItems: newItems});
+                  }}
+                  className={`flex-1 bg-white border p-4 text-sm font-light focus:outline-none focus:border-[#5A6B58] transition-colors ${isItemDirty ? 'border-amber-300 bg-amber-50/20' : 'border-[#1A1A1A]/10'}`}
+                />
+                <button onClick={() => setData({...data, audienceItems: data.audienceItems.filter((_, idx) => idx !== i)})} className="text-red-400 self-center">
+                  <Trash2 size={18} />
+                </button>
+              </div>
+            );
+          })}
           <button onClick={() => setData({...data, audienceItems: [...data.audienceItems, '']})} className="w-full border border-dashed border-[#1A1A1A]/20 py-2 text-[10px] uppercase text-[#1A1A1A]/40">+ Add Item</button>
         </div>
       </section>
 
       <div className="flex justify-end">
-        <button onClick={save} className="bg-[#1A1A1A] text-white px-12 py-4 text-xs tracking-[0.2em] uppercase hover:bg-[#5A6B58] transition-colors flex items-center gap-3">
+        <button 
+          onClick={save} 
+          disabled={!isDirty}
+          className={`px-12 py-4 text-xs tracking-[0.2em] uppercase transition-colors flex items-center gap-3 ${isDirty ? 'bg-[#1A1A1A] text-white hover:bg-[#5A6B58]' : 'bg-gray-100 text-gray-400 cursor-not-allowed'}`}
+        >
           <Save size={16} /> 儲存 Membership 內容
         </button>
       </div>
@@ -401,68 +587,104 @@ function MembershipForm({ onSaveStatus }: any) {
 
 function LearnForm({ onSaveStatus }: any) {
   const [data, setData] = useState<LearnContent | null>(null);
+  const [original, setOriginal] = useState<LearnContent | null>(null);
+  const { userProfile } = useAuth();
 
   useEffect(() => {
-    contentService.getPageContent<LearnContent>('learn').then(setData);
+    contentService.getPageContent<LearnContent>('learn').then(d => {
+      setData(d);
+      setOriginal(JSON.parse(JSON.stringify(d)));
+    });
   }, []);
 
+  const isDirty = JSON.stringify(data) !== JSON.stringify(original);
+
   const save = async () => {
-    if (!data) return;
+    if (!data || !original) return;
     onSaveStatus('saving');
     try {
       await contentService.savePageContent('learn', data);
+      
+      if (userProfile) {
+        await auditService.log({
+          userId: userProfile.uid,
+          userName: userProfile.name,
+          action: 'update',
+          entityType: 'content',
+          entityId: 'learn',
+          details: 'Updated Learn page content',
+          before: original,
+          after: data
+        });
+      }
+
+      setOriginal(JSON.parse(JSON.stringify(data)));
       onSaveStatus('saved');
       setTimeout(() => onSaveStatus('idle'), 2000);
     } catch { onSaveStatus('error'); }
   };
 
-  if (!data) return <div>Loading...</div>;
+  if (!data || !original) return <div>Loading...</div>;
 
   return (
     <div className="space-y-12">
+      <NavigationBlocker isDirty={isDirty} />
       <section className="bg-white p-8 border border-[#1A1A1A]/5">
-        <Input label="頁面標題" value={data.title} onChange={(v:any) => setData({...data, title: v})} />
-        <Input label="副標題" value={data.subtitle} onChange={(v:any) => setData({...data, subtitle: v})} />
-        <Input label="說明" value={data.description} onChange={(v:any) => setData({...data, description: v})} multiline />
+        <Input label="頁面標題" value={data.title} originalValue={original.title} onChange={(v:any) => setData({...data, title: v})} />
+        <Input label="副標題" value={data.subtitle} originalValue={original.subtitle} onChange={(v:any) => setData({...data, subtitle: v})} />
+        <Input label="說明" value={data.description} originalValue={original.description} onChange={(v:any) => setData({...data, description: v})} multiline />
       </section>
 
       <section className="bg-white p-8 border border-[#1A1A1A]/5">
         <h2 className="text-sm tracking-[0.2em] uppercase font-medium mb-6">介紹區塊 1</h2>
-        <Input label="標題" value={data.intro1Title} onChange={(v:any) => setData({...data, intro1Title: v})} />
-        <Input label="內容" value={data.intro1Content} onChange={(v:any) => setData({...data, intro1Content: v})} multiline />
+        <Input label="標題" value={data.intro1Title} originalValue={original.intro1Title} onChange={(v:any) => setData({...data, intro1Title: v})} />
+        <Input label="內容" value={data.intro1Content} originalValue={original.intro1Content} onChange={(v:any) => setData({...data, intro1Content: v})} multiline />
       </section>
 
       <section className="bg-white p-8 border border-[#1A1A1A]/5">
         <h2 className="text-sm tracking-[0.2em] uppercase font-medium mb-6">介紹區塊 2</h2>
-        <Input label="標題" value={data.intro2Title} onChange={(v:any) => setData({...data, intro2Title: v})} />
-        <Input label="內容" value={data.intro2Content} onChange={(v:any) => setData({...data, intro2Content: v})} multiline />
+        <Input label="標題" value={data.intro2Title} originalValue={original.intro2Title} onChange={(v:any) => setData({...data, intro2Title: v})} />
+        <Input label="內容" value={data.intro2Content} originalValue={original.intro2Content} onChange={(v:any) => setData({...data, intro2Content: v})} multiline />
       </section>
 
       <section className="space-y-6">
         <h2 className="text-sm tracking-[0.2em] uppercase font-medium">判讀標準</h2>
-        {data.standards.map((s, i) => (
-          <div key={i} className="bg-white p-8 border border-[#1A1A1A]/5">
-            <Toggle active={s.enabled} onToggle={() => {
-              const newS = [...data.standards];
-              newS[i].enabled = !s.enabled;
-              setData({...data, standards: newS});
-            }} label={s.enabled ? '顯示' : '隱藏'} />
-            <Input label="名稱" value={s.name} onChange={(v:any) => {
-              const newS = [...data.standards];
-              newS[i].name = v;
-              setData({...data, standards: newS});
-            }} />
-            <Input label="說明" value={s.description} onChange={(v:any) => {
-              const newS = [...data.standards];
-              newS[i].description = v;
-              setData({...data, standards: newS});
-            }} multiline />
-          </div>
-        ))}
+        {data.standards.map((s, i) => {
+          const originalStandard = original.standards[i] || { name: '', description: '', enabled: false };
+          const isStdDirty = JSON.stringify(s) !== JSON.stringify(originalStandard);
+          return (
+            <div key={i} className={`bg-white p-8 border transition-colors ${isStdDirty ? 'border-amber-300 bg-amber-50/5' : 'border-[#1A1A1A]/5'}`}>
+              <Toggle 
+                active={s.enabled} 
+                originalActive={originalStandard.enabled}
+                onToggle={() => {
+                  const newS = [...data.standards];
+                  newS[i].enabled = !s.enabled;
+                  setData({...data, standards: newS});
+                }} 
+                label={s.enabled ? '顯示' : '隱藏'} 
+              />
+              <Input label="名稱" value={s.name} originalValue={originalStandard.name} onChange={(v:any) => {
+                const newS = [...data.standards];
+                newS[i].name = v;
+                setData({...data, standards: newS});
+              }} />
+              <Input label="說明" value={s.description} originalValue={originalStandard.description} onChange={(v:any) => {
+                const newS = [...data.standards];
+                newS[i].description = v;
+                setData({...data, standards: newS});
+              }} multiline />
+            </div>
+          );
+        })}
       </section>
 
       <div className="flex justify-end">
-        <button onClick={save} className="bg-[#1A1A1A] text-white px-12 py-4 text-xs tracking-[0.2em] uppercase hover:bg-[#5A6B58] transition-colors flex items-center gap-3">
+        <button 
+          onClick={save} 
+          disabled={!isDirty}
+          className={`px-12 py-4 text-xs tracking-[0.2em] uppercase transition-colors flex items-center gap-3 ${isDirty ? 'bg-[#1A1A1A] text-white hover:bg-[#5A6B58]' : 'bg-gray-100 text-gray-400 cursor-not-allowed'}`}
+        >
           <Save size={16} /> 儲存 Learn 內容
         </button>
       </div>
@@ -472,57 +694,89 @@ function LearnForm({ onSaveStatus }: any) {
 
 function FaqForm({ onSaveStatus }: any) {
   const [data, setData] = useState<FaqContent | null>(null);
+  const [original, setOriginal] = useState<FaqContent | null>(null);
+  const { userProfile } = useAuth();
 
   useEffect(() => {
-    contentService.getPageContent<FaqContent>('faq').then(setData);
+    contentService.getPageContent<FaqContent>('faq').then(d => {
+      setData(d);
+      setOriginal(JSON.parse(JSON.stringify(d)));
+    });
   }, []);
 
+  const isDirty = JSON.stringify(data) !== JSON.stringify(original);
+
   const save = async () => {
-    if (!data) return;
+    if (!data || !original) return;
     onSaveStatus('saving');
     try {
       await contentService.savePageContent('faq', data);
+
+      if (userProfile) {
+        await auditService.log({
+          userId: userProfile.uid,
+          userName: userProfile.name,
+          action: 'update',
+          entityType: 'content',
+          entityId: 'faq',
+          details: 'Updated FAQ page content',
+          before: original,
+          after: data
+        });
+      }
+
+      setOriginal(JSON.parse(JSON.stringify(data)));
       onSaveStatus('saved');
       setTimeout(() => onSaveStatus('idle'), 2000);
     } catch { onSaveStatus('error'); }
   };
 
-  if (!data) return <div>Loading...</div>;
+  if (!data || !original) return <div>Loading...</div>;
 
   return (
     <div className="space-y-12">
+      <NavigationBlocker isDirty={isDirty} />
       <section className="bg-white p-8 border border-[#1A1A1A]/5">
-        <Input label="頁面標題" value={data.title} onChange={(v:any) => setData({...data, title: v})} />
-        <Input label="副標題" value={data.subtitle} onChange={(v:any) => setData({...data, subtitle: v})} />
-        <Input label="說明" value={data.description} onChange={(v:any) => setData({...data, description: v})} multiline />
+        <Input label="頁面標題" value={data.title} originalValue={original.title} onChange={(v:any) => setData({...data, title: v})} />
+        <Input label="副標題" value={data.subtitle} originalValue={original.subtitle} onChange={(v:any) => setData({...data, subtitle: v})} />
+        <Input label="說明" value={data.description} originalValue={original.description} onChange={(v:any) => setData({...data, description: v})} multiline />
       </section>
 
       <section className="space-y-6">
         <h2 className="text-sm tracking-[0.2em] uppercase font-medium">常見問題列表</h2>
-        {data.items.map((item, i) => (
-          <div key={i} className="bg-white p-8 border border-[#1A1A1A]/5">
-            <div className="flex justify-between items-center mb-6">
-              <Toggle active={item.enabled} onToggle={() => {
+        {data.items.map((item, i) => {
+          const originalItem = original.items[i] || { question: '', answer: '', enabled: false };
+          const isItemDirty = JSON.stringify(item) !== JSON.stringify(originalItem);
+          return (
+            <div key={i} className={`bg-white p-8 border transition-colors ${isItemDirty ? 'border-amber-300 bg-amber-50/5' : 'border-[#1A1A1A]/5'}`}>
+              <div className="flex justify-between items-center mb-6">
+                <Toggle 
+                  active={item.enabled} 
+                  originalActive={originalItem.enabled}
+                  onToggle={() => {
+                    const newItems = [...data.items];
+                    newItems[i].enabled = !item.enabled;
+                    setData({...data, items: newItems});
+                  }} 
+                  label={item.enabled ? '顯示' : '隱藏'} 
+                />
+                <button onClick={() => setData({...data, items: data.items.filter((_, idx) => idx !== i)})} className="text-red-400">
+                  <Trash2 size={18} />
+                </button>
+              </div>
+              <Input label="問題 (Q)" value={item.question} originalValue={originalItem.question} onChange={(v:any) => {
                 const newItems = [...data.items];
-                newItems[i].enabled = !item.enabled;
+                newItems[i].question = v;
                 setData({...data, items: newItems});
-              }} label={item.enabled ? '顯示' : '隱藏'} />
-              <button onClick={() => setData({...data, items: data.items.filter((_, idx) => idx !== i)})} className="text-red-400">
-                <Trash2 size={18} />
-              </button>
+              }} />
+              <Input label="答案 (A)" value={item.answer} originalValue={originalItem.answer} onChange={(v:any) => {
+                const newItems = [...data.items];
+                newItems[i].answer = v;
+                setData({...data, items: newItems});
+              }} multiline />
             </div>
-            <Input label="問題 (Q)" value={item.question} onChange={(v:any) => {
-              const newItems = [...data.items];
-              newItems[i].question = v;
-              setData({...data, items: newItems});
-            }} />
-            <Input label="答案 (A)" value={item.answer} onChange={(v:any) => {
-              const newItems = [...data.items];
-              newItems[i].answer = v;
-              setData({...data, items: newItems});
-            }} multiline />
-          </div>
-        ))}
+          );
+        })}
         <button 
           onClick={() => setData({...data, items: [...data.items, { question: '', answer: '', enabled: true }]})}
           className="w-full border border-dashed border-[#1A1A1A]/20 py-4 text-xs tracking-widest uppercase text-[#1A1A1A]/40 hover:text-[#5A6B58] hover:border-[#5A6B58] transition-colors"
@@ -532,7 +786,11 @@ function FaqForm({ onSaveStatus }: any) {
       </section>
 
       <div className="flex justify-end">
-        <button onClick={save} className="bg-[#1A1A1A] text-white px-12 py-4 text-xs tracking-[0.2em] uppercase hover:bg-[#5A6B58] transition-colors flex items-center gap-3">
+        <button 
+          onClick={save} 
+          disabled={!isDirty}
+          className={`px-12 py-4 text-xs tracking-[0.2em] uppercase transition-colors flex items-center gap-3 ${isDirty ? 'bg-[#1A1A1A] text-white hover:bg-[#5A6B58]' : 'bg-gray-100 text-gray-400 cursor-not-allowed'}`}
+        >
           <Save size={16} /> 儲存 FAQ 內容
         </button>
       </div>

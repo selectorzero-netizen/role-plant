@@ -5,7 +5,8 @@ import { db } from '../firebase';
 import { collection, query, getDocs, updateDoc, doc, addDoc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 import { ArrowLeft, Plus, Save, Trash2, User, FileText, Check, X, ShieldAlert } from 'lucide-react';
 import { adminService, ApplicationWithUser } from '../services/adminService';
-import { UserProfile } from '../types';
+import { UserProfile, AuditLog } from '../types';
+import { auditService } from '../services/auditService';
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   const { userProfile, loading } = useAuth();
@@ -100,7 +101,22 @@ export function AdminUsers() {
     }
     if (!confirm(`Are you sure you want to change this user's role to ${newRole}?`)) return;
     try {
+      const oldUser = users.find(u => u.uid === userId);
       await adminService.updateMemberRole(userId, newRole);
+
+      if (currentUser) {
+        await auditService.log({
+          userId: currentUser.uid,
+          userName: currentUser.name,
+          action: 'role_change',
+          entityType: 'member',
+          entityId: userId,
+          details: `Changed member ${oldUser?.name || userId} role from ${oldUser?.role} to ${newRole}`,
+          before: { role: oldUser?.role },
+          after: { role: newRole }
+        });
+      }
+
       setUsers(users.map(u => u.uid === userId ? { ...u, role: newRole } : u));
     } catch (error) {
       console.error("Error updating role:", error);
@@ -112,8 +128,24 @@ export function AdminUsers() {
       alert("You cannot deactivate your own account status.");
       return;
     }
+    if (!confirm(`確定要將此會員狀態更改為 ${newStatus.toUpperCase()} 嗎？`)) return;
     try {
+      const oldUser = users.find(u => u.uid === userId);
       await adminService.updateMemberStatus(userId, newStatus);
+      
+      if (currentUser) {
+        await auditService.log({
+          userId: currentUser.uid,
+          userName: currentUser.name,
+          action: 'status_change',
+          entityType: 'member',
+          entityId: userId,
+          details: `Changed member ${oldUser?.name || userId} status from ${oldUser?.status} to ${newStatus}`,
+          before: { status: oldUser?.status },
+          after: { status: newStatus }
+        });
+      }
+
       setUsers(users.map(u => u.uid === userId ? { ...u, status: newStatus } : u));
     } catch (error) {
       console.error("Error updating status:", error);
@@ -232,6 +264,7 @@ export function AdminApplications() {
   const [loading, setLoading] = useState(true);
   const [filterStatus, setFilterStatus] = useState<string>('pending');
   const [selectedApp, setSelectedApp] = useState<ApplicationWithUser | null>(null);
+  const { userProfile: currentUser } = useAuth();
 
   const fetchApps = useCallback(async () => {
     setLoading(true);
@@ -250,8 +283,26 @@ export function AdminApplications() {
   }, [fetchApps]);
 
   const handleStatusChange = async (appId: string, newStatus: any) => {
+    if (!confirm(`確定要將此申請單狀態更改為 ${newStatus.toUpperCase()} 嗎？`)) return;
     try {
+      const oldApp = applications.find(a => a.id === appId);
+      const currentUserProfile = (window as any).__USER_PROFILE__ || currentUser; // Fallback for context timing
+
       await adminService.updateApplicationStatus(appId, newStatus);
+      
+      if (currentUser) {
+        await auditService.log({
+          userId: currentUser.uid,
+          userName: currentUser.name,
+          action: 'status_change',
+          entityType: 'application',
+          entityId: appId,
+          details: `Changed application ${appId} status from ${oldApp?.status} to ${newStatus}`,
+          before: { status: oldApp?.status },
+          after: { status: newStatus }
+        });
+      }
+
       setApplications(apps => apps.map(app => app.id === appId ? { ...app, status: newStatus } : app));
       if (selectedApp?.id === appId) {
         setSelectedApp({ ...selectedApp, status: newStatus });

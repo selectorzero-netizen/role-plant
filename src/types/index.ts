@@ -1,11 +1,11 @@
-export type Role = 'public' | 'member' | 'editor' | 'admin';
+export type UserRole = 'super_admin' | 'admin' | 'editor' | 'member' | 'guest';
 export type Status = 'pending' | 'approved' | 'rejected';
 
 export interface UserProfile {
   uid: string;
   email: string;
   name: string;
-  role: Role;
+  role: UserRole;
   status: Status;
   joinedAt?: string;
   [key: string]: any;
@@ -83,4 +83,30 @@ export interface MemberApplication {
   status: 'pending' | 'approved' | 'rejected';
   createdAt: string;
   [key: string]: any;
+}
+
+export interface AuditLog {
+  id: string;
+  userId: string;
+  userName: string;
+  action: string;
+  entityType: 'plant' | 'post' | 'content' | 'media' | 'member' | 'application';
+  entityId: string;
+  details: string;
+  before?: any;
+  after?: any;
+  createdAt: string;
+}
+
+export type TaxonomyType = 'plant_category' | 'plant_grade' | 'post_category';
+
+export interface Taxonomy {
+  id: string;
+  type: TaxonomyType;
+  key: string;
+  label: string;
+  sortOrder: number;
+  isActive: boolean;
+  createdAt: any;
+  updatedAt: any;
 }

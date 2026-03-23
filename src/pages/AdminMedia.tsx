@@ -5,6 +5,8 @@
  */
 import React, { useState, useEffect, useRef } from 'react';
 import { mediaService, Media, MediaUsage } from '../services/mediaService';
+import { useAuth } from '../AuthContext';
+import { auditService } from '../services/auditService';
 import { 
   Plus, 
   Search, 
@@ -16,7 +18,8 @@ import {
   FileImage,
   Upload,
   MoreVertical,
-  X
+  X,
+  AlertTriangle
 } from 'lucide-react';
 
 export function AdminMedia() {
@@ -27,6 +30,7 @@ export function AdminMedia() {
   const [filterUsage, setFilterUsage] = useState<MediaUsage | 'all'>('all');
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedMedia, setSelectedMedia] = useState<Media | null>(null);
+  const { userProfile } = useAuth();
 
   const fetchMedia = async () => {
     setLoading(true);
@@ -55,11 +59,24 @@ export function AdminMedia() {
     setUploadProgress(0);
 
     try {
-      await mediaService.uploadMedia(
+      const mediaId = await mediaService.uploadMedia(
         file, 
         { usage: 'general', alt: file.name },
         (progress) => setUploadProgress(progress)
       );
+
+      if (userProfile) {
+        await auditService.log({
+          userId: userProfile.uid,
+          userName: userProfile.name,
+          action: 'create',
+          entityType: 'media',
+          entityId: mediaId,
+          details: `Uploaded media: ${file.name}`,
+          after: { fileName: file.name, type: file.type }
+        });
+      }
+
       fetchMedia();
     } catch (error) {
       console.error("Upload failed:", error);
@@ -77,18 +94,54 @@ export function AdminMedia() {
   };
 
   const handleToggleActive = async (media: Media) => {
-    await mediaService.toggleMediaActive(media.id, !media.isActive);
-    fetchMedia();
-    if (selectedMedia?.id === media.id) {
-      setSelectedMedia(prev => prev ? { ...prev, isActive: !prev.isActive } : null);
+    if (!confirm(`確定要${media.isActive ? '停用' : '啟用'}此媒體嗎？`)) return;
+    try {
+      await mediaService.toggleMediaActive(media.id, !media.isActive);
+      
+      if (userProfile) {
+        await auditService.log({
+          userId: userProfile.uid,
+          userName: userProfile.name,
+          action: 'update',
+          entityType: 'media',
+          entityId: media.id,
+          details: `${media.isActive ? 'Deactivated' : 'Activated'} media: ${media.fileName}`,
+          before: { isActive: media.isActive },
+          after: { isActive: !media.isActive }
+        });
+      }
+
+      fetchMedia();
+      if (selectedMedia?.id === media.id) {
+        setSelectedMedia(prev => prev ? { ...prev, isActive: !prev.isActive } : null);
+      }
+    } catch (error) {
+      console.error("Error toggling media status:", error);
     }
   };
 
   const handleDelete = async (media: Media) => {
     if (window.confirm('確定要永久刪除此媒體資料嗎？（Storage 中的檔案也會被刪除，可能導致引用此圖的頁面失效）')) {
-      await mediaService.deleteMedia(media.id, media.storagePath);
-      fetchMedia();
-      setSelectedMedia(null);
+      try {
+        await mediaService.deleteMedia(media.id, media.storagePath);
+        
+        if (userProfile) {
+          await auditService.log({
+            userId: userProfile.uid,
+            userName: userProfile.name,
+            action: 'delete',
+            entityType: 'media',
+            entityId: media.id,
+            details: `Deleted media: ${media.fileName}`,
+            before: media
+          });
+        }
+
+        fetchMedia();
+        setSelectedMedia(null);
+      } catch (error) {
+        console.error("Error deleting media:", error);
+      }
     }
   };
 
