@@ -259,11 +259,18 @@ function HomeForm({ onSaveStatus }: any) {
               <span className="text-xs text-[#1A1A1A]/30">尚無首圖</span>
             </div>
           )}
+          <input 
+            type="text" 
+            value={data.heroImageUrl || ''} 
+            onChange={(e) => setData({...data, heroImageUrl: e.target.value})}
+            className={`w-full text-xs font-mono border p-3 focus:outline-none focus:border-[#1A1A1A]/20 transition-colors ${original.heroImageUrl !== data.heroImageUrl ? 'border-amber-300 bg-amber-50/10' : 'border-[#1A1A1A]/10'}`}
+            placeholder="貼上圖片 URL（如 /images/content/hero.jpg）"
+          />
           <button 
             onClick={() => setShowMediaPicker(true)}
-            className="w-full py-3 mt-2 bg-[#1A1A1A] text-white text-xs tracking-widest hover:bg-[#5A6B58] transition-colors flex items-center justify-center gap-2"
+            className="w-full py-3 mt-2 bg-[#5A6B58] text-white text-xs tracking-widest hover:bg-[#1A1A1A] transition-colors flex items-center justify-center gap-2"
           >
-            <ImageIcon size={14} /> 選擇或更換首圖
+            <ImageIcon size={14} /> 從媒體庫選取
           </button>
         </div>
       </section>

@@ -329,12 +329,21 @@ export function AdminPlantEditor() {
               <span className="text-xs font-normal text-[#1A1A1A]/40 bg-gray-100 px-2 py-1 rounded">共 {plant.images.length} 張</span>
             </h2>
             
-            <div className="mb-6">
+            <div className="flex gap-2 mb-6">
+              <input 
+                type="text" 
+                placeholder="貼上圖片 URL（如 /images/plants/xxx.jpg）" 
+                className="flex-1 border p-2 text-sm focus:border-[#5A6B58] outline-none bg-gray-50"
+                value={newImageUrl}
+                onChange={e => setNewImageUrl(e.target.value)}
+                onKeyDown={e => { if (e.key === 'Enter') { e.preventDefault(); handleAddImage(); } }}
+              />
+              <button onClick={handleAddImage} disabled={!newImageUrl.trim()} className="bg-[#1A1A1A] text-white px-4 py-2 text-xs uppercase tracking-widest hover:bg-[#5A6B58] transition-colors disabled:opacity-30 whitespace-nowrap">加入圖片</button>
               <button 
                 onClick={() => setShowMediaPicker(true)}
-                className="w-full py-4 bg-[#1A1A1A] text-white text-xs uppercase tracking-widest hover:bg-[#5A6B58] transition-colors flex items-center justify-center gap-2 shadow-sm"
+                className="bg-[#5A6B58] text-white px-4 py-2 text-xs uppercase tracking-widest hover:bg-[#1A1A1A] transition-colors whitespace-nowrap flex items-center gap-1"
               >
-                <ImageIcon size={16}/> 新增圖片 (從電腦上傳 或 由媒體庫挑選)
+                <ImageIcon size={14}/> 媒體庫
               </button>
             </div>
 
