@@ -191,7 +191,19 @@ export function AdminMedia() {
         {loading ? (
           <div className="col-span-full text-center py-20 text-[#1A1A1A]/20">Loading...</div>
         ) : mediaList.length === 0 ? (
-          <div className="col-span-full text-center py-20 text-[#1A1A1A]/20 border border-dashed border-[#1A1A1A]/10">尚無媒體資產</div>
+          <div className="col-span-full flex flex-col items-center justify-center py-32 border-2 border-dashed border-[#1A1A1A]/10 bg-white/50">
+            <FileImage className="w-16 h-16 text-[#1A1A1A]/20 mb-4" />
+            <h3 className="text-lg font-medium text-[#1A1A1A]">目前沒有素材</h3>
+            <p className="text-sm text-[#1A1A1A]/50 mt-2 mb-8 text-center max-w-sm">
+              請上傳第一張圖片。支援拖拽或是點擊下方按鈕上傳。
+            </p>
+            <button 
+              onClick={() => fileInputRef.current?.click()}
+              className="bg-[#1A1A1A] text-white px-8 py-3 text-sm tracking-widest uppercase flex items-center gap-2 hover:bg-[#5A6B58] transition-colors"
+            >
+              <Upload size={18} /> 上傳圖片
+            </button>
+          </div>
         ) : (
           mediaList.map(media => (
             <button 

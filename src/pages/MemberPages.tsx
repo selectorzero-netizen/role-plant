@@ -10,6 +10,7 @@ import { profileService } from '../services/profileService';
 import { favoritesService } from '../services/favoritesService';
 import { memberApplicationService } from '../services/memberApplicationService';
 import { usePolicy } from '../PolicyContext';
+import { isAdminAtLeast } from '../utils/permissionUtils';
 
 export function LoginPage() {
   const [error, setError] = useState('');
@@ -137,7 +138,7 @@ export function MemberPage() {
             <span>帳號設定</span>
           </button>
           
-          {userProfile?.role === 'admin' && (
+          {isAdminAtLeast(userProfile?.role) && (
             <button 
               onClick={() => navigate('/admin')}
               className="w-full text-left px-4 py-3 text-sm tracking-widest flex items-center gap-3 transition-colors text-[#5A6B58] hover:bg-[#5A6B58]/10 mt-8 border-t border-[#1A1A1A]/10 pt-4"

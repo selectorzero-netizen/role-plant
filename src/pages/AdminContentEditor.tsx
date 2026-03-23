@@ -7,6 +7,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Save, ArrowLeft, Plus, Trash2, Eye, EyeOff, Image as ImageIcon } from 'lucide-react';
 import { MediaPicker } from '../components/MediaPicker';
+import { RichTextEditor } from '../components/RichTextEditor';
 import { 
   contentService, 
   HomeContent, 
@@ -148,12 +149,13 @@ const Input = ({ label, value, originalValue, onChange, type = 'text', multiline
         {isDirty && <span className="text-amber-600 font-bold animate-pulse">● Modified</span>}
       </label>
       {multiline ? (
-        <textarea
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          rows={4}
-          className={`w-full bg-white border p-4 text-sm font-light focus:outline-none focus:border-[#5A6B58] transition-colors resize-none ${isDirty ? 'border-amber-300 bg-amber-50/20' : 'border-[#1A1A1A]/10'}`}
-        />
+        <div className="mt-2">
+          <RichTextEditor
+            value={value || ''}
+            onChange={(val) => onChange(val)}
+            rows={4}
+          />
+        </div>
       ) : (
         <input
           type={type}
@@ -243,15 +245,25 @@ function HomeForm({ onSaveStatus }: any) {
         <Input label="Hero Label" value={data.heroLabel} originalValue={original.heroLabel} onChange={(v:any) => setData({...data, heroLabel: v})} />
         <Input label="Hero Title" value={data.heroTitle} originalValue={original.heroTitle} onChange={(v:any) => setData({...data, heroTitle: v})} multiline />
         <Input label="Hero Description" value={data.heroDescription} originalValue={original.heroDescription} onChange={(v:any) => setData({...data, heroDescription: v})} multiline />
-        <div className="flex gap-2 items-end">
-          <div className="flex-1">
-            <Input label="Hero Image URL" value={data.heroImageUrl} originalValue={original.heroImageUrl} onChange={(v:any) => setData({...data, heroImageUrl: v})} />
-          </div>
+        <div className="space-y-2 mb-6">
+          <label className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 flex justify-between mb-2">
+            Hero 首圖 (Hero Image)
+            {original.heroImageUrl !== data.heroImageUrl && <span className="text-amber-600 font-bold">● MODIFIED</span>}
+          </label>
+          {data.heroImageUrl ? (
+            <div className={`aspect-video w-full overflow-hidden border bg-[#F7F7F5] transition-colors ${original.heroImageUrl !== data.heroImageUrl ? 'border-amber-300 shadow-inner' : 'border-[#1A1A1A]/10'}`}>
+              <img src={data.heroImageUrl} className="w-full h-full object-cover" alt="Hero Preview" />
+            </div>
+          ) : (
+            <div className="aspect-video w-full flex items-center justify-center border border-dashed border-[#1A1A1A]/20 bg-[#F7F7F5]">
+              <span className="text-xs text-[#1A1A1A]/30">尚無首圖</span>
+            </div>
+          )}
           <button 
             onClick={() => setShowMediaPicker(true)}
-            className="mb-6 p-4 bg-[#5A6B58] text-white hover:bg-[#1A1A1A] transition-colors flex items-center gap-2"
+            className="w-full py-3 mt-2 bg-[#1A1A1A] text-white text-xs tracking-widest hover:bg-[#5A6B58] transition-colors flex items-center justify-center gap-2"
           >
-            <ImageIcon size={16} /> <span className="text-[10px] uppercase tracking-widest">Select</span>
+            <ImageIcon size={14} /> 選擇或更換首圖
           </button>
         </div>
       </section>

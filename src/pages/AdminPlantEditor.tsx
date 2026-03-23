@@ -11,6 +11,7 @@ import { storage } from '../firebase';
 import { MediaPicker } from '../components/MediaPicker';
 import { taxonomyService } from '../services/taxonomyService';
 import { Taxonomy } from '../types';
+import { RichTextEditor } from '../components/RichTextEditor';
 
 export function AdminPlantEditor() {
   const { id } = useParams<{ id: string }>();
@@ -311,7 +312,13 @@ export function AdminPlantEditor() {
                   摘要簡介 (Description - 用於清單與首頁)
                   {isFieldDirty('description') && <span className="text-[10px] text-amber-600 font-bold uppercase tracking-tighter animate-pulse">● MODIFIED</span>}
                 </label>
-                <textarea className={`w-full border p-2 text-sm h-20 focus:border-[#5A6B58] outline-none transition-colors ${isFieldDirty('description') ? 'border-amber-300 bg-amber-50/30' : 'border-gray-200'}`} value={plant.description || ''} onChange={e => updateField('description', e.target.value)} />
+                <div className="mt-2">
+                  <RichTextEditor 
+                    value={plant.description || ''} 
+                    onChange={val => updateField('description', val)} 
+                    rows={8} 
+                  />
+                </div>
               </div>
             </div>
           </section>
@@ -322,28 +329,13 @@ export function AdminPlantEditor() {
               <span className="text-xs font-normal text-[#1A1A1A]/40 bg-gray-100 px-2 py-1 rounded">共 {plant.images.length} 張</span>
             </h2>
             
-            <div className="flex gap-2 mb-6">
-              <input 
-                type="text" 
-                placeholder="貼上圖片 URL 或由右側直接上傳" 
-                className="flex-1 border p-2 text-sm focus:border-[#5A6B58] outline-none bg-gray-50"
-                value={newImageUrl}
-                onChange={e => setNewImageUrl(e.target.value)}
-              />
-              <button onClick={handleAddImage} className="bg-[#F7F7F5] border border-[#1A1A1A]/10 px-4 text-sm hover:bg-gray-100 transition-colors flex items-center gap-1"><Upload size={14}/> URL</button>
-              
+            <div className="mb-6">
               <button 
                 onClick={() => setShowMediaPicker(true)}
-                className="bg-[#5A6B58] text-white px-4 py-2 text-sm hover:bg-[#1A1A1A] transition-colors flex items-center gap-2 cursor-pointer whitespace-nowrap"
+                className="w-full py-4 bg-[#1A1A1A] text-white text-xs uppercase tracking-widest hover:bg-[#5A6B58] transition-colors flex items-center justify-center gap-2 shadow-sm"
               >
-                <ImageIcon size={14}/> 媒體庫 Select
+                <ImageIcon size={16}/> 新增圖片 (從電腦上傳 或 由媒體庫挑選)
               </button>
-
-              <label className="bg-[#1A1A1A] text-white px-4 py-2 text-sm hover:bg-[#5A6B58] transition-colors flex items-center gap-2 cursor-pointer whitespace-nowrap">
-                {uploadingImage ? <Loader2 size={14} className="animate-spin" /> : <Upload size={14}/>}
-                <span>{uploadingImage ? '上傳中...' : '本機上傳'}</span>
-                <input type="file" accept="image/*" className="hidden" onChange={handleFileUpload} disabled={uploadingImage} />
-              </label>
             </div>
 
             {plant.images.length === 0 ? (

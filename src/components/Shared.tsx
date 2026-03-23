@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ChevronRight, Menu, X } from 'lucide-react';
 import { useAuth } from '../AuthContext';
 import { motion, AnimatePresence } from 'motion/react';
+import { isAdminAtLeast } from '../utils/permissionUtils';
 
 export const SafeImage = ({ src, alt, className, fallbackText }: { src: string, alt: string, className: string, fallbackText: string }) => {
   const [error, setError] = useState(false);
@@ -127,7 +128,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 Sign In
               </Link>
             )}
-            {user && userProfile?.role === 'admin' && (
+            {user && isAdminAtLeast(userProfile?.role) && (
               <div className="flex items-center gap-4">
                 <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium">
                   Member Area
@@ -138,13 +139,13 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                 </Link>
               </div>
             )}
-            {user && userProfile?.role !== 'admin' && userProfile?.status === 'pending' && (
+            {user && !isAdminAtLeast(userProfile?.role) && userProfile?.status === 'pending' && (
               <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium flex items-center gap-3">
                 <span>Member Area</span>
                 <span className="text-[9px] bg-[#EBEBE8] text-[#1A1A1A]/50 px-1.5 py-0.5 leading-none">PENDING</span>
               </Link>
             )}
-            {user && userProfile?.role !== 'admin' && userProfile?.status === 'approved' && (
+            {user && !isAdminAtLeast(userProfile?.role) && userProfile?.status === 'approved' && (
               <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium flex items-center gap-2">
                 <span>Member Area</span>
               </Link>
@@ -176,7 +177,7 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                   <ChevronRight size={20} className="text-[#1A1A1A]/30" />
                 </Link>
               )}
-              {user && userProfile?.role === 'admin' && (
+              {user && isAdminAtLeast(userProfile?.role) && (
                 <>
                   <Link to="/member" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
                     <span>Member Area</span>
@@ -188,13 +189,13 @@ export const Layout = ({ children }: { children: React.ReactNode }) => {
                   </Link>
                 </>
               )}
-              {user && userProfile?.role !== 'admin' && userProfile?.status === 'pending' && (
+              {user && !isAdminAtLeast(userProfile?.role) && userProfile?.status === 'pending' && (
                 <Link to="/member" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
                   <span>Member Area <span className="text-[10px] tracking-widest bg-[#EBEBE8] text-[#1A1A1A]/50 px-2 py-1 ml-2 align-middle">PENDING</span></span>
                   <ChevronRight size={20} className="text-[#1A1A1A]/30" />
                 </Link>
               )}
-              {user && userProfile?.role !== 'admin' && userProfile?.status === 'approved' && (
+              {user && !isAdminAtLeast(userProfile?.role) && userProfile?.status === 'approved' && (
                 <Link to="/member" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
                   <span>Member Area</span>
                   <ChevronRight size={20} className="text-[#1A1A1A]/30" />

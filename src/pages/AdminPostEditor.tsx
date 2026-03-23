@@ -27,6 +27,7 @@ import {
   AlertTriangle
 } from 'lucide-react';
 import { MediaPicker } from '../components/MediaPicker';
+import { RichTextEditor } from '../components/RichTextEditor';
 
 export function AdminPostEditor() {
   const { id } = useParams<{ id: string }>();
@@ -284,13 +285,12 @@ export function AdminPostEditor() {
                 <span className="flex items-center gap-2"><FileText size={12} /> 文章內文 Content (Markdown / Text)</span>
                 {originalPost?.content !== post.content && <span className="text-amber-600 font-bold">● MODIFIED</span>}
               </label>
-              <textarea 
-                value={post.content} 
-                onChange={(e) => setPost(prev => ({ ...prev, content: e.target.value }))}
+              <RichTextEditor
+                value={post.content || ''}
+                onChange={(val) => setPost(prev => ({ ...prev, content: val }))}
                 rows={20}
-                className={`w-full font-light leading-relaxed border p-6 focus:outline-none focus:border-[#1A1A1A]/20 transition-colors ${originalPost?.content !== post.content ? 'border-amber-300 bg-amber-50/10' : 'border-[#1A1A1A]/5 bg-[#FCFBFA]'}`}
                 placeholder="開始書寫文章內容..."
-              ></textarea>
+              />
             </div>
           </div>
         </div>
@@ -356,27 +356,24 @@ export function AdminPostEditor() {
             </div>
 
             <div className="space-y-4 pt-4 border-t border-[#1A1A1A]/5">
-              <label className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 flex justify-between">
-                <span className="flex items-center gap-2"><ImageIcon size={12} /> 封面連結 Cover Image URL</span>
+              <label className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 flex justify-between mb-2">
+                <span className="flex items-center gap-2"><ImageIcon size={12} /> 封面圖片 Cover Image</span>
                 {originalPost?.coverImageUrl !== post.coverImageUrl && <span className="text-amber-600 font-bold">● MODIFIED</span>}
               </label>
-              {post.coverImageUrl && (
+              {post.coverImageUrl ? (
                 <div className={`aspect-video w-full overflow-hidden border bg-[#F7F7F5] transition-colors ${originalPost?.coverImageUrl !== post.coverImageUrl ? 'border-amber-300 shadow-inner' : 'border-[#1A1A1A]/10'}`}>
                   <img src={post.coverImageUrl} className="w-full h-full object-cover" alt="Preview" />
                 </div>
+              ) : (
+                <div className="aspect-video w-full flex items-center justify-center border border-dashed border-[#1A1A1A]/20 bg-[#F7F7F5]">
+                  <span className="text-xs text-[#1A1A1A]/30">尚無封面圖</span>
+                </div>
               )}
-              <input 
-                type="text" 
-                value={post.coverImageUrl} 
-                onChange={(e) => setPost(prev => ({ ...prev, coverImageUrl: e.target.value }))}
-                className={`w-full text-xs font-mono border p-3 focus:outline-none focus:border-[#1A1A1A]/20 transition-colors ${originalPost?.coverImageUrl !== post.coverImageUrl ? 'border-amber-300 bg-amber-50/10' : 'border-[#1A1A1A]/10'}`}
-                placeholder="https://images.unsplash.com/..."
-              />
               <button 
                 onClick={() => setShowMediaPicker(true)}
-                className="w-full py-2 bg-[#5A6B58] text-white text-[10px] uppercase tracking-widest hover:bg-[#1A1A1A] transition-colors flex items-center justify-center gap-2"
+                className="w-full py-3 bg-[#1A1A1A] text-white text-[10px] uppercase tracking-widest hover:bg-[#5A6B58] transition-colors flex items-center justify-center gap-2"
               >
-                <ImageIcon size={14} /> 從媒體庫選取 Select
+                <ImageIcon size={14} /> 選擇或更換封面圖
               </button>
             </div>
           </div>
