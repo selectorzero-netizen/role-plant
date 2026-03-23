@@ -42,11 +42,9 @@ const ROLE_PERMISSIONS: Record<UserRole, PermissionAction[]> = {
   ],
   editor: [
     'view_admin',
-    'manage_plants',
     'manage_posts',
     'manage_content',
-    'manage_media',
-    'manage_inquiries'
+    'manage_media'
   ],
   member: [],
   guest: []

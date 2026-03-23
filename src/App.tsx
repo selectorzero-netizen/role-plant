@@ -120,7 +120,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/admin/plants',
-    element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminPlants /></AdminLayout></ProtectedRoute>
+    element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminPlants /></AdminLayout></ProtectedRoute>
   },
   {
     path: '/admin/plants/:id',
@@ -140,7 +140,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/admin/inquiries',
-    element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminInquiries /></AdminLayout></ProtectedRoute>
+    element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminInquiries /></AdminLayout></ProtectedRoute>
   },
   {
     path: '/admin/posts',
@@ -164,7 +164,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/admin/settings',
-    element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminSettings /></AdminLayout></ProtectedRoute>
+    element: <ProtectedRoute requireRole="super_admin"><AdminLayout><AdminSettings /></AdminLayout></ProtectedRoute>
   },
   {
     path: '/admin/taxonomy',

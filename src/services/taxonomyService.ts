@@ -18,28 +18,37 @@ import {
 } from 'firebase/firestore';
 import { Taxonomy, TaxonomyType } from '../types';
 
+
+
+
 export const taxonomyService = {
   /**
    * Get taxonomy items by type
    */
   async getByType(type: TaxonomyType, onlyActive = true) {
-    const colRef = collection(db, 'taxonomy');
-    let q = query(
-      colRef, 
-      where('type', '==', type),
-      orderBy('sortOrder', 'asc'),
-      orderBy('createdAt', 'desc')
-    );
-
-    if (onlyActive) {
-      q = query(q, where('isActive', '==', true));
+    
+    try {
+      const colRef = collection(db, 'taxonomy');
+      let q = query(
+        colRef, 
+        where('type', '==', type),
+        orderBy('sortOrder', 'asc'),
+        orderBy('createdAt', 'desc')
+      );
+  
+      if (onlyActive) {
+        q = query(q, where('isActive', '==', true));
+      }
+  
+      const snapshot = await getDocs(q);
+      return snapshot.docs.map(doc => ({
+        id: doc.id,
+        ...doc.data()
+      })) as Taxonomy[];
+    } catch (err) {
+      console.error(`taxonomyService.getByType(${type}) failed:`, err);
+      return [];
     }
-
-    const snapshot = await getDocs(q);
-    return snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data()
-    })) as Taxonomy[];
   },
 
   /**

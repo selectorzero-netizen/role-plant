@@ -7,17 +7,19 @@ import { authService } from './services/authService';
 // ─── DEV ONLY ────────────────────────────────────────────────────────────────
 // This entire block is dead code in production: import.meta.env.DEV === false
 // at build time, and Vite/esbuild will tree-shake it completely.
-const DEV_ADMIN_PROFILE: UserProfile | null = import.meta.env.DEV
-  ? {
-      uid: 'dev-admin-bypass',
-      email: 'dev@roleplant.local',
-      name: 'DEV Admin',
-      role: 'super_admin' as UserRole,
-      status: 'approved' as Status,
-      favorites: [],
-      createdAt: '',
-    }
-  : null;
+const getDevProfile = (): UserProfile | null => {
+  if (!import.meta.env.DEV) return null;
+  const role = (localStorage.getItem('__dev_role__') as UserRole) || 'super_admin';
+  return {
+    uid: 'dev-admin-bypass',
+    email: `dev-${role}@roleplant.local`,
+    name: `DEV ${role.toUpperCase()}`,
+    role: role,
+    status: 'approved' as Status,
+    favorites: [],
+    createdAt: '',
+  };
+};
 
 const isDevAdminBypass = () => 
   import.meta.env.DEV && (
@@ -56,7 +58,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return (
       <AuthContext.Provider value={{
         user: null,
-        userProfile: DEV_ADMIN_PROFILE,
+        userProfile: getDevProfile(),
         loading: false,
         isAuthReady: true,
         authError: null,

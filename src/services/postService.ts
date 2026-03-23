@@ -19,6 +19,7 @@ import {
   serverTimestamp 
 } from 'firebase/firestore';
 
+
 export type PostStatus = 'draft' | 'published' | 'archived';
 
 export interface Post {
@@ -41,12 +42,12 @@ export type PostFilters = {
   category?: string;
 };
 
+
 export const postService = {
   /**
    * Create a new post
    */
   async createPost(data: Partial<Post>) {
-    const colRef = collection(db, 'posts');
     const docData = {
       title: '',
       slug: '',
@@ -60,6 +61,8 @@ export const postService = {
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp()
     };
+
+    const colRef = collection(db, 'posts');
     return addDoc(colRef, docData);
   },
 
@@ -88,6 +91,7 @@ export const postService = {
    * Get post by ID
    */
   async getPostById(id: string) {
+
     const docRef = doc(db, 'posts', id);
     const snap = await getDoc(docRef);
     if (!snap.exists()) return null;
@@ -115,17 +119,15 @@ export const postService = {
    * Update post
    */
   async updatePost(id: string, data: Partial<Post>) {
-    const docRef = doc(db, 'posts', id);
     const updateData = {
       ...data,
       updatedAt: serverTimestamp()
     };
-    
-    // If status is being changed to published, set publishedAt
     if (data.status === 'published') {
       (updateData as any).publishedAt = serverTimestamp();
     }
 
+    const docRef = doc(db, 'posts', id);
     return updateDoc(docRef, updateData);
   },
 
@@ -133,6 +135,7 @@ export const postService = {
    * Delete post
    */
   async deletePost(id: string) {
+
     const docRef = doc(db, 'posts', id);
     return deleteDoc(docRef);
   }

@@ -11,6 +11,7 @@ import {
   setDoc,
 } from 'firebase/firestore';
 
+
 // ─── Types per Page ─────────────────────────────────────────────────────────
 
 export interface HomeContent {
@@ -71,15 +72,65 @@ export interface FaqContent {
 
 const COL = 'content';
 
+export const DEFAULT_CONTENT: Record<string, any> = {
+  home: {
+    heroLabel: 'New Label',
+    heroTitle: 'Welcome to Role Plant',
+    heroDescription: 'Description here...',
+    heroImageUrl: '',
+    taglineTitle: 'Title',
+    taglineDescription: 'Description',
+    sections: { hero: true, tagline: true, featured: true, links: true }
+  },
+  about: {
+    title: 'About Us',
+    subtitle: 'Subtitle',
+    paragraphs: ['Sample paragraph.']
+  },
+  business: {
+    title: 'Business',
+    subtitle: 'Subtitle',
+    description: 'Description',
+    services: []
+  },
+  membership: {
+    title: 'Membership',
+    subtitle: 'Subtitle',
+    description: 'Description',
+    audienceTitle: 'Audience',
+    audienceDescription: 'Description',
+    audienceItems: [],
+    ctaText: 'Join'
+  },
+  learn: {
+    title: 'Learn',
+    subtitle: 'Subtitle',
+    description: 'Description',
+    intro1Title: 'Intro 1',
+    intro1Content: 'Content',
+    intro2Title: 'Intro 2',
+    intro2Content: 'Content',
+    standards: []
+  },
+  faq: {
+    title: 'FAQ',
+    subtitle: 'Subtitle',
+    description: 'Description',
+    items: []
+  }
+};
+
 export const contentService = {
   async getPageContent<T>(pageId: string): Promise<T | null> {
     try {
       const snap = await getDoc(doc(db, COL, pageId));
-      if (!snap.exists()) return null;
+      if (!snap.exists()) {
+        return (DEFAULT_CONTENT[pageId] || null) as T;
+      }
       return snap.data() as T;
     } catch (err) {
       console.error(`contentService.getPageContent(${pageId}) failed:`, err);
-      return null;
+      return (DEFAULT_CONTENT[pageId] || null) as T;
     }
   },
 

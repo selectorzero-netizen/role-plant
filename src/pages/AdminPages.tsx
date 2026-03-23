@@ -1,71 +1,173 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { useNavigate, Routes, Route, Link, useParams } from 'react-router-dom';
+import { useNavigate, Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
 import { useAuth } from '../AuthContext';
 import { db } from '../firebase';
 import { collection, query, getDocs, updateDoc, doc, addDoc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
-import { ArrowLeft, Plus, Save, Trash2, User, FileText, Check, X, ShieldAlert } from 'lucide-react';
+import { ArrowLeft, Plus, Save, Trash2, User, FileText, Check, X, ShieldAlert, ChevronDown, ChevronRight, LayoutDashboard, Leaf, FileEdit, Image, MessageSquare, Users, ClipboardCheck, Settings, Layers } from 'lucide-react';
 import { adminService, ApplicationWithUser } from '../services/adminService';
 import { UserProfile, AuditLog } from '../types';
 import { auditService } from '../services/auditService';
+import { hasPermission, PermissionAction } from '../utils/permissionUtils';
+
+// Help functions for role-based navigation item visibility
+interface NavItem {
+  label: string;
+  to: string;
+  icon: React.ReactNode;
+  permission?: PermissionAction;
+}
+
+interface NavGroup {
+  label: string;
+  items: NavItem[];
+}
 
 export function AdminLayout({ children }: { children: React.ReactNode }) {
   const { userProfile, loading } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const [settingsOpen, setSettingsOpen] = useState(false);
 
   useEffect(() => {
-    if (!loading && (!userProfile || !['admin', 'editor'].includes(userProfile.role))) {
+    if (!loading && (!userProfile || !hasPermission(userProfile.role, 'view_admin'))) {
       navigate('/');
     }
   }, [userProfile, loading, navigate]);
 
   if (loading) {
-    return <div className="min-h-screen bg-[#F7F7F5] flex items-center justify-center">Loading...</div>;
+    return <div className="min-h-screen bg-[#F7F7F5] flex items-center justify-center text-xs tracking-widest uppercase opacity-20 animate-pulse">Initializing Interface...</div>;
   }
 
-  if (!userProfile || !['admin', 'editor'].includes(userProfile.role)) {
+  if (!userProfile || !hasPermission(userProfile.role, 'view_admin')) {
     return null;
   }
 
+  const navGroups: NavGroup[] = [
+    {
+      label: '內容管理',
+      items: ([
+        { label: '植物管理 (Plants)', to: '/admin/plants', icon: <Leaf size={16} />, permission: 'manage_plants' },
+        { label: '內容頁面 (Content)', to: '/admin/content', icon: <FileText size={16} />, permission: 'manage_content' },
+        { label: '文章管理 (Posts)', to: '/admin/posts', icon: <FileEdit size={16} />, permission: 'manage_posts' },
+        { label: '媒體管理 (Media)', to: '/admin/media', icon: <Image size={16} />, permission: 'manage_media' },
+      ] as NavItem[]).filter(item => !item.permission || hasPermission(userProfile.role, item.permission))
+    },
+    {
+      label: '營運處理',
+      items: ([
+        { label: '入會申請 (Applications)', to: '/admin/applications', icon: <ClipboardCheck size={16} />, permission: 'manage_applications' },
+        { label: '客服諮詢 (Inquiries)', to: '/admin/inquiries', icon: <MessageSquare size={16} />, permission: 'manage_inquiries' },
+        { label: '會員管理 (Members)', to: '/admin/users', icon: <Users size={16} />, permission: 'manage_members' },
+      ] as NavItem[]).filter(item => !item.permission || hasPermission(userProfile.role, item.permission))
+    }
+  ];
+
+  const settingsGroup: NavGroup = {
+    label: '系統設定',
+    items: ([
+      { label: '分類配置 (Taxonomy)', to: '/admin/taxonomy', icon: <Layers size={16} />, permission: 'manage_taxonomy' },
+      { label: '系統參數 (Settings)', to: '/admin/settings', icon: <Settings size={16} />, permission: 'manage_settings' },
+    ] as NavItem[]).filter(item => !item.permission || hasPermission(userProfile.role, item.permission))
+  };
+
+  const NavLink = ({ item }: { item: NavItem }) => {
+    const isActive = location.pathname === item.to;
+    return (
+      <Link 
+        to={item.to} 
+        className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-all duration-200 ${
+          isActive 
+            ? 'bg-[#5A6B58] text-white' 
+            : 'text-white/60 hover:text-white hover:bg-white/5'
+        }`}
+      >
+        <span className={isActive ? 'text-white' : 'text-white/40'}>{item.icon}</span>
+        <span>{item.label}</span>
+      </Link>
+    );
+  };
+
   return (
-    <div className="min-h-screen bg-[#F7F7F5] flex">
-      <aside className="w-64 bg-[#1A1A1A] text-white p-6 flex flex-col">
-        <div className="mb-12">
-          <Link to="/" className="text-lg tracking-widest font-medium text-white">
-            ROLE PLANT<span className="text-[#5A6B58]">.</span>
+    <div className="min-h-screen bg-[#F7F7F5] flex font-sans">
+      <aside className="w-64 bg-[#1A1A1A] text-white p-4 flex flex-col border-r border-white/5 shadow-xl">
+        <div className="mb-8 px-2 py-4">
+          <Link to="/" className="text-xl tracking-[0.2em] font-medium text-white flex items-center gap-2">
+            ROLE PLANT<span className="text-[#5A6B58] font-bold">.</span>
           </Link>
-          <p className="text-[10px] tracking-widest uppercase text-white/50 mt-2">Admin Panel</p>
+          <div className="h-[1px] w-12 bg-[#5A6B58] mt-3"></div>
         </div>
-        <nav className="flex-1 space-y-4">
-          <Link to="/admin" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Dashboard</Link>
-          <Link to="/admin/plants" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Plants</Link>
-          <Link to="/admin/posts" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Posts</Link>
-          <Link to="/admin/media" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Media</Link>
-          {userProfile.role === 'admin' && (
-            <>
-              <Link to="/admin/applications" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Applications</Link>
-               <Link to="/admin/inquiries" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Inquiries</Link>
-               <Link to="/admin/users" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Members</Link>
-               <Link to="/admin/content" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Content</Link>
-               <Link to="/admin/settings" className="block text-sm tracking-widest uppercase text-white/70 hover:text-white transition-colors">Settings</Link>
-            </>
+
+        <nav className="flex-1 space-y-6 overflow-y-auto custom-scrollbar pr-1">
+          {navGroups.map((group, gIdx) => (
+            group.items.length > 0 && (
+              <div key={gIdx} className="space-y-2">
+                <h3 className="px-3 text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase mb-2">
+                  {group.label}
+                </h3>
+                <div className="space-y-1">
+                  {group.items.map((item, iIdx) => (
+                    <NavLink key={iIdx} item={item} />
+                  ))}
+                </div>
+              </div>
+            )
+          ))}
+
+          {settingsGroup.items.length > 0 && (
+            <div className="space-y-2">
+              <button 
+                onClick={() => setSettingsOpen(!settingsOpen)}
+                className="w-full flex items-center justify-between px-3 text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase hover:text-white/60 transition-colors"
+              >
+                <span>{settingsGroup.label}</span>
+                {settingsOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+              </button>
+              
+              {settingsOpen && (
+                <div className="space-y-1 animate-in slide-in-from-top-1 duration-200">
+                  {settingsGroup.items.map((item, iIdx) => (
+                    <NavLink key={iIdx} item={item} />
+                  ))}
+                </div>
+              )}
+            </div>
           )}
         </nav>
-        <div className="mt-auto pt-6 border-t border-white/10">
-          <p className="text-xs text-white/50">Logged in as {userProfile.role}</p>
+
+        <div className="mt-auto pt-6 border-t border-white/10 px-2 space-y-3">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-[#5A6B58]/20 flex items-center justify-center text-[#5A6B58]">
+              <ShieldAlert size={16} />
+            </div>
+            <div>
+              <p className="text-[10px] text-white/30 uppercase tracking-widest font-bold">Security Context</p>
+              <p className="text-xs text-white/80 font-medium">{userProfile.role}</p>
+            </div>
+          </div>
         </div>
       </aside>
-      <main className="flex-1 p-12 overflow-y-auto">
-        {children}
+      <main className="flex-1 overflow-y-auto bg-white/50 backdrop-blur-sm">
+        <div className="p-8 max-w-7xl mx-auto min-h-full">
+          {children}
+        </div>
       </main>
     </div>
   );
 }
 
 export function AdminDashboard() {
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    // Redirection if landed on root admin with no dashboard content
+    // navigate('/admin/plants'); 
+  }, [navigate]);
+
   return (
-    <div>
-      <h1 className="text-3xl font-light tracking-tight mb-8">Dashboard</h1>
-      <p className="text-[#1A1A1A]/70">Welcome to the private admin panel. Select an option from the sidebar to manage content.</p>
+    <div className="flex flex-col items-center justify-center h-[80vh] opacity-30 text-center">
+      <LayoutDashboard size={64} strokeWidth={1} className="mb-4" />
+      <h1 className="text-2xl font-light tracking-widest mb-2 uppercase">Interface Control</h1>
+      <p className="text-sm tracking-widest">Select an operation from the sidebar navigation.</p>
     </div>
   );
 }

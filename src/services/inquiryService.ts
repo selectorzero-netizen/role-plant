@@ -13,9 +13,9 @@ import {
   query, 
   orderBy, 
   where,
-  Timestamp,
   serverTimestamp 
 } from 'firebase/firestore';
+
 
 export type InquiryStatus = 'new' | 'in_progress' | 'closed';
 export type InquiryType = 'general' | 'business';
@@ -38,6 +38,7 @@ export type InquiryFilters = {
   status?: InquiryStatus;
 };
 
+
 export const inquiryService = {
   /**
    * Submit a new inquiry from public site
@@ -49,7 +50,6 @@ export const inquiryService = {
     message: string;
     company?: string;
   }) {
-    const colRef = collection(db, 'inquiries');
     const docData = {
       ...data,
       status: 'new' as InquiryStatus,
@@ -57,6 +57,8 @@ export const inquiryService = {
       createdAt: serverTimestamp(),
       updatedAt: serverTimestamp()
     };
+
+    const colRef = collection(db, 'inquiries');
     return addDoc(colRef, docData);
   },
 
@@ -85,6 +87,7 @@ export const inquiryService = {
    * Update inquiry status
    */
   async updateInquiryStatus(id: string, status: InquiryStatus) {
+
     const docRef = doc(db, 'inquiries', id);
     return updateDoc(docRef, { 
       status,
@@ -96,6 +99,7 @@ export const inquiryService = {
    * Toggle read status
    */
   async toggleReadStatus(id: string, isRead: boolean) {
+
     const docRef = doc(db, 'inquiries', id);
     return updateDoc(docRef, { 
       isRead,
