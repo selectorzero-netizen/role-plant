@@ -13,148 +13,264 @@ export function HomePage() {
   const navigate = useNavigate();
   const [plants, setPlants] = useState<Plant[]>([]);
   const [loading, setLoading] = useState(true);
-  const [cms, setCms] = useState<HomeContent>({
-    heroLabel: 'Role Plant Archive',
-    heroTitle: '專注於龜甲龍的\n長期培育與個體判讀。',
-    heroDescription: '龜甲龍不是快速消費的植物，而是需要時間沉澱的生命。我們整理長期的培育經驗與判讀標準，為喜愛龜甲龍的收藏者提供清晰的參考與選擇。',
-    heroImageUrl: '/images/hero.jpg',
-    taglineTitle: '時間的具象化',
-    taglineDescription: '它的價值不只在表面的龜裂，更在於養成過程中的節奏與觀察。我們在意的不是炒作稀有，而是把選拔、判讀與培育這些原本模糊的事，慢慢整理清楚。',
-    sections: { hero: true, tagline: true, featured: true, links: true }
-  });
+  const [cms, setCms] = useState<HomeContent | null>(null);
+  const [learnCms, setLearnCms] = useState<LearnContent | null>(null);
 
   useEffect(() => {
     const load = async () => {
-      const [allPlants, homeCms] = await Promise.all([
+      const [allPlants, homeCms, learnData] = await Promise.all([
         plantService.getPublicPlants(),
-        contentService.getPageContent<HomeContent>('home')
+        contentService.getPageContent<HomeContent>('home'),
+        contentService.getPageContent<LearnContent>('learn')
       ]);
-      setPlants(allPlants.filter(p => p.featuredOnHome).slice(0, 4));
-      if (homeCms) setCms(homeCms);
+      // Limit to 3 for the high-end editorial feel
+      setPlants(allPlants.filter(p => p.featuredOnHome).slice(0, 3));
+      setCms(homeCms);
+      setLearnCms(learnData);
       setLoading(false);
     };
     load();
   }, []);
 
+  const TEMP_STANDARD_IMAGES = [
+    "https://images.unsplash.com/photo-1518531933037-91b2f5f229cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    "https://images.unsplash.com/photo-1620121692029-d088224ddc74?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80",
+    "https://images.unsplash.com/photo-1596541223130-5d31a73fb6c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+  ];
+
   return (
-    <div className="space-y-32 pb-32">
-      {cms.sections.hero && (
-        <section className="relative h-[80vh] flex items-center px-6 md:px-12 overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#F7F7F5] via-[#F7F7F5]/80 to-transparent z-10" />
-            <img 
-              src={cms.heroImageUrl || "/images/hero.jpg"} 
-              alt="Hero background" 
-              className="w-full h-full object-cover grayscale opacity-40 mix-blend-multiply"
-            />
-          </div>
-          
-          <div className="relative z-20 max-w-3xl">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-              <span className="text-[10px] tracking-[0.4em] uppercase text-[#1A1A1A]/40 mb-6 block font-medium">
-                {cms.heroLabel}
-              </span>
-              <h1 className="text-4xl md:text-6xl font-light tracking-tight text-[#1A1A1A] leading-[1.1] mb-8 whitespace-pre-line">
-                {cms.heroTitle}
-              </h1>
-              <p className="text-[#1A1A1A]/60 font-light leading-relaxed max-w-xl text-lg mb-12">
-                {cms.heroDescription}
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Link to="/collection" className="bg-[#1A1A1A] text-white px-8 py-4 text-sm tracking-widest uppercase hover:bg-[#5A6B58] transition-colors flex items-center justify-center gap-3">
-                  <Leaf size={16} /><span>查看選拔檔案</span>
-                </Link>
-                <Link to="/learn" className="border border-[#1A1A1A]/20 bg-white/50 px-8 py-4 text-sm tracking-widest uppercase hover:border-[#1A1A1A] transition-colors flex items-center justify-center gap-3">
-                  <BookOpen size={16} /><span>學習判讀標準</span>
-                </Link>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-      )}
+    <div className="bg-[#EAE8E3] min-h-screen text-[#1A1A1A] selection:bg-[#1A1A1A] selection:text-[#EAE8E3]">
+      
+      {/* 1. Hero 
+          Task: 5秒內讓人知道只做龜甲龍, 有龜甲龍主圖, 品牌署名
+      */}
+      <section className="relative min-h-[90vh] flex flex-col justify-between px-6 md:px-12 py-12 md:py-24 border-b border-[#1A1A1A]/10">
+        <div className="absolute inset-x-6 md:inset-x-12 top-24 bottom-24 z-0 overflow-hidden bg-[#DCD7C9]">
+           {/* TEMP Structure Placeholder Image used if CMS image is absent. Must look like a macro turtle shell. */}
+           <img 
+              src={cms?.heroImageUrl || "https://images.unsplash.com/photo-1558236166-512140a77f97?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80"}
+              alt="Role Plant Main Cover - Dioscorea elephantipes structure" 
+              className="w-full h-full object-cover filter contrast-125 saturate-50 mix-blend-multiply"
+           />
+           <div className="absolute inset-0 bg-gradient-to-t from-[#EAE8E3] via-transparent to-[#EAE8E3]/20 mix-blend-normal" />
+        </div>
+        
+        <div className="relative z-10 flex justify-between items-start">
+           <span className="text-xs tracking-[0.4em] uppercase font-medium">Role Plant</span>
+        </div>
 
-      {cms.sections.tagline && (
-        <section className="px-6 md:px-12">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-sm tracking-[0.3em] uppercase text-[#1A1A1A]/30 mb-8">{cms.taglineTitle}</h2>
-            <p className="text-2xl md:text-4xl font-light leading-relaxed text-[#1A1A1A]/80">
-              {cms.taglineDescription}
-            </p>
-          </div>
-        </section>
-      )}
+        <div className="relative z-10 mt-auto flex flex-col md:flex-row md:items-end justify-between gap-12 pb-8">
+           <div className="max-w-4xl">
+             <motion.h1 
+               initial={{ opacity: 0 }} 
+               animate={{ opacity: 1 }} 
+               transition={{ duration: 1.2, ease: "easeOut" }} 
+               className="text-6xl md:text-[8rem] leading-[0.9] font-light tracking-tighter mb-8"
+             >
+               只做<br/><span className="italic font-serif">龜甲龍</span>
+             </motion.h1>
+             <p className="text-lg md:text-2xl font-light tracking-wide max-w-xl leading-relaxed text-[#1A1A1A]/80">
+               一套關於選擇、判讀與維持的清楚標準。
+             </p>
+           </div>
+           
+           <div className="flex flex-col gap-6 min-w-[200px]">
+             <Link to="/collection" className="group border-b border-[#1A1A1A] pb-3 flex justify-between items-center hover:pr-4 transition-all duration-300">
+               <span className="text-sm tracking-widest uppercase font-medium">查看 Collection</span>
+               <ArrowRight size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+             </Link>
+             <Link to="/membership" className="group border-b border-[#1A1A1A]/20 pb-3 flex justify-between items-center hover:pr-4 hover:border-[#1A1A1A] transition-all duration-300 text-[#1A1A1A]/60 hover:text-[#1A1A1A]">
+               <span className="text-sm tracking-widest uppercase">了解 Membership</span>
+               <ArrowRight size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+             </Link>
+           </div>
+        </div>
+      </section>
 
-      {cms.sections.featured && (
-        <section className="px-6 md:px-12 max-w-7xl mx-auto">
-          <div className="flex justify-between items-end mb-12 border-b border-[#1A1A1A]/10 pb-6">
-            <div>
-              <h2 className="text-2xl font-light tracking-tight mb-2">最新檔案</h2>
-              <p className="text-xs tracking-widest uppercase text-[#1A1A1A]/50">Latest Collection</p>
-            </div>
-            <Link to="/collection" className="hidden md:flex items-center gap-2 text-sm tracking-widest uppercase hover:text-[#5A6B58] transition-colors">
-              <span>View All</span><ArrowRight size={16} />
+      {/* 2. Featured Plants / Collection teaser
+          Task: 1-3代表個體檔案, 圖/名稱/短標示/CTA
+      */}
+      {(loading || plants.length > 0) && (
+      <section className="py-32 px-6 md:px-12 max-w-screen-2xl mx-auto border-b border-[#1A1A1A]/10">
+         <div className="flex flex-col md:flex-row justify-between mb-24 md:items-end gap-8">
+            <h2 className="text-5xl md:text-7xl font-light tracking-tighter">
+              代表個體
+              <span className="text-xs tracking-[0.3em] uppercase block mt-6 font-normal text-[#1A1A1A]/50">Featured Archive</span>
+            </h2>
+            <Link to="/collection" className="text-sm tracking-widest uppercase border border-[#1A1A1A] px-10 py-5 hover:bg-[#1A1A1A] hover:text-[#EAE8E3] transition-colors inline-block text-center">
+               前往 Collection
             </Link>
-          </div>
-          
-          {loading ? (
-             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-               {[...Array(4)].map((_, i) => (
-                 <div key={i} className="animate-pulse bg-[#EBEBE8] aspect-[4/5]" />
+         </div>
+
+         {loading ? (
+             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-24">
+               {[...Array(3)].map((_, i) => (
+                 <div key={i} className="animate-pulse bg-[#DCD7C9] aspect-[3/4]" />
                ))}
              </div>
-          ) : plants.length === 0 ? (
-            <div className="bg-white border border-[#1A1A1A]/5 p-16 text-center">
-              <Leaf size={32} className="mx-auto text-[#1A1A1A]/20 mb-6" />
-              <h3 className="text-lg font-medium mb-3">檔案整理中</h3>
-              <p className="text-[#1A1A1A]/60 font-light text-sm max-w-md mx-auto leading-relaxed">
-                目前無公開的精選植物檔案。這些隨時間緩慢生長的塊根，可能正處於休眠期或進行換盆修整，暫不開放前台展示。
-              </p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {plants.map((plant) => (
-                <div key={plant.id} className="group cursor-pointer" onClick={() => navigate(`/collection/${plant.id}`)}>
-                  <div className="aspect-[4/5] bg-[#EBEBE8] mb-4 overflow-hidden relative border border-[#1A1A1A]/5">
-                    <img src={plant.coverImageUrl || (plant.images?.[0]?.url)} alt={plant.id} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                    {plant.status === 'sold' && (
-                      <div className="absolute top-4 right-4 bg-red-800 text-white text-[10px] uppercase tracking-widest px-2 py-1">已釋出</div>
-                    )}
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-sm">{plant.localName || plant.name}</h3>
-                    <p className="text-[10px] text-[#1A1A1A]/40 font-mono mt-1">{plant.serialNumber}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </section>
+         ) : (
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-24">
+               {plants.map((plant, idx) => (
+                 <motion.div 
+                   key={plant.id} 
+                   initial={{ opacity: 0, y: 10 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   viewport={{ once: true, margin: "-100px" }}
+                   transition={{ duration: 0.8, delay: idx * 0.1, ease: "easeOut" }}
+                   className="group cursor-pointer flex flex-col" 
+                   onClick={() => navigate(`/collection/${plant.id}`)}
+                 >
+                   <div className="aspect-[3/4] bg-[#DCD7C9] mb-8 overflow-hidden relative">
+                     <img 
+                       src={plant.coverImageUrl || (plant.images?.[0]?.url)} 
+                       alt={plant.name} 
+                       className="w-full h-full object-cover filter contrast-110 sepia-[.1]" 
+                     />
+                   </div>
+                   <div className="flex justify-between items-start border-t border-[#1A1A1A] pt-6">
+                     <div>
+                       <h3 className="font-medium text-lg leading-tight mb-2">{plant.localName || plant.name}</h3>
+                       <p className="text-[10px] text-[#1A1A1A]/50 font-mono uppercase tracking-widest">{plant.serialNumber || 'UNKNOWN-ID'}</p>
+                     </div>
+                     <span className="text-[10px] tracking-widest uppercase bg-[#1A1A1A] text-[#EAE8E3] px-3 py-1.5 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                       查看檔案
+                     </span>
+                   </div>
+                 </motion.div>
+               ))}
+             </div>
+         )}
+      </section>
       )}
 
-      {cms.sections.links && (
-        <section className="px-6 md:px-12 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div className="bg-white p-10 md:p-16 border border-[#1A1A1A]/5 hover:shadow-lg transition-shadow cursor-pointer group" onClick={() => navigate('/learn')}>
-            <BookOpen size={24} className="text-[#5A6B58] mb-8" />
-            <h2 className="text-2xl font-light mb-4">判讀與培育指南</h2>
-            <p className="text-[#1A1A1A]/60 font-light leading-relaxed mb-12">
-              我們將長期的觀察整理為五個維度：龜甲表現、面相平衡、塊根比例、健康完成度與培育未來性。提供客觀的參考框架。
-            </p>
-            <div className="flex items-center gap-2 text-sm tracking-widest uppercase text-[#1A1A1A] group-hover:text-[#5A6B58] transition-colors font-medium">
-              <span>閱讀指南</span><ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
-            </div>
+      {/* 3. 為什麼只做龜甲龍 (Brand statement) 
+          Task: 立場段短文, 來自 Home CMS 或 TEMP 結構
+      */}
+      <section className="py-48 px-6 md:px-12 flex justify-center items-center bg-[#DCD7C9]/20 border-b border-[#1A1A1A]/10">
+        <div className="max-w-3xl text-center">
+          <span className="block text-xs tracking-[0.3em] mb-12 uppercase text-[#1A1A1A]/40 font-medium">Standpoint</span>
+          <div className="text-2xl md:text-4xl font-light leading-[1.6] tracking-wide text-[#1A1A1A]">
+            {cms?.taglineDescription ? (
+              <p>{cms.taglineDescription}</p>
+            ) : (
+              <div className="space-y-12">
+                <p>龜甲龍的價值不在於短期的視覺刺激，</p>
+                <p>而在於漫長歲月累積出的獨特結構與節奏。</p>
+                <p className="text-[#1A1A1A]/60 text-xl md:text-2xl">
+                  (降級/TEMP: CMS `taglineDescription` 未建檔時使用的結構文案)
+                </p>
+              </div>
+            )}
           </div>
-          <div className="bg-[#1A1A1A] text-[#F7F7F5] p-10 md:p-16 cursor-pointer group" onClick={() => navigate('/business')}>
-            <Briefcase size={24} className="text-[#F7F7F5]/50 mb-8" />
-            <h2 className="text-2xl font-light mb-4">商業與合作洽詢</h2>
-            <p className="text-[#F7F7F5]/60 font-light leading-relaxed mb-12">
-              針對實體空間陳列、品牌合作、批發採購或專業培育顧問需求，我們提供專屬的討論與規劃服務。
-            </p>
-            <div className="flex items-center gap-2 text-sm tracking-widest uppercase text-white group-hover:text-[#5A6B58] transition-colors font-medium">
-              <span>聯繫我們</span><ArrowRight size={16} className="transform group-hover:translate-x-1 transition-transform" />
-            </div>
-          </div>
-        </section>
-      )}
+          <span className="block mt-24 text-[10px] font-medium tracking-[0.2em] uppercase text-[#1A1A1A]/30">— Role Plant</span>
+        </div>
+      </section>
+
+      {/* 4. 時間證據 (Evidence of Time / Learn Standards)
+          Task: 限制3個, Sticky Scroll (左定右動), TEMP圖結構占位
+      */}
+      <section className="relative py-32 px-6 md:px-12 max-w-screen-2xl mx-auto border-b border-[#1A1A1A]/10">
+         <div className="flex flex-col md:flex-row gap-12 md:gap-24 items-start relative">
+           
+           {/* Left: Sticky Title */}
+           <div className="md:w-1/3 md:sticky md:top-32 self-start">
+              <h2 className="text-4xl md:text-5xl font-light tracking-tighter mb-4">
+                時間的證據
+                <span className="text-xs tracking-[0.3em] uppercase block mt-4 font-normal text-[#1A1A1A]/50">Evidence of Time</span>
+              </h2>
+              <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm mb-8">
+                我們不以完美為單一標準。裂紋的清晰度、面相的平衡、塊根的生長節奏，這些都是時間與環境交互作用後的具體證據。
+              </p>
+              <div className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 font-mono">
+                [ 判讀基準 01 - {Math.min(3, learnCms?.standards?.filter(s => s.enabled).length || 0).toString().padStart(2, '0')} ]
+              </div>
+           </div>
+
+           {/* Right: Scrolling Stack (只取前3個做驗證) */}
+           <div className="md:w-2/3 flex flex-col gap-32 md:gap-48 mt-16 md:mt-0">
+             {learnCms?.standards?.filter(s => s.enabled).slice(0, 3).map((std, idx) => (
+               <motion.div 
+                 key={idx}
+                 initial={{ opacity: 0, y: 50 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: false, margin: "-15% 0px -15% 0px" }}
+                 transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }} 
+                 className="flex flex-col gap-6"
+               >
+                 {/* TEMP 占位結構，不涉及假學理，只確保視覺存在 */}
+                 <div className="aspect-[4/3] bg-[#DCD7C9] overflow-hidden relative">
+                   <img 
+                     src={TEMP_STANDARD_IMAGES[idx]} 
+                     alt={`TEMP Structural Layout ${idx + 1}`} 
+                     className="w-full h-full object-cover filter contrast-125 saturate-50 grayscale-[0.3]" 
+                   />
+                   <div className="absolute top-4 right-4 bg-[#EAE8E3]/90 text-[#1A1A1A] text-[10px] uppercase tracking-widest px-2 py-1 font-mono">TEMP Image</div>
+                 </div>
+                 
+                 <div className="border-t border-[#1A1A1A] pt-6 pr-12 md:pr-24">
+                   <div className="flex items-center gap-4 mb-4">
+                     <span className="text-xs font-mono text-[#1A1A1A]/40">0{idx + 1}</span>
+                     <h3 className="text-2xl font-light">{std.name}</h3>
+                   </div>
+                   <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm">
+                     {std.description}
+                   </p>
+                 </div>
+               </motion.div>
+             ))}
+           </div>
+           
+         </div>
+      </section>
+
+      {/* 5. Quick links
+          Task: Collection, Learn, Membership
+      */}
+      <section className="py-32 px-6 md:px-12 max-w-screen-2xl mx-auto">
+         <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-y border-[#1A1A1A]">
+           
+           <button onClick={() => navigate('/collection')} className="group p-12 lg:p-16 border-b md:border-b-0 md:border-r border-[#1A1A1A]/20 hover:bg-[#1A1A1A] hover:text-[#EAE8E3] transition-colors flex flex-col justify-between min-h-[350px] text-left">
+             <div>
+               <span className="text-[10px] tracking-widest uppercase opacity-40 block mb-8 font-mono">01. Archive</span>
+               <h2 className="text-4xl font-light mb-6">Collection</h2>
+               <p className="text-sm font-light leading-relaxed opacity-70">
+                 檢閱單株個體數據紀錄。<br/>追蹤長時間的培育變化與型態。
+               </p>
+             </div>
+             <div className="flex items-center gap-3 text-xs tracking-widest uppercase mt-12 font-medium">
+               探索檔案 <ArrowRight size={14} className="transform group-hover:translate-x-2 transition-transform" />
+             </div>
+           </button>
+
+           <button onClick={() => navigate('/learn')} className="group p-12 lg:p-16 border-b md:border-b-0 md:border-r border-[#1A1A1A]/20 hover:bg-[#1A1A1A] hover:text-[#EAE8E3] transition-colors flex flex-col justify-between min-h-[350px] text-left">
+             <div>
+               <span className="text-[10px] tracking-widest uppercase opacity-40 block mb-8 font-mono">02. Knowledge</span>
+               <h2 className="text-4xl font-light mb-6">Learn</h2>
+               <p className="text-sm font-light leading-relaxed opacity-70">
+                 學習五大客觀觀察維度。<br/>建立對龜甲龍的科學式判讀標準。
+               </p>
+             </div>
+             <div className="flex items-center gap-3 text-xs tracking-widest uppercase mt-12 font-medium">
+               閱讀標準 <ArrowRight size={14} className="transform group-hover:translate-x-2 transition-transform" />
+             </div>
+           </button>
+
+           <button onClick={() => navigate('/membership')} className="group p-12 lg:p-16 hover:bg-[#1A1A1A] hover:text-[#EAE8E3] transition-colors flex flex-col justify-between min-h-[350px] text-left">
+             <div>
+               <span className="text-[10px] tracking-widest uppercase opacity-40 block mb-8 font-mono">03. System</span>
+               <h2 className="text-4xl font-light mb-6">Membership</h2>
+               <p className="text-sm font-light leading-relaxed opacity-70">
+                 確認長期參與資格與門檻。<br/>了解本站的審核機制與檔案存取權限。
+               </p>
+             </div>
+             <div className="flex items-center gap-3 text-xs tracking-widest uppercase mt-12 font-medium">
+               了解制度 <ArrowRight size={14} className="transform group-hover:translate-x-2 transition-transform" />
+             </div>
+           </button>
+
+         </div>
+      </section>
+
     </div>
   );
 }

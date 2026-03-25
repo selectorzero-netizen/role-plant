@@ -285,118 +285,187 @@ export function SinglePlantPage() {
     switch (mappedStatus) {
       case 'Available':
         return (
-          <button onClick={handleApply} disabled={loading} className="w-full bg-[#1A1A1A] text-white py-4 text-sm tracking-widest uppercase hover:bg-[#5A6B58] transition-colors mt-8 disabled:opacity-50">
-            {loading ? '處理中...' : '申請收藏此檔案'}
+          <button onClick={handleApply} disabled={loading} className="w-full bg-[#1A1A1A] text-[#EAE8E3] py-5 text-xs tracking-widest uppercase hover:bg-[#2A2A2A] transition-colors disabled:opacity-50 border border-[#1A1A1A]">
+            {loading ? '處理中...' : '提交檔案檢閱與申請'}
           </button>
         );
       case 'Observation':
         return (
-          <button onClick={handleTrack} disabled={loading} className={`w-full py-4 text-sm tracking-widest uppercase transition-colors mt-8 disabled:opacity-50 ${isTracked ? 'bg-[#5A6B58] text-white hover:bg-[#4A5B48]' : 'border border-[#1A1A1A] text-[#1A1A1A] hover:bg-[#F7F7F5]'}`}>
-            {loading ? '處理中...' : (isTracked ? '前往追蹤清單' : '加入追蹤清單')}
+          <button onClick={handleTrack} disabled={loading} className={`w-full py-5 text-xs tracking-widest uppercase transition-colors disabled:opacity-50 ${isTracked ? 'bg-[#1A1A1A] text-[#EAE8E3]' : 'border border-[#1A1A1A]/20 text-[#1A1A1A] hover:border-[#1A1A1A]'}`}>
+            {loading ? '處理中...' : (isTracked ? '追蹤名錄已收錄' : '寫入個人追蹤名錄')}
           </button>
         );
       case 'Archived':
       default:
         return (
-          <button disabled className="w-full bg-[#EBEBE8] text-[#1A1A1A]/40 cursor-not-allowed py-4 text-sm tracking-widest uppercase mt-8">
-            已蒙收藏 / 歷史檔案
-          </button>
+           <div className="w-full text-center border-t border-b border-[#1A1A1A]/10 py-5">
+             <span className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 font-mono">STATUS: {plant.status.toUpperCase()} (檔案已封存)</span>
+           </div>
         );
     }
   };
 
   if (fetching) {
-    return <div className="max-w-7xl mx-auto px-6 md:px-12 pt-12 text-center text-[#1A1A1A]/50">載入中...</div>;
+    return <div className="min-h-screen bg-[#EAE8E3] flex justify-center items-center text-[#1A1A1A]/50 text-xs tracking-widest uppercase font-mono">Reading Data...</div>;
   }
 
-  if (!plant) return null;
+  if (!plant) {
+    return <div className="min-h-screen bg-[#EAE8E3] flex justify-center items-center text-[#1A1A1A]/50 text-xs tracking-widest uppercase font-mono">No Records Found.</div>;
+  }
+
+  // 1. 主圖區 (Main Image Area) fallback logic
+  const hasImages = plant.images && plant.images.length > 0;
+  const coverImage = plant.coverImageUrl || (hasImages ? plant.images.find((i:any) => i.isCover)?.url || plant.images[0].url : plant.image);
 
   return (
-    <div className="max-w-7xl mx-auto px-6 md:px-12 pt-6">
-      <div className="flex justify-between items-center mb-12">
-        <button onClick={() => navigate('/collection')} className="flex items-center gap-2 text-xs tracking-widest uppercase text-[#1A1A1A]/50 hover:text-[#1A1A1A] transition-colors">
-          <ArrowLeft size={14} /><span>返回檔案列表</span>
+    <div className="bg-[#EAE8E3] min-h-screen text-[#1A1A1A] pb-32">
+      
+      {/* Navbar/Header Return */}
+      <div className="px-6 md:px-12 py-8 flex justify-between items-center border-b border-[#1A1A1A]/10">
+        <button onClick={() => navigate('/collection')} className="flex items-center gap-3 text-[10px] tracking-widest uppercase text-[#1A1A1A]/50 hover:text-[#1A1A1A] transition-colors font-medium">
+          <ArrowLeft size={16} /><span>返回總覽</span>
         </button>
-        {(userProfile?.role === 'admin' || userProfile?.role === 'editor') && (
-          <button onClick={() => navigate(`/admin/plants/${plant.id}`)} className="text-xs tracking-widest uppercase text-[#5A6B58] hover:underline flex items-center gap-2 border border-[#5A6B58] px-4 py-2">
-            編輯植物資料
-          </button>
-        )}
+        <span className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 font-mono">Role Plant Archive</span>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-        <div className="relative aspect-[3/4] bg-[#EBEBE8]">
-          {plant.coverImageUrl ? (
-            <img src={plant.coverImageUrl} alt={plant.name} className="w-full h-full object-cover" />
-          ) : plant.images && plant.images.length > 0 ? (
-            <img src={plant.images.find((i:any) => i.isCover)?.url || plant.images[0].url} alt={plant.name} className="w-full h-full object-cover" />
+      <div className="max-w-screen-2xl mx-auto px-6 md:px-12 pt-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+        
+        {/* 1. 主圖區 */}
+        <div className="lg:col-span-7">
+          {coverImage ? (
+            <div className="aspect-[4/5] md:aspect-auto md:h-[80vh] bg-[#DCD7C9] overflow-hidden sticky top-8">
+               <img src={coverImage} alt={plant.name} className="w-full h-full object-cover filter contrast-110 saturate-50" />
+            </div>
           ) : (
-            <SafeImage src={plant.image} alt={plant.id} className="w-full h-full object-cover" fallbackText={plant.name || plant.id} />
+             <div className="aspect-[4/5] md:aspect-auto md:h-[80vh] bg-[#DCD7C9] flex items-center justify-center border border-[#1A1A1A]/10 sticky top-8">
+               <span className="text-[10px] font-mono tracking-widest text-[#1A1A1A]/30">/ 無相片紀錄 /</span>
+             </div>
           )}
         </div>
 
-        <div>
-          <div className="mb-12 border-b border-[#1A1A1A]/10 pb-8">
-            <div className="flex justify-between items-start mb-2">
-              <h1 className="font-mono text-3xl">{plant.name}</h1>
-              <span className={`text-[10px] tracking-widest uppercase px-2 py-1 border ${plant.status === 'Available' ? 'border-[#5A6B58] text-[#5A6B58]' : 'border-[#1A1A1A]/20 text-[#1A1A1A]/50'}`}>
-                {plant.status}
-              </span>
+        {/* Right Column: Data & Actions */}
+        <div className="lg:col-span-5 flex flex-col pt-4 md:pt-8 min-h-[80vh]">
+          
+          {/* 2. 基本檔案區 (Basic Profile Area) */}
+          <div className="mb-16 border-b border-[#1A1A1A]/10 pb-12">
+            <div className="mb-4">
+              <p className="text-[10px] text-[#1A1A1A]/50 font-mono uppercase tracking-widest">S/N: {plant.serialNumber || plant.id}</p>
             </div>
-            <p className="text-sm text-[#1A1A1A]/50 italic mb-1 font-serif">{plant.scientificName}</p>
-            {plant.localName && <p className="text-sm text-[#1A1A1A]/60 mb-6 font-medium">{plant.localName}</p>}
-            <p className="text-xs text-[#1A1A1A]/40 font-mono mb-6 pb-6 border-b border-[#1A1A1A]/5">S/N: {plant.serialNumber || plant.id}</p>
             
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <span className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-1">尺寸</span>
-                <span className="font-light">{plant.size}</span>
-              </div>
-              <div>
-                <span className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-1">來源</span>
-                <span className="font-light">{plant.source}</span>
-              </div>
+            <h1 className="text-4xl md:text-5xl font-light tracking-tight mb-2 leading-tight">{plant.name}</h1>
+            <p className="text-sm text-[#1A1A1A]/60 italic mb-6 font-serif">{plant.scientificName}</p>
+            
+            <div className="grid grid-cols-2 gap-x-8 gap-y-6 mt-12 bg-[#1A1A1A]/[0.02] p-6 border border-[#1A1A1A]/5">
+               {plant.localName && (
+                 <div>
+                   <span className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-1 font-mono">Local Name</span>
+                   <span className="text-sm font-medium">{plant.localName}</span>
+                 </div>
+               )}
+               {plant.category && (
+                 <div>
+                   <span className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-1 font-mono">Category</span>
+                   <span className="text-sm font-medium flex items-center gap-2">
+                     <span className="w-1.5 h-1.5 rounded-full bg-[#1A1A1A]"></span>
+                     {plant.category}
+                   </span>
+                 </div>
+               )}
+               {plant.size && (
+                 <div className="min-w-0">
+                   <span className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-1 font-mono">Size</span>
+                   <span className="text-sm font-light block truncate" title={plant.size}>{plant.size}</span>
+                 </div>
+               )}
+               {plant.source && (
+                 <div>
+                   <span className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-1 font-mono">Source</span>
+                   <span className="text-sm font-light">{plant.source}</span>
+                 </div>
+               )}
+               {plant.grade && (
+                 <div>
+                   <span className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-1 font-mono">Grade</span>
+                   <span className="text-sm font-mono">{plant.grade}</span>
+                 </div>
+               )}
             </div>
           </div>
 
-          <div className="space-y-10">
-            <div>
-              <h3 className="text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-4">判讀摘要 Evaluation</h3>
-              {plant.stats && (
-                <div className="grid grid-cols-3 gap-4 mb-6 bg-white p-4 border border-[#1A1A1A]/5">
-                  <div className="text-center">
-                    <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">龜甲表現</p>
-                    <p className="font-mono text-lg">{plant.stats.expression}</p>
-                  </div>
-                  <div className="text-center border-l border-r border-[#1A1A1A]/10">
-                    <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">面相平衡</p>
-                    <p className="font-mono text-lg">{plant.stats.balance}</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-1">塊根比例</p>
-                    <p className="font-mono text-lg">{plant.stats.proportion}</p>
-                  </div>
+          {/* 3. 判讀焦點區 (Evaluation Focus Area) */}
+          {(plant.stats?.expression || plant.stats?.balance || plant.stats?.proportion || plant.details?.summary || plant.description) && (
+            <div className="mb-16 space-y-8 border-b border-[#1A1A1A]/10 pb-12">
+              <h2 className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/50 font-mono flex items-center gap-4">
+                Evaluation <span className="flex-1 h-px bg-[#1A1A1A]/10"></span>
+              </h2>
+              
+              {plant.stats && (plant.stats.expression || plant.stats.balance || plant.stats.proportion) && (
+                <div className="grid grid-cols-3 gap-px bg-[#1A1A1A]/10 border border-[#1A1A1A]/10">
+                  {plant.stats.expression ? (
+                    <div className="bg-[#EAE8E3] p-4 text-center">
+                      <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-2">龜甲表現</p>
+                      <p className="font-mono text-base">{plant.stats.expression}</p>
+                    </div>
+                  ) : <div className="bg-[#EAE8E3]"></div>}
+                  {plant.stats.balance ? (
+                    <div className="bg-[#EAE8E3] p-4 text-center">
+                      <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-2">面相平衡</p>
+                      <p className="font-mono text-base">{plant.stats.balance}</p>
+                    </div>
+                  ) : <div className="bg-[#EAE8E3]"></div>}
+                  {plant.stats.proportion ? (
+                    <div className="bg-[#EAE8E3] p-4 text-center">
+                      <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-2">塊根比例</p>
+                      <p className="font-mono text-base">{plant.stats.proportion}</p>
+                    </div>
+                  ) : <div className="bg-[#EAE8E3]"></div>}
                 </div>
               )}
-              <p className="text-[#1A1A1A]/80 font-light leading-relaxed text-sm">{plant.details?.summary || plant.description || ''}</p>
+
+              {(plant.details?.summary || plant.description) && (
+                <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm">
+                  {plant.details?.summary || plant.description}
+                </p>
+              )}
             </div>
+          )}
 
-            {plant.details?.suitableFor && (
-              <div>
-                <h3 className="text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-3">適合對象 Suitable For</h3>
-                <p className="text-[#1A1A1A]/80 font-light leading-relaxed text-sm">{plant.details.suitableFor}</p>
-              </div>
-            )}
+          {/* 4. 狀態紀錄區 (Status Record Area) */}
+          {(plant.details?.suitableFor || plant.details?.cultivationNotes) && (
+            <div className="mb-16 space-y-8 border-b border-[#1A1A1A]/10 pb-12">
+               <h2 className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/50 font-mono flex items-center gap-4">
+                Records <span className="flex-1 h-px bg-[#1A1A1A]/10"></span>
+              </h2>
+              
+              {plant.details?.suitableFor && (
+                <div>
+                  <h3 className="text-[10px] font-mono mb-2 tracking-widest text-[#1A1A1A]/40 uppercase">適合對象</h3>
+                  <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm">{plant.details.suitableFor}</p>
+                </div>
+              )}
+              {plant.details?.cultivationNotes && (
+                <div>
+                  <h3 className="text-[10px] font-mono mb-2 tracking-widest text-[#1A1A1A]/40 uppercase">培育提醒</h3>
+                  <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm">{plant.details.cultivationNotes}</p>
+                </div>
+              )}
+            </div>
+          )}
 
-            {plant.details?.cultivationNotes && (
-              <div>
-                <h3 className="text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-3">培育提醒 Cultivation Notes</h3>
-                <p className="text-[#1A1A1A]/80 font-light leading-relaxed text-sm">{plant.details.cultivationNotes}</p>
-              </div>
-            )}
-
+          {/* 5. 申請 / 追蹤 CTA */}
+          <div className="mt-auto">
             {renderCTA()}
+
+            {/* Admin Backdoor */}
+            {(userProfile?.role === 'admin' || userProfile?.role === 'editor') && (
+              <div className="mt-16 pt-8 border-t border-[#1A1A1A]/10 text-right">
+                <button onClick={() => navigate(`/admin/plants/${plant.id}`)} className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/20 hover:text-[#1A1A1A] transition-colors font-mono">
+                  [ System: Edit Profile ]
+                </button>
+              </div>
+            )}
           </div>
+          
         </div>
       </div>
     </div>
