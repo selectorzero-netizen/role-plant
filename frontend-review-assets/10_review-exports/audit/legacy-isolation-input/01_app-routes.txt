@@ -1,0 +1,30 @@
+﻿src\App.tsx:101: path: '/about',
+src\App.tsx:105: path: '/membership',
+src\App.tsx:109: path: '/login',
+src\App.tsx:113: path: '/member',
+src\App.tsx:114: element: <ProtectedRoute><Layout><MemberPage /></Layout></ProtectedRoute>
+src\App.tsx:118: path: '/admin',
+src\App.tsx:119: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminDashboard /></AdminLayout></ProtectedRoute>
+src\App.tsx:123: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminPlants /></AdminLayout></ProtectedRoute>
+src\App.tsx:127: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminPlantEditor /></AdminLayout></ProtectedRoute>
+src\App.tsx:131: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminUsers /></AdminLayout></ProtectedRoute>
+src\App.tsx:135: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminUsers /></AdminLayout></ProtectedRoute>
+src\App.tsx:139: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminApplications /></AdminLayout></ProtectedRoute>
+src\App.tsx:143: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminInquiries /></AdminLayout></ProtectedRoute>
+src\App.tsx:147: element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminPosts /></AdminLayout></ProtectedRoute>
+src\App.tsx:151: element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminPostEditor /></AdminLayout></ProtectedRoute>
+src\App.tsx:155: element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminMedia /></AdminLayout></ProtectedRoute>
+src\App.tsx:159: element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminContentList /></AdminLayout></ProtectedRoute>
+src\App.tsx:163: element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminContentEditor /></AdminLayout></ProtectedRoute>
+src\App.tsx:167: element: <ProtectedRoute requireRole="super_admin"><AdminLayout><AdminSettings /></AdminLayout></ProtectedRoute>
+src\App.tsx:171: element: <ProtectedRoute requireRole="super_admin"><AdminLayout><AdminTaxonomy /></AdminLayout></ProtectedRoute>
+src\App.tsx:21: const ProtectedRoute = ({
+src\App.tsx:4: import { CollectionPage, SinglePlantPage } from './pages/CollectionPages';
+src\App.tsx:5: import { MemberPage, LoginPage } from './pages/MemberPages';
+src\App.tsx:73: path: '/',
+src\App.tsx:77: path: '/collection',
+src\App.tsx:81: path: '/collection/:id',
+src\App.tsx:85: path: '/learn',
+src\App.tsx:89: path: '/business',
+src\App.tsx:93: path: '/posts',
+src\App.tsx:97: path: '/posts/:slug',

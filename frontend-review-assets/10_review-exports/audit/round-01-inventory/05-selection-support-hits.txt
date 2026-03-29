@@ -1,0 +1,202 @@
+capture.js:56: await page.goto('http://localhost:5173/collection', { waitUntil: 'domcontentloaded' });
+capture.js:58: await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/70684471-0245-4085-83e2-e71308efcea4/collection.png' });
+capture_emulator.js:15: await page.goto('http://localhost:5173/login', { waitUntil: 'domcontentloaded' });
+capture_emulator.js:112: await page.goto('http://localhost:5173/collection', { waitUntil: 'domcontentloaded' });
+capture_real.js:38: await page.goto('http://localhost:5173/collection', { waitUntil: 'domcontentloaded' });
+firebase-blueprint.json:95: "/applications/{applicationId}": {
+firebase-blueprint.json:97: "description": "Stores user applications for plants."
+firebase-blueprint.json:99: "/inquiries/{inquiryId}": {
+firebase-blueprint.json:101: "description": "Stores business inquiries."
+package-lock.json:2738: "follow-redirects": "^1.15.11",
+package-lock.json:2866: "url": "https://feross.org/support"
+package-lock.json:3032: "url": "https://feross.org/support"
+package-lock.json:3306: "supports-color": {
+package-lock.json:3911: "node_modules/follow-redirects": {
+package-lock.json:3913: "resolved": "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.15.11.tgz",
+package-lock.json:4208: "deprecated": "Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me",
+package-lock.json:4409: "url": "https://feross.org/support"
+package-lock.json:5894: "url": "https://feross.org/support"
+package-lock.json:6108: "url": "https://feross.org/support"
+package-lock.json:6128: "url": "https://feross.org/support"
+src\App.tsx:4: import { CollectionPage, SinglePlantPage } from './pages/CollectionPages';
+src\App.tsx:5: import { MemberPage, LoginPage } from './pages/MemberPages';
+src\App.tsx:6: import { AdminLayout, AdminDashboard, AdminUsers, AdminApplications } from './pages/AdminPages';
+src\App.tsx:11: import { AdminInquiries } from './pages/AdminInquiries';
+src\App.tsx:40: <a href="/login" className="px-6 py-3 border border-[#1A1A1A]/20 text-xs tracking-widest hover:bg-[#1A1A1A]/5 transition-colors">返回登入 (Back)</a>
+src\App.tsx:47: if (!userProfile) return <Navigate to="/login" state={{ from: location }} replace />;
+src\App.tsx:77: path: '/collection',
+src\App.tsx:81: path: '/collection/:id',
+src\App.tsx:85: path: '/learn',
+src\App.tsx:89: path: '/business',
+src\App.tsx:93: path: '/posts',
+src\App.tsx:97: path: '/posts/:slug',
+src\App.tsx:101: path: '/about',
+src\App.tsx:105: path: '/membership',
+src\App.tsx:109: path: '/login',
+src\App.tsx:113: path: '/member',
+src\App.tsx:134: path: '/admin/members',
+src\App.tsx:138: path: '/admin/applications',
+src\App.tsx:139: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminApplications /></AdminLayout></ProtectedRoute>
+src\App.tsx:142: path: '/admin/inquiries',
+src\App.tsx:143: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminInquiries /></AdminLayout></ProtectedRoute>
+src\App.tsx:146: path: '/admin/posts',
+src\App.tsx:150: path: '/admin/posts/:id',
+src\AuthContext.tsx:19: favorites: [],
+src\components\Shared.tsx:71: { name: 'Collection', path: '/collection', label: '龜甲龍' },
+src\components\Shared.tsx:72: { name: 'Learn', path: '/learn', label: '判讀與培育' },
+src\components\Shared.tsx:73: { name: 'Membership', path: '/membership', label: '會員制度' },
+src\components\Shared.tsx:74: { name: 'About', path: '/about', label: '關於我們' },
+src\components\Shared.tsx:75: { name: 'Business', path: '/business', label: '合作' },
+src\components\Shared.tsx:127: <Link to="/login" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A]/60 hover:text-[#5A6B58] transition-colors">
+src\components\Shared.tsx:133: <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium">
+src\components\Shared.tsx:143: <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium flex items-center gap-3">
+src\components\Shared.tsx:149: <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium flex items-center gap-2">
+src\components\Shared.tsx:175: <Link to="/login" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A]/50 border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+src\components\Shared.tsx:182: <Link to="/member" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+src\components\Shared.tsx:193: <Link to="/member" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+src\components\Shared.tsx:199: <Link to="/member" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+src\components\Shared.tsx:231: <li><Link to="/collection" className="hover:text-white transition-colors">選拔檔案 Collection</Link></li>
+src\components\Shared.tsx:232: <li><Link to="/learn" className="hover:text-white transition-colors">判讀與培育 Learn</Link></li>
+src\components\Shared.tsx:233: <li><Link to="/business" className="hover:text-white transition-colors">合作與業務 Business</Link></li>
+src\mocks\handlers.ts:8: // MSW is no longer intercepting /api/auth/me or /api/auth/login.
+src\pages\AdminContentEditor.tsx:18: FaqContent
+src\pages\AdminContentEditor.tsx:31: { id: 'faq', label: 'FAQ 常見問題' },
+src\pages\AdminContentEditor.tsx:109: case 'faq': return <FaqForm onSaveStatus={setSaveStatus} />;
+src\pages\AdminContentEditor.tsx:714: function FaqForm({ onSaveStatus }: any) {
+src\pages\AdminContentEditor.tsx:715: const [data, setData] = useState<FaqContent | null>(null);
+src\pages\AdminContentEditor.tsx:716: const [original, setOriginal] = useState<FaqContent | null>(null);
+src\pages\AdminContentEditor.tsx:720: contentService.getPageContent<FaqContent>('faq').then(d => {
+src\pages\AdminContentEditor.tsx:732: await contentService.savePageContent('faq', data);
+src\pages\AdminContentEditor.tsx:740: entityId: 'faq',
+src\pages\AdminContentEditor.tsx:741: details: 'Updated FAQ page content',
+src\pages\AdminContentEditor.tsx:803: + 新增 FAQ 項目
+src\pages\AdminContentEditor.tsx:813: <Save size={16} /> 儲存 FAQ 內容
+src\pages\AdminInquiries.tsx:2: * AdminInquiries.tsx
+src\pages\AdminInquiries.tsx:4: * Admin interface for managing inquiries.
+src\pages\AdminInquiries.tsx:26: export function AdminInquiries() {
+src\pages\AdminInquiries.tsx:27: const [inquiries, setInquiries] = useState<Inquiry[]>([]);
+src\pages\AdminInquiries.tsx:33: const fetchInquiries = async () => {
+src\pages\AdminInquiries.tsx:40: const data = await inquiryService.getInquiries(filters);
+src\pages\AdminInquiries.tsx:41: setInquiries(data);
+src\pages\AdminInquiries.tsx:43: console.error("Error fetching inquiries:", error);
+src\pages\AdminInquiries.tsx:50: fetchInquiries();
+src\pages\AdminInquiries.tsx:55: fetchInquiries();
+src\pages\AdminInquiries.tsx:63: fetchInquiries();
+src\pages\AdminInquiries.tsx:123: ) : inquiries.length === 0 ? (
+src\pages\AdminInquiries.tsx:126: inquiries.map(inquiry => (
+src\pages\AdminPages.tsx:51: { label: '文章管理 (Posts)', to: '/admin/posts', icon: <FileEdit size={16} />, permission: 'manage_posts' },
+src\pages\AdminPages.tsx:58: { label: '入會申請 (Applications)', to: '/admin/applications', icon: <ClipboardCheck size={16} />, permission: 'manage_applications' },
+src\pages\AdminPages.tsx:59: { label: '客服諮詢 (Inquiries)', to: '/admin/inquiries', icon: <MessageSquare size={16} />, permission: 'manage_inquiries' },
+src\pages\AdminPages.tsx:364: export function AdminApplications() {
+src\pages\AdminPages.tsx:365: const [applications, setApplications] = useState<ApplicationWithUser[]>([]);
+src\pages\AdminPages.tsx:374: const data = await adminService.getAllApplications();
+src\pages\AdminPages.tsx:375: setApplications(data);
+src\pages\AdminPages.tsx:377: console.error("Error fetching applications:", error);
+src\pages\AdminPages.tsx:390: const oldApp = applications.find(a => a.id === appId);
+src\pages\AdminPages.tsx:393: await adminService.updateApplicationStatus(appId, newStatus);
+src\pages\AdminPages.tsx:408: setApplications(apps => apps.map(app => app.id === appId ? { ...app, status: newStatus } : app));
+src\pages\AdminPages.tsx:417: const filteredApps = applications.filter(a => filterStatus === 'all' || a.status === filterStatus);
+src\pages\AdminPages.tsx:423: <h1 className="text-3xl font-light tracking-tight mb-2">Plant Applications</h1>
+src\pages\AdminPages.tsx:431: <option value="all">All Applications</option>
+src\pages\AdminPostEditor.tsx:12: } from '../services/postService';
+src\pages\AdminPostEditor.tsx:128: navigate(`/admin/posts/${newId}`, { replace: true });
+src\pages\AdminPostEditor.tsx:207: <Link to="/admin/posts" className="p-2 hover:bg-[#1A1A1A]/5 rounded-full transition-colors">
+src\pages\AdminPostEditor.tsx:377: placeholder="貼上圖片 URL（如 /images/posts/xxx.jpg）"
+src\pages\AdminPosts.tsx:8: import { postService, Post, PostStatus } from '../services/postService';
+src\pages\AdminPosts.tsx:61: navigate(`/admin/posts/${res.id}`);
+src\pages\AdminPosts.tsx:156: to={`/admin/posts/${post.id}`}
+src\pages\AdminSettings.tsx:194: <p className="text-sm text-[#1A1A1A]/50 mb-8 border-b border-[#1A1A1A]/10 pb-4">此區塊控制未登入訪客在 /membership 頁面頂端看到的主視覺宣告。</p>
+src\pages\AdminSettings.tsx:325: <p className="text-xs text-[#1A1A1A]/50 mb-3 ml-3">位置：顯示於 /login 頁面 Google 授權按鈕下方。</p>
+src\pages\AdminSettings.tsx:333: <p className="text-xs text-[#1A1A1A]/50 mb-3 ml-3">位置：申請者初次登入進入 /member 時看到的黃底說明區塊。</p>
+src\pages\CollectionPages.tsx:6: import { favoritesService } from '../services/favoritesService';
+src\pages\CollectionPages.tsx:7: import { memberApplicationService } from '../services/memberApplicationService';
+src\pages\CollectionPages.tsx:177: <div key={item.id} className="group cursor-pointer flex flex-col" onClick={() => navigate(`/collection/${item.id}`)}>
+src\pages\CollectionPages.tsx:261: navigate('/login');
+src\pages\CollectionPages.tsx:270: await memberApplicationService.createApplication({
+src\pages\CollectionPages.tsx:277: navigate('/member');
+src\pages\CollectionPages.tsx:288: navigate('/login');
+src\pages\CollectionPages.tsx:296: const isTracked = userProfile?.favorites?.includes(plant.id);
+src\pages\CollectionPages.tsx:298: navigate('/member');
+src\pages\CollectionPages.tsx:304: await favoritesService.addFavorite(user.uid, plant.id);
+src\pages\CollectionPages.tsx:305: navigate('/member');
+src\pages\CollectionPages.tsx:316: const isTracked = userProfile?.favorites?.includes(plant.id);
+src\pages\CollectionPages.tsx:370: <button onClick={() => navigate('/collection')} className="flex items-center gap-3 text-[10px] tracking-widest uppercase text-[#1A1A1A]/50 hover:text-[#1A1A1A] transition-colors font-medium">
+src\pages\MemberPages.tsx:10: import { favoritesService } from '../services/favoritesService';
+src\pages\MemberPages.tsx:11: import { memberApplicationService } from '../services/memberApplicationService';
+src\pages\MemberPages.tsx:27: navigate('/member');
+src\pages\MemberPages.tsx:73: const [activeTab, setActiveTab] = useState<'favorites' | 'applications' | 'settings'>('favorites');
+src\pages\MemberPages.tsx:74: const [applications, setApplications] = useState<any[]>([]);
+src\pages\MemberPages.tsx:80: if (userProfile?.favorites && userProfile.favorites.length > 0) {
+src\pages\MemberPages.tsx:81: favoritesService.getFavoritePlants(userProfile.favorites).then(favs => {
+src\pages\MemberPages.tsx:84: console.error("Error fetching favorites:", err);
+src\pages\MemberPages.tsx:93: if (user && activeTab === 'applications') {
+src\pages\MemberPages.tsx:94: memberApplicationService.getApplicationsByUser(user.uid).then(apps => {
+src\pages\MemberPages.tsx:95: setApplications(apps);
+src\pages\MemberPages.tsx:97: console.error("Error fetching applications:", err);
+src\pages\MemberPages.tsx:98: setApplications([]);
+src\pages\MemberPages.tsx:120: onClick={() => setActiveTab('favorites')}
+src\pages\MemberPages.tsx:121: className={`w-full text-left px-4 py-3 text-sm tracking-widest flex items-center gap-3 transition-colors ${activeTab === 'favorites' ? 'bg-[#1A1A1A] text-white' : 'hover:bg-[#1A1A1A]/5'}`}
+src\pages\MemberPages.tsx:127: onClick={() => setActiveTab('applications')}
+src\pages\MemberPages.tsx:128: className={`w-full text-left px-4 py-3 text-sm tracking-widest flex items-center gap-3 transition-colors ${activeTab === 'applications' ? 'bg-[#1A1A1A] text-white' : 'hover:bg-[#1A1A1A]/5'}`}
+src\pages\MemberPages.tsx:178: {activeTab === 'favorites' && (
+src\pages\MemberPages.tsx:184: <div key={plant.id} className="group cursor-pointer border border-[#1A1A1A]/10 p-4 flex gap-4" onClick={() => navigate(`/collection/${plant.id}`)}>
+src\pages\MemberPages.tsx:208: {activeTab === 'applications' && (
+src\pages\MemberPages.tsx:222: {applications.length > 0 ? applications.map(app => (
+src\pages\MemberPages.tsx:225: <td className="px-4 py-4 font-mono cursor-pointer hover:text-[#5A6B58]" onClick={() => navigate(`/collection/${app.plantId}`)}>{app.plantId}</td>
+src\pages\PostPages.tsx:8: import { postService, Post } from '../services/postService';
+src\pages\PostPages.tsx:90: <Link key={post.id} to={`/posts/${post.slug}`} className="group space-y-6 block">
+src\pages\PostPages.tsx:148: <Link to="/posts" className="inline-block text-xs uppercase tracking-widest border-b border-[#1A1A1A]/20 pb-1 mt-4">返回文章列表</Link>
+src\pages\PostPages.tsx:163: <Link to="/posts" className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[#1A1A1A]/40 mb-12 hover:text-[#1A1A1A] transition-colors group w-fit">
+src\pages\PublicPages.tsx:9: import { contentService, HomeContent, AboutContent, BusinessContent, MembershipContent, LearnContent, FaqContent } from '../services/contentService';
+src\pages\PublicPages.tsx:78: <Link to="/collection" className="group border-b border-[#1A1A1A] pb-3 flex justify-between items-center hover:pr-4 transition-all duration-300">
+src\pages\PublicPages.tsx:82: <Link to="/membership" className="group border-b border-[#1A1A1A]/20 pb-3 flex justify-between items-center hover:pr-4 hover:border-[#1A1A1A] transition-all duration-300 text-[#1A1A1A]/60 hover:text-[#1A1A1A]">
+src\pages\PublicPages.tsx:100: <Link to="/collection" className="text-sm tracking-widest uppercase border border-[#1A1A1A] px-10 py-5 hover:bg-[#1A1A1A] hover:text-[#EAE8E3] transition-colors inline-block text-center">
+src\pages\PublicPages.tsx:121: onClick={() => navigate(`/collection/${plant.id}`)}
+src\pages\PublicPages.tsx:232: <button onClick={() => navigate('/collection')} className="group p-12 lg:p-16 border-b md:border-b-0 md:border-r border-[#1A1A1A]/20 hover:bg-[#1A1A1A] hover:text-[#EAE8E3] transition-colors flex flex-col justify-between min-h-[350px] text-left">
+src\pages\PublicPages.tsx:245: <button onClick={() => navigate('/learn')} className="group p-12 lg:p-16 border-b md:border-b-0 md:border-r border-[#1A1A1A]/20 hover:bg-[#1A1A1A] hover:text-[#EAE8E3] transition-colors flex flex-col justify-between min-h-[350px] text-left">
+src\pages\PublicPages.tsx:258: <button onClick={() => navigate('/membership')} className="group p-12 lg:p-16 hover:bg-[#1A1A1A] hover:text-[#EAE8E3] transition-colors flex flex-col justify-between min-h-[350px] text-left">
+src\pages\PublicPages.tsx:353: <button onClick={() => navigate('/login')} className="bg-white text-[#1A1A1A] px-8 py-4 text-sm tracking-widest uppercase hover:bg-[#EBEBE8] transition-colors">
+src\pages\PublicPages.tsx:508: const [activeTab, setActiveTab] = useState<'standards' | 'faq'>('standards');
+src\pages\PublicPages.tsx:525: const [faqCms, setFaqCms] = useState<FaqContent>({
+src\pages\PublicPages.tsx:541: contentService.getPageContent<FaqContent>('faq')
+src\pages\PublicPages.tsx:544: if (fres) setFaqCms(fres);
+src\pages\PublicPages.tsx:561: <button onClick={() => setActiveTab('faq')} className={`text-sm tracking-widest uppercase transition-colors ${activeTab === 'faq' ? 'text-[#1A1A1A] font-medium border-b-2 border-[#1A1A1A] pb-1' : 'text-[#1A1A1A]/40 hover:text-[#1A1A1A]'}`}>
+src\pages\PublicPages.tsx:562: FAQ 常見問題
+src\pages\PublicPages.tsx:608: {faqCms.items.filter(item => item.enabled).map((faq, idx) => (
+src\pages\PublicPages.tsx:611: <span className="text-[#1A1A1A]/30 font-mono">Q.</span>{faq.question}
+src\pages\PublicPages.tsx:613: <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm pl-8">{faq.answer}</p>
+src\services\adminService.ts:33: // Applications (Plant Procurement)
+src\services\adminService.ts:34: getAllApplications: async (): Promise<ApplicationWithUser[]> => {
+src\services\adminService.ts:35: const q = query(collection(db, 'applications'));
+src\services\adminService.ts:51: updateApplicationStatus: async (appId: string, status: MemberApplication['status']) => {
+src\services\adminService.ts:52: await updateDoc(doc(db, 'applications', appId), {
+src\services\authService.ts:14: favorites: [],
+src\services\contentService.ts:66: export interface FaqContent {
+src\services\contentService.ts:115: faq: {
+src\services\contentService.ts:116: title: 'FAQ',
+src\services\favoritesService.ts:6: export const favoritesService = {
+src\services\favoritesService.ts:9: favorites: arrayUnion(plantId)
+src\services\favoritesService.ts:14: favorites: arrayRemove(plantId)
+src\services\inquiryService.ts:4: * Handles General and Business inquiries.
+src\services\inquiryService.ts:61: const colRef = collection(db, 'inquiries');
+src\services\inquiryService.ts:66: * Get inquiries for admin with optional filters
+src\services\inquiryService.ts:68: async getInquiries(filters: InquiryFilters = {}) {
+src\services\inquiryService.ts:69: const colRef = collection(db, 'inquiries');
+src\services\inquiryService.ts:91: const docRef = doc(db, 'inquiries', id);
+src\services\inquiryService.ts:103: const docRef = doc(db, 'inquiries', id);
+src\services\memberApplicationService.ts:5: export const memberApplicationService = {
+src\services\memberApplicationService.ts:6: getApplicationsByUser: async (userId: string): Promise<MemberApplication[]> => {
+src\services\memberApplicationService.ts:8: const q = query(collection(db, 'applications'), where('userId', '==', userId));
+src\services\memberApplicationService.ts:14: await addDoc(collection(db, 'applications'), {
+src\utils\permissionUtils.ts:15: | 'manage_applications'
+src\utils\permissionUtils.ts:16: | 'manage_inquiries'
+src\utils\permissionUtils.ts:28: 'manage_applications',
+src\utils\permissionUtils.ts:29: 'manage_inquiries',
+src\utils\permissionUtils.ts:40: 'manage_applications',
+src\utils\permissionUtils.ts:41: 'manage_inquiries'
+test.js:21: await page.click('a[href="/collection"]');
+test.js:41: await page.click('a[href="/learn"]');
+test.js:44: if(learnText.includes('判讀與培育') || learnText.includes('FAQ')) log("✓ Learn text");
+test.js:48: await page.click('a[href="/about"]');
+test.js:55: await page.click('a[href="/business"]');
+test.js:62: let navLinks = await page.$$('a[href="/login"]');

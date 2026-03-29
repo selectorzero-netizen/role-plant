@@ -1,0 +1,23 @@
+﻿ROOT=C:\Users\User\Desktop\role-plant\role-plant
+GENERATED_AT=2026-03-28 09:12:21
+
+[KEY FILES]
+src\App.tsx | lines=170 | bytes=6961
+src\components\Shared.tsx | lines=268 | bytes=15124
+src\pages\PublicPages.tsx | lines=651 | bytes=38578
+src\pages\CollectionPages.tsx | lines=488 | bytes=25279
+src\pages\MemberPages.tsx | lines=265 | bytes=13095
+src\AuthContext.tsx | lines=136 | bytes=5055
+src\PolicyContext.tsx | lines=38 | bytes=1476
+src\services\authService.ts | lines=26 | bytes=819
+src\services\contentService.ts | lines=127 | bytes=3331
+src\services\policyService.ts | lines=75 | bytes=3820
+src\services\plantService.ts | lines=62 | bytes=2558
+src\services\memberApplicationService.ts | lines=16 | bytes=733
+src\services\favoritesService.ts | lines=28 | bytes=1088
+src\services\inquiryService.ts | lines=95 | bytes=2206
+src\pages\AdminPages.tsx | lines=503 | bytes=24110
+src\pages\AdminContentEditor.tsx | lines=746 | bytes=35341
+src\pages\AdminSettings.tsx | lines=352 | bytes=23690
+src\pages\AdminInquiries.tsx | lines=228 | bytes=10657
+package.json | lines=51 | bytes=1334

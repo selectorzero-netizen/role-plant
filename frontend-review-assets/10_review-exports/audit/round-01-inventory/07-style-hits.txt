@@ -1,0 +1,1263 @@
+package.json:19: "@tailwindcss/vite": "^4.1.14",
+package.json:41: "tailwindcss": "^4.1.14",
+package-lock.json:12: "@tailwindcss/vite": "^4.1.14",
+package-lock.json:34: "tailwindcss": "^4.1.14",
+package-lock.json:47: "js-tokens": "^4.0.0",
+package-lock.json:2130: "node_modules/@tailwindcss/node": {
+package-lock.json:2132: "resolved": "https://registry.npmjs.org/@tailwindcss/node/-/node-4.2.1.tgz",
+package-lock.json:2142: "tailwindcss": "4.2.1"
+package-lock.json:2145: "node_modules/@tailwindcss/oxide": {
+package-lock.json:2147: "resolved": "https://registry.npmjs.org/@tailwindcss/oxide/-/oxide-4.2.1.tgz",
+package-lock.json:2154: "@tailwindcss/oxide-android-arm64": "4.2.1",
+package-lock.json:2155: "@tailwindcss/oxide-darwin-arm64": "4.2.1",
+package-lock.json:2156: "@tailwindcss/oxide-darwin-x64": "4.2.1",
+package-lock.json:2157: "@tailwindcss/oxide-freebsd-x64": "4.2.1",
+package-lock.json:2158: "@tailwindcss/oxide-linux-arm-gnueabihf": "4.2.1",
+package-lock.json:2159: "@tailwindcss/oxide-linux-arm64-gnu": "4.2.1",
+package-lock.json:2160: "@tailwindcss/oxide-linux-arm64-musl": "4.2.1",
+package-lock.json:2161: "@tailwindcss/oxide-linux-x64-gnu": "4.2.1",
+package-lock.json:2162: "@tailwindcss/oxide-linux-x64-musl": "4.2.1",
+package-lock.json:2163: "@tailwindcss/oxide-wasm32-wasi": "4.2.1",
+package-lock.json:2164: "@tailwindcss/oxide-win32-arm64-msvc": "4.2.1",
+package-lock.json:2165: "@tailwindcss/oxide-win32-x64-msvc": "4.2.1"
+package-lock.json:2168: "node_modules/@tailwindcss/oxide-android-arm64": {
+package-lock.json:2170: "resolved": "https://registry.npmjs.org/@tailwindcss/oxide-android-arm64/-/oxide-android-arm64-4.2.1.tgz",
+package-lock.json:2184: "node_modules/@tailwindcss/oxide-darwin-arm64": {
+package-lock.json:2186: "resolved": "https://registry.npmjs.org/@tailwindcss/oxide-darwin-arm64/-/oxide-darwin-arm64-4.2.1.tgz",
+package-lock.json:2200: "node_modules/@tailwindcss/oxide-darwin-x64": {
+package-lock.json:2202: "resolved": "https://registry.npmjs.org/@tailwindcss/oxide-darwin-x64/-/oxide-darwin-x64-4.2.1.tgz",
+package-lock.json:2216: "node_modules/@tailwindcss/oxide-freebsd-x64": {
+package-lock.json:2218: "resolved": "https://registry.npmjs.org/@tailwindcss/oxide-freebsd-x64/-/oxide-freebsd-x64-4.2.1.tgz",
+package-lock.json:2232: "node_modules/@tailwindcss/oxide-linux-arm-gnueabihf": {
+package-lock.json:2234: "resolved": "https://registry.npmjs.org/@tailwindcss/oxide-linux-arm-gnueabihf/-/oxide-linux-arm-gnueabihf-4.2.1.tgz",
+package-lock.json:2248: "node_modules/@tailwindcss/oxide-linux-arm64-gnu": {
+package-lock.json:2250: "resolved": "https://registry.npmjs.org/@tailwindcss/oxide-linux-arm64-gnu/-/oxide-linux-arm64-gnu-4.2.1.tgz",
+package-lock.json:2264: "node_modules/@tailwindcss/oxide-linux-arm64-musl": {
+package-lock.json:2266: "resolved": "https://registry.npmjs.org/@tailwindcss/oxide-linux-arm64-musl/-/oxide-linux-arm64-musl-4.2.1.tgz",
+package-lock.json:2280: "node_modules/@tailwindcss/oxide-linux-x64-gnu": {
+package-lock.json:2282: "resolved": "https://registry.npmjs.org/@tailwindcss/oxide-linux-x64-gnu/-/oxide-linux-x64-gnu-4.2.1.tgz",
+package-lock.json:2296: "node_modules/@tailwindcss/oxide-linux-x64-musl": {
+package-lock.json:2298: "resolved": "https://registry.npmjs.org/@tailwindcss/oxide-linux-x64-musl/-/oxide-linux-x64-musl-4.2.1.tgz",
+package-lock.json:2312: "node_modules/@tailwindcss/oxide-wasm32-wasi": {
+package-lock.json:2314: "resolved": "https://registry.npmjs.org/@tailwindcss/oxide-wasm32-wasi/-/oxide-wasm32-wasi-4.2.1.tgz",
+package-lock.json:2341: "node_modules/@tailwindcss/oxide-win32-arm64-msvc": {
+package-lock.json:2343: "resolved": "https://registry.npmjs.org/@tailwindcss/oxide-win32-arm64-msvc/-/oxide-win32-arm64-msvc-4.2.1.tgz",
+package-lock.json:2357: "node_modules/@tailwindcss/oxide-win32-x64-msvc": {
+package-lock.json:2359: "resolved": "https://registry.npmjs.org/@tailwindcss/oxide-win32-x64-msvc/-/oxide-win32-x64-msvc-4.2.1.tgz",
+package-lock.json:2373: "node_modules/@tailwindcss/vite": {
+package-lock.json:2375: "resolved": "https://registry.npmjs.org/@tailwindcss/vite/-/vite-4.2.1.tgz",
+package-lock.json:2379: "@tailwindcss/node": "4.2.1",
+package-lock.json:2380: "@tailwindcss/oxide": "4.2.1",
+package-lock.json:2381: "tailwindcss": "4.2.1"
+package-lock.json:4010: "@emotion/is-prop-valid": "*",
+package-lock.json:4015: "@emotion/is-prop-valid": {
+package-lock.json:4469: "integrity": "sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==",
+package-lock.json:4513: "node_modules/js-tokens": {
+package-lock.json:4515: "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-4.0.0.tgz",
+package-lock.json:5023: "@emotion/is-prop-valid": "*",
+package-lock.json:5028: "@emotion/is-prop-valid": {
+package-lock.json:6307: "node_modules/tailwindcss": {
+package-lock.json:6309: "resolved": "https://registry.npmjs.org/tailwindcss/-/tailwindcss-4.2.1.tgz",
+package-lock.json:6621: "sass": "*",
+package-lock.json:6622: "sass-embedded": "*",
+package-lock.json:6642: "sass": {
+package-lock.json:6645: "sass-embedded": {
+src\api\client.ts:9: const token = localStorage.getItem('MOCK_TOKEN');
+src\api\client.ts:10: if (token && config.headers) {
+src\api\client.ts:11: config.headers.Authorization = `Bearer ${token}`;
+src\App.tsx:35: <div className="h-screen flex flex-col items-center justify-center bg-[#F7F7F5] px-6">
+src\App.tsx:36: <h1 className="text-2xl mb-2 font-light tracking-widest text-red-800">登入驗證失敗</h1>
+src\App.tsx:37: <p className="text-sm tracking-widest text-[#1A1A1A]/50 mb-8">無法載入會員資料 (連線超時或初始失敗)。</p>
+src\App.tsx:38: <div className="flex gap-4">
+src\App.tsx:39: <button onClick={retryInit} className="px-6 py-3 bg-[#1A1A1A] text-white text-xs tracking-widest hover:bg-[#5A6B58] transition-colors">重新嘗試 (Retry)</button>
+src\App.tsx:40: <a href="/login" className="px-6 py-3 border border-[#1A1A1A]/20 text-xs tracking-widest hover:bg-[#1A1A1A]/5 transition-colors">返回登入 (Back)</a>
+src\App.tsx:46: if (!isAuthReady) return <div className="h-screen flex items-center justify-center text-sm tracking-widest uppercase">載入權限中... Loading...</div>;
+src\App.tsx:56: <div className="h-screen flex items-center justify-center flex-col bg-[#F7F7F5]">
+src\App.tsx:57: <h1 className="text-4xl mb-4 font-light tracking-tighter">403</h1>
+src\App.tsx:58: <p className="text-[10px] tracking-widest uppercase text-gray-500">Access Denied - 權限不足</p>
+src\App.tsx:59: <a href="/" className="mt-8 text-[10px] uppercase tracking-widest border-b border-[#1A1A1A]/20 pb-1">返回首頁 Back to Home</a>
+src\App.tsx:66: return <div className="h-screen flex items-center justify-center flex-col bg-[#F7F7F5]"><h1 className="text-2xl mb-2 font-light tracking-widest text-[#1A1A1A]">Pending Approval</h1><p className="text-sm tracking-widest text-[#1A1A1A]/50">您的帳號仍在審核中</p></div>;
+src\components\MediaPicker.tsx:95: <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
+src\components\MediaPicker.tsx:96: <div className="bg-white w-full max-w-4xl h-[80vh] flex flex-col shadow-2xl overflow-hidden">
+src\components\MediaPicker.tsx:98: <div className="p-6 border-b border-[#1A1A1A]/10 flex justify-between items-center bg-[#F7F7F5]">
+src\components\MediaPicker.tsx:100: <h3 className="text-sm font-medium tracking-widest uppercase text-[#1A1A1A]">插入圖片 Media Library</h3>
+src\components\MediaPicker.tsx:101: <p className="text-[10px] text-[#1A1A1A]/40 uppercase tracking-widest mt-1">從媒體庫選擇或直接上傳新圖片</p>
+src\components\MediaPicker.tsx:103: <button onClick={onClose} className="p-2 hover:bg-[#1A1A1A]/5 rounded-full transition-colors text-[#1A1A1A]/40 hover:text-[#1A1A1A]">
+src\components\MediaPicker.tsx:109: <div className="px-6 py-4 bg-white flex gap-4 border-b border-[#1A1A1A]/5 items-center">
+src\components\MediaPicker.tsx:113: className="bg-[#1A1A1A] text-white px-6 py-2 text-xs tracking-widest uppercase flex items-center gap-2 hover:bg-[#5A6B58] transition-colors whitespace-nowrap disabled:opacity-50"
+src\components\MediaPicker.tsx:121: className="hidden"
+src\components\MediaPicker.tsx:124: <div className="relative flex-1">
+src\components\MediaPicker.tsx:125: <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-[#1A1A1A]/30" size={14} />
+src\components\MediaPicker.tsx:131: className="w-full bg-[#F7F7F5] border border-[#1A1A1A]/5 pl-10 pr-4 py-2 text-xs focus:outline-none focus:border-[#5A6B58]"
+src\components\MediaPicker.tsx:137: <div className="flex-1 overflow-y-auto p-6 scrollbar-thin bg-white">
+src\components\MediaPicker.tsx:139: <div className="flex flex-col items-center justify-center h-full opacity-20">
+src\components\MediaPicker.tsx:140: <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-[#1A1A1A] mb-4"></div>
+src\components\MediaPicker.tsx:141: <p className="text-xs uppercase tracking-widest">載入中...</p>
+src\components\MediaPicker.tsx:144: <div className="flex flex-col items-center justify-center h-full opacity-30 italic">
+src\components\MediaPicker.tsx:145: <FileImage size={40} className="mb-4 text-[#1A1A1A]/20" />
+src\components\MediaPicker.tsx:146: <p className="text-xs uppercase tracking-widest">沒有找到圖片</p>
+src\components\MediaPicker.tsx:149: <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-4">
+src\components\MediaPicker.tsx:154: className="group relative aspect-square border border-[#1A1A1A]/5 overflow-hidden hover:border-[#5A6B58] transition-all bg-[#F7F7F5]"
+src\components\MediaPicker.tsx:158: className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+src\components\MediaPicker.tsx:161: <div className="absolute inset-0 bg-[#5A6B58]/0 group-hover:bg-[#5A6B58]/10 transition-colors flex items-center justify-center">
+src\components\MediaPicker.tsx:162: <div className="bg-white/90 text-[#5A6B58] p-2 rounded-full opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all shadow-sm">
+src\components\RichTextEditor.tsx:44: <div className="border border-[#1A1A1A]/10 bg-white flex flex-col focus-within:border-[#1A1A1A]/30 transition-colors">
+src\components\RichTextEditor.tsx:45: <div className="flex items-center gap-1 border-b border-[#1A1A1A]/5 p-2 bg-[#F7F7F5]">
+src\components\RichTextEditor.tsx:49: className="p-1.5 text-[#1A1A1A]/60 hover:text-[#1A1A1A] hover:bg-[#1A1A1A]/5 rounded transition-colors"
+src\components\RichTextEditor.tsx:56: className="p-1.5 text-[#1A1A1A]/60 hover:text-[#1A1A1A] hover:bg-[#1A1A1A]/5 rounded transition-colors"
+src\components\RichTextEditor.tsx:60: <div className="w-px h-4 bg-[#1A1A1A]/10 mx-1"></div>
+src\components\RichTextEditor.tsx:64: className="p-1.5 text-[#1A1A1A]/60 hover:text-[#1A1A1A] hover:bg-[#1A1A1A]/5 rounded transition-colors"
+src\components\RichTextEditor.tsx:68: <div className="w-px h-4 bg-[#1A1A1A]/10 mx-1"></div>
+src\components\RichTextEditor.tsx:72: className="p-1.5 text-[#1A1A1A]/60 hover:text-[#1A1A1A] hover:bg-[#1A1A1A]/5 rounded transition-colors"
+src\components\RichTextEditor.tsx:79: className="p-1.5 text-[#1A1A1A]/60 hover:text-[#1A1A1A] hover:bg-[#1A1A1A]/5 rounded transition-colors"
+src\components\RichTextEditor.tsx:91: className="w-full p-4 focus:outline-none resize-y font-light leading-relaxed text-[#1A1A1A] bg-transparent"
+src\components\Shared.tsx:13: <div className={`flex flex-col items-center justify-center bg-[#EBEBE8] text-[#1A1A1A]/50 p-4 text-center ${className}`}>
+src\components\Shared.tsx:14: <span className="text-xs tracking-widest uppercase mb-2">Image Missing</span>
+src\components\Shared.tsx:15: <span className="text-[10px]">{fallbackText}</span>
+src\components\Shared.tsx:24: className={className}
+src\components\Shared.tsx:33: <div className="min-h-screen bg-[#F7F7F5] text-[#1A1A1A] font-sans selection:bg-[#5A6B58] selection:text-white flex flex-col justify-center items-center relative">
+src\components\Shared.tsx:34: <Link to="/" className="absolute top-8 left-6 md:left-12 text-lg tracking-widest font-medium">
+src\components\Shared.tsx:35: ROLE PLANT<span className="text-[#5A6B58]">.</span>
+src\components\Shared.tsx:39: <div className="fixed top-0 inset-x-0 bg-red-600 text-white text-xs font-mono py-1 px-4 z-[100] flex justify-between tracking-wider shadow-md">
+src\components\Shared.tsx:45: <main className="w-full">
+src\components\Shared.tsx:79: <div className="min-h-screen bg-[#F7F7F5] text-[#1A1A1A] font-sans selection:bg-[#5A6B58] selection:text-white flex flex-col pt-6">
+src\components\Shared.tsx:81: <div className="fixed top-0 inset-x-0 bg-red-600 text-white text-[10px] md:text-sm font-mono py-1 md:py-1.5 px-4 z-[100] flex justify-between tracking-wider shadow-md items-center">
+src\components\Shared.tsx:82: <span className="font-bold flex items-center gap-2">⚠️ <span className="hidden md:inline">DEVELOPMENT / FIREBASE EMULATOR ACTIVE</span><span className="md:hidden">DEV MODE</span></span>
+src\components\Shared.tsx:83: <div className="flex items-center gap-3">
+src\components\Shared.tsx:84: <span className="opacity-90 bg-black/20 px-2 py-0.5 rounded">Admin: admin@roleplant.dev</span>
+src\components\Shared.tsx:95: className={`text-[10px] font-bold px-2 py-0.5 rounded border transition-colors ${
+src\components\Shared.tsx:107: <nav className={`fixed w-full z-50 transition-all duration-500 ${isScrolled ? 'bg-[#F7F7F5]/90 backdrop-blur-md shadow-sm' : 'bg-transparent'} ${import.meta.env.DEV ? 'top-6' : 'top-0'} py-4`}>
+src\components\Shared.tsx:108: <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center">
+src\components\Shared.tsx:109: <Link to="/" className="text-lg tracking-widest font-medium">
+src\components\Shared.tsx:110: ROLE PLANT<span className="text-[#5A6B58]">.</span>
+src\components\Shared.tsx:113: <div className="hidden md:flex space-x-8 items-center">
+src\components\Shared.tsx:118: className={`text-xs tracking-[0.15em] uppercase transition-colors hover:text-[#5A6B58] flex items-center gap-2 ${location.pathname.startsWith(link.path) ? 'text-[#5A6B58] font-medium' : 'text-[#1A1A1A]/60'}`}
+src\components\Shared.tsx:121: <span className="text-[10px] opacity-50">{link.label}</span>
+src\components\Shared.tsx:124: <div className="w-px h-4 bg-[#1A1A1A]/20 mx-2"></div>
+src\components\Shared.tsx:125: <div className="w-px h-4 bg-[#1A1A1A]/20 mx-2"></div>
+src\components\Shared.tsx:127: <Link to="/login" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A]/60 hover:text-[#5A6B58] transition-colors">
+src\components\Shared.tsx:132: <div className="flex items-center gap-4">
+src\components\Shared.tsx:133: <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium">
+src\components\Shared.tsx:136: <div className="w-px h-3 bg-[#1A1A1A]/20"></div>
+src\components\Shared.tsx:137: <Link to="/admin" className="text-xs tracking-[0.15em] uppercase text-[#5A6B58] hover:text-[#1A1A1A] transition-colors font-medium">
+src\components\Shared.tsx:143: <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium flex items-center gap-3">
+src\components\Shared.tsx:145: <span className="text-[9px] bg-[#EBEBE8] text-[#1A1A1A]/50 px-1.5 py-0.5 leading-none">PENDING</span>
+src\components\Shared.tsx:149: <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium flex items-center gap-2">
+src\components\Shared.tsx:155: <button className="md:hidden text-[#1A1A1A]" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+src\components\Shared.tsx:165: className="fixed inset-0 z-40 bg-[#F7F7F5] pt-24 px-6"
+src\components\Shared.tsx:167: <div className="flex flex-col space-y-6">
+src\components\Shared.tsx:169: <Link key={link.path} to={link.path} className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+src\components\Shared.tsx:170: <span>{link.name} <span className="text-sm text-[#1A1A1A]/50 ml-2">{link.label}</span></span>
+src\components\Shared.tsx:171: <ChevronRight size={20} className="text-[#1A1A1A]/30" />
+src\components\Shared.tsx:175: <Link to="/login" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A]/50 border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+src\components\Shared.tsx:177: <ChevronRight size={20} className="text-[#1A1A1A]/30" />
+src\components\Shared.tsx:182: <Link to="/member" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+src\components\Shared.tsx:184: <ChevronRight size={20} className="text-[#1A1A1A]/30" />
+src\components\Shared.tsx:186: <Link to="/admin" className="text-left text-xl tracking-widest uppercase text-[#5A6B58] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+src\components\Shared.tsx:188: <ChevronRight size={20} className="text-[#1A1A1A]/30" />
+src\components\Shared.tsx:193: <Link to="/member" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+src\components\Shared.tsx:194: <span>Member Area <span className="text-[10px] tracking-widest bg-[#EBEBE8] text-[#1A1A1A]/50 px-2 py-1 ml-2 align-middle">PENDING</span></span>
+src\components\Shared.tsx:195: <ChevronRight size={20} className="text-[#1A1A1A]/30" />
+src\components\Shared.tsx:199: <Link to="/member" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+src\components\Shared.tsx:201: <ChevronRight size={20} className="text-[#1A1A1A]/30" />
+src\components\Shared.tsx:209: <main className="flex-grow pt-24 pb-20">
+src\components\Shared.tsx:220: <footer className="bg-[#1A1A1A] text-[#F7F7F5] py-16 mt-auto">
+src\components\Shared.tsx:221: <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-4 gap-12">
+src\components\Shared.tsx:222: <div className="md:col-span-2">
+src\components\Shared.tsx:223: <div className="text-xl tracking-widest font-medium mb-6">ROLE PLANT<span className="text-[#5A6B58]">.</span></div>
+src\components\Shared.tsx:224: <p className="text-[#F7F7F5]/50 text-sm font-light leading-relaxed max-w-sm">
+src\components\Shared.tsx:229: <h4 className="text-xs tracking-widest uppercase text-[#F7F7F5]/40 mb-6">Navigation</h4>
+src\components\Shared.tsx:230: <ul className="space-y-3 text-sm text-[#F7F7F5]/70">
+src\components\Shared.tsx:231: <li><Link to="/collection" className="hover:text-white transition-colors">選拔檔案 Collection</Link></li>
+src\components\Shared.tsx:232: <li><Link to="/learn" className="hover:text-white transition-colors">判讀與培育 Learn</Link></li>
+src\components\Shared.tsx:233: <li><Link to="/business" className="hover:text-white transition-colors">合作與業務 Business</Link></li>
+src\components\Shared.tsx:237: <h4 className="text-xs tracking-widest uppercase text-[#F7F7F5]/40 mb-6">Contact</h4>
+src\components\Shared.tsx:238: <ul className="space-y-3 text-sm text-[#F7F7F5]/70">
+src\components\Shared.tsx:244: <div className="max-w-7xl mx-auto px-6 md:px-12 mt-16 pt-8 border-t border-[#F7F7F5]/10 text-xs text-[#F7F7F5]/30 flex flex-col md:flex-row justify-between">
+src\components\Shared.tsx:246: <p className="mt-2 md:mt-0">Based in Taiwan.</p>
+src\index.css:1: @import "tailwindcss";
+src\main.tsx:7: import './index.css';
+src\pages\AdminContentEditor.tsx:38: <h1 className="text-3xl font-light tracking-tight mb-2">內容管理 CMS</h1>
+src\pages\AdminContentEditor.tsx:39: <p className="text-[#1A1A1A]/50 text-sm mb-10">選擇要編輯的頁面</p>
+src\pages\AdminContentEditor.tsx:40: <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+src\pages\AdminContentEditor.tsx:45: className="text-left bg-white border border-[#1A1A1A]/10 p-8 hover:border-[#5A6B58] hover:shadow-md transition-all group"
+src\pages\AdminContentEditor.tsx:47: <h2 className="text-xl font-light mb-2 group-hover:text-[#5A6B58] transition-colors">{page.label}</h2>
+src\pages\AdminContentEditor.tsx:48: <div className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/30">Edit Page Content</div>
+src\pages\AdminContentEditor.tsx:65: <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+src\pages\AdminContentEditor.tsx:66: <div className="bg-white max-w-sm w-full p-8 border border-[#1A1A1A]/10 shadow-2xl animate-in fade-in zoom-in duration-300">
+src\pages\AdminContentEditor.tsx:67: <h3 className="text-xl font-light mb-4 flex items-center gap-2">
+src\pages\AdminContentEditor.tsx:68: <AlertTriangle className="text-amber-500" size={24} />
+src\pages\AdminContentEditor.tsx:71: <p className="text-sm text-[#1A1A1A]/60 mb-8 leading-relaxed">
+src\pages\AdminContentEditor.tsx:74: <div className="flex gap-4">
+src\pages\AdminContentEditor.tsx:77: className="flex-1 px-4 py-3 border border-red-200 text-red-700 text-xs tracking-widest hover:bg-red-50 transition-colors uppercase"
+src\pages\AdminContentEditor.tsx:83: className="flex-1 px-4 py-3 bg-[#1A1A1A] text-white text-xs tracking-widest hover:bg-[#5A6B58] transition-colors uppercase"
+src\pages\AdminContentEditor.tsx:115: <div className="max-w-4xl">
+src\pages\AdminContentEditor.tsx:116: <div className="flex justify-between items-center mb-12">
+src\pages\AdminContentEditor.tsx:117: <div className="flex items-center gap-4">
+src\pages\AdminContentEditor.tsx:118: <button onClick={() => navigate('/admin/content')} className="text-[#1A1A1A]/40 hover:text-[#1A1A1A] transition-colors">
+src\pages\AdminContentEditor.tsx:122: <h1 className="text-3xl font-light tracking-tight">{pageMeta.label}</h1>
+src\pages\AdminContentEditor.tsx:123: <p className="text-sm text-[#1A1A1A]/40">編輯頁面內容與區塊設定</p>
+src\pages\AdminContentEditor.tsx:127: <div className={`text-sm tracking-widest uppercase font-medium ${
+src\pages\AdminContentEditor.tsx:146: <div className="mb-6">
+src\pages\AdminContentEditor.tsx:147: <label className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/50 mb-2 flex justify-between">
+src\pages\AdminContentEditor.tsx:149: {isDirty && <span className="text-amber-600 font-bold animate-pulse">● Modified</span>}
+src\pages\AdminContentEditor.tsx:152: <div className="mt-2">
+src\pages\AdminContentEditor.tsx:164: className={`w-full bg-white border p-4 text-sm font-light focus:outline-none focus:border-[#5A6B58] transition-colors ${isDirty ? 'border-amber-300 bg-amber-50/20' : 'border-[#1A1A1A]/10'}`}
+src\pages\AdminContentEditor.tsx:174: <div className="mb-4">
+src\pages\AdminContentEditor.tsx:177: className="flex items-center gap-3 group text-left"
+src\pages\AdminContentEditor.tsx:179: <div className={`w-10 h-6 rounded-full relative transition-colors ${active ? 'bg-[#5A6B58]' : 'bg-[#1A1A1A]/10'} ${isDirty ? 'ring-2 ring-amber-300 ring-offset-2' : ''}`}>
+src\pages\AdminContentEditor.tsx:180: <div className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-transform ${active ? 'translate-x-4' : ''}`} />
+src\pages\AdminContentEditor.tsx:182: <span className={`text-xs tracking-widest uppercase group-hover:text-[#1A1A1A] transition-colors ${isDirty ? 'text-amber-600 font-bold' : 'text-[#1A1A1A]/60'}`}>
+src\pages\AdminContentEditor.tsx:235: <div className="space-y-12">
+src\pages\AdminContentEditor.tsx:237: <section className="bg-white p-8 border border-[#1A1A1A]/5">
+src\pages\AdminContentEditor.tsx:238: <h2 className="text-sm tracking-[0.2em] uppercase font-medium mb-8 border-b border-[#1A1A1A]/10 pb-4">Hero Section</h2>
+src\pages\AdminContentEditor.tsx:248: <div className="space-y-2 mb-6">
+src\pages\AdminContentEditor.tsx:249: <label className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 flex justify-between mb-2">
+src\pages\AdminContentEditor.tsx:251: {original.heroImageUrl !== data.heroImageUrl && <span className="text-amber-600 font-bold">● MODIFIED</span>}
+src\pages\AdminContentEditor.tsx:254: <div className={`aspect-video w-full overflow-hidden border bg-[#F7F7F5] transition-colors ${original.heroImageUrl !== data.heroImageUrl ? 'border-amber-300 shadow-inner' : 'border-[#1A1A1A]/10'}`}>
+src\pages\AdminContentEditor.tsx:255: <img src={data.heroImageUrl} className="w-full h-full object-cover" alt="Hero Preview" />
+src\pages\AdminContentEditor.tsx:258: <div className="aspect-video w-full flex items-center justify-center border border-dashed border-[#1A1A1A]/20 bg-[#F7F7F5]">
+src\pages\AdminContentEditor.tsx:259: <span className="text-xs text-[#1A1A1A]/30">尚無首圖</span>
+src\pages\AdminContentEditor.tsx:266: className={`w-full text-xs font-mono border p-3 focus:outline-none focus:border-[#1A1A1A]/20 transition-colors ${original.heroImageUrl !== data.heroImageUrl ? 'border-amber-300 bg-amber-50/10' : 'border-[#1A1A1A]/10'}`}
+src\pages\AdminContentEditor.tsx:271: className="w-full py-3 mt-2 bg-[#5A6B58] text-white text-xs tracking-widest hover:bg-[#1A1A1A] transition-colors flex items-center justify-center gap-2"
+src\pages\AdminContentEditor.tsx:286: <section className="bg-white p-8 border border-[#1A1A1A]/5">
+src\pages\AdminContentEditor.tsx:287: <h2 className="text-sm tracking-[0.2em] uppercase font-medium mb-8 border-b border-[#1A1A1A]/10 pb-4">Tagline Section</h2>
+src\pages\AdminContentEditor.tsx:298: <div className="flex justify-end">
+src\pages\AdminContentEditor.tsx:302: className={`px-12 py-4 text-xs tracking-[0.2em] uppercase transition-colors flex items-center gap-3 ${isDirty ? 'bg-[#1A1A1A] text-white hover:bg-[#5A6B58]' : 'bg-gray-100 text-gray-400 cursor-not-allowed'}`}
+src\pages\AdminContentEditor.tsx:353: <div className="space-y-12">
+src\pages\AdminContentEditor.tsx:355: <section className="bg-white p-8 border border-[#1A1A1A]/5">
+src\pages\AdminContentEditor.tsx:358: <div className="space-y-6">
+src\pages\AdminContentEditor.tsx:359: <label className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/50">內容段落</label>
+src\pages\AdminContentEditor.tsx:363: <div key={i} className="flex gap-4">
+src\pages\AdminContentEditor.tsx:372: className={`flex-1 bg-white border p-4 text-sm font-light focus:outline-none focus:border-[#5A6B58] transition-colors resize-none ${isParaDirty ? 'border-amber-300 bg-amber-50/20' : 'border-[#1A1A1A]/10'}`}
+src\pages\AdminContentEditor.tsx:376: className="text-red-400 hover:text-red-600 self-start p-2"
+src\pages\AdminContentEditor.tsx:385: className="w-full border border-dashed border-[#1A1A1A]/20 py-4 text-xs tracking-widest uppercase text-[#1A1A1A]/40 hover:text-[#5A6B58] hover:border-[#5A6B58] transition-colors"
+src\pages\AdminContentEditor.tsx:392: <div className="flex justify-end">
+src\pages\AdminContentEditor.tsx:396: className={`px-12 py-4 text-xs tracking-[0.2em] uppercase transition-colors flex items-center gap-3 ${isDirty ? 'bg-[#1A1A1A] text-white hover:bg-[#5A6B58]' : 'bg-gray-100 text-gray-400 cursor-not-allowed'}`}
+src\pages\AdminContentEditor.tsx:447: <div className="space-y-12">
+src\pages\AdminContentEditor.tsx:449: <section className="bg-white p-8 border border-[#1A1A1A]/5">
+src\pages\AdminContentEditor.tsx:455: <section className="space-y-6">
+src\pages\AdminContentEditor.tsx:456: <h2 className="text-sm tracking-[0.2em] uppercase font-medium">服務項目</h2>
+src\pages\AdminContentEditor.tsx:461: <div key={i} className={`bg-white p-8 border transition-colors ${isServiceDirty ? 'border-amber-300 bg-amber-50/5' : 'border-[#1A1A1A]/5'}`}>
+src\pages\AdminContentEditor.tsx:462: <div className="flex justify-between items-center mb-6">
+src\pages\AdminContentEditor.tsx:475: className="text-red-400 hover:text-red-600"
+src\pages\AdminContentEditor.tsx:495: className="w-full border border-dashed border-[#1A1A1A]/20 py-4 text-xs tracking-widest uppercase text-[#1A1A1A]/40 hover:text-[#5A6B58] hover:border-[#5A6B58] transition-colors"
+src\pages\AdminContentEditor.tsx:501: <div className="flex justify-end">
+src\pages\AdminContentEditor.tsx:505: className={`px-12 py-4 text-xs tracking-[0.2em] uppercase transition-colors flex items-center gap-3 ${isDirty ? 'bg-[#1A1A1A] text-white hover:bg-[#5A6B58]' : 'bg-gray-100 text-gray-400 cursor-not-allowed'}`}
+src\pages\AdminContentEditor.tsx:556: <div className="space-y-12">
+src\pages\AdminContentEditor.tsx:558: <section className="bg-white p-8 border border-[#1A1A1A]/5">
+src\pages\AdminContentEditor.tsx:564: <section className="bg-white p-8 border border-[#1A1A1A]/5">
+src\pages\AdminContentEditor.tsx:565: <h2 className="text-sm tracking-[0.2em] uppercase font-medium mb-6">Audience 區塊</h2>
+src\pages\AdminContentEditor.tsx:568: <div className="space-y-4">
+src\pages\AdminContentEditor.tsx:569: <label className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/50">項目列表</label>
+src\pages\AdminContentEditor.tsx:573: <div key={i} className="flex gap-4">
+src\pages\AdminContentEditor.tsx:582: className={`flex-1 bg-white border p-4 text-sm font-light focus:outline-none focus:border-[#5A6B58] transition-colors ${isItemDirty ? 'border-amber-300 bg-amber-50/20' : 'border-[#1A1A1A]/10'}`}
+src\pages\AdminContentEditor.tsx:584: <button onClick={() => setData({...data, audienceItems: data.audienceItems.filter((_, idx) => idx !== i)})} className="text-red-400 self-center">
+src\pages\AdminContentEditor.tsx:590: <button onClick={() => setData({...data, audienceItems: [...data.audienceItems, '']})} className="w-full border border-dashed border-[#1A1A1A]/20 py-2 text-[10px] uppercase text-[#1A1A1A]/40">+ Add Item</button>
+src\pages\AdminContentEditor.tsx:594: <div className="flex justify-end">
+src\pages\AdminContentEditor.tsx:598: className={`px-12 py-4 text-xs tracking-[0.2em] uppercase transition-colors flex items-center gap-3 ${isDirty ? 'bg-[#1A1A1A] text-white hover:bg-[#5A6B58]' : 'bg-gray-100 text-gray-400 cursor-not-allowed'}`}
+src\pages\AdminContentEditor.tsx:649: <div className="space-y-12">
+src\pages\AdminContentEditor.tsx:651: <section className="bg-white p-8 border border-[#1A1A1A]/5">
+src\pages\AdminContentEditor.tsx:657: <section className="bg-white p-8 border border-[#1A1A1A]/5">
+src\pages\AdminContentEditor.tsx:658: <h2 className="text-sm tracking-[0.2em] uppercase font-medium mb-6">介紹區塊 1</h2>
+src\pages\AdminContentEditor.tsx:663: <section className="bg-white p-8 border border-[#1A1A1A]/5">
+src\pages\AdminContentEditor.tsx:664: <h2 className="text-sm tracking-[0.2em] uppercase font-medium mb-6">介紹區塊 2</h2>
+src\pages\AdminContentEditor.tsx:669: <section className="space-y-6">
+src\pages\AdminContentEditor.tsx:670: <h2 className="text-sm tracking-[0.2em] uppercase font-medium">判讀標準</h2>
+src\pages\AdminContentEditor.tsx:675: <div key={i} className={`bg-white p-8 border transition-colors ${isStdDirty ? 'border-amber-300 bg-amber-50/5' : 'border-[#1A1A1A]/5'}`}>
+src\pages\AdminContentEditor.tsx:701: <div className="flex justify-end">
+src\pages\AdminContentEditor.tsx:705: className={`px-12 py-4 text-xs tracking-[0.2em] uppercase transition-colors flex items-center gap-3 ${isDirty ? 'bg-[#1A1A1A] text-white hover:bg-[#5A6B58]' : 'bg-gray-100 text-gray-400 cursor-not-allowed'}`}
+src\pages\AdminContentEditor.tsx:756: <div className="space-y-12">
+src\pages\AdminContentEditor.tsx:758: <section className="bg-white p-8 border border-[#1A1A1A]/5">
+src\pages\AdminContentEditor.tsx:764: <section className="space-y-6">
+src\pages\AdminContentEditor.tsx:765: <h2 className="text-sm tracking-[0.2em] uppercase font-medium">常見問題列表</h2>
+src\pages\AdminContentEditor.tsx:770: <div key={i} className={`bg-white p-8 border transition-colors ${isItemDirty ? 'border-amber-300 bg-amber-50/5' : 'border-[#1A1A1A]/5'}`}>
+src\pages\AdminContentEditor.tsx:771: <div className="flex justify-between items-center mb-6">
+src\pages\AdminContentEditor.tsx:782: <button onClick={() => setData({...data, items: data.items.filter((_, idx) => idx !== i)})} className="text-red-400">
+src\pages\AdminContentEditor.tsx:801: className="w-full border border-dashed border-[#1A1A1A]/20 py-4 text-xs tracking-widest uppercase text-[#1A1A1A]/40 hover:text-[#5A6B58] hover:border-[#5A6B58] transition-colors"
+src\pages\AdminContentEditor.tsx:807: <div className="flex justify-end">
+src\pages\AdminContentEditor.tsx:811: className={`px-12 py-4 text-xs tracking-[0.2em] uppercase transition-colors flex items-center gap-3 ${isDirty ? 'bg-[#1A1A1A] text-white hover:bg-[#5A6B58]' : 'bg-gray-100 text-gray-400 cursor-not-allowed'}`}
+src\pages\AdminInquiries.tsx:82: <div className="space-y-8">
+src\pages\AdminInquiries.tsx:83: <div className="flex justify-between items-end">
+src\pages\AdminInquiries.tsx:85: <h1 className="text-3xl font-light tracking-tight mb-2">詢問管理</h1>
+src\pages\AdminInquiries.tsx:86: <p className="text-[#1A1A1A]/40 text-sm font-light">管理來自前台的一般聯絡與商業洽詢。</p>
+src\pages\AdminInquiries.tsx:89: <div className="flex gap-4">
+src\pages\AdminInquiries.tsx:90: <div className="flex items-center gap-2 bg-white border border-[#1A1A1A]/10 px-3 py-2 text-xs uppercase tracking-widest text-[#1A1A1A]/60">
+src\pages\AdminInquiries.tsx:95: className="bg-transparent focus:outline-none cursor-pointer"
+src\pages\AdminInquiries.tsx:102: <div className="flex items-center gap-2 bg-white border border-[#1A1A1A]/10 px-3 py-2 text-xs uppercase tracking-widest text-[#1A1A1A]/60">
+src\pages\AdminInquiries.tsx:107: className="bg-transparent focus:outline-none cursor-pointer"
+src\pages\AdminInquiries.tsx:118: <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+src\pages\AdminInquiries.tsx:120: <div className="lg:col-span-1 space-y-4 max-h-[70vh] overflow-y-auto pr-2 custom-scrollbar">
+src\pages\AdminInquiries.tsx:122: <div className="text-center py-20 text-[#1A1A1A]/20">Loading...</div>
+src\pages\AdminInquiries.tsx:124: <div className="text-center py-20 text-[#1A1A1A]/20 border border-dashed border-[#1A1A1A]/10">無相關詢問紀錄</div>
+src\pages\AdminInquiries.tsx:133: className={`w-full text-left p-6 border transition-all relative ${
+src\pages\AdminInquiries.tsx:140: <div className="absolute top-4 right-4 w-2 h-2 bg-[#5A6B58] rounded-full" />
+src\pages\AdminInquiries.tsx:142: <div className="flex items-center gap-2 mb-3">
+src\pages\AdminInquiries.tsx:144: <span className="text-[9px] bg-[#1A1A1A] text-white px-2 py-0.5 tracking-widest uppercase">Business</span>
+src\pages\AdminInquiries.tsx:146: <span className="text-[9px] border border-[#1A1A1A]/20 text-[#1A1A1A]/60 px-2 py-0.5 tracking-widest uppercase">General</span>
+src\pages\AdminInquiries.tsx:148: <span className={`text-[9px] px-2 py-0.5 tracking-widest uppercase ${
+src\pages\AdminInquiries.tsx:155: <h3 className="font-medium text-sm mb-1">{inquiry.name}</h3>
+src\pages\AdminInquiries.tsx:156: <p className="text-xs text-[#1A1A1A]/40 mb-3 truncate">{inquiry.email}</p>
+src\pages\AdminInquiries.tsx:157: <p className="text-xs text-[#1A1A1A]/60 line-clamp-2 font-light leading-relaxed">{inquiry.message}</p>
+src\pages\AdminInquiries.tsx:158: <div className="mt-4 text-[9px] text-[#1A1A1A]/20 uppercase tracking-widest">
+src\pages\AdminInquiries.tsx:167: <div className="lg:col-span-2">
+src\pages\AdminInquiries.tsx:169: <div className="bg-white border border-[#1A1A1A]/5 p-10 h-full">
+src\pages\AdminInquiries.tsx:170: <div className="flex justify-between items-start mb-12">
+src\pages\AdminInquiries.tsx:172: <div className="flex items-center gap-3 mb-6">
+src\pages\AdminInquiries.tsx:173: {selectedInquiry.type === 'business' ? <Building size={20} className="text-[#1A1A1A]/60" /> : <Mail size={20} className="text-[#1A1A1A]/60" />}
+src\pages\AdminInquiries.tsx:174: <span className="text-xs tracking-widest uppercase text-[#1A1A1A]/40">{selectedInquiry.type} Inquiry</span>
+src\pages\AdminInquiries.tsx:176: <h2 className="text-2xl font-light mb-2">{selectedInquiry.name}</h2>
+src\pages\AdminInquiries.tsx:177: <p className="text-[#1A1A1A]/40 text-sm">{selectedInquiry.email}</p>
+src\pages\AdminInquiries.tsx:179: <p className="text-[#5A6B58] text-sm mt-2 font-medium flex items-center gap-2">
+src\pages\AdminInquiries.tsx:185: <div className="flex flex-col items-end gap-4">
+src\pages\AdminInquiries.tsx:186: <div className="flex gap-2">
+src\pages\AdminInquiries.tsx:189: className={`p-2 rounded-full transition-colors ${selectedInquiry.isRead ? 'text-[#1A1A1A]/20 hover:text-[#1A1A1A]' : 'text-[#5A6B58] bg-[#5A6B58]/5'}`}
+src\pages\AdminInquiries.tsx:195: <div className="text-[10px] text-[#1A1A1A]/30 uppercase tracking-[0.2em]">
+src\pages\AdminInquiries.tsx:201: <div className="mb-12">
+src\pages\AdminInquiries.tsx:202: <h4 className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/30 mb-4 border-b border-[#1A1A1A]/5 pb-2">訊息內容 Message</h4>
+src\pages\AdminInquiries.tsx:203: <div className="text-[#1A1A1A]/80 font-light leading-relaxed whitespace-pre-wrap text-sm italic border-l-2 border-[#1A1A1A]/10 pl-6 py-2">
+src\pages\AdminInquiries.tsx:208: <div className="border-t border-[#1A1A1A]/5 pt-8">
+src\pages\AdminInquiries.tsx:209: <h4 className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/30 mb-6">狀態變更 Status Management</h4>
+src\pages\AdminInquiries.tsx:210: <div className="flex gap-4">
+src\pages\AdminInquiries.tsx:215: className={`flex-1 flex items-center justify-center gap-2 py-4 border text-[10px] uppercase tracking-widest transition-all ${
+src\pages\AdminInquiries.tsx:231: <div className="bg-[#white] border border-[#1A1A1A]/5 border-dashed p-20 flex flex-col items-center justify-center text-center h-full">
+src\pages\AdminInquiries.tsx:232: <Mail size={40} className="text-[#1A1A1A]/10 mb-6" />
+src\pages\AdminInquiries.tsx:233: <p className="text-[#1A1A1A]/30 font-light italic">請選擇左側詢問項目以查看詳細內容</p>
+src\pages\AdminMedia.tsx:149: <div className="space-y-8">
+src\pages\AdminMedia.tsx:151: <div className="flex justify-between items-end">
+src\pages\AdminMedia.tsx:153: <h1 className="text-3xl font-light tracking-tight mb-2">媒體管理</h1>
+src\pages\AdminMedia.tsx:154: <p className="text-[#1A1A1A]/40 text-sm font-light">管理與上傳植物、文章、內容頁所需之媒體資產。</p>
+src\pages\AdminMedia.tsx:157: <div className="flex gap-4">
+src\pages\AdminMedia.tsx:158: <div className="flex items-center gap-2 bg-white border border-[#1A1A1A]/10 px-3 py-2 text-xs uppercase tracking-widest text-[#1A1A1A]/60">
+src\pages\AdminMedia.tsx:163: className="bg-transparent focus:outline-none cursor-pointer"
+src\pages\AdminMedia.tsx:175: className="bg-[#1A1A1A] text-white px-6 py-2 text-xs tracking-widest uppercase flex items-center gap-2 hover:bg-[#5A6B58] transition-colors disabled:opacity-50"
+src\pages\AdminMedia.tsx:183: className="hidden"
+src\pages\AdminMedia.tsx:190: <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+src\pages\AdminMedia.tsx:192: <div className="col-span-full text-center py-20 text-[#1A1A1A]/20">Loading...</div>
+src\pages\AdminMedia.tsx:194: <div className="col-span-full flex flex-col items-center justify-center py-32 border-2 border-dashed border-[#1A1A1A]/10 bg-white/50">
+src\pages\AdminMedia.tsx:195: <FileImage className="w-16 h-16 text-[#1A1A1A]/20 mb-4" />
+src\pages\AdminMedia.tsx:196: <h3 className="text-lg font-medium text-[#1A1A1A]">目前沒有素材</h3>
+src\pages\AdminMedia.tsx:197: <p className="text-sm text-[#1A1A1A]/50 mt-2 mb-8 text-center max-w-sm">
+src\pages\AdminMedia.tsx:202: className="bg-[#1A1A1A] text-white px-8 py-3 text-sm tracking-widest uppercase flex items-center gap-2 hover:bg-[#5A6B58] transition-colors"
+src\pages\AdminMedia.tsx:212: className={`group relative aspect-square border overflow-hidden transition-all ${
+src\pages\AdminMedia.tsx:220: className="w-full h-full object-cover transition-transform group-hover:scale-110"
+src\pages\AdminMedia.tsx:223: <div className="absolute top-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+src\pages\AdminMedia.tsx:226: className="p-1.5 bg-white/90 text-[#1A1A1A] rounded shadow-sm hover:bg-white"
+src\pages\AdminMedia.tsx:232: <div className="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+src\pages\AdminMedia.tsx:233: <p className="text-[9px] text-white truncate font-light tracking-widest uppercase">{media.fileName}</p>
+src\pages\AdminMedia.tsx:242: <div className="fixed inset-y-0 right-0 w-96 bg-white shadow-2xl z-50 p-8 border-l border-[#1A1A1A]/5 transform transition-transform animate-slide-in">
+src\pages\AdminMedia.tsx:243: <div className="flex justify-between items-center mb-8">
+src\pages\AdminMedia.tsx:244: <h3 className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 font-medium font-mono">Media Details</h3>
+src\pages\AdminMedia.tsx:245: <button onClick={() => setSelectedMedia(null)} className="text-[#1A1A1A]/40 hover:text-[#1A1A1A]">
+src\pages\AdminMedia.tsx:250: <div className="aspect-square bg-[#F7F7F5] border border-[#1A1A1A]/5 mb-8 overflow-hidden">
+src\pages\AdminMedia.tsx:251: <img src={selectedMedia.url} className="w-full h-full object-contain" alt="" />
+src\pages\AdminMedia.tsx:254: <div className="space-y-6">
+src\pages\AdminMedia.tsx:256: <label className="text-[9px] uppercase tracking-widest text-[#1A1A1A]/30 block mb-1">File Name</label>
+src\pages\AdminMedia.tsx:257: <p className="text-sm font-medium text-[#1A1A1A] truncate">{selectedMedia.fileName}</p>
+src\pages\AdminMedia.tsx:260: <label className="text-[9px] uppercase tracking-widest text-[#1A1A1A]/30 block mb-1">Usage / Category</label>
+src\pages\AdminMedia.tsx:261: <p className="text-xs text-[#1A1A1A]/60 uppercase tracking-widest">{selectedMedia.usage}</p>
+src\pages\AdminMedia.tsx:264: <label className="text-[9px] uppercase tracking-widest text-[#1A1A1A]/30 block mb-1">Direct URL</label>
+src\pages\AdminMedia.tsx:265: <div className="flex gap-2">
+src\pages\AdminMedia.tsx:270: className="flex-1 text-[10px] font-mono bg-[#F7F7F5] border border-[#1A1A1A]/5 p-2 truncate focus:outline-none"
+src\pages\AdminMedia.tsx:274: className="p-2 bg-[#1A1A1A] text-white hover:bg-[#5A6B58] transition-colors"
+src\pages\AdminMedia.tsx:280: <div className="pt-8 border-t border-[#1A1A1A]/5 flex flex-col gap-3">
+src\pages\AdminMedia.tsx:283: className={`w-full py-3 text-[10px] uppercase tracking-widest border transition-colors flex items-center justify-center gap-2 ${
+src\pages\AdminMedia.tsx:293: className="w-full py-3 text-[10px] uppercase tracking-widest text-red-600 border border-red-600/10 hover:bg-red-50 transition-colors flex items-center justify-center gap-2"
+src\pages\AdminPages.tsx:38: return <div className="min-h-screen bg-[#F7F7F5] flex items-center justify-center text-xs tracking-widest uppercase opacity-20 animate-pulse">Initializing Interface...</div>;
+src\pages\AdminPages.tsx:78: className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-all duration-200 ${
+src\pages\AdminPages.tsx:84: <span className={isActive ? 'text-white' : 'text-white/40'}>{item.icon}</span>
+src\pages\AdminPages.tsx:91: <div className="min-h-screen bg-[#F7F7F5] flex font-sans">
+src\pages\AdminPages.tsx:92: <aside className="w-64 bg-[#1A1A1A] text-white p-4 flex flex-col border-r border-white/5 shadow-xl">
+src\pages\AdminPages.tsx:93: <div className="mb-8 px-2 py-4">
+src\pages\AdminPages.tsx:94: <Link to="/" className="text-xl tracking-[0.2em] font-medium text-white flex items-center gap-2">
+src\pages\AdminPages.tsx:95: ROLE PLANT<span className="text-[#5A6B58] font-bold">.</span>
+src\pages\AdminPages.tsx:97: <div className="h-[1px] w-12 bg-[#5A6B58] mt-3"></div>
+src\pages\AdminPages.tsx:100: <nav className="flex-1 space-y-6 overflow-y-auto custom-scrollbar pr-1">
+src\pages\AdminPages.tsx:103: <div key={gIdx} className="space-y-2">
+src\pages\AdminPages.tsx:104: <h3 className="px-3 text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase mb-2">
+src\pages\AdminPages.tsx:107: <div className="space-y-1">
+src\pages\AdminPages.tsx:117: <div className="space-y-2">
+src\pages\AdminPages.tsx:120: className="w-full flex items-center justify-between px-3 text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase hover:text-white/60 transition-colors"
+src\pages\AdminPages.tsx:127: <div className="space-y-1 animate-in slide-in-from-top-1 duration-200">
+src\pages\AdminPages.tsx:137: <div className="mt-auto pt-6 border-t border-white/10 px-2 space-y-3">
+src\pages\AdminPages.tsx:138: <div className="flex items-center gap-3">
+src\pages\AdminPages.tsx:139: <div className="w-8 h-8 rounded-full bg-[#5A6B58]/20 flex items-center justify-center text-[#5A6B58]">
+src\pages\AdminPages.tsx:143: <p className="text-[10px] text-white/30 uppercase tracking-widest font-bold">Security Context</p>
+src\pages\AdminPages.tsx:144: <p className="text-xs text-white/80 font-medium">{userProfile.role}</p>
+src\pages\AdminPages.tsx:149: <main className="flex-1 overflow-y-auto bg-white/50 backdrop-blur-sm">
+src\pages\AdminPages.tsx:150: <div className="p-8 max-w-7xl mx-auto min-h-full">
+src\pages\AdminPages.tsx:167: <div className="flex flex-col items-center justify-center h-[80vh] opacity-30 text-center">
+src\pages\AdminPages.tsx:168: <LayoutDashboard size={64} strokeWidth={1} className="mb-4" />
+src\pages\AdminPages.tsx:169: <h1 className="text-2xl font-light tracking-widest mb-2 uppercase">Interface Control</h1>
+src\pages\AdminPages.tsx:170: <p className="text-sm tracking-widest">Select an operation from the sidebar navigation.</p>
+src\pages\AdminPages.tsx:260: <div className="space-y-8">
+src\pages\AdminPages.tsx:261: <div className="flex justify-between items-end">
+src\pages\AdminPages.tsx:263: <h1 className="text-3xl font-light tracking-tight mb-2">Members</h1>
+src\pages\AdminPages.tsx:264: <p className="text-xs tracking-widest uppercase text-[#1A1A1A]/50">Manage system users and statuses</p>
+src\pages\AdminPages.tsx:266: <div className="flex gap-4">
+src\pages\AdminPages.tsx:270: className="bg-white border border-[#1A1A1A]/10 px-4 py-2 text-xs tracking-widest uppercase focus:outline-none"
+src\pages\AdminPages.tsx:280: <div className="bg-white border border-[#1A1A1A]/10">
+src\pages\AdminPages.tsx:281: <table className="w-full text-sm text-left">
+src\pages\AdminPages.tsx:282: <thead className="text-[10px] tracking-[0.2em] uppercase text-[#1A1A1A]/40 border-b border-[#1A1A1A]/10 bg-[#F7F7F5]">
+src\pages\AdminPages.tsx:284: <th className="px-8 py-4 font-medium">User Info</th>
+src\pages\AdminPages.tsx:285: <th className="px-8 py-4 font-medium w-48">Role</th>
+src\pages\AdminPages.tsx:286: <th className="px-8 py-4 font-medium w-48">Status</th>
+src\pages\AdminPages.tsx:287: <th className="px-8 py-4 font-medium w-32 text-right">Actions</th>
+src\pages\AdminPages.tsx:290: <tbody className="divide-y divide-[#1A1A1A]/5">
+src\pages\AdminPages.tsx:292: <tr key={user.uid} className="hover:bg-[#F7F7F5]/50 transition-colors">
+src\pages\AdminPages.tsx:293: <td className="px-8 py-6">
+src\pages\AdminPages.tsx:294: <div className="flex items-center gap-4">
+src\pages\AdminPages.tsx:295: <div className="w-10 h-10 bg-[#EBEBE8] rounded-full flex items-center justify-center text-[#1A1A1A]/30">
+src\pages\AdminPages.tsx:299: <p className="font-medium">{user.name || 'Unnamed'}</p>
+src\pages\AdminPages.tsx:300: <p className="text-xs text-[#1A1A1A]/50">{user.email}</p>
+src\pages\AdminPages.tsx:301: <p className="text-[9px] font-mono text-[#1A1A1A]/30 mt-1">{user.uid}</p>
+src\pages\AdminPages.tsx:305: <td className="px-8 py-6">
+src\pages\AdminPages.tsx:310: className="w-full bg-transparent border border-[#1A1A1A]/10 p-2 text-xs focus:outline-none focus:border-[#5A6B58] disabled:opacity-50"
+src\pages\AdminPages.tsx:317: <td className="px-8 py-6">
+src\pages\AdminPages.tsx:318: <span className={`inline-block px-3 py-1 text-[9px] tracking-widest uppercase border ${
+src\pages\AdminPages.tsx:326: <td className="px-8 py-6 text-right">
+src\pages\AdminPages.tsx:327: <div className="flex justify-end gap-2">
+src\pages\AdminPages.tsx:331: className="p-2 text-[#5A6B58] hover:bg-[#5A6B58]/10 rounded transition-colors"
+src\pages\AdminPages.tsx:340: className="p-2 text-red-600 hover:bg-red-50 rounded transition-colors"
+src\pages\AdminPages.tsx:352: <td colSpan={4} className="px-8 py-12 text-center text-[#1A1A1A]/40 text-xs tracking-widest uppercase">
+src\pages\AdminPages.tsx:420: <div className="space-y-8">
+src\pages\AdminPages.tsx:421: <div className="flex justify-between items-end">
+src\pages\AdminPages.tsx:423: <h1 className="text-3xl font-light tracking-tight mb-2">Plant Applications</h1>
+src\pages\AdminPages.tsx:424: <p className="text-xs tracking-widest uppercase text-[#1A1A1A]/50">Review and manage plant procurement requests</p>
+src\pages\AdminPages.tsx:429: className="bg-white border border-[#1A1A1A]/10 px-4 py-2 text-xs tracking-widest uppercase focus:outline-none"
+src\pages\AdminPages.tsx:438: <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+src\pages\AdminPages.tsx:439: <div className="lg:col-span-2 bg-white border border-[#1A1A1A]/10">
+src\pages\AdminPages.tsx:440: <table className="w-full text-sm text-left">
+src\pages\AdminPages.tsx:441: <thead className="text-[10px] tracking-[0.2em] uppercase text-[#1A1A1A]/40 border-b border-[#1A1A1A]/10 bg-[#F7F7F5]">
+src\pages\AdminPages.tsx:443: <th className="px-6 py-4 font-medium">Plant ID</th>
+src\pages\AdminPages.tsx:444: <th className="px-6 py-4 font-medium">Applicant</th>
+src\pages\AdminPages.tsx:445: <th className="px-6 py-4 font-medium">Status</th>
+src\pages\AdminPages.tsx:448: <tbody className="divide-y divide-[#1A1A1A]/5">
+src\pages\AdminPages.tsx:453: className={`cursor-pointer hover:bg-[#F7F7F5]/50 transition-colors ${selectedApp?.id === app.id ? 'bg-[#F7F7F5]' : ''}`}
+src\pages\AdminPages.tsx:455: <td className="px-6 py-5 font-mono text-xs">{app.plantId}</td>
+src\pages\AdminPages.tsx:456: <td className="px-6 py-5">
+src\pages\AdminPages.tsx:457: <p className="font-medium text-xs">{app.user?.name || 'Unknown'}</p>
+src\pages\AdminPages.tsx:458: <p className="text-[10px] text-[#1A1A1A]/50">{app.user?.email}</p>
+src\pages\AdminPages.tsx:460: <td className="px-6 py-5">
+src\pages\AdminPages.tsx:461: <span className={`text-[9px] tracking-widest uppercase px-2 py-0.5 border ${
+src\pages\AdminPages.tsx:473: <td colSpan={3} className="px-6 py-12 text-center text-[#1A1A1A]/40 text-xs tracking-widest uppercase">
+src\pages\AdminPages.tsx:482: <div className="bg-white border border-[#1A1A1A]/10 p-8 h-fit sticky top-8">
+src\pages\AdminPages.tsx:484: <div className="space-y-8 animate-in fade-in slide-in-from-bottom-2">
+src\pages\AdminPages.tsx:485: <div className="border-b border-[#1A1A1A]/10 pb-4">
+src\pages\AdminPages.tsx:486: <h3 className="text-[10px] tracking-[0.2em] uppercase text-[#1A1A1A]/40 mb-2">Application Details</h3>
+src\pages\AdminPages.tsx:487: <p className="font-mono text-xs text-[#1A1A1A]/50">ID: {selectedApp.id}</p>
+src\pages\AdminPages.tsx:490: <div className="space-y-4">
+src\pages\AdminPages.tsx:492: <label className="block text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 mb-1">Plant Reference</label>
+src\pages\AdminPages.tsx:493: <p className="font-mono text-base">{selectedApp.plantId}</p>
+src\pages\AdminPages.tsx:496: <label className="block text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 mb-1">Applicant</label>
+src\pages\AdminPages.tsx:497: <p className="text-sm">{selectedApp.user?.name} ({selectedApp.user?.email})</p>
+src\pages\AdminPages.tsx:500: <label className="block text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 mb-1">Submitted At</label>
+src\pages\AdminPages.tsx:501: <p className="text-sm">{selectedApp.createdAt ? new Date(selectedApp.createdAt as any).toLocaleString() : '-'}</p>
+src\pages\AdminPages.tsx:505: <div className="pt-8 border-t border-[#1A1A1A]/10 space-y-4">
+src\pages\AdminPages.tsx:506: <p className="text-xs text-[#1A1A1A]/50 lowercase italic">Update status:</p>
+src\pages\AdminPages.tsx:507: <div className="grid grid-cols-2 gap-4">
+src\pages\AdminPages.tsx:511: className="flex items-center justify-center gap-2 py-3 bg-[#5A6B58] text-white text-xs tracking-widest uppercase hover:bg-[#1A1A1A] transition-colors disabled:opacity-30"
+src\pages\AdminPages.tsx:518: className="flex items-center justify-center gap-2 py-3 border border-red-600 text-red-600 text-xs tracking-widest uppercase hover:bg-red-50 transition-colors disabled:opacity-30"
+src\pages\AdminPages.tsx:526: className="w-full py-2 text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 hover:text-[#1A1A1A] transition-colors"
+src\pages\AdminPages.tsx:534: <div className="h-64 flex flex-col items-center justify-center text-center space-y-4 opacity-30">
+src\pages\AdminPages.tsx:536: <p className="text-xs tracking-widest uppercase font-light">Select an application<br/>to view details</p>
+src\pages\AdminPlantEditor.tsx:194: if (loading) return <div className="p-8">載入中...</div>;
+src\pages\AdminPlantEditor.tsx:195: if (!plant) return <div className="p-8">找不到該植物檔案</div>;
+src\pages\AdminPlantEditor.tsx:198: <div className="max-w-5xl pb-32">
+src\pages\AdminPlantEditor.tsx:201: <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+src\pages\AdminPlantEditor.tsx:202: <div className="bg-white max-w-sm w-full p-8 border border-[#1A1A1A]/10 shadow-2xl animate-in fade-in zoom-in duration-300">
+src\pages\AdminPlantEditor.tsx:203: <h3 className="text-xl font-light mb-4 flex items-center gap-2">
+src\pages\AdminPlantEditor.tsx:204: <AlertTriangle className="text-amber-500" size={24} />
+src\pages\AdminPlantEditor.tsx:207: <p className="text-sm text-[#1A1A1A]/60 mb-8 leading-relaxed">
+src\pages\AdminPlantEditor.tsx:210: <div className="flex gap-4">
+src\pages\AdminPlantEditor.tsx:213: className="flex-1 px-4 py-3 border border-red-200 text-red-700 text-xs tracking-widest hover:bg-red-50 transition-colors uppercase"
+src\pages\AdminPlantEditor.tsx:219: className="flex-1 px-4 py-3 bg-[#1A1A1A] text-white text-xs tracking-widest hover:bg-[#5A6B58] transition-colors uppercase"
+src\pages\AdminPlantEditor.tsx:229: <div className="sticky top-0 z-50 bg-[#F7F7F5] pt-4 pb-4 border-b border-[#1A1A1A]/10 flex justify-between items-center mb-8 px-4 -mx-4">
+src\pages\AdminPlantEditor.tsx:230: <div className="flex items-center gap-4">
+src\pages\AdminPlantEditor.tsx:231: <button onClick={() => navigate('/admin/plants')} className="text-[#1A1A1A]/50 hover:text-[#1A1A1A]">
+src\pages\AdminPlantEditor.tsx:235: <h1 className="text-2xl font-light tracking-tight">{plant.name || '未命名檔案'}</h1>
+src\pages\AdminPlantEditor.tsx:236: <p className="text-xs font-mono text-[#1A1A1A]/50 mt-1">ID: {plant.id}</p>
+src\pages\AdminPlantEditor.tsx:239: <div className="flex items-center gap-4">
+src\pages\AdminPlantEditor.tsx:240: {isDirty && !saving && saveStatus !== 'error' && <span className="text-sm text-amber-600 flex items-center gap-1 font-medium"><AlertTriangle size={16}/> ⚠️ 有未儲存的變更</span>}
+src\pages\AdminPlantEditor.tsx:241: {saveStatus === 'saved' && <span className="text-sm text-emerald-600 flex items-center gap-1 font-medium"><CheckCircle2 size={16}/> ✅ 已儲存 ({lastSavedTime})</span>}
+src\pages\AdminPlantEditor.tsx:242: {saveStatus === 'error' && <span className="text-sm text-red-600 flex items-center gap-1 font-medium"><AlertTriangle size={16}/> ❌ 儲存失敗，請重試</span>}
+src\pages\AdminPlantEditor.tsx:247: className={`px-6 py-2.5 text-sm uppercase tracking-widest flex items-center gap-2 transition-colors
+src\pages\AdminPlantEditor.tsx:251: {saving ? <Loader2 size={16} className="animate-spin" /> : <Save size={16} />}
+src\pages\AdminPlantEditor.tsx:258: <div className="p-4 mb-6 text-sm bg-red-50 text-red-800 border-l-4 border-red-500">
+src\pages\AdminPlantEditor.tsx:264: <div className="flex gap-8 items-start">
+src\pages\AdminPlantEditor.tsx:266: <div className="flex-1 space-y-8">
+src\pages\AdminPlantEditor.tsx:268: <section className="bg-white p-6 border border-[#1A1A1A]/10 shadow-sm">
+src\pages\AdminPlantEditor.tsx:269: <h2 className="text-lg font-medium mb-6">基礎資料</h2>
+src\pages\AdminPlantEditor.tsx:270: <div className="space-y-4">
+src\pages\AdminPlantEditor.tsx:271: <div className="grid grid-cols-2 gap-4">
+src\pages\AdminPlantEditor.tsx:273: <label className="block text-xs text-[#1A1A1A]/50 mb-1 flex justify-between">
+src\pages\AdminPlantEditor.tsx:275: {isFieldDirty('name') && <span className="text-[10px] text-amber-600 font-bold uppercase tracking-tighter animate-pulse">● MODIFIED</span>}
+src\pages\AdminPlantEditor.tsx:277: <input className={`w-full border p-2 text-sm focus:border-[#5A6B58] outline-none transition-colors ${isFieldDirty('name') ? 'border-amber-300 bg-amber-50/30' : 'border-gray-200'}`} value={plant.name} onChange={e => updateField('name', e.target.value)} />
+src\pages\AdminPlantEditor.tsx:280: <label className="block text-xs text-[#1A1A1A]/50 mb-1 flex justify-between">
+src\pages\AdminPlantEditor.tsx:282: {isFieldDirty('serialNumber') && <span className="text-[10px] text-amber-600 font-bold uppercase tracking-tighter animate-pulse">● MODIFIED</span>}
+src\pages\AdminPlantEditor.tsx:284: <input className={`w-full border p-2 text-sm focus:border-[#5A6B58] outline-none transition-colors ${isFieldDirty('serialNumber') ? 'border-amber-300 bg-amber-50/30' : 'border-gray-200'}`} value={plant.serialNumber || ''} onChange={e => updateField('serialNumber', e.target.value)} />
+src\pages\AdminPlantEditor.tsx:287: <div className="grid grid-cols-2 gap-4">
+src\pages\AdminPlantEditor.tsx:289: <label className="block text-xs text-[#1A1A1A]/50 mb-1 flex justify-between">
+src\pages\AdminPlantEditor.tsx:291: {isFieldDirty('localName') && <span className="text-[10px] text-amber-600 font-bold uppercase tracking-tighter animate-pulse">● MODIFIED</span>}
+src\pages\AdminPlantEditor.tsx:293: <input className={`w-full border p-2 text-sm focus:border-[#5A6B58] outline-none transition-colors ${isFieldDirty('localName') ? 'border-amber-300 bg-amber-50/30' : 'border-gray-200'}`} value={plant.localName || ''} onChange={e => updateField('localName', e.target.value)} />
+src\pages\AdminPlantEditor.tsx:296: <label className="block text-xs text-[#1A1A1A]/50 mb-1 flex justify-between">
+src\pages\AdminPlantEditor.tsx:298: {isFieldDirty('scientificName') && <span className="text-[10px] text-amber-600 font-bold uppercase tracking-tighter animate-pulse">● MODIFIED</span>}
+src\pages\AdminPlantEditor.tsx:300: <input className={`w-full border p-2 text-sm focus:border-[#5A6B58] outline-none font-serif italic transition-colors ${isFieldDirty('scientificName') ? 'border-amber-300 bg-amber-50/30' : 'border-gray-200'}`} value={plant.scientificName || ''} onChange={e => updateField('scientificName', e.target.value)} />
+src\pages\AdminPlantEditor.tsx:304: <label className="block text-xs text-[#1A1A1A]/50 mb-1 flex justify-between">
+src\pages\AdminPlantEditor.tsx:306: {isFieldDirty('price') && <span className="text-[10px] text-amber-600 font-bold uppercase tracking-tighter animate-pulse">● MODIFIED</span>}
+src\pages\AdminPlantEditor.tsx:308: <input type="number" className={`w-full border p-2 text-sm focus:border-[#5A6B58] outline-none transition-colors ${isFieldDirty('price') ? 'border-amber-300 bg-amber-50/30' : 'border-gray-200'}`} value={plant.price || ''} onChange={e => updateField('price', e.target.value ? Number(e.target.value) : undefined)} />
+src\pages\AdminPlantEditor.tsx:311: <label className="block text-xs text-[#1A1A1A]/50 mb-1 flex justify-between">
+src\pages\AdminPlantEditor.tsx:313: {isFieldDirty('description') && <span className="text-[10px] text-amber-600 font-bold uppercase tracking-tighter animate-pulse">● MODIFIED</span>}
+src\pages\AdminPlantEditor.tsx:315: <div className="mt-2">
+src\pages\AdminPlantEditor.tsx:326: <section className="bg-white p-6 border border-[#1A1A1A]/10 shadow-sm">
+src\pages\AdminPlantEditor.tsx:327: <h2 className="text-lg font-medium mb-6 flex items-center justify-between">
+src\pages\AdminPlantEditor.tsx:329: <span className="text-xs font-normal text-[#1A1A1A]/40 bg-gray-100 px-2 py-1 rounded">共 {plant.images.length} 張</span>
+src\pages\AdminPlantEditor.tsx:332: <div className="flex gap-2 mb-6">
+src\pages\AdminPlantEditor.tsx:336: className="flex-1 border p-2 text-sm focus:border-[#5A6B58] outline-none bg-gray-50"
+src\pages\AdminPlantEditor.tsx:341: <button onClick={handleAddImage} disabled={!newImageUrl.trim()} className="bg-[#1A1A1A] text-white px-4 py-2 text-xs uppercase tracking-widest hover:bg-[#5A6B58] transition-colors disabled:opacity-30 whitespace-nowrap">加入圖片</button>
+src\pages\AdminPlantEditor.tsx:344: className="bg-[#5A6B58] text-white px-4 py-2 text-xs uppercase tracking-widest hover:bg-[#1A1A1A] transition-colors whitespace-nowrap flex items-center gap-1"
+src\pages\AdminPlantEditor.tsx:351: <div className="p-8 border-2 border-dashed border-[#1A1A1A]/10 flex flex-col items-center justify-center text-gray-400">
+src\pages\AdminPlantEditor.tsx:352: <ImageIcon size={32} className="mb-2 opacity-50" />
+src\pages\AdminPlantEditor.tsx:353: <p className="text-sm">尚未上傳任何圖片</p>
+src\pages\AdminPlantEditor.tsx:356: <div className="grid grid-cols-2 gap-4">
+src\pages\AdminPlantEditor.tsx:358: <div key={idx} className={`relative border p-2 group ${img.isCover ? 'border-[#5A6B58] bg-[#5A6B58]/5 ring-2 ring-[#5A6B58]' : 'border-[#1A1A1A]/10'}`}>
+src\pages\AdminPlantEditor.tsx:359: <img src={img.url} alt="" className="w-full h-40 object-cover bg-gray-100" />
+src\pages\AdminPlantEditor.tsx:360: {img.isCover && <div className="absolute top-4 left-4 bg-[#5A6B58] shadow-md text-white text-[10px] px-2 py-1 uppercase tracking-wider flex items-center gap-1 font-bold z-10"><Star size={10} fill="currentColor"/> 👑 面向首頁/列表的封面圖片</div>}
+src\pages\AdminPlantEditor.tsx:362: <div className="absolute top-4 right-4 flex flex-col gap-1 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+src\pages\AdminPlantEditor.tsx:364: <button onClick={() => setAsCover(idx)} className="bg-white/90 p-1.5 hover:bg-white text-gray-700 shadow flex items-center gap-1 text-[10px]"><Star size={12}/> 設封面</button>
+src\pages\AdminPlantEditor.tsx:366: <button onClick={() => removeImage(idx)} className="bg-white/90 p-1.5 hover:bg-white text-red-600 shadow flex items-center gap-1 text-[10px]"><Trash2 size={12}/> 移除</button>
+src\pages\AdminPlantEditor.tsx:377: <div className="w-80 shrink-0 space-y-6">
+src\pages\AdminPlantEditor.tsx:379: <section className="bg-white p-6 border border-[#5A6B58] shadow-sm relative overflow-hidden">
+src\pages\AdminPlantEditor.tsx:380: <div className="absolute top-0 right-0 w-16 h-16 bg-[#5A6B58]/5 rotate-45 translate-x-8 -translate-y-8"></div>
+src\pages\AdminPlantEditor.tsx:381: <h2 className="text-base font-medium mb-4">檔案狀態 (Level 1)</h2>
+src\pages\AdminPlantEditor.tsx:382: <div className="space-y-4 text-sm">
+src\pages\AdminPlantEditor.tsx:384: <label className="block text-xs text-[#1A1A1A]/50 mb-1 flex justify-between">
+src\pages\AdminPlantEditor.tsx:386: {isFieldDirty('status') && <span className="text-[10px] text-amber-600 font-bold uppercase tracking-tighter animate-pulse">● MODIFIED</span>}
+src\pages\AdminPlantEditor.tsx:388: <select className={`w-full border p-2 bg-[#F7F7F5] outline-none transition-colors ${isFieldDirty('status') ? 'border-amber-300 bg-amber-50/30' : 'border-gray-200'}`} value={plant.status} onChange={e => updateField('status', e.target.value)}>
+src\pages\AdminPlantEditor.tsx:395: <div className="flex gap-4">
+src\pages\AdminPlantEditor.tsx:396: <label className="flex items-center gap-2 cursor-pointer">
+src\pages\AdminPlantEditor.tsx:400: <label className="flex items-center gap-2 cursor-pointer">
+src\pages\AdminPlantEditor.tsx:402: <span className={plant.featuredOnHome ? 'text-yellow-600 font-medium' : ''}>首頁精選展示</span>
+src\pages\AdminPlantEditor.tsx:405: <div className="pt-2 border-t border-[#1A1A1A]/10">
+src\pages\AdminPlantEditor.tsx:406: <label className="flex items-center gap-2 cursor-pointer">
+src\pages\AdminPlantEditor.tsx:408: <span className="text-[#5A6B58] font-medium">開放會員遞交申請</span>
+src\pages\AdminPlantEditor.tsx:414: <section className="bg-white p-6 border border-[#1A1A1A]/10 shadow-sm">
+src\pages\AdminPlantEditor.tsx:415: <h2 className="text-base font-medium mb-4">分類與分級 (Level 2)</h2>
+src\pages\AdminPlantEditor.tsx:416: <div className="space-y-4">
+src\pages\AdminPlantEditor.tsx:418: <label className="block text-xs text-[#1A1A1A]/50 mb-1">檔案分級 (Grade)</label>
+src\pages\AdminPlantEditor.tsx:420: className={`w-full border p-2 outline-none focus:border-[#5A6B58] ${isFieldDirty('grade') ? 'border-amber-300 bg-amber-50/30' : 'border-gray-200'}`}
+src\pages\AdminPlantEditor.tsx:431: <label className="block text-xs text-[#1A1A1A]/50 mb-1">主要屬系 (Category/Type)</label>
+src\pages\AdminPlantEditor.tsx:433: className={`w-full border p-2 outline-none focus:border-[#5A6B58] bg-[#F7F7F5] ${isFieldDirty('category') ? 'border-amber-300 bg-amber-50/30' : 'border-gray-200'}`}
+src\pages\AdminPlantEditor.tsx:447: <section className="bg-white p-6 border border-[#1A1A1A]/10 shadow-sm">
+src\pages\AdminPlantEditor.tsx:448: <h2 className="text-base font-medium mb-2">自由標籤 (Level 3)</h2>
+src\pages\AdminPlantEditor.tsx:449: <p className="text-xs text-[#1A1A1A]/40 mb-4">作為前台搜尋與補充說明的輔助，不參與硬性分類邏輯。</p>
+src\pages\AdminPlantEditor.tsx:454: className="w-full border p-2 text-sm focus:border-[#5A6B58] outline-none mb-3 bg-[#F7F7F5]"
+src\pages\AdminPlantEditor.tsx:460: <div className="flex flex-wrap gap-2">
+src\pages\AdminPlantEditor.tsx:462: <span key={idx} className="bg-gray-100 text-gray-700 text-xs px-2.5 py-1 flex items-center gap-1 border border-gray-200">
+src\pages\AdminPlantEditor.tsx:464: <button onClick={() => removeTag(tag)} className="hover:text-red-500 ml-1"><X size={12}/></button>
+src\pages\AdminPlantEditor.tsx:467: {plant.tags.length === 0 && <span className="text-xs text-gray-400">目前無自訂標籤</span>}
+src\pages\AdminPlants.tsx:83: <div className="max-w-6xl mx-auto pb-24">
+src\pages\AdminPlants.tsx:84: <div className="flex flex-col md:flex-row md:justify-between md:items-end mb-8 gap-4">
+src\pages\AdminPlants.tsx:86: <h1 className="text-3xl font-light tracking-tight mb-2">檔案總管 (Plants)</h1>
+src\pages\AdminPlants.tsx:87: <p className="text-sm text-[#1A1A1A]/50">管理所有植株的層級、營運生命週期，與首頁前線展示狀態。</p>
+src\pages\AdminPlants.tsx:91: className="bg-[#1A1A1A] text-white px-5 py-3 text-sm tracking-widest flex items-center gap-2 hover:bg-[#5A6B58] transition-colors shrink-0"
+src\pages\AdminPlants.tsx:97: <div className="flex flex-col md:flex-row gap-4 mb-6 items-center justify-between">
+src\pages\AdminPlants.tsx:99: <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto">
+src\pages\AdminPlants.tsx:110: className={`px-4 py-2 text-sm tracking-widest whitespace-nowrap transition-colors border ${
+src\pages\AdminPlants.tsx:122: <div className="relative w-full md:w-64 shrink-0">
+src\pages\AdminPlants.tsx:123: <Search className="absolute left-3 top-2.5 text-gray-400" size={16} />
+src\pages\AdminPlants.tsx:127: className="w-full pl-9 pr-4 py-2 text-sm border border-[#1A1A1A]/10 focus:border-[#5A6B58] outline-none transition-colors"
+src\pages\AdminPlants.tsx:134: <div className="bg-white border border-[#1A1A1A]/10 shadow-sm overflow-hidden">
+src\pages\AdminPlants.tsx:135: <div className="overflow-x-auto">
+src\pages\AdminPlants.tsx:136: <table className="w-full text-left text-sm whitespace-nowrap">
+src\pages\AdminPlants.tsx:137: <thead className="bg-[#F7F7F5] border-b border-[#1A1A1A]/10">
+src\pages\AdminPlants.tsx:139: <th className="p-4 font-medium text-[#1A1A1A]/60 w-16">封面</th>
+src\pages\AdminPlants.tsx:140: <th className="p-4 font-medium text-[#1A1A1A]/60">識別名稱 / 編號</th>
+src\pages\AdminPlants.tsx:141: <th className="p-4 font-medium text-[#1A1A1A]/60">營運狀態</th>
+src\pages\AdminPlants.tsx:142: <th className="p-4 font-medium text-[#1A1A1A]/60">分級屬系</th>
+src\pages\AdminPlants.tsx:143: <th className="p-4 font-medium text-[#1A1A1A]/60 text-center">前台公開</th>
+src\pages\AdminPlants.tsx:144: <th className="p-4 font-medium text-[#1A1A1A]/60 text-center">首頁精選</th>
+src\pages\AdminPlants.tsx:145: <th className="p-4 font-medium text-[#1A1A1A]/60 text-right">管理</th>
+src\pages\AdminPlants.tsx:150: <tr><td colSpan={7} className="p-12 text-center tracking-widest text-[#1A1A1A]/40 uppercase text-xs">載入中 Loading...</td></tr>
+src\pages\AdminPlants.tsx:152: <tr><td colSpan={7} className="p-12 text-center tracking-widest text-[#1A1A1A]/40 uppercase text-xs">查無檔案 No Results</td></tr>
+src\pages\AdminPlants.tsx:155: <tr key={plant.id} className="border-b border-[#1A1A1A]/5 hover:bg-[#F7F7F5]/50 transition-colors group">
+src\pages\AdminPlants.tsx:156: <td className="p-4">
+src\pages\AdminPlants.tsx:157: <div className="w-12 h-16 bg-[#EBEBE8] border border-[#1A1A1A]/10 flex items-center justify-center text-[#1A1A1A]/30 overflow-hidden relative">
+src\pages\AdminPlants.tsx:159: <img src={plant.coverImageUrl} alt="" className="w-full h-full object-cover" />
+src\pages\AdminPlants.tsx:161: <img src={plant.images.find(img => img.isCover)?.url || plant.images[0].url} alt="" className="w-full h-full object-cover" />
+src\pages\AdminPlants.tsx:165: <td className="p-4">
+src\pages\AdminPlants.tsx:166: <div className="font-medium text-[#1A1A1A] text-base">{plant.name} {plant.localName && <span className="text-xs text-[#1A1A1A]/50">({plant.localName})</span>}</div>
+src\pages\AdminPlants.tsx:167: <div className="text-[10px] text-[#1A1A1A]/40 font-mono mt-1">S/N: {plant.serialNumber || plant.id}</div>
+src\pages\AdminPlants.tsx:169: <td className="p-4">
+src\pages\AdminPlants.tsx:170: <div className="flex items-center gap-2">
+src\pages\AdminPlants.tsx:171: <span className={`inline-flex items-center px-2 py-1 text-xs tracking-wider border ${getStatusColor(plant.status).includes('green') ? 'border-green-200 bg-green-50 text-green-700' : getStatusColor(plant.status).includes('red') ? 'border-red-200 bg-red-50 text-red-700' : getStatusColor(plant.status).includes('yellow') ? 'border-yellow-200 bg-yellow-50 text-yellow-700' : 'border-gray-200 bg-gray-50 text-gray-700'}`}>
+src\pages\AdminPlants.tsx:177: className="text-[#1A1A1A]/30 hover:text-[#5A6B58] transition-colors p-1 bg-white border border-transparent hover:border-[#5A6B58]/30 rounded-full"
+src\pages\AdminPlants.tsx:184: <td className="p-4">
+src\pages\AdminPlants.tsx:185: <div className="flex flex-col gap-1">
+src\pages\AdminPlants.tsx:186: <span className="font-medium text-[#1A1A1A]/80">{plant.grade || '-'}</span>
+src\pages\AdminPlants.tsx:187: <span className="text-[10px] text-[#1A1A1A]/50">{plant.category || '未分類'}</span>
+src\pages\AdminPlants.tsx:190: <td className="p-4 text-center">
+src\pages\AdminPlants.tsx:192: <span className="text-xs bg-blue-50 text-blue-700 border border-blue-200 px-2.5 py-1">公開</span>
+src\pages\AdminPlants.tsx:194: <span className="text-xs bg-gray-50 text-gray-500 border border-gray-200 px-2.5 py-1">私密</span>
+src\pages\AdminPlants.tsx:197: <td className="p-4 text-center">
+src\pages\AdminPlants.tsx:200: className={`p-2 transition-all duration-300 rounded ${plant.featuredOnHome ? 'bg-yellow-50 border border-yellow-200 shadow-sm' : 'hover:bg-gray-100 border border-transparent'}`}
+src\pages\AdminPlants.tsx:202: <Star size={16} fill={plant.featuredOnHome ? '#ca8a04' : 'none'} className={plant.featuredOnHome ? 'text-yellow-600' : 'text-gray-300'} />
+src\pages\AdminPlants.tsx:205: <td className="p-4 text-right">
+src\pages\AdminPlants.tsx:208: className="bg-[#1A1A1A] text-white px-4 py-2 text-xs tracking-widest hover:bg-[#5A6B58] transition-colors inline-block"
+src\pages\AdminPostEditor.tsx:171: if (loading) return <div className="text-center py-20 text-[#1A1A1A]/20 uppercase tracking-widest text-xs">Loading Editor...</div>;
+src\pages\AdminPostEditor.tsx:174: <div className="max-w-5xl mx-auto space-y-8">
+src\pages\AdminPostEditor.tsx:177: <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+src\pages\AdminPostEditor.tsx:178: <div className="bg-white max-w-sm w-full p-8 border border-[#1A1A1A]/10 shadow-2xl animate-in fade-in zoom-in duration-300 text-center">
+src\pages\AdminPostEditor.tsx:179: <h3 className="text-xl font-light mb-4 flex items-center justify-center gap-2">
+src\pages\AdminPostEditor.tsx:180: <AlertTriangle className="text-amber-500" size={24} />
+src\pages\AdminPostEditor.tsx:183: <p className="text-sm text-[#1A1A1A]/60 mb-8 leading-relaxed">
+src\pages\AdminPostEditor.tsx:186: <div className="flex gap-4">
+src\pages\AdminPostEditor.tsx:189: className="flex-1 px-4 py-3 border border-red-200 text-red-700 text-xs tracking-widest hover:bg-red-50 transition-colors uppercase"
+src\pages\AdminPostEditor.tsx:195: className="flex-1 px-4 py-3 bg-[#1A1A1A] text-white text-xs tracking-widest hover:bg-[#5A6B58] transition-colors uppercase"
+src\pages\AdminPostEditor.tsx:205: <div className="flex justify-between items-center">
+src\pages\AdminPostEditor.tsx:206: <div className="flex items-center gap-4">
+src\pages\AdminPostEditor.tsx:207: <Link to="/admin/posts" className="p-2 hover:bg-[#1A1A1A]/5 rounded-full transition-colors">
+src\pages\AdminPostEditor.tsx:211: <h1 className="text-2xl font-light tracking-tight">{id ? '編輯文章' : '新增文章'}</h1>
+src\pages\AdminPostEditor.tsx:212: <div className="flex items-center gap-3">
+src\pages\AdminPostEditor.tsx:213: <p className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mt-1">
+src\pages\AdminPostEditor.tsx:216: {isDirty && <span className="text-[9px] font-bold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full animate-pulse border border-amber-200">UNSAVED CHANGES ●</span>}
+src\pages\AdminPostEditor.tsx:220: <div className="flex items-center gap-6">
+src\pages\AdminPostEditor.tsx:222: <span className={`text-[10px] tracking-widest uppercase font-bold animate-in fade-in slide-in-from-right-2 ${saveStatus === 'saved' ? 'text-[#5A6B58]' : 'text-red-500'}`}>
+src\pages\AdminPostEditor.tsx:226: <div className="flex gap-4">
+src\pages\AdminPostEditor.tsx:230: className="bg-white border border-[#1A1A1A]/10 px-4 py-2 text-xs uppercase tracking-widest text-[#1A1A1A]/60 focus:outline-none cursor-pointer"
+src\pages\AdminPostEditor.tsx:239: className={`bg-[#1A1A1A] text-white px-8 py-2 text-xs tracking-widest uppercase flex items-center gap-2 transition-all ${saving ? 'opacity-50' : isDirty ? 'hover:bg-[#5A6B58]' : 'opacity-30 cursor-not-allowed'}`}
+src\pages\AdminPostEditor.tsx:247: <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+src\pages\AdminPostEditor.tsx:249: <div className="lg:col-span-2 space-y-8">
+src\pages\AdminPostEditor.tsx:251: <div className={`bg-white p-8 border transition-colors space-y-6 ${originalPost?.title !== post.title ? 'border-amber-300 bg-amber-50/5' : 'border-[#1A1A1A]/5'}`}>
+src\pages\AdminPostEditor.tsx:252: <div className="space-y-2">
+src\pages\AdminPostEditor.tsx:253: <label className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 flex justify-between">
+src\pages\AdminPostEditor.tsx:254: <span className="flex items-center gap-2"><Type size={12} /> 文章標題 Title</span>
+src\pages\AdminPostEditor.tsx:255: {originalPost?.title !== post.title && <span className="text-amber-600 font-bold">● MODIFIED</span>}
+src\pages\AdminPostEditor.tsx:262: className={`w-full text-2xl font-light border-b py-3 focus:outline-none focus:border-[#1A1A1A] transition-colors ${originalPost?.title !== post.title ? 'border-amber-300' : 'border-[#1A1A1A]/10'}`}
+src\pages\AdminPostEditor.tsx:266: <div className="space-y-2">
+src\pages\AdminPostEditor.tsx:267: <label className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 flex justify-between">
+src\pages\AdminPostEditor.tsx:269: {originalPost?.slug !== post.slug && <span className="text-amber-600 font-bold">● MODIFIED</span>}
+src\pages\AdminPostEditor.tsx:275: className={`w-full text-xs font-mono border p-3 focus:outline-none focus:border-[#1A1A1A]/20 transition-colors ${originalPost?.slug !== post.slug ? 'bg-amber-50/30 border-amber-300' : 'bg-[#F7F7F5] border-[#1A1A1A]/5'}`}
+src\pages\AdminPostEditor.tsx:282: <div className={`bg-white p-8 border transition-colors space-y-6 ${originalPost?.content !== post.content ? 'border-amber-300 bg-amber-50/5' : 'border-[#1A1A1A]/5'}`}>
+src\pages\AdminPostEditor.tsx:283: <div className="space-y-2">
+src\pages\AdminPostEditor.tsx:284: <label className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 flex justify-between">
+src\pages\AdminPostEditor.tsx:285: <span className="flex items-center gap-2"><FileText size={12} /> 文章內文 Content (Markdown / Text)</span>
+src\pages\AdminPostEditor.tsx:286: {originalPost?.content !== post.content && <span className="text-amber-600 font-bold">● MODIFIED</span>}
+src\pages\AdminPostEditor.tsx:299: <div className="lg:col-span-1 space-y-8">
+src\pages\AdminPostEditor.tsx:301: <div className={`bg-white p-6 border transition-colors space-y-4 ${originalPost?.summary !== post.summary ? 'border-amber-300 bg-amber-50/5' : 'border-[#1A1A1A]/5'}`}>
+src\pages\AdminPostEditor.tsx:302: <label className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 flex justify-between">
+src\pages\AdminPostEditor.tsx:304: {originalPost?.summary !== post.summary && <span className="text-amber-600 font-bold">● MODIFIED</span>}
+src\pages\AdminPostEditor.tsx:310: className="w-full text-sm font-light leading-relaxed border border-[#1A1A1A]/5 p-4 focus:outline-none focus:border-[#1A1A1A]/20 bg-[#FCFBFA] resize-none"
+src\pages\AdminPostEditor.tsx:316: <div className="bg-white p-6 border border-[#1A1A1A]/5 space-y-6">
+src\pages\AdminPostEditor.tsx:317: <div className="space-y-2">
+src\pages\AdminPostEditor.tsx:318: <label className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 flex justify-between">
+src\pages\AdminPostEditor.tsx:319: <span className="flex items-center gap-2"><Layout size={12} /> 分類 Category</span>
+src\pages\AdminPostEditor.tsx:320: {originalPost?.category !== post.category && <span className="text-amber-600 font-bold">● MODIFIED</span>}
+src\pages\AdminPostEditor.tsx:325: className={`w-full text-sm border-b py-2 focus:outline-none focus:border-[#1A1A1A] transition-colors bg-[#F7F7F5] ${originalPost?.category !== post.category ? 'border-amber-300 bg-amber-50/10' : 'border-[#1A1A1A]/10'}`}
+src\pages\AdminPostEditor.tsx:335: <div className="space-y-2">
+src\pages\AdminPostEditor.tsx:336: <label className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 flex justify-between">
+src\pages\AdminPostEditor.tsx:337: <span className="flex items-center gap-2"><TagIcon size={12} /> 標籤 Tags</span>
+src\pages\AdminPostEditor.tsx:338: {JSON.stringify(originalPost?.tags) !== JSON.stringify(post.tags) && <span className="text-amber-600 font-bold">● MODIFIED</span>}
+src\pages\AdminPostEditor.tsx:345: className={`w-full text-sm border-b py-2 focus:outline-none focus:border-[#1A1A1A] transition-colors ${JSON.stringify(originalPost?.tags) !== JSON.stringify(post.tags) ? 'border-amber-300 bg-amber-50/10' : 'border-[#1A1A1A]/10'}`}
+src\pages\AdminPostEditor.tsx:348: <div className="flex flex-wrap gap-2 mt-4">
+src\pages\AdminPostEditor.tsx:350: <span key={idx} className="bg-[#1A1A1A]/5 text-[#1A1A1A]/60 px-3 py-1 rounded-full text-[10px] flex items-center gap-2 group">
+src\pages\AdminPostEditor.tsx:352: <button onClick={() => removeTag(tag)} className="hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity">×</button>
+src\pages\AdminPostEditor.tsx:358: <div className="space-y-4 pt-4 border-t border-[#1A1A1A]/5">
+src\pages\AdminPostEditor.tsx:359: <label className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 flex justify-between mb-2">
+src\pages\AdminPostEditor.tsx:360: <span className="flex items-center gap-2"><ImageIcon size={12} /> 封面圖片 Cover Image</span>
+src\pages\AdminPostEditor.tsx:361: {originalPost?.coverImageUrl !== post.coverImageUrl && <span className="text-amber-600 font-bold">● MODIFIED</span>}
+src\pages\AdminPostEditor.tsx:364: <div className={`aspect-video w-full overflow-hidden border bg-[#F7F7F5] transition-colors ${originalPost?.coverImageUrl !== post.coverImageUrl ? 'border-amber-300 shadow-inner' : 'border-[#1A1A1A]/10'}`}>
+src\pages\AdminPostEditor.tsx:365: <img src={post.coverImageUrl} className="w-full h-full object-cover" alt="Preview" />
+src\pages\AdminPostEditor.tsx:368: <div className="aspect-video w-full flex items-center justify-center border border-dashed border-[#1A1A1A]/20 bg-[#F7F7F5]">
+src\pages\AdminPostEditor.tsx:369: <span className="text-xs text-[#1A1A1A]/30">尚無封面圖</span>
+src\pages\AdminPostEditor.tsx:376: className={`w-full text-xs font-mono border p-3 focus:outline-none focus:border-[#1A1A1A]/20 transition-colors ${originalPost?.coverImageUrl !== post.coverImageUrl ? 'border-amber-300 bg-amber-50/10' : 'border-[#1A1A1A]/10'}`}
+src\pages\AdminPostEditor.tsx:381: className="w-full py-3 bg-[#5A6B58] text-white text-[10px] uppercase tracking-widest hover:bg-[#1A1A1A] transition-colors flex items-center justify-center gap-2"
+src\pages\AdminPosts.tsx:74: <div className="space-y-8">
+src\pages\AdminPosts.tsx:75: <div className="flex justify-between items-end">
+src\pages\AdminPosts.tsx:77: <h1 className="text-3xl font-light tracking-tight mb-2">文章管理</h1>
+src\pages\AdminPosts.tsx:78: <p className="text-[#1A1A1A]/40 text-sm font-light">發布品牌動態、養護知識與專題文章。</p>
+src\pages\AdminPosts.tsx:81: <div className="flex gap-4">
+src\pages\AdminPosts.tsx:82: <div className="flex items-center gap-2 bg-white border border-[#1A1A1A]/10 px-3 py-2 text-xs uppercase tracking-widest text-[#1A1A1A]/60">
+src\pages\AdminPosts.tsx:87: className="bg-transparent focus:outline-none cursor-pointer"
+src\pages\AdminPosts.tsx:97: className="bg-[#1A1A1A] text-white px-6 py-2 text-xs tracking-widest uppercase flex items-center gap-2 hover:bg-[#5A6B58] transition-colors"
+src\pages\AdminPosts.tsx:104: <div className="bg-white border border-[#1A1A1A]/10 overflow-hidden">
+src\pages\AdminPosts.tsx:106: <div className="text-center py-20 text-[#1A1A1A]/20">Loading...</div>
+src\pages\AdminPosts.tsx:108: <div className="text-center py-20 text-[#1A1A1A]/20">尚無文章項目</div>
+src\pages\AdminPosts.tsx:110: <table className="w-full text-left text-sm">
+src\pages\AdminPosts.tsx:111: <thead className="bg-[#F7F7F5] border-b border-[#1A1A1A]/10 text-[10px] uppercase tracking-widest text-[#1A1A1A]/40">
+src\pages\AdminPosts.tsx:113: <th className="px-6 py-4 font-medium">標題 Title</th>
+src\pages\AdminPosts.tsx:114: <th className="px-6 py-4 font-medium">分類 Category</th>
+src\pages\AdminPosts.tsx:115: <th className="px-6 py-4 font-medium">狀態 Status</th>
+src\pages\AdminPosts.tsx:116: <th className="px-6 py-4 font-medium">發布日期 Published At</th>
+src\pages\AdminPosts.tsx:117: <th className="px-6 py-4 font-medium text-right">操作 Actions</th>
+src\pages\AdminPosts.tsx:120: <tbody className="divide-y divide-[#1A1A1A]/5">
+src\pages\AdminPosts.tsx:122: <tr key={post.id} className="hover:bg-[#F7F7F5]/50 transition-colors group">
+src\pages\AdminPosts.tsx:123: <td className="px-6 py-4">
+src\pages\AdminPosts.tsx:124: <div className="flex items-center gap-4">
+src\pages\AdminPosts.tsx:126: <img src={post.coverImageUrl} className="w-10 h-10 object-cover border border-[#1A1A1A]/5" alt="" />
+src\pages\AdminPosts.tsx:128: <div className="w-10 h-10 bg-[#1A1A1A]/5 flex items-center justify-center border border-[#1A1A1A]/5">
+src\pages\AdminPosts.tsx:129: <FileText size={16} className="text-[#1A1A1A]/20" />
+src\pages\AdminPosts.tsx:133: <div className="font-medium text-[#1A1A1A]">{post.title || '(無標題)'}</div>
+src\pages\AdminPosts.tsx:134: <div className="text-[10px] text-[#1A1A1A]/30 font-mono mt-0.5">{post.slug || 'no-slug'}</div>
+src\pages\AdminPosts.tsx:138: <td className="px-6 py-4 text-[#1A1A1A]/60">
+src\pages\AdminPosts.tsx:139: <span className="text-xs">{post.category || '-'}</span>
+src\pages\AdminPosts.tsx:141: <td className="px-6 py-4">
+src\pages\AdminPosts.tsx:142: <div className="flex items-center gap-2">
+src\pages\AdminPosts.tsx:143: <span className={`w-1.5 h-1.5 rounded-full ${
+src\pages\AdminPosts.tsx:147: <span className="text-[10px] uppercase tracking-widest font-medium text-[#1A1A1A]/60">{post.status}</span>
+src\pages\AdminPosts.tsx:150: <td className="px-6 py-4 text-[#1A1A1A]/40 font-mono text-xs">
+src\pages\AdminPosts.tsx:153: <td className="px-6 py-4 text-right">
+src\pages\AdminPosts.tsx:154: <div className="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+src\pages\AdminPosts.tsx:157: className="p-2 text-[#1A1A1A]/40 hover:text-[#1A1A1A] transition-colors"
+src\pages\AdminPosts.tsx:164: className="p-2 text-[#1A1A1A]/40 hover:text-red-600 transition-colors"
+src\pages\AdminSettings.tsx:61: if (!formData) return <div className="p-12 text-[#1A1A1A]/50 tracking-widest uppercase">Loading Settings...</div>;
+src\pages\AdminSettings.tsx:133: <div className="max-w-5xl pb-32">
+src\pages\AdminSettings.tsx:135: <div className="flex justify-between items-start mb-8 border-b border-[#1A1A1A]/10 pb-6">
+src\pages\AdminSettings.tsx:137: <h1 className="text-3xl font-light tracking-tight mb-2">會員制度營運設定</h1>
+src\pages\AdminSettings.tsx:138: <div className="flex items-center gap-3 text-sm text-[#1A1A1A]/60">
+src\pages\AdminSettings.tsx:140: <span className={`px-2 py-0.5 rounded text-[10px] uppercase tracking-widest ${source === 'firestore' ? 'bg-green-100 text-green-800' : 'bg-orange-100 text-orange-800'}`}>
+src\pages\AdminSettings.tsx:145: <div className="flex flex-col items-end gap-2">
+src\pages\AdminSettings.tsx:149: className={`px-6 py-3 text-sm tracking-widest uppercase transition-colors flex items-center gap-2
+src\pages\AdminSettings.tsx:155: {isDirty && <span className="text-xs text-orange-600 flex items-center gap-1"><AlertTriangle size={12}/> 有尚未發佈的變更</span>}
+src\pages\AdminSettings.tsx:160: <div className="mb-8 p-4 bg-green-50 border border-green-200 text-green-800 flex items-start gap-3">
+src\pages\AdminSettings.tsx:161: <CheckCircle2 className="mt-0.5 shrink-0" size={18} />
+src\pages\AdminSettings.tsx:162: <p className="text-sm leading-relaxed">{successMsg}</p>
+src\pages\AdminSettings.tsx:167: <div className="flex gap-8 items-start">
+src\pages\AdminSettings.tsx:169: <div className="w-64 shrink-0 flex flex-col gap-1 sticky top-8">
+src\pages\AdminSettings.tsx:176: className={`text-left px-4 py-3 text-sm transition-colors border-l-2 flex justify-between items-center
+src\pages\AdminSettings.tsx:181: {secIsDirty && <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span>}
+src\pages\AdminSettings.tsx:188: <div className="flex-1 bg-white p-8 border border-[#1A1A1A]/10 shadow-sm">
+src\pages\AdminSettings.tsx:192: <div className="animate-in fade-in duration-300">
+src\pages\AdminSettings.tsx:193: <h2 className="text-xl font-medium mb-6">首頁門面引導</h2>
+src\pages\AdminSettings.tsx:194: <p className="text-sm text-[#1A1A1A]/50 mb-8 border-b border-[#1A1A1A]/10 pb-4">此區塊控制未登入訪客在 /membership 頁面頂端看到的主視覺宣告。</p>
+src\pages\AdminSettings.tsx:195: <div className="space-y-6">
+src\pages\AdminSettings.tsx:196: <div><label className="block text-sm font-medium mb-2">主標題</label><input className="w-full border p-3 text-sm focus:border-[#5A6B58] outline-none transition-colors" value={formData.hero.title} onChange={e => handleChange(['hero', 'title'], e.target.value)} /></div>
+src\pages\AdminSettings.tsx:197: <div><label className="block text-sm font-medium mb-2">副標題 (英文視覺點綴)</label><input className="w-full border p-3 text-sm focus:border-[#5A6B58] outline-none transition-colors" value={formData.hero.subtitle} onChange={e => handleChange(['hero', 'subtitle'], e.target.value)} /></div>
+src\pages\AdminSettings.tsx:198: <div><label className="block text-sm font-medium mb-2">立意宣告與簡介</label><textarea className="w-full border p-3 text-sm h-32 focus:border-[#5A6B58] outline-none transition-colors" value={formData.hero.description} onChange={e => handleChange(['hero', 'description'], e.target.value)} /></div>
+src\pages\AdminSettings.tsx:205: <div className="animate-in fade-in duration-300">
+src\pages\AdminSettings.tsx:206: <h2 className="text-xl font-medium mb-6">申請受眾與門檻</h2>
+src\pages\AdminSettings.tsx:207: <div className="space-y-6 mb-8 border-b border-[#1A1A1A]/10 pb-8">
+src\pages\AdminSettings.tsx:208: <div><label className="block text-sm font-medium mb-2">篩選標題</label><input className="w-full border p-3 text-sm focus:border-[#5A6B58] outline-none" value={formData.audience.title} onChange={e => handleChange(['audience', 'title'], e.target.value)} /></div>
+src\pages\AdminSettings.tsx:209: <div><label className="block text-sm font-medium mb-2">門檻前言說明</label><textarea className="w-full border p-3 text-sm h-24 focus:border-[#5A6B58] outline-none" value={formData.audience.description} onChange={e => handleChange(['audience', 'description'], e.target.value)} /></div>
+src\pages\AdminSettings.tsx:213: <div className="flex justify-between items-center mb-4">
+src\pages\AdminSettings.tsx:214: <label className="text-sm font-medium">適合加入的條件清單</label>
+src\pages\AdminSettings.tsx:215: <button onClick={() => addItem(['audience', 'items'], '請填寫新條件')} className="text-sm text-[#5A6B58] flex items-center gap-1 hover:bg-[#5A6B58]/10 px-3 py-1.5 rounded transition-colors"><Plus size={16}/> 加入條件</button>
+src\pages\AdminSettings.tsx:217: <div className="space-y-4">
+src\pages\AdminSettings.tsx:219: <div key={idx} className="group bg-[#F7F7F5] border border-transparent hover:border-[#1A1A1A]/10 p-4 transition-colors">
+src\pages\AdminSettings.tsx:220: <div className="flex gap-4 items-start">
+src\pages\AdminSettings.tsx:221: <span className="text-[#1A1A1A]/30 font-mono mt-2">{(idx + 1).toString().padStart(2, '0')}</span>
+src\pages\AdminSettings.tsx:222: <input className="flex-1 border p-3 text-sm bg-white focus:border-[#5A6B58] outline-none" value={item} onChange={e => handleArrayTextChange(['audience', 'items'], idx, e.target.value)} />
+src\pages\AdminSettings.tsx:224: <div className="flex justify-end gap-2 mt-3 opacity-0 group-hover:opacity-100 transition-opacity">
+src\pages\AdminSettings.tsx:225: <button onClick={() => moveItem(['audience', 'items'], idx, 'up')} className="text-xs text-[#1A1A1A]/50 hover:text-[#1A1A1A] flex items-center gap-1"><ArrowUp size={14}/> 向上移</button>
+src\pages\AdminSettings.tsx:226: <button onClick={() => moveItem(['audience', 'items'], idx, 'down')} className="text-xs text-[#1A1A1A]/50 hover:text-[#1A1A1A] flex items-center gap-1"><ArrowDown size={14}/> 向下移</button>
+src\pages\AdminSettings.tsx:227: <span className="w-px h-4 bg-[#1A1A1A]/10 mx-2"></span>
+src\pages\AdminSettings.tsx:228: <button onClick={() => removeItem(['audience', 'items'], idx)} className="text-xs text-red-500 hover:text-red-700 flex items-center gap-1"><Trash2 size={14}/> 移除此條件</button>
+src\pages\AdminSettings.tsx:232: {formData.audience.items.length === 0 && <p className="text-sm text-[#1A1A1A]/50 p-4 bg-gray-50 text-center">目前無任何條件，前台將不顯示此清單。</p>}
+src\pages\AdminSettings.tsx:240: <div className="animate-in fade-in duration-300">
+src\pages\AdminSettings.tsx:241: <h2 className="text-xl font-medium mb-6">會員審核流程</h2>
+src\pages\AdminSettings.tsx:242: <div className="mb-8 border-b border-[#1A1A1A]/10 pb-8">
+src\pages\AdminSettings.tsx:243: <label className="block text-sm font-medium mb-2">流程區塊標題</label>
+src\pages\AdminSettings.tsx:244: <input className="w-full border p-3 text-sm focus:border-[#5A6B58] outline-none" value={formData.process.title} onChange={e => handleChange(['process', 'title'], e.target.value)} />
+src\pages\AdminSettings.tsx:248: <div className="flex justify-between items-center mb-4">
+src\pages\AdminSettings.tsx:249: <label className="text-sm font-medium">申請與審核步驟拆解</label>
+src\pages\AdminSettings.tsx:250: <button onClick={() => addItem(['process', 'steps'], { id: Date.now().toString(), label: `Step ${formData.process.steps.length + 1}`, title: '請輸入標題', content: '請輸入步驟細節...' })} className="text-sm text-[#5A6B58] flex items-center gap-1 hover:bg-[#5A6B58]/10 px-3 py-1.5 rounded transition-colors"><Plus size={16}/> 增加步驟</button>
+src\pages\AdminSettings.tsx:252: <div className="space-y-6">
+src\pages\AdminSettings.tsx:254: <div key={idx} className="bg-white border border-[#1A1A1A]/10 p-5 group hover:border-[#5A6B58]/50 transition-colors shadow-sm">
+src\pages\AdminSettings.tsx:255: <div className="flex justify-between items-center mb-4 border-b border-[#1A1A1A]/5 pb-3">
+src\pages\AdminSettings.tsx:256: <span className="text-sm font-mono text-[#5A6B58] bg-[#5A6B58]/10 px-2 py-1 rounded">步驟 {idx + 1}</span>
+src\pages\AdminSettings.tsx:257: <div className="flex gap-3 opacity-0 group-hover:opacity-100 transition-opacity">
+src\pages\AdminSettings.tsx:258: <button onClick={() => moveItem(['process', 'steps'], idx, 'up')} className="text-xs text-[#1A1A1A]/50 hover:text-[#1A1A1A] flex items-center gap-1"><ArrowUp size={14}/> 上移</button>
+src\pages\AdminSettings.tsx:259: <button onClick={() => moveItem(['process', 'steps'], idx, 'down')} className="text-xs text-[#1A1A1A]/50 hover:text-[#1A1A1A] flex items-center gap-1"><ArrowDown size={14}/> 下移</button>
+src\pages\AdminSettings.tsx:260: <button onClick={() => removeItem(['process', 'steps'], idx)} className="text-xs text-red-500 hover:text-red-700 flex items-center gap-1 ml-2"><Trash2 size={14}/> 刪除步驟</button>
+src\pages\AdminSettings.tsx:263: <div className="grid grid-cols-2 gap-6 mb-4">
+src\pages\AdminSettings.tsx:264: <div><label className="block text-xs text-[#1A1A1A]/50 mb-1">外觀標籤 (例如：Step 1)</label><input className="w-full border-b p-2 text-sm focus:border-[#5A6B58] outline-none bg-gray-50/50" value={step.label} onChange={e => handleArrayObjChange(['process', 'steps'], idx, 'label', e.target.value)} /></div>
+src\pages\AdminSettings.tsx:265: <div><label className="block text-xs text-[#1A1A1A]/50 mb-1">步驟大標</label><input className="w-full border-b p-2 text-sm focus:border-[#5A6B58] outline-none bg-gray-50/50" value={step.title} onChange={e => handleArrayObjChange(['process', 'steps'], idx, 'title', e.target.value)} /></div>
+src\pages\AdminSettings.tsx:268: <label className="block text-xs text-[#1A1A1A]/50 mb-1">具體說明內容</label>
+src\pages\AdminSettings.tsx:269: <textarea className="w-full border p-3 text-sm h-24 focus:border-[#5A6B58] outline-none bg-gray-50/50" value={step.content} onChange={e => handleArrayObjChange(['process', 'steps'], idx, 'content', e.target.value)} />
+src\pages\AdminSettings.tsx:273: {formData.process.steps.length === 0 && <p className="text-sm text-[#1A1A1A]/50 p-6 border border-dashed border-[#1A1A1A]/20 text-center">無任何步驟。點擊右上角新增。</p>}
+src\pages\AdminSettings.tsx:281: <div className="animate-in fade-in duration-300">
+src\pages\AdminSettings.tsx:282: <h2 className="text-xl font-medium mb-6">核准後專屬權益</h2>
+src\pages\AdminSettings.tsx:283: <div className="mb-8 border-b border-[#1A1A1A]/10 pb-8">
+src\pages\AdminSettings.tsx:284: <label className="block text-sm font-medium mb-2">權益區塊標題</label>
+src\pages\AdminSettings.tsx:285: <input className="w-full border p-3 text-sm focus:border-[#5A6B58] outline-none" value={formData.approvedBenefits.title} onChange={e => handleChange(['approvedBenefits', 'title'], e.target.value)} />
+src\pages\AdminSettings.tsx:289: <div className="flex justify-between items-center mb-4">
+src\pages\AdminSettings.tsx:290: <label className="text-sm font-medium">解鎖權益細項</label>
+src\pages\AdminSettings.tsx:291: <button onClick={() => addItem(['approvedBenefits', 'items'], { title: '新專屬權益', content: '權益詳情...' })} className="text-sm text-[#5A6B58] flex items-center gap-1 hover:bg-[#5A6B58]/10 px-3 py-1.5 rounded transition-colors"><Plus size={16}/> 加入一項權益</button>
+src\pages\AdminSettings.tsx:293: <div className="space-y-4">
+src\pages\AdminSettings.tsx:295: <div key={idx} className="bg-white border border-[#1A1A1A]/20 p-5 group hover:border-[#5A6B58]/50 transition-all shadow-sm flex gap-6">
+src\pages\AdminSettings.tsx:296: <div className="pt-2 text-[#5A6B58]">❖</div>
+src\pages\AdminSettings.tsx:297: <div className="flex-1">
+src\pages\AdminSettings.tsx:298: <input className="w-full font-medium text-base mb-2 border-b border-transparent hover:border-[#1A1A1A]/20 focus:border-[#5A6B58] outline-none bg-transparent" value={item.title} onChange={e => handleArrayObjChange(['approvedBenefits', 'items'], idx, 'title', e.target.value)} />
+src\pages\AdminSettings.tsx:299: <textarea className="w-full text-sm text-[#1A1A1A]/70 border border-transparent hover:border-[#1A1A1A]/10 focus:border-[#5A6B58] outline-none h-20 p-2 bg-gray-50/50" value={item.content} onChange={e => handleArrayObjChange(['approvedBenefits', 'items'], idx, 'content', e.target.value)} />
+src\pages\AdminSettings.tsx:301: <div className="flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity border-l border-[#1A1A1A]/5 pl-4 justify-center">
+src\pages\AdminSettings.tsx:302: <button onClick={() => moveItem(['approvedBenefits', 'items'], idx, 'up')} className="p-2 border border-[#1A1A1A]/10 hover:bg-[#1A1A1A]/5 rounded" title="向上排列"><ArrowUp size={14}/></button>
+src\pages\AdminSettings.tsx:303: <button onClick={() => moveItem(['approvedBenefits', 'items'], idx, 'down')} className="p-2 border border-[#1A1A1A]/10 hover:bg-[#1A1A1A]/5 rounded" title="向下排列"><ArrowDown size={14}/></button>
+src\pages\AdminSettings.tsx:304: <button onClick={() => removeItem(['approvedBenefits', 'items'], idx)} className="p-2 border border-red-100 text-red-500 hover:bg-red-50 rounded mt-auto" title="刪除權益"><Trash2 size={14}/></button>
+src\pages\AdminSettings.tsx:308: {formData.approvedBenefits.items.length === 0 && <p className="text-sm text-[#1A1A1A]/50 p-6 border border-dashed text-center">目前未設定任何權益。</p>}
+src\pages\AdminSettings.tsx:316: <div className="animate-in fade-in duration-300">
+src\pages\AdminSettings.tsx:317: <h2 className="text-xl font-medium mb-6">系統預告與橫幅區</h2>
+src\pages\AdminSettings.tsx:318: <p className="text-sm text-[#1A1A1A]/50 mb-8 border-b border-[#1A1A1A]/10 pb-4">管理系統過渡狀態的說明文案，降低使用者等待的焦慮感。</p>
+src\pages\AdminSettings.tsx:320: <div className="space-y-12">
+src\pages\AdminSettings.tsx:322: <h3 className="text-base font-medium mb-4 flex items-center gap-2">
+src\pages\AdminSettings.tsx:323: <span className="w-1.5 h-4 bg-[#1A1A1A]"></span> 登入預告 (Login 頁面)
+src\pages\AdminSettings.tsx:325: <p className="text-xs text-[#1A1A1A]/50 mb-3 ml-3">位置：顯示於 /login 頁面 Google 授權按鈕下方。</p>
+src\pages\AdminSettings.tsx:326: <div className="ml-3"><textarea className="w-full border p-3 text-sm h-32 focus:border-[#5A6B58] outline-none" value={formData.loginNotice.text} onChange={e => handleChange(['loginNotice', 'text'], e.target.value)} /></div>
+src\pages\AdminSettings.tsx:330: <h3 className="text-base font-medium mb-4 flex items-center gap-2">
+src\pages\AdminSettings.tsx:331: <span className="w-1.5 h-4 bg-orange-400"></span> 審核中狀態 (Pending Banner)
+src\pages\AdminSettings.tsx:333: <p className="text-xs text-[#1A1A1A]/50 mb-3 ml-3">位置：申請者初次登入進入 /member 時看到的黃底說明區塊。</p>
+src\pages\AdminSettings.tsx:334: <div className="ml-3 space-y-4">
+src\pages\AdminSettings.tsx:335: <div><label className="block text-xs font-medium mb-1">橫幅主標</label><input className="w-full border p-3 text-sm focus:border-orange-400 outline-none" value={formData.pendingBanner.title} onChange={e => handleChange(['pendingBanner', 'title'], e.target.value)} /></div>
+src\pages\AdminSettings.tsx:336: <div><label className="block text-xs font-medium mb-1">詳細安撫說明</label><textarea className="w-full border p-3 text-sm h-32 focus:border-orange-400 outline-none" value={formData.pendingBanner.description} onChange={e => handleChange(['pendingBanner', 'description'], e.target.value)} /></div>
+src\pages\AdminSettings.tsx:348: <div className="fixed inset-0 bg-[#1A1A1A]/40 flex items-center justify-center p-6 z-50 animate-in fade-in">
+src\pages\AdminSettings.tsx:349: <div className="bg-white max-w-lg w-full p-8 shadow-xl">
+src\pages\AdminSettings.tsx:350: <h2 className="text-2xl font-light mb-2 flex items-center gap-2">
+src\pages\AdminSettings.tsx:351: <Eye className="text-[#5A6B58]" /> 發佈變更摘要
+src\pages\AdminSettings.tsx:353: <p className="text-sm text-[#1A1A1A]/60 mb-6">系統偵測到以下區塊已被修改，按下確定後將會直接覆蓋現有的營運文案並即時生效：</p>
+src\pages\AdminSettings.tsx:355: <ul className="mb-8 space-y-2 bg-[#F7F7F5] p-4 border border-[#1A1A1A]/10">
+src\pages\AdminSettings.tsx:357: <li key={i} className="text-sm font-medium flex items-center gap-2">
+src\pages\AdminSettings.tsx:358: <span className="w-1.5 h-1.5 rounded-full bg-orange-500"></span> {sec}
+src\pages\AdminSettings.tsx:363: <div className="flex gap-4 justify-end">
+src\pages\AdminSettings.tsx:364: <button onClick={() => setShowConfirmModal(false)} className="px-6 py-2.5 text-sm uppercase tracking-widest border border-[#1A1A1A]/20 hover:bg-gray-50 transition-colors">
+src\pages\AdminSettings.tsx:370: className="px-6 py-2.5 text-sm uppercase tracking-widest bg-[#1A1A1A] text-white hover:bg-[#5A6B58] transition-colors disabled:opacity-50"
+src\pages\AdminTaxonomy.tsx:158: className={`flex items-center gap-2 px-6 py-4 text-xs font-medium uppercase tracking-widest transition-all border-b-2 ${
+src\pages\AdminTaxonomy.tsx:170: <div className="max-w-4xl mx-auto space-y-8">
+src\pages\AdminTaxonomy.tsx:171: <div className="flex justify-between items-end">
+src\pages\AdminTaxonomy.tsx:173: <h1 className="text-3xl font-light tracking-tight mb-2">分類與分級管理</h1>
+src\pages\AdminTaxonomy.tsx:174: <p className="text-[#1A1A1A]/40 text-sm font-light uppercase tracking-widest">Taxonomy Management</p>
+src\pages\AdminTaxonomy.tsx:178: className="bg-[#1A1A1A] text-white px-6 py-2 text-xs tracking-widest uppercase flex items-center gap-2 hover:bg-[#5A6B58] transition-colors"
+src\pages\AdminTaxonomy.tsx:184: <div className="bg-white border border-[#1A1A1A]/5">
+src\pages\AdminTaxonomy.tsx:185: <div className="flex border-b border-[#1A1A1A]/5">
+src\pages\AdminTaxonomy.tsx:191: <div className="p-8">
+src\pages\AdminTaxonomy.tsx:193: <div className="text-center py-12 text-[#1A1A1A]/20 uppercase tracking-widest text-xs">Loading...</div>
+src\pages\AdminTaxonomy.tsx:195: <div className="space-y-4">
+src\pages\AdminTaxonomy.tsx:198: <div className="flex items-center gap-4 bg-[#F7F7F5] p-4 border border-[#1A1A1A]/10 animate-in fade-in slide-in-from-top-2">
+src\pages\AdminTaxonomy.tsx:199: <div className="grid grid-cols-4 gap-4 flex-1">
+src\pages\AdminTaxonomy.tsx:205: className="px-3 py-2 text-sm border border-[#1A1A1A]/10 focus:outline-none focus:border-[#1A1A1A]"
+src\pages\AdminTaxonomy.tsx:212: className="px-3 py-2 text-sm border border-[#1A1A1A]/10 focus:outline-none focus:border-[#1A1A1A]"
+src\pages\AdminTaxonomy.tsx:219: className="px-3 py-2 text-sm border border-[#1A1A1A]/10 focus:outline-none focus:border-[#1A1A1A]"
+src\pages\AdminTaxonomy.tsx:222: <div className="flex gap-2">
+src\pages\AdminTaxonomy.tsx:223: <button onClick={handleAdd} disabled={saving} className="p-2 bg-[#1A1A1A] text-white hover:bg-[#5A6B58] transition-colors">
+src\pages\AdminTaxonomy.tsx:226: <button onClick={() => setShowAddForm(false)} className="p-2 border border-[#1A1A1A]/10 hover:bg-white transition-colors">
+src\pages\AdminTaxonomy.tsx:227: <XCircle size={16} className="text-gray-400" />
+src\pages\AdminTaxonomy.tsx:234: <div className="divide-y divide-[#1A1A1A]/5 border border-[#1A1A1A]/5 rounded">
+src\pages\AdminTaxonomy.tsx:235: <div className="grid grid-cols-12 gap-4 px-6 py-3 bg-[#F7F7F5] text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 font-bold">
+src\pages\AdminTaxonomy.tsx:236: <div className="col-span-1">排序</div>
+src\pages\AdminTaxonomy.tsx:237: <div className="col-span-3">標籤 Label</div>
+src\pages\AdminTaxonomy.tsx:238: <div className="col-span-3">鍵值 Key</div>
+src\pages\AdminTaxonomy.tsx:239: <div className="col-span-2 text-center">狀態</div>
+src\pages\AdminTaxonomy.tsx:240: <div className="col-span-3 text-right">操作</div>
+src\pages\AdminTaxonomy.tsx:244: <div className="px-6 py-12 text-center text-[#1A1A1A]/20 text-xs italic">尚無資料</div>
+src\pages\AdminTaxonomy.tsx:247: <div key={item.id} className={`grid grid-cols-12 gap-4 px-6 py-4 items-center transition-colors ${!item.isActive ? 'bg-[#FCFBFA] opacity-50' : 'hover:bg-[#F7F7F5]/50'}`}>
+src\pages\AdminTaxonomy.tsx:250: <div className="col-span-1">
+src\pages\AdminTaxonomy.tsx:255: className="w-full px-2 py-1 text-xs border border-[#1A1A1A]/10"
+src\pages\AdminTaxonomy.tsx:258: <div className="col-span-3">
+src\pages\AdminTaxonomy.tsx:263: className="w-full px-2 py-1 text-xs border border-[#1A1A1A]/10"
+src\pages\AdminTaxonomy.tsx:266: <div className="col-span-3">
+src\pages\AdminTaxonomy.tsx:271: className="w-full px-2 py-1 text-xs border border-[#1A1A1A]/10"
+src\pages\AdminTaxonomy.tsx:274: <div className="col-span-2 text-center">
+src\pages\AdminTaxonomy.tsx:277: <div className="col-span-3 flex justify-end gap-2">
+src\pages\AdminTaxonomy.tsx:278: <button onClick={() => handleUpdate(item.id)} className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"><Save size={14} /></button>
+src\pages\AdminTaxonomy.tsx:279: <button onClick={() => setEditingId(null)} className="p-1.5 text-gray-400 hover:bg-gray-50 rounded transition-colors"><XCircle size={14} /></button>
+src\pages\AdminTaxonomy.tsx:284: <div className="col-span-1 text-xs font-mono text-[#1A1A1A]/30">{item.sortOrder}</div>
+src\pages\AdminTaxonomy.tsx:285: <div className="col-span-3 text-sm font-medium">{item.label}</div>
+src\pages\AdminTaxonomy.tsx:286: <div className="col-span-3 text-xs font-mono text-[#1A1A1A]/40">{item.key}</div>
+src\pages\AdminTaxonomy.tsx:287: <div className="col-span-2 text-center">
+src\pages\AdminTaxonomy.tsx:288: <button onClick={() => handleToggleActive(item)} className={`px-3 py-1 rounded-full text-[9px] uppercase tracking-tighter transition-colors ${item.isActive ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-400'}`}>
+src\pages\AdminTaxonomy.tsx:292: <div className="col-span-3 flex justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+src\pages\AdminTaxonomy.tsx:293: <button onClick={() => { setEditingId(item.id); setEditForm(item); }} className="p-2 text-[#1A1A1A]/40 hover:text-[#1A1A1A] transition-colors"><Settings size={14} /></button>
+src\pages\AdminTaxonomy.tsx:294: <button onClick={() => handleDelete(item)} className="p-2 text-[#1A1A1A]/20 hover:text-red-600 transition-colors"><Trash2 size={14} /></button>
+src\pages\CollectionPages.tsx:75: <div className="bg-[#EAE8E3] min-h-screen text-[#1A1A1A] pb-32">
+src\pages\CollectionPages.tsx:76: <div className="max-w-screen-2xl mx-auto px-6 md:px-12 pt-16 lg:pt-32">
+src\pages\CollectionPages.tsx:78: <div className="mb-16 md:mb-32">
+src\pages\CollectionPages.tsx:79: <h1 className="text-5xl md:text-7xl font-light tracking-tighter mb-4">選拔檔案</h1>
+src\pages\CollectionPages.tsx:80: <p className="text-xs tracking-[0.3em] uppercase text-[#1A1A1A]/40 font-mono">Role Plant Archive</p>
+src\pages\CollectionPages.tsx:83: <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 relative">
+src\pages\CollectionPages.tsx:86: <div className="lg:w-1/4 lg:sticky lg:top-32 self-start flex flex-col gap-12">
+src\pages\CollectionPages.tsx:89: <div className="flex lg:hidden flex-col sm:flex-row gap-4 w-full">
+src\pages\CollectionPages.tsx:93: className="w-full bg-transparent border border-[#1A1A1A]/10 text-[10px] sm:text-xs py-4 px-4 tracking-widest uppercase appearance-none focus:outline-none focus:border-[#1A1A1A]/30 font-mono"
+src\pages\CollectionPages.tsx:103: className="w-full bg-transparent border border-[#1A1A1A]/10 text-[10px] sm:text-xs py-4 px-4 tracking-widest uppercase appearance-none focus:outline-none focus:border-[#1A1A1A]/30 font-mono"
+src\pages\CollectionPages.tsx:113: <div className="hidden lg:block space-y-12">
+src\pages\CollectionPages.tsx:115: <h3 className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/50 font-mono mb-6">Status / 狀態</h3>
+src\pages\CollectionPages.tsx:116: <ul className="space-y-4">
+src\pages\CollectionPages.tsx:121: className={`text-xs tracking-widest transition-colors block text-left w-full ${filter === cat.id ? 'text-[#1A1A1A] font-medium' : 'text-[#1A1A1A]/30 hover:text-[#1A1A1A]/60'}`}
+src\pages\CollectionPages.tsx:123: {cat.name} <span className="text-[10px] ml-2 font-mono">{cat.id.toUpperCase()}</span>
+src\pages\CollectionPages.tsx:131: <h3 className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/50 font-mono mb-6">Category / 屬系</h3>
+src\pages\CollectionPages.tsx:132: <ul className="space-y-4">
+src\pages\CollectionPages.tsx:136: className={`text-xs tracking-widest transition-colors block text-left w-full ${catFilter === 'all' ? 'text-[#1A1A1A] font-medium' : 'text-[#1A1A1A]/30 hover:text-[#1A1A1A]/60'}`}
+src\pages\CollectionPages.tsx:138: 全部 <span className="text-[10px] ml-2 font-mono uppercase">ALL</span>
+src\pages\CollectionPages.tsx:145: className={`text-xs tracking-widest transition-colors block text-left w-full uppercase ${catFilter === cat.key ? 'text-[#1A1A1A] font-medium' : 'text-[#1A1A1A]/30 hover:text-[#1A1A1A]/60'}`}
+src\pages\CollectionPages.tsx:157: <div className="lg:w-3/4 min-h-[60vh]">
+src\pages\CollectionPages.tsx:159: <div className="flex justify-center items-center h-64 border border-[#1A1A1A]/10 border-dashed">
+src\pages\CollectionPages.tsx:160: <span className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/30 font-mono">Reading Archive...</span>
+src\pages\CollectionPages.tsx:163: <div className="flex flex-col justify-center items-center h-64 border border-[#1A1A1A]/10">
+src\pages\CollectionPages.tsx:164: <span className="text-xs tracking-widest uppercase text-[#1A1A1A]/40 mb-2">查無檔案資料</span>
+src\pages\CollectionPages.tsx:165: <span className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/20 font-mono">0 RECORDS FOUND</span>
+src\pages\CollectionPages.tsx:168: <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-24">
+src\pages\CollectionPages.tsx:177: <div key={item.id} className="group cursor-pointer flex flex-col" onClick={() => navigate(`/collection/${item.id}`)}>
+src\pages\CollectionPages.tsx:179: <div className="aspect-[3/4] bg-[#DCD7C9] overflow-hidden mb-6 relative border border-[#1A1A1A]/5">
+src\pages\CollectionPages.tsx:181: <img src={coverImage} alt={item.name} className="w-full h-full object-cover filter contrast-110 saturate-50" />
+src\pages\CollectionPages.tsx:183: <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+src\pages\CollectionPages.tsx:184: <span className="text-[10px] text-[#1A1A1A]/20 font-mono uppercase tracking-widest mb-2">S/N: {item.serialNumber || 'MISSING'}</span>
+src\pages\CollectionPages.tsx:185: <span className="text-sm font-medium text-[#1A1A1A]/30">{item.name}</span>
+src\pages\CollectionPages.tsx:191: <div className="absolute top-4 right-4 bg-[#EAE8E3]/90 text-[#1A1A1A] text-[10px] uppercase tracking-widest px-2 py-1 font-mono">
+src\pages\CollectionPages.tsx:198: <div className="flex flex-col flex-grow">
+src\pages\CollectionPages.tsx:199: <div className="flex justify-between items-start mb-3">
+src\pages\CollectionPages.tsx:200: <p className="text-[10px] text-[#1A1A1A]/40 font-mono uppercase tracking-widest">{item.serialNumber || item.id.substring(0,6)}</p>
+src\pages\CollectionPages.tsx:201: <span className="text-[10px] tracking-widest text-[#1A1A1A]/50 border border-[#1A1A1A]/10 px-1.5 py-0.5 uppercase">{item.status}</span>
+src\pages\CollectionPages.tsx:204: <h3 className="font-light text-xl mb-2 leading-tight">{item.name}</h3>
+src\pages\CollectionPages.tsx:206: <p className="text-[10px] text-[#1A1A1A]/50 font-light leading-relaxed flex-grow line-clamp-1 mb-8 uppercase tracking-widest">
+src\pages\CollectionPages.tsx:210: <div className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 group-hover:text-[#1A1A1A] transition-colors pt-4 flex justify-between items-center mt-auto border-t border-[#1A1A1A]/10">
+src\pages\CollectionPages.tsx:212: <span className="font-mono">ENTER ↵</span>
+src\pages\CollectionPages.tsx:333: <button onClick={handleApply} disabled={loading} className="w-full bg-[#1A1A1A] text-[#EAE8E3] py-5 text-xs tracking-widest uppercase hover:bg-[#2A2A2A] transition-colors disabled:opacity-50 border border-[#1A1A1A]">
+src\pages\CollectionPages.tsx:339: <button onClick={handleTrack} disabled={loading} className={`w-full py-5 text-xs tracking-widest uppercase transition-colors disabled:opacity-50 ${isTracked ? 'bg-[#1A1A1A] text-[#EAE8E3]' : 'border border-[#1A1A1A]/20 text-[#1A1A1A] hover:border-[#1A1A1A]'}`}>
+src\pages\CollectionPages.tsx:346: <div className="w-full text-center border-t border-b border-[#1A1A1A]/10 py-5">
+src\pages\CollectionPages.tsx:347: <span className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 font-mono">STATUS: {plant.status.toUpperCase()} (檔案已封存)</span>
+src\pages\CollectionPages.tsx:354: return <div className="min-h-screen bg-[#EAE8E3] flex justify-center items-center text-[#1A1A1A]/50 text-xs tracking-widest uppercase font-mono">Reading Data...</div>;
+src\pages\CollectionPages.tsx:358: return <div className="min-h-screen bg-[#EAE8E3] flex justify-center items-center text-[#1A1A1A]/50 text-xs tracking-widest uppercase font-mono">No Records Found.</div>;
+src\pages\CollectionPages.tsx:366: <div className="bg-[#EAE8E3] min-h-screen text-[#1A1A1A] pb-32">
+src\pages\CollectionPages.tsx:369: <div className="px-6 md:px-12 py-8 flex justify-between items-center border-b border-[#1A1A1A]/10">
+src\pages\CollectionPages.tsx:370: <button onClick={() => navigate('/collection')} className="flex items-center gap-3 text-[10px] tracking-widest uppercase text-[#1A1A1A]/50 hover:text-[#1A1A1A] transition-colors font-medium">
+src\pages\CollectionPages.tsx:373: <span className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 font-mono">Role Plant Archive</span>
+src\pages\CollectionPages.tsx:376: <div className="max-w-screen-2xl mx-auto px-6 md:px-12 pt-16 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24">
+src\pages\CollectionPages.tsx:379: <div className="lg:col-span-7">
+src\pages\CollectionPages.tsx:381: <div className="aspect-[4/5] md:aspect-auto md:h-[80vh] bg-[#DCD7C9] overflow-hidden sticky top-8">
+src\pages\CollectionPages.tsx:382: <img src={coverImage} alt={plant.name} className="w-full h-full object-cover filter contrast-110 saturate-50" />
+src\pages\CollectionPages.tsx:385: <div className="aspect-[4/5] md:aspect-auto md:h-[80vh] bg-[#DCD7C9] flex items-center justify-center border border-[#1A1A1A]/10 sticky top-8">
+src\pages\CollectionPages.tsx:386: <span className="text-[10px] font-mono tracking-widest text-[#1A1A1A]/30">/ 無相片紀錄 /</span>
+src\pages\CollectionPages.tsx:392: <div className="lg:col-span-5 flex flex-col pt-4 md:pt-8 min-h-[80vh]">
+src\pages\CollectionPages.tsx:395: <div className="mb-16 border-b border-[#1A1A1A]/10 pb-12">
+src\pages\CollectionPages.tsx:396: <div className="mb-4">
+src\pages\CollectionPages.tsx:397: <p className="text-[10px] text-[#1A1A1A]/50 font-mono uppercase tracking-widest">S/N: {plant.serialNumber || plant.id}</p>
+src\pages\CollectionPages.tsx:400: <h1 className="text-4xl md:text-5xl font-light tracking-tight mb-2 leading-tight">{plant.name}</h1>
+src\pages\CollectionPages.tsx:401: <p className="text-sm text-[#1A1A1A]/60 italic mb-6 font-serif">{plant.scientificName}</p>
+src\pages\CollectionPages.tsx:403: <div className="grid grid-cols-2 gap-x-8 gap-y-6 mt-12 bg-[#1A1A1A]/[0.02] p-6 border border-[#1A1A1A]/5">
+src\pages\CollectionPages.tsx:406: <span className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-1 font-mono">Local Name</span>
+src\pages\CollectionPages.tsx:407: <span className="text-sm font-medium">{plant.localName}</span>
+src\pages\CollectionPages.tsx:412: <span className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-1 font-mono">Category</span>
+src\pages\CollectionPages.tsx:413: <span className="text-sm font-medium flex items-center gap-2">
+src\pages\CollectionPages.tsx:414: <span className="w-1.5 h-1.5 rounded-full bg-[#1A1A1A]"></span>
+src\pages\CollectionPages.tsx:420: <div className="min-w-0">
+src\pages\CollectionPages.tsx:421: <span className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-1 font-mono">Size</span>
+src\pages\CollectionPages.tsx:422: <span className="text-sm font-light block truncate" title={plant.size}>{plant.size}</span>
+src\pages\CollectionPages.tsx:427: <span className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-1 font-mono">Source</span>
+src\pages\CollectionPages.tsx:428: <span className="text-sm font-light">{plant.source}</span>
+src\pages\CollectionPages.tsx:433: <span className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-1 font-mono">Grade</span>
+src\pages\CollectionPages.tsx:434: <span className="text-sm font-mono">{plant.grade}</span>
+src\pages\CollectionPages.tsx:442: <div className="mb-16 space-y-8 border-b border-[#1A1A1A]/10 pb-12">
+src\pages\CollectionPages.tsx:443: <h2 className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/50 font-mono flex items-center gap-4">
+src\pages\CollectionPages.tsx:444: Evaluation <span className="flex-1 h-px bg-[#1A1A1A]/10"></span>
+src\pages\CollectionPages.tsx:448: <div className="grid grid-cols-3 gap-px bg-[#1A1A1A]/10 border border-[#1A1A1A]/10">
+src\pages\CollectionPages.tsx:450: <div className="bg-[#EAE8E3] p-4 text-center">
+src\pages\CollectionPages.tsx:451: <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-2">龜甲表現</p>
+src\pages\CollectionPages.tsx:452: <p className="font-mono text-base">{plant.stats.expression}</p>
+src\pages\CollectionPages.tsx:454: ) : <div className="bg-[#EAE8E3]"></div>}
+src\pages\CollectionPages.tsx:456: <div className="bg-[#EAE8E3] p-4 text-center">
+src\pages\CollectionPages.tsx:457: <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-2">面相平衡</p>
+src\pages\CollectionPages.tsx:458: <p className="font-mono text-base">{plant.stats.balance}</p>
+src\pages\CollectionPages.tsx:460: ) : <div className="bg-[#EAE8E3]"></div>}
+src\pages\CollectionPages.tsx:462: <div className="bg-[#EAE8E3] p-4 text-center">
+src\pages\CollectionPages.tsx:463: <p className="text-[10px] uppercase tracking-wider text-[#1A1A1A]/50 mb-2">塊根比例</p>
+src\pages\CollectionPages.tsx:464: <p className="font-mono text-base">{plant.stats.proportion}</p>
+src\pages\CollectionPages.tsx:466: ) : <div className="bg-[#EAE8E3]"></div>}
+src\pages\CollectionPages.tsx:471: <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm">
+src\pages\CollectionPages.tsx:480: <div className="mb-16 space-y-8 border-b border-[#1A1A1A]/10 pb-12">
+src\pages\CollectionPages.tsx:481: <h2 className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/50 font-mono flex items-center gap-4">
+src\pages\CollectionPages.tsx:482: Records <span className="flex-1 h-px bg-[#1A1A1A]/10"></span>
+src\pages\CollectionPages.tsx:487: <h3 className="text-[10px] font-mono mb-2 tracking-widest text-[#1A1A1A]/40 uppercase">適合對象</h3>
+src\pages\CollectionPages.tsx:488: <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm">{plant.details.suitableFor}</p>
+src\pages\CollectionPages.tsx:493: <h3 className="text-[10px] font-mono mb-2 tracking-widest text-[#1A1A1A]/40 uppercase">培育提醒</h3>
+src\pages\CollectionPages.tsx:494: <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm">{plant.details.cultivationNotes}</p>
+src\pages\CollectionPages.tsx:501: <div className="mt-auto">
+src\pages\CollectionPages.tsx:506: <div className="mt-16 pt-8 border-t border-[#1A1A1A]/10 text-right">
+src\pages\CollectionPages.tsx:507: <button onClick={() => navigate(`/admin/plants/${plant.id}`)} className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/20 hover:text-[#1A1A1A] transition-colors font-mono">
+src\pages\MemberPages.tsx:42: <div className="max-w-md mx-auto px-6 pt-24 pb-32">
+src\pages\MemberPages.tsx:43: <div className="text-center mb-12">
+src\pages\MemberPages.tsx:44: <h1 className="text-3xl font-light tracking-tight mb-2">會員登入</h1>
+src\pages\MemberPages.tsx:45: <p className="text-xs tracking-widest uppercase text-[#1A1A1A]/50">Member Login</p>
+src\pages\MemberPages.tsx:49: <div className="mb-6 p-3 bg-red-50 text-red-600 text-sm border border-red-100 text-center">
+src\pages\MemberPages.tsx:54: <div className="space-y-4">
+src\pages\MemberPages.tsx:58: className="w-full bg-[#1A1A1A] text-white py-4 text-sm tracking-widest hover:bg-[#5A6B58] transition-colors flex items-center justify-center gap-3 disabled:opacity-50"
+src\pages\MemberPages.tsx:63: <p className="text-center text-xs text-[#1A1A1A]/50 mt-4 leading-relaxed whitespace-pre-line">
+src\pages\MemberPages.tsx:104: <div className="max-w-7xl mx-auto px-6 md:px-12 pt-12 pb-32">
+src\pages\MemberPages.tsx:105: <header className="mb-16 border-b border-[#1A1A1A]/10 pb-8 flex justify-between items-end">
+src\pages\MemberPages.tsx:107: <h1 className="text-3xl font-light tracking-tight mb-2">會員中心</h1>
+src\pages\MemberPages.tsx:108: <p className="text-xs tracking-widest uppercase text-[#1A1A1A]/50">Member Center</p>
+src\pages\MemberPages.tsx:110: <div className="text-right">
+src\pages\MemberPages.tsx:111: <p className="text-sm font-medium mb-1">{userProfile?.name || 'User'}</p>
+src\pages\MemberPages.tsx:112: <p className="text-xs text-[#1A1A1A]/50 font-mono">{userProfile?.role || 'member'}</p>
+src\pages\MemberPages.tsx:116: <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
+src\pages\MemberPages.tsx:118: <div className="md:col-span-1 space-y-2">
+src\pages\MemberPages.tsx:121: className={`w-full text-left px-4 py-3 text-sm tracking-widest flex items-center gap-3 transition-colors ${activeTab === 'favorites' ? 'bg-[#1A1A1A] text-white' : 'hover:bg-[#1A1A1A]/5'}`}
+src\pages\MemberPages.tsx:128: className={`w-full text-left px-4 py-3 text-sm tracking-widest flex items-center gap-3 transition-colors ${activeTab === 'applications' ? 'bg-[#1A1A1A] text-white' : 'hover:bg-[#1A1A1A]/5'}`}
+src\pages\MemberPages.tsx:135: className={`w-full text-left px-4 py-3 text-sm tracking-widest flex items-center gap-3 transition-colors ${activeTab === 'settings' ? 'bg-[#1A1A1A] text-white' : 'hover:bg-[#1A1A1A]/5'}`}
+src\pages\MemberPages.tsx:144: className="w-full text-left px-4 py-3 text-sm tracking-widest flex items-center gap-3 transition-colors text-[#5A6B58] hover:bg-[#5A6B58]/10 mt-8 border-t border-[#1A1A1A]/10 pt-4"
+src\pages\MemberPages.tsx:160: className="w-full text-left px-4 py-3 text-sm tracking-widest flex items-center gap-3 transition-colors text-[#1A1A1A]/50 hover:text-[#1A1A1A] mt-8"
+src\pages\MemberPages.tsx:168: <div className="md:col-span-3">
+src\pages\MemberPages.tsx:170: <div className="bg-[#EBEBE8] p-6 mb-8 border-l-4 border-[#5A6B58]">
+src\pages\MemberPages.tsx:171: <h3 className="text-xl font-light mb-2">{MEMBERSHIP_POLICY.pendingBanner.title}</h3>
+src\pages\MemberPages.tsx:172: <p className="text-sm text-[#1A1A1A]/70 leading-relaxed whitespace-pre-line">
+src\pages\MemberPages.tsx:180: <h2 className="text-xl font-light mb-8">追蹤清單</h2>
+src\pages\MemberPages.tsx:182: <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+src\pages\MemberPages.tsx:184: <div key={plant.id} className="group cursor-pointer border border-[#1A1A1A]/10 p-4 flex gap-4" onClick={() => navigate(`/collection/${plant.id}`)}>
+src\pages\MemberPages.tsx:185: <div className="w-24 aspect-[3/4] bg-[#EBEBE8] shrink-0">
+src\pages\MemberPages.tsx:186: <SafeImage src={plant.image} alt={plant.id} className="w-full h-full object-cover" fallbackText="IMG" />
+src\pages\MemberPages.tsx:188: <div className="flex flex-col justify-between py-1">
+src\pages\MemberPages.tsx:190: <h3 className="font-mono text-sm mb-1">{plant.id}</h3>
+src\pages\MemberPages.tsx:191: <span className="text-[10px] tracking-widest uppercase px-2 py-0.5 border border-[#1A1A1A]/20 text-[#1A1A1A]/50">
+src\pages\MemberPages.tsx:195: <div className="flex items-center gap-1 text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 group-hover:text-[#5A6B58] transition-colors">
+src\pages\MemberPages.tsx:203: <p className="text-sm text-[#1A1A1A]/50">目前沒有追蹤的植物。</p>
+src\pages\MemberPages.tsx:210: <h2 className="text-xl font-light mb-8">申請紀錄</h2>
+src\pages\MemberPages.tsx:211: <div className="overflow-x-auto">
+src\pages\MemberPages.tsx:212: <table className="w-full text-sm text-left">
+src\pages\MemberPages.tsx:213: <thead className="text-xs tracking-widest uppercase text-[#1A1A1A]/50 border-b border-[#1A1A1A]/10">
+src\pages\MemberPages.tsx:215: <th className="px-4 py-3 font-normal">申請單號</th>
+src\pages\MemberPages.tsx:216: <th className="px-4 py-3 font-normal">植物編號</th>
+src\pages\MemberPages.tsx:217: <th className="px-4 py-3 font-normal">申請日期</th>
+src\pages\MemberPages.tsx:218: <th className="px-4 py-3 font-normal">狀態</th>
+src\pages\MemberPages.tsx:223: <tr key={app.id} className="border-b border-[#1A1A1A]/5 hover:bg-[#1A1A1A]/5 transition-colors">
+src\pages\MemberPages.tsx:224: <td className="px-4 py-4 font-mono">{app.id.slice(0, 8)}...</td>
+src\pages\MemberPages.tsx:225: <td className="px-4 py-4 font-mono cursor-pointer hover:text-[#5A6B58]" onClick={() => navigate(`/collection/${app.plantId}`)}>{app.plantId}</td>
+src\pages\MemberPages.tsx:226: <td className="px-4 py-4 text-[#1A1A1A]/70">{new Date(app.createdAt).toLocaleDateString()}</td>
+src\pages\MemberPages.tsx:227: <td className="px-4 py-4">
+src\pages\MemberPages.tsx:228: <span className="text-xs px-2 py-1 bg-[#EBEBE8] text-[#1A1A1A]/70">{app.status === 'pending' ? '審核中' : app.status}</span>
+src\pages\MemberPages.tsx:233: <td colSpan={4} className="px-4 py-8 text-center text-sm text-[#1A1A1A]/50">目前沒有申請紀錄。</td>
+src\pages\MemberPages.tsx:243: <div className="max-w-md">
+src\pages\MemberPages.tsx:244: <h2 className="text-xl font-light mb-8">帳號設定</h2>
+src\pages\MemberPages.tsx:245: <form className="space-y-6" onSubmit={async (e) => {
+src\pages\MemberPages.tsx:263: <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">姓名</label>
+src\pages\MemberPages.tsx:264: <input type="text" name="name" defaultValue={userProfile?.name} className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-3 focus:outline-none focus:border-[#1A1A1A] transition-colors" />
+src\pages\MemberPages.tsx:267: <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">電子郵件 (不可修改)</label>
+src\pages\MemberPages.tsx:268: <input type="email" defaultValue={userProfile?.email} disabled className="w-full bg-transparent border-b border-[#1A1A1A]/10 py-3 text-[#1A1A1A]/50 cursor-not-allowed" />
+src\pages\MemberPages.tsx:270: <button type="submit" className="bg-[#1A1A1A] text-white px-6 py-3 text-sm tracking-widest uppercase hover:bg-[#5A6B58] transition-colors mt-4">
+src\pages\PostPages.tsx:44: <div className="max-w-7xl mx-auto px-6 py-24 text-center">
+src\pages\PostPages.tsx:45: <div className="animate-pulse space-y-4">
+src\pages\PostPages.tsx:46: <div className="h-8 bg-[#1A1A1A]/5 w-1/4 mx-auto mb-12"></div>
+src\pages\PostPages.tsx:47: <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+src\pages\PostPages.tsx:49: <div key={i} className="h-80 bg-[#1A1A1A]/5"></div>
+src\pages\PostPages.tsx:58: <div className="max-w-7xl mx-auto px-6 py-24">
+src\pages\PostPages.tsx:59: <div className="text-center mb-16">
+src\pages\PostPages.tsx:60: <h1 className="text-4xl font-light tracking-tight mb-4">品牌專欄</h1>
+src\pages\PostPages.tsx:61: <p className="text-xs tracking-[0.2em] uppercase text-[#1A1A1A]/40 mb-12">Journal & Perspectives</p>
+src\pages\PostPages.tsx:64: <div className="flex flex-wrap justify-center gap-4 text-[10px] uppercase tracking-widest border-b border-[#1A1A1A]/5 pb-8">
+src\pages\PostPages.tsx:67: className={`px-4 py-2 transition-colors ${activeCategory === 'all' ? 'bg-[#1A1A1A] text-white' : 'text-[#1A1A1A]/40 hover:text-[#1A1A1A]'}`}
+src\pages\PostPages.tsx:75: className={`px-4 py-2 transition-colors ${activeCategory === cat.key ? 'bg-[#1A1A1A] text-white' : 'text-[#1A1A1A]/40 hover:text-[#1A1A1A]'}`}
+src\pages\PostPages.tsx:84: <div className="text-center py-32 border border-dashed border-[#1A1A1A]/10">
+src\pages\PostPages.tsx:85: <p className="text-[#1A1A1A]/30 italic font-light">該分類目前尚無發布文章</p>
+src\pages\PostPages.tsx:88: <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+src\pages\PostPages.tsx:90: <Link key={post.id} to={`/posts/${post.slug}`} className="group space-y-6 block">
+src\pages\PostPages.tsx:91: <div className="aspect-[4/5] overflow-hidden bg-[#F7F7F5] border border-[#1A1A1A]/5">
+src\pages\PostPages.tsx:96: className="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition-all duration-700"
+src\pages\PostPages.tsx:99: <div className="w-full h-full flex items-center justify-center">
+src\pages\PostPages.tsx:100: <span className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/20 italic">No Cover</span>
+src\pages\PostPages.tsx:104: <div className="space-y-3">
+src\pages\PostPages.tsx:105: <div className="flex items-center gap-4 text-[10px] uppercase tracking-widest text-[#1A1A1A]/40">
+src\pages\PostPages.tsx:110: <h2 className="text-xl font-medium tracking-tight group-hover:text-[#5A6B58] transition-colors leading-snug">
+src\pages\PostPages.tsx:113: <p className="text-sm font-light text-[#1A1A1A]/60 line-clamp-2 leading-relaxed">
+src\pages\PostPages.tsx:141: if (loading) return <div className="min-h-screen pt-40 px-6 text-center text-[#1A1A1A]/20 uppercase tracking-widest text-xs">Loading Content...</div>;
+src\pages\PostPages.tsx:145: <div className="min-h-screen pt-40 px-6 text-center space-y-6">
+src\pages\PostPages.tsx:146: <h1 className="text-2xl font-light">找不到該文章</h1>
+src\pages\PostPages.tsx:147: <p className="text-sm text-[#1A1A1A]/40">此文章可能已下架或網址不正確。</p>
+src\pages\PostPages.tsx:148: <Link to="/posts" className="inline-block text-xs uppercase tracking-widest border-b border-[#1A1A1A]/20 pb-1 mt-4">返回文章列表</Link>
+src\pages\PostPages.tsx:160: <div className="bg-[#FCFBFA] min-h-screen pb-32">
+src\pages\PostPages.tsx:162: <header className="pt-24 pb-16 px-6 max-w-4xl mx-auto">
+src\pages\PostPages.tsx:163: <Link to="/posts" className="flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[#1A1A1A]/40 mb-12 hover:text-[#1A1A1A] transition-colors group w-fit">
+src\pages\PostPages.tsx:164: <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" /> Back to Journal
+src\pages\PostPages.tsx:166: <div className="space-y-6 border-b border-[#1A1A1A]/5 pb-16">
+src\pages\PostPages.tsx:167: <div className="flex items-center gap-4 text-[10px] uppercase tracking-widest text-[#5A6B58] font-medium">
+src\pages\PostPages.tsx:169: <span className="text-[#1A1A1A]/10">/</span>
+src\pages\PostPages.tsx:170: <span className="text-[#1A1A1A]/40 font-light">{publishDate}</span>
+src\pages\PostPages.tsx:172: <h1 className="text-4xl md:text-5xl font-light tracking-tight leading-[1.2] text-[#1A1A1A]">
+src\pages\PostPages.tsx:175: <p className="text-[#1A1A1A]/60 font-medium text-lg italic leading-relaxed">
+src\pages\PostPages.tsx:183: <div className="max-w-6xl mx-auto px-6 mb-24">
+src\pages\PostPages.tsx:184: <div className="aspect-[21/9] overflow-hidden bg-[#F7F7F5] border border-[#1A1A1A]/5">
+src\pages\PostPages.tsx:185: <img src={post.coverImageUrl} className="w-full h-full object-cover" alt={post.title} />
+src\pages\PostPages.tsx:191: <main className="max-w-3xl mx-auto px-6">
+src\pages\PostPages.tsx:192: <article className="prose prose-stone prose-neutral max-w-none">
+src\pages\PostPages.tsx:194: <div className="space-y-10 text-[#1A1A1A]/80 font-light leading-relaxed text-lg whitespace-pre-wrap">
+src\pages\PostPages.tsx:200: <footer className="mt-24 pt-12 border-t border-[#1A1A1A]/5">
+src\pages\PostPages.tsx:201: <div className="flex flex-wrap gap-3">
+src\pages\PostPages.tsx:203: <span key={i} className="text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 bg-[#1A1A1A]/5 px-4 py-1.5 rounded-full">
+src\pages\PublicPages.tsx:42: <div className="bg-[#EAE8E3] min-h-screen text-[#1A1A1A] selection:bg-[#1A1A1A] selection:text-[#EAE8E3]">
+src\pages\PublicPages.tsx:47: <section className="relative min-h-[90vh] flex flex-col justify-between px-6 md:px-12 py-12 md:py-24 border-b border-[#1A1A1A]/10">
+src\pages\PublicPages.tsx:48: <div className="absolute inset-x-6 md:inset-x-12 top-24 bottom-24 z-0 overflow-hidden bg-[#DCD7C9]">
+src\pages\PublicPages.tsx:53: className="w-full h-full object-cover filter contrast-125 saturate-50 mix-blend-multiply"
+src\pages\PublicPages.tsx:55: <div className="absolute inset-0 bg-gradient-to-t from-[#EAE8E3] via-transparent to-[#EAE8E3]/20 mix-blend-normal" />
+src\pages\PublicPages.tsx:58: <div className="relative z-10 flex justify-between items-start">
+src\pages\PublicPages.tsx:59: <span className="text-xs tracking-[0.4em] uppercase font-medium">Role Plant</span>
+src\pages\PublicPages.tsx:62: <div className="relative z-10 mt-auto flex flex-col md:flex-row md:items-end justify-between gap-12 pb-8">
+src\pages\PublicPages.tsx:63: <div className="max-w-4xl">
+src\pages\PublicPages.tsx:68: className="text-6xl md:text-[8rem] leading-[0.9] font-light tracking-tighter mb-8"
+src\pages\PublicPages.tsx:70: 只做<br/><span className="italic font-serif">龜甲龍</span>
+src\pages\PublicPages.tsx:72: <p className="text-lg md:text-2xl font-light tracking-wide max-w-xl leading-relaxed text-[#1A1A1A]/80">
+src\pages\PublicPages.tsx:77: <div className="flex flex-col gap-6 min-w-[200px]">
+src\pages\PublicPages.tsx:78: <Link to="/collection" className="group border-b border-[#1A1A1A] pb-3 flex justify-between items-center hover:pr-4 transition-all duration-300">
+src\pages\PublicPages.tsx:79: <span className="text-sm tracking-widest uppercase font-medium">查看 Collection</span>
+src\pages\PublicPages.tsx:80: <ArrowRight size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+src\pages\PublicPages.tsx:82: <Link to="/membership" className="group border-b border-[#1A1A1A]/20 pb-3 flex justify-between items-center hover:pr-4 hover:border-[#1A1A1A] transition-all duration-300 text-[#1A1A1A]/60 hover:text-[#1A1A1A]">
+src\pages\PublicPages.tsx:83: <span className="text-sm tracking-widest uppercase">了解 Membership</span>
+src\pages\PublicPages.tsx:84: <ArrowRight size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+src\pages\PublicPages.tsx:94: <section className="py-32 px-6 md:px-12 max-w-screen-2xl mx-auto border-b border-[#1A1A1A]/10">
+src\pages\PublicPages.tsx:95: <div className="flex flex-col md:flex-row justify-between mb-24 md:items-end gap-8">
+src\pages\PublicPages.tsx:96: <h2 className="text-5xl md:text-7xl font-light tracking-tighter">
+src\pages\PublicPages.tsx:98: <span className="text-xs tracking-[0.3em] uppercase block mt-6 font-normal text-[#1A1A1A]/50">Featured Archive</span>
+src\pages\PublicPages.tsx:100: <Link to="/collection" className="text-sm tracking-widest uppercase border border-[#1A1A1A] px-10 py-5 hover:bg-[#1A1A1A] hover:text-[#EAE8E3] transition-colors inline-block text-center">
+src\pages\PublicPages.tsx:106: <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-24">
+src\pages\PublicPages.tsx:108: <div key={i} className="animate-pulse bg-[#DCD7C9] aspect-[3/4]" />
+src\pages\PublicPages.tsx:112: <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-24">
+src\pages\PublicPages.tsx:120: className="group cursor-pointer flex flex-col"
+src\pages\PublicPages.tsx:123: <div className="aspect-[3/4] bg-[#DCD7C9] mb-8 overflow-hidden relative">
+src\pages\PublicPages.tsx:127: className="w-full h-full object-cover filter contrast-110 sepia-[.1]"
+src\pages\PublicPages.tsx:130: <div className="flex justify-between items-start border-t border-[#1A1A1A] pt-6">
+src\pages\PublicPages.tsx:132: <h3 className="font-medium text-lg leading-tight mb-2">{plant.localName || plant.name}</h3>
+src\pages\PublicPages.tsx:133: <p className="text-[10px] text-[#1A1A1A]/50 font-mono uppercase tracking-widest">{plant.serialNumber || 'UNKNOWN-ID'}</p>
+src\pages\PublicPages.tsx:135: <span className="text-[10px] tracking-widest uppercase bg-[#1A1A1A] text-[#EAE8E3] px-3 py-1.5 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+src\pages\PublicPages.tsx:149: <section className="py-48 px-6 md:px-12 flex justify-center items-center bg-[#DCD7C9]/20 border-b border-[#1A1A1A]/10">
+src\pages\PublicPages.tsx:150: <div className="max-w-3xl text-center">
+src\pages\PublicPages.tsx:151: <span className="block text-xs tracking-[0.3em] mb-12 uppercase text-[#1A1A1A]/40 font-medium">Standpoint</span>
+src\pages\PublicPages.tsx:152: <div className="text-2xl md:text-4xl font-light leading-[1.6] tracking-wide text-[#1A1A1A]">
+src\pages\PublicPages.tsx:156: <div className="space-y-12">
+src\pages\PublicPages.tsx:159: <p className="text-[#1A1A1A]/60 text-xl md:text-2xl">
+src\pages\PublicPages.tsx:165: <span className="block mt-24 text-[10px] font-medium tracking-[0.2em] uppercase text-[#1A1A1A]/30">— Role Plant</span>
+src\pages\PublicPages.tsx:172: <section className="relative py-32 px-6 md:px-12 max-w-screen-2xl mx-auto border-b border-[#1A1A1A]/10">
+src\pages\PublicPages.tsx:173: <div className="flex flex-col md:flex-row gap-12 md:gap-24 items-start relative">
+src\pages\PublicPages.tsx:176: <div className="md:w-1/3 md:sticky md:top-32 self-start">
+src\pages\PublicPages.tsx:177: <h2 className="text-4xl md:text-5xl font-light tracking-tighter mb-4">
+src\pages\PublicPages.tsx:179: <span className="text-xs tracking-[0.3em] uppercase block mt-4 font-normal text-[#1A1A1A]/50">Evidence of Time</span>
+src\pages\PublicPages.tsx:181: <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm mb-8">
+src\pages\PublicPages.tsx:184: <div className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 font-mono">
+src\pages\PublicPages.tsx:190: <div className="md:w-2/3 flex flex-col gap-32 md:gap-48 mt-16 md:mt-0">
+src\pages\PublicPages.tsx:198: className="flex flex-col gap-6"
+src\pages\PublicPages.tsx:201: <div className="aspect-[4/3] bg-[#DCD7C9] overflow-hidden relative">
+src\pages\PublicPages.tsx:205: className="w-full h-full object-cover filter contrast-125 saturate-50 grayscale-[0.3]"
+src\pages\PublicPages.tsx:207: <div className="absolute top-4 right-4 bg-[#EAE8E3]/90 text-[#1A1A1A] text-[10px] uppercase tracking-widest px-2 py-1 font-mono">TEMP Image</div>
+src\pages\PublicPages.tsx:210: <div className="border-t border-[#1A1A1A] pt-6 pr-12 md:pr-24">
+src\pages\PublicPages.tsx:211: <div className="flex items-center gap-4 mb-4">
+src\pages\PublicPages.tsx:212: <span className="text-xs font-mono text-[#1A1A1A]/40">0{idx + 1}</span>
+src\pages\PublicPages.tsx:213: <h3 className="text-2xl font-light">{std.name}</h3>
+src\pages\PublicPages.tsx:215: <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm">
+src\pages\PublicPages.tsx:229: <section className="py-32 px-6 md:px-12 max-w-screen-2xl mx-auto">
+src\pages\PublicPages.tsx:230: <div className="grid grid-cols-1 md:grid-cols-3 gap-0 border-y border-[#1A1A1A]">
+src\pages\PublicPages.tsx:232: <button onClick={() => navigate('/collection')} className="group p-12 lg:p-16 border-b md:border-b-0 md:border-r border-[#1A1A1A]/20 hover:bg-[#1A1A1A] hover:text-[#EAE8E3] transition-colors flex flex-col justify-between min-h-[350px] text-left">
+src\pages\PublicPages.tsx:234: <span className="text-[10px] tracking-widest uppercase opacity-40 block mb-8 font-mono">01. Archive</span>
+src\pages\PublicPages.tsx:235: <h2 className="text-4xl font-light mb-6">Collection</h2>
+src\pages\PublicPages.tsx:236: <p className="text-sm font-light leading-relaxed opacity-70">
+src\pages\PublicPages.tsx:240: <div className="flex items-center gap-3 text-xs tracking-widest uppercase mt-12 font-medium">
+src\pages\PublicPages.tsx:241: 探索檔案 <ArrowRight size={14} className="transform group-hover:translate-x-2 transition-transform" />
+src\pages\PublicPages.tsx:245: <button onClick={() => navigate('/learn')} className="group p-12 lg:p-16 border-b md:border-b-0 md:border-r border-[#1A1A1A]/20 hover:bg-[#1A1A1A] hover:text-[#EAE8E3] transition-colors flex flex-col justify-between min-h-[350px] text-left">
+src\pages\PublicPages.tsx:247: <span className="text-[10px] tracking-widest uppercase opacity-40 block mb-8 font-mono">02. Knowledge</span>
+src\pages\PublicPages.tsx:248: <h2 className="text-4xl font-light mb-6">Learn</h2>
+src\pages\PublicPages.tsx:249: <p className="text-sm font-light leading-relaxed opacity-70">
+src\pages\PublicPages.tsx:253: <div className="flex items-center gap-3 text-xs tracking-widest uppercase mt-12 font-medium">
+src\pages\PublicPages.tsx:254: 閱讀標準 <ArrowRight size={14} className="transform group-hover:translate-x-2 transition-transform" />
+src\pages\PublicPages.tsx:258: <button onClick={() => navigate('/membership')} className="group p-12 lg:p-16 hover:bg-[#1A1A1A] hover:text-[#EAE8E3] transition-colors flex flex-col justify-between min-h-[350px] text-left">
+src\pages\PublicPages.tsx:260: <span className="text-[10px] tracking-widest uppercase opacity-40 block mb-8 font-mono">03. System</span>
+src\pages\PublicPages.tsx:261: <h2 className="text-4xl font-light mb-6">Membership</h2>
+src\pages\PublicPages.tsx:262: <p className="text-sm font-light leading-relaxed opacity-70">
+src\pages\PublicPages.tsx:266: <div className="flex items-center gap-3 text-xs tracking-widest uppercase mt-12 font-medium">
+src\pages\PublicPages.tsx:267: 了解制度 <ArrowRight size={14} className="transform group-hover:translate-x-2 transition-transform" />
+src\pages\PublicPages.tsx:298: <div className="max-w-4xl mx-auto px-6 md:px-12 pt-12 pb-32">
+src\pages\PublicPages.tsx:299: <header className="mb-20">
+src\pages\PublicPages.tsx:300: <h1 className="text-4xl font-light tracking-tight mb-4">{cms.title}</h1>
+src\pages\PublicPages.tsx:301: <p className="text-xs tracking-[0.2em] uppercase text-[#1A1A1A]/50 mb-8">{cms.subtitle}</p>
+src\pages\PublicPages.tsx:302: <p className="text-[#1A1A1A]/70 font-light leading-relaxed max-w-2xl text-lg">
+src\pages\PublicPages.tsx:307: <section className="mb-20">
+src\pages\PublicPages.tsx:308: <h2 className="text-2xl font-light mb-8 border-b border-[#1A1A1A]/10 pb-4">{cms.audienceTitle}</h2>
+src\pages\PublicPages.tsx:309: <div className="bg-[#EBEBE8]/50 p-8 text-[#1A1A1A]/80 font-light leading-relaxed space-y-4">
+src\pages\PublicPages.tsx:311: <ul className="list-disc pl-5 space-y-2">
+src\pages\PublicPages.tsx:319: <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+src\pages\PublicPages.tsx:321: <h2 className="text-2xl font-light mb-8 border-b border-[#1A1A1A]/10 pb-4">申請流程</h2>
+src\pages\PublicPages.tsx:322: <ul className="space-y-6">
+src\pages\PublicPages.tsx:324: <li key={step.id} className="flex gap-4 font-light text-sm text-[#1A1A1A]/80 leading-relaxed">
+src\pages\PublicPages.tsx:325: <span className="text-[#5A6B58] font-medium mt-0.5 whitespace-nowrap">{step.label}</span>
+src\pages\PublicPages.tsx:327: <h3 className="font-medium text-[#1A1A1A] mb-1">{step.title}</h3>
+src\pages\PublicPages.tsx:335: <h2 className="text-2xl font-light mb-8 border-b border-[#1A1A1A]/10 pb-4">成員權益</h2>
+src\pages\PublicPages.tsx:336: <ul className="space-y-6">
+src\pages\PublicPages.tsx:338: <li key={index} className="flex gap-4">
+src\pages\PublicPages.tsx:339: <span className="text-[#5A6B58] mt-1 shrink-0">❖</span>
+src\pages\PublicPages.tsx:341: <h3 className="font-medium mb-1">{benefit.title}</h3>
+src\pages\PublicPages.tsx:342: <p className="text-sm text-[#1A1A1A]/60 font-light leading-relaxed">{benefit.content}</p>
+src\pages\PublicPages.tsx:350: <div className="bg-[#1A1A1A] p-12 text-center text-white">
+src\pages\PublicPages.tsx:351: <h2 className="text-2xl font-light mb-4">準備好加入了嗎？</h2>
+src\pages\PublicPages.tsx:352: <p className="text-white/60 font-light mb-8 text-sm">點擊下方按鈕以 Google 帳號授權，即刻進入審核列隊。</p>
+src\pages\PublicPages.tsx:353: <button onClick={() => navigate('/login')} className="bg-white text-[#1A1A1A] px-8 py-4 text-sm tracking-widest uppercase hover:bg-[#EBEBE8] transition-colors">
+src\pages\PublicPages.tsx:380: <div className="max-w-3xl mx-auto px-6 md:px-12 pt-12 text-center pb-32">
+src\pages\PublicPages.tsx:381: <h1 className="text-4xl font-light tracking-tight mb-4">{cms.title}</h1>
+src\pages\PublicPages.tsx:382: <p className="text-xs tracking-[0.2em] uppercase text-[#1A1A1A]/50 mb-16">{cms.subtitle}</p>
+src\pages\PublicPages.tsx:383: <div className="space-y-12 text-left mb-24">
+src\pages\PublicPages.tsx:385: <p key={i} className={`font-light leading-relaxed ${i === 0 ? 'text-[#1A1A1A]/80 text-lg' : 'text-[#1A1A1A]/70'}`}>
+src\pages\PublicPages.tsx:391: <div className="text-left border-t border-[#1A1A1A]/10 pt-24">
+src\pages\PublicPages.tsx:392: <h2 className="text-2xl font-light mb-8">聯絡我們</h2>
+src\pages\PublicPages.tsx:441: <div className="max-w-4xl mx-auto px-6 md:px-12 pt-12 pb-32">
+src\pages\PublicPages.tsx:442: <header className="mb-16">
+src\pages\PublicPages.tsx:443: <h1 className="text-4xl font-light tracking-tight mb-4">{cms.title}</h1>
+src\pages\PublicPages.tsx:444: <p className="text-xs tracking-[0.2em] uppercase text-[#1A1A1A]/50 mb-6">{cms.subtitle}</p>
+src\pages\PublicPages.tsx:445: <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-lg">
+src\pages\PublicPages.tsx:450: <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+src\pages\PublicPages.tsx:452: <div key={i} className="border-t border-[#1A1A1A]/10 pt-6">
+src\pages\PublicPages.tsx:453: <h3 className="text-lg font-medium mb-4">{service.title}</h3>
+src\pages\PublicPages.tsx:454: <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm">
+src\pages\PublicPages.tsx:461: <div className="bg-white p-8 md:p-12 border border-[#1A1A1A]/10">
+src\pages\PublicPages.tsx:462: <h2 className="text-2xl font-light mb-8">商業洽詢表單</h2>
+src\pages\PublicPages.tsx:464: <div className="bg-[#5A6B58]/5 p-12 text-center rounded-sm border border-[#5A6B58]/20">
+src\pages\PublicPages.tsx:465: <CheckCircle size={48} className="mx-auto text-[#5A6B58] mb-6" />
+src\pages\PublicPages.tsx:466: <h3 className="text-xl font-medium mb-3">洽詢已送出</h3>
+src\pages\PublicPages.tsx:467: <p className="text-[#1A1A1A]/60 font-light text-sm mb-8">感謝您的聯繫。我們已收到您的商業需求，將由專人審核後儘快與您聯繫。</p>
+src\pages\PublicPages.tsx:468: <button onClick={() => setSubmitStatus('idle')} className="text-xs tracking-widest uppercase border border-[#1A1A1A]/20 px-8 py-3 hover:bg-[#1A1A1A] hover:text-white transition-colors">再次填寫</button>
+src\pages\PublicPages.tsx:471: <form className="space-y-6" onSubmit={handleSubmit}>
+src\pages\PublicPages.tsx:472: <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+src\pages\PublicPages.tsx:474: <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">單位 / 品牌名稱</label>
+src\pages\PublicPages.tsx:475: <input type="text" name="brandName" required className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-3 focus:outline-none focus:border-[#1A1A1A] transition-colors" />
+src\pages\PublicPages.tsx:478: <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">聯絡人姓名</label>
+src\pages\PublicPages.tsx:479: <input type="text" name="contactName" required className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-3 focus:outline-none focus:border-[#1A1A1A] transition-colors" />
+src\pages\PublicPages.tsx:483: <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">Email</label>
+src\pages\PublicPages.tsx:484: <input type="email" name="email" required className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-3 focus:outline-none focus:border-[#1A1A1A] transition-colors" />
+src\pages\PublicPages.tsx:487: <label className="block text-xs tracking-widest uppercase text-[#1A1A1A]/50 mb-2">合作需求簡述</label>
+src\pages\PublicPages.tsx:488: <textarea name="details" required rows={4} className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-3 focus:outline-none focus:border-[#1A1A1A] transition-colors resize-none"></textarea>
+src\pages\PublicPages.tsx:492: <div className="flex items-center gap-2 text-red-500 text-sm">
+src\pages\PublicPages.tsx:497: <button type="submit" disabled={submitStatus === 'loading'} className="bg-[#1A1A1A] text-white px-8 py-4 text-sm tracking-widest uppercase hover:bg-[#5A6B58] transition-colors w-full md:w-auto mt-4 disabled:opacity-50">
+src\pages\PublicPages.tsx:549: <div className="max-w-4xl mx-auto px-6 md:px-12 pt-12">
+src\pages\PublicPages.tsx:550: <header className="mb-12">
+src\pages\PublicPages.tsx:551: <h1 className="text-4xl font-light tracking-tight mb-4">{learnCms.title}</h1>
+src\pages\PublicPages.tsx:552: <p className="text-xs tracking-[0.2em] uppercase text-[#1A1A1A]/50 mb-6">{learnCms.subtitle}</p>
+src\pages\PublicPages.tsx:553: <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-lg">
+src\pages\PublicPages.tsx:557: <div className="flex gap-8 mb-16 border-b border-[#1A1A1A]/10 pb-4">
+src\pages\PublicPages.tsx:558: <button onClick={() => setActiveTab('standards')} className={`text-sm tracking-widest uppercase transition-colors ${activeTab === 'standards' ? 'text-[#1A1A1A] font-medium border-b-2 border-[#1A1A1A] pb-1' : 'text-[#1A1A1A]/40 hover:text-[#1A1A1A]'}`}>
+src\pages\PublicPages.tsx:561: <button onClick={() => setActiveTab('faq')} className={`text-sm tracking-widest uppercase transition-colors ${activeTab === 'faq' ? 'text-[#1A1A1A] font-medium border-b-2 border-[#1A1A1A] pb-1' : 'text-[#1A1A1A]/40 hover:text-[#1A1A1A]'}`}>
+src\pages\PublicPages.tsx:568: <div className="space-y-24">
+src\pages\PublicPages.tsx:569: <section className="grid grid-cols-1 md:grid-cols-2 gap-12">
+src\pages\PublicPages.tsx:571: <h2 className="text-xl font-medium mb-4">{learnCms.intro1Title}</h2>
+src\pages\PublicPages.tsx:572: <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm">
+src\pages\PublicPages.tsx:577: <h2 className="text-xl font-medium mb-4">{learnCms.intro2Title}</h2>
+src\pages\PublicPages.tsx:578: <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm">
+src\pages\PublicPages.tsx:584: <div className="mb-10 border-b border-[#1A1A1A]/10 pb-4">
+src\pages\PublicPages.tsx:585: <h2 className="text-2xl font-light mb-4">判讀標準 v1.0</h2>
+src\pages\PublicPages.tsx:586: <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm max-w-2xl">
+src\pages\PublicPages.tsx:590: <div className="space-y-8">
+src\pages\PublicPages.tsx:592: <div key={idx} className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-8 items-baseline">
+src\pages\PublicPages.tsx:593: <div className="md:col-span-1 flex items-center gap-3">
+src\pages\PublicPages.tsx:594: <span className="text-xs font-mono text-[#1A1A1A]/30">0{idx + 1}</span>
+src\pages\PublicPages.tsx:595: <h3 className="text-base font-medium">{std.name}</h3>
+src\pages\PublicPages.tsx:597: <div className="md:col-span-3">
+src\pages\PublicPages.tsx:598: <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm">{std.description}</p>
+src\pages\PublicPages.tsx:607: <div className="space-y-8">
+src\pages\PublicPages.tsx:609: <div key={idx} className="border-b border-[#1A1A1A]/5 pb-8">
+src\pages\PublicPages.tsx:610: <h3 className="text-base font-medium mb-3 flex gap-4">
+src\pages\PublicPages.tsx:611: <span className="text-[#1A1A1A]/30 font-mono">Q.</span>{faq.question}
+src\pages\PublicPages.tsx:613: <p className="text-[#1A1A1A]/70 font-light leading-relaxed text-sm pl-8">{faq.answer}</p>
+src\pages\PublicPages.tsx:650: <div className="bg-[#5A6B58]/5 p-8 border border-[#5A6B58]/20 rounded-sm">
+src\pages\PublicPages.tsx:651: <CheckCircle size={32} className="text-[#5A6B58] mb-4" />
+src\pages\PublicPages.tsx:652: <h3 className="text-lg font-medium mb-2">訊息已送出</h3>
+src\pages\PublicPages.tsx:653: <p className="text-[#1A1A1A]/60 font-light text-sm mb-6">感謝您的聯繫。我們將儘快審閱您的訊息並回覆。</p>
+src\pages\PublicPages.tsx:654: <button onClick={() => setStatus('idle')} className="text-xs uppercase tracking-widest border border-[#1A1A1A]/10 px-6 py-2 hover:bg-[#1A1A1A] hover:text-white transition-colors">再次發送</button>
+src\pages\PublicPages.tsx:660: <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl text-left">
+src\pages\PublicPages.tsx:661: <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+src\pages\PublicPages.tsx:663: <label className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-2">姓名 Name</label>
+src\pages\PublicPages.tsx:664: <input type="text" name="name" required className="w-full bg-white border border-[#1A1A1A]/10 p-3 text-sm focus:outline-none focus:border-[#5A6B58]" />
+src\pages\PublicPages.tsx:667: <label className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-2">Email Address</label>
+src\pages\PublicPages.tsx:668: <input type="email" name="email" required className="w-full bg-white border border-[#1A1A1A]/10 p-3 text-sm focus:outline-none focus:border-[#5A6B58]" />
+src\pages\PublicPages.tsx:672: <label className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-2">訊息內容 Message</label>
+src\pages\PublicPages.tsx:673: <textarea name="message" required rows={5} className="w-full bg-white border border-[#1A1A1A]/10 p-3 text-sm focus:outline-none focus:border-[#5A6B58] resize-none" />
+src\pages\PublicPages.tsx:677: <div className="flex items-center gap-2 text-red-500 text-sm">
+src\pages\PublicPages.tsx:685: className="bg-[#1A1A1A] text-white px-10 py-4 text-xs tracking-widest uppercase hover:bg-[#5A6B58] transition-colors disabled:opacity-50"
+vite.config.ts:1: import tailwindcss from '@tailwindcss/vite';
+vite.config.ts:9: plugins: [react(), tailwindcss()],

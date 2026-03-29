@@ -1,0 +1,29 @@
+﻿EXPECTED_ACTIVE_AFTER_BATCH_02
+/ -> FrontendHoldPage
+/login -> AdminAccessPage (temporary admin auth only)
+/member -> LegacyMemberRetiredPage
+/admin -> active
+/admin/plants -> active
+/admin/plants/:id -> active
+/admin/users -> active
+/admin/members -> active
+/admin/applications -> active
+/admin/inquiries -> active
+/admin/media -> active
+/admin/taxonomy -> active
+
+EXPECTED_RETIRED_IN_BATCH_02
+/admin/content
+/admin/content/:pageId
+/admin/posts
+/admin/posts/:id
+/admin/settings
+
+EXPECTED_DETACHED_FROM_ACTIVE_APP_IMPORTS
+LoginPage
+AuthLayout
+AdminContentList
+AdminContentEditor
+AdminPosts
+AdminPostEditor
+AdminSettings

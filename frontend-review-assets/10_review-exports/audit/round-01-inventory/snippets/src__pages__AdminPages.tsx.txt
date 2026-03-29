@@ -1,0 +1,263 @@
+FILE: src\pages\AdminPages.tsx
+LAST_WRITE: 2026-03-23T21:05:15
+-----
+import React, { useState, useEffect, useCallback } from 'react';
+import { useNavigate, Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
+import { useAuth } from '../AuthContext';
+import { db } from '../firebase';
+import { collection, query, getDocs, updateDoc, doc, addDoc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { ArrowLeft, Plus, Save, Trash2, User, FileText, Check, X, ShieldAlert, ChevronDown, ChevronRight, LayoutDashboard, Leaf, FileEdit, Image, MessageSquare, Users, ClipboardCheck, Settings, Layers } from 'lucide-react';
+import { adminService, ApplicationWithUser } from '../services/adminService';
+import { UserProfile, AuditLog } from '../types';
+import { auditService } from '../services/auditService';
+import { hasPermission, PermissionAction } from '../utils/permissionUtils';
+
+// Help functions for role-based navigation item visibility
+interface NavItem {
+  label: string;
+  to: string;
+  icon: React.ReactNode;
+  permission?: PermissionAction;
+}
+
+interface NavGroup {
+  label: string;
+  items: NavItem[];
+}
+
+export function AdminLayout({ children }: { children: React.ReactNode }) {
+  const { userProfile, loading } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [settingsOpen, setSettingsOpen] = useState(false);
+
+  useEffect(() => {
+    if (!loading && (!userProfile || !hasPermission(userProfile.role, 'view_admin'))) {
+      navigate('/');
+    }
+  }, [userProfile, loading, navigate]);
+
+  if (loading) {
+    return <div className="min-h-screen bg-[#F7F7F5] flex items-center justify-center text-xs tracking-widest uppercase opacity-20 animate-pulse">Initializing Interface...</div>;
+  }
+
+  if (!userProfile || !hasPermission(userProfile.role, 'view_admin')) {
+    return null;
+  }
+
+  const navGroups: NavGroup[] = [
+    {
+      label: '?批捆蝞∠?',
+      items: ([
+        { label: '璊蝞∠? (Plants)', to: '/admin/plants', icon: <Leaf size={16} />, permission: 'manage_plants' },
+        { label: '?批捆? (Content)', to: '/admin/content', icon: <FileText size={16} />, permission: 'manage_content' },
+        { label: '??蝞∠? (Posts)', to: '/admin/posts', icon: <FileEdit size={16} />, permission: 'manage_posts' },
+        { label: '慦?蝞∠? (Media)', to: '/admin/media', icon: <Image size={16} />, permission: 'manage_media' },
+      ] as NavItem[]).filter(item => !item.permission || hasPermission(userProfile.role, item.permission))
+    },
+    {
+      label: '????',
+      items: ([
+        { label: '?交??唾? (Applications)', to: '/admin/applications', icon: <ClipboardCheck size={16} />, permission: 'manage_applications' },
+        { label: '摰Ｘ?隢株岷 (Inquiries)', to: '/admin/inquiries', icon: <MessageSquare size={16} />, permission: 'manage_inquiries' },
+        { label: '?蝞∠? (Members)', to: '/admin/users', icon: <Users size={16} />, permission: 'manage_members' },
+      ] as NavItem[]).filter(item => !item.permission || hasPermission(userProfile.role, item.permission))
+    }
+  ];
+
+  const settingsGroup: NavGroup = {
+    label: '蝟餌絞閮剖?',
+    items: ([
+      { label: '???蔭 (Taxonomy)', to: '/admin/taxonomy', icon: <Layers size={16} />, permission: 'manage_taxonomy' },
+      { label: '蝟餌絞? (Settings)', to: '/admin/settings', icon: <Settings size={16} />, permission: 'manage_settings' },
+    ] as NavItem[]).filter(item => !item.permission || hasPermission(userProfile.role, item.permission))
+  };
+
+  const NavLink = ({ item }: { item: NavItem }) => {
+    const isActive = location.pathname === item.to;
+    return (
+      <Link 
+        to={item.to} 
+        className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-all duration-200 ${
+          isActive 
+            ? 'bg-[#5A6B58] text-white' 
+            : 'text-white/60 hover:text-white hover:bg-white/5'
+        }`}
+      >
+        <span className={isActive ? 'text-white' : 'text-white/40'}>{item.icon}</span>
+        <span>{item.label}</span>
+      </Link>
+    );
+  };
+
+  return (
+    <div className="min-h-screen bg-[#F7F7F5] flex font-sans">
+      <aside className="w-64 bg-[#1A1A1A] text-white p-4 flex flex-col border-r border-white/5 shadow-xl">
+        <div className="mb-8 px-2 py-4">
+          <Link to="/" className="text-xl tracking-[0.2em] font-medium text-white flex items-center gap-2">
+            ROLE PLANT<span className="text-[#5A6B58] font-bold">.</span>
+          </Link>
+          <div className="h-[1px] w-12 bg-[#5A6B58] mt-3"></div>
+        </div>
+
+        <nav className="flex-1 space-y-6 overflow-y-auto custom-scrollbar pr-1">
+          {navGroups.map((group, gIdx) => (
+            group.items.length > 0 && (
+              <div key={gIdx} className="space-y-2">
+                <h3 className="px-3 text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase mb-2">
+                  {group.label}
+                </h3>
+                <div className="space-y-1">
+                  {group.items.map((item, iIdx) => (
+                    <NavLink key={iIdx} item={item} />
+                  ))}
+                </div>
+              </div>
+            )
+          ))}
+
+          {settingsGroup.items.length > 0 && (
+            <div className="space-y-2">
+              <button 
+                onClick={() => setSettingsOpen(!settingsOpen)}
+                className="w-full flex items-center justify-between px-3 text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase hover:text-white/60 transition-colors"
+              >
+                <span>{settingsGroup.label}</span>
+                {settingsOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+              </button>
+              
+              {settingsOpen && (
+                <div className="space-y-1 animate-in slide-in-from-top-1 duration-200">
+                  {settingsGroup.items.map((item, iIdx) => (
+                    <NavLink key={iIdx} item={item} />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
+        </nav>
+
+        <div className="mt-auto pt-6 border-t border-white/10 px-2 space-y-3">
+          <div className="flex items-center gap-3">
+            <div className="w-8 h-8 rounded-full bg-[#5A6B58]/20 flex items-center justify-center text-[#5A6B58]">
+              <ShieldAlert size={16} />
+            </div>
+            <div>
+              <p className="text-[10px] text-white/30 uppercase tracking-widest font-bold">Security Context</p>
+              <p className="text-xs text-white/80 font-medium">{userProfile.role}</p>
+            </div>
+          </div>
+        </div>
+      </aside>
+      <main className="flex-1 overflow-y-auto bg-white/50 backdrop-blur-sm">
+        <div className="p-8 max-w-7xl mx-auto min-h-full">
+          {children}
+        </div>
+      </main>
+    </div>
+  );
+}
+
+export function AdminDashboard() {
+  const navigate = useNavigate();
+  
+  useEffect(() => {
+    // Redirection if landed on root admin with no dashboard content
+    // navigate('/admin/plants'); 
+  }, [navigate]);
+
+  return (
+    <div className="flex flex-col items-center justify-center h-[80vh] opacity-30 text-center">
+      <LayoutDashboard size={64} strokeWidth={1} className="mb-4" />
+      <h1 className="text-2xl font-light tracking-widest mb-2 uppercase">Interface Control</h1>
+      <p className="text-sm tracking-widest">Select an operation from the sidebar navigation.</p>
+    </div>
+  );
+}
+
+
+
+export function AdminUsers() {
+  const [users, setUsers] = useState<UserProfile[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [filterStatus, setFilterStatus] = useState<string>('all');
+  const { userProfile: currentUser } = useAuth();
+
+  const fetchUsers = useCallback(async () => {
+    setLoading(true);
+    try {
+      const data = await adminService.getAllMembers();
+      setUsers(data);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchUsers();
+  }, [fetchUsers]);
+
+  const handleRoleChange = async (userId: string, newRole: any) => {
+    if (userId === currentUser?.uid) {
+      alert("You cannot change your own role to prevent self-lockout.");
+      return;
+    }
+    if (!confirm(`Are you sure you want to change this user's role to ${newRole}?`)) return;
+    try {
+      const oldUser = users.find(u => u.uid === userId);
+      await adminService.updateMemberRole(userId, newRole);
+
+      if (currentUser) {
+        await auditService.log({
+          userId: currentUser.uid,
+          userName: currentUser.name,
+          action: 'role_change',
+          entityType: 'member',
+          entityId: userId,
+          details: `Changed member ${oldUser?.name || userId} role from ${oldUser?.role} to ${newRole}`,
+          before: { role: oldUser?.role },
+          after: { role: newRole }
+        });
+      }
+
+      setUsers(users.map(u => u.uid === userId ? { ...u, role: newRole } : u));
+    } catch (error) {
+      console.error("Error updating role:", error);
+    }
+  };
+
+  const handleStatusChange = async (userId: string, newStatus: any) => {
+    if (userId === currentUser?.uid && newStatus !== 'approved') {
+      alert("You cannot deactivate your own account status.");
+      return;
+    }
+    if (!confirm(`蝣箏?閬?甇斗??∠???寧 ${newStatus.toUpperCase()} ??`)) return;
+    try {
+      const oldUser = users.find(u => u.uid === userId);
+      await adminService.updateMemberStatus(userId, newStatus);
+      
+      if (currentUser) {
+        await auditService.log({
+          userId: currentUser.uid,
+          userName: currentUser.name,
+          action: 'status_change',
+          entityType: 'member',
+          entityId: userId,
+          details: `Changed member ${oldUser?.name || userId} status from ${oldUser?.status} to ${newStatus}`,
+          before: { status: oldUser?.status },
+          after: { status: newStatus }
+        });
+      }
+
+      setUsers(users.map(u => u.uid === userId ? { ...u, status: newStatus } : u));
+    } catch (error) {
+      console.error("Error updating status:", error);
+    }
+  };
+
+  const filteredUsers = users.filter(u => filterStatus === 'all' || u.status === filterStatus);
+
+  return (
+    <div className="space-y-8">

@@ -1,0 +1,76 @@
+﻿src\pages\CollectionPages.tsx:10: import { taxonomyService } from '../services/taxonomyService';
+src\pages\CollectionPages.tsx:115: <h3 className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/50 font-mono mb-6">Status / 狀態</h3>
+src\pages\CollectionPages.tsx:117: {statusTabs.map(cat => (
+src\pages\CollectionPages.tsx:174: const shortDesc = [item.size, item.localName, item.grade].filter(Boolean).join(' • ');
+src\pages\CollectionPages.tsx:18: const [categories, setCategories] = useState<Taxonomy[]>([]);
+src\pages\CollectionPages.tsx:189: {/* Archived Label on Image */}
+src\pages\CollectionPages.tsx:190: {(item.status === '已售' || item.status === 'sold' || item.status === 'Archive') && (
+src\pages\CollectionPages.tsx:192: Archived
+src\pages\CollectionPages.tsx:201: <span className="text-[10px] tracking-widest text-[#1A1A1A]/50 border border-[#1A1A1A]/10 px-1.5 py-0.5 uppercase">{item.status}</span>
+src\pages\CollectionPages.tsx:245: const localPlant = fallbackDatabase.find(p => p.id === id);
+src\pages\CollectionPages.tsx:250: const localPlant = fallbackDatabase.find(p => p.id === id);
+src\pages\CollectionPages.tsx:259: const handleApply = async () => {
+src\pages\CollectionPages.tsx:26: taxonomyService.getByType('plant_category')
+src\pages\CollectionPages.tsx:264: if (userProfile?.status === 'pending') {
+src\pages\CollectionPages.tsx:270: await memberApplicationService.createApplication({
+src\pages\CollectionPages.tsx:273: requestType: 'application',
+src\pages\CollectionPages.tsx:274: status: 'pending'
+src\pages\CollectionPages.tsx:277: navigate('/member');
+src\pages\CollectionPages.tsx:279: console.error("Error submitting application:", error);
+src\pages\CollectionPages.tsx:291: if (userProfile?.status === 'pending') {
+src\pages\CollectionPages.tsx:296: const isTracked = userProfile?.favorites?.includes(plant.id);
+src\pages\CollectionPages.tsx:298: navigate('/member');
+src\pages\CollectionPages.tsx:304: await favoritesService.addFavorite(user.uid, plant.id);
+src\pages\CollectionPages.tsx:305: navigate('/member');
+src\pages\CollectionPages.tsx:316: const isTracked = userProfile?.favorites?.includes(plant.id);
+src\pages\CollectionPages.tsx:318: // Map Firestore status to categories
+src\pages\CollectionPages.tsx:319: const statusMap: Record<string, string> = {
+src\pages\CollectionPages.tsx:32: setPlants(fallbackDatabase);
+src\pages\CollectionPages.tsx:320: '培育中': 'Observation',
+src\pages\CollectionPages.tsx:321: '可申請': 'Available',
+src\pages\CollectionPages.tsx:322: '可售': 'Available',
+src\pages\CollectionPages.tsx:323: '保留中': 'Observation',
+src\pages\CollectionPages.tsx:324: '已售': 'Archived',
+src\pages\CollectionPages.tsx:325: 'Archive': 'Archived'
+src\pages\CollectionPages.tsx:328: const mappedStatus = statusMap[plant.status] || plant.status;
+src\pages\CollectionPages.tsx:330: switch (mappedStatus) {
+src\pages\CollectionPages.tsx:331: case 'Available':
+src\pages\CollectionPages.tsx:333: <button onClick={handleApply} disabled={loading} className="w-full bg-[#1A1A1A] text-[#EAE8E3] py-5 text-xs tracking-widest uppercase hover:bg-[#2A2A2A] transition-colors disabled:opacity-50 border border-[#1A1A1A]">
+src\pages\CollectionPages.tsx:337: case 'Observation':
+src\pages\CollectionPages.tsx:343: case 'Archived':
+src\pages\CollectionPages.tsx:347: <span className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 font-mono">STATUS: {plant.status.toUpperCase()} (檔案已封存)</span>
+src\pages\CollectionPages.tsx:37: setPlants(fallbackDatabase);
+src\pages\CollectionPages.tsx:4: import { SafeImage, plantDatabase as fallbackDatabase } from '../components/Shared';
+src\pages\CollectionPages.tsx:431: {plant.grade && (
+src\pages\CollectionPages.tsx:433: <span className="block text-[10px] uppercase tracking-widest text-[#1A1A1A]/40 mb-1 font-mono">Grade</span>
+src\pages\CollectionPages.tsx:434: <span className="text-sm font-mono">{plant.grade}</span>
+src\pages\CollectionPages.tsx:441: {(plant.stats?.expression || plant.stats?.balance || plant.stats?.proportion || plant.details?.summary || plant.description) && (
+src\pages\CollectionPages.tsx:447: {plant.stats && (plant.stats.expression || plant.stats.balance || plant.stats.proportion) && (
+src\pages\CollectionPages.tsx:449: {plant.stats.expression ? (
+src\pages\CollectionPages.tsx:45: const statusTabs = [
+src\pages\CollectionPages.tsx:452: <p className="font-mono text-base">{plant.stats.expression}</p>
+src\pages\CollectionPages.tsx:455: {plant.stats.balance ? (
+src\pages\CollectionPages.tsx:458: <p className="font-mono text-base">{plant.stats.balance}</p>
+src\pages\CollectionPages.tsx:461: {plant.stats.proportion ? (
+src\pages\CollectionPages.tsx:464: <p className="font-mono text-base">{plant.stats.proportion}</p>
+src\pages\CollectionPages.tsx:47: { id: 'Available', name: '可釋出', desc: '經過完整休眠與生長季觀察，確認健康完成度，目前狀態穩定可供收藏的個體。' },
+src\pages\CollectionPages.tsx:478: {/* 4. 狀態紀錄區 (Status Record Area) */}
+src\pages\CollectionPages.tsx:48: { id: 'Observation', name: '觀察中', desc: '正在進行型態調整或剛換盆，需要更多時間確認培育未來性的個體，暫不釋出。' },
+src\pages\CollectionPages.tsx:49: { id: 'Archived', name: '已收藏', desc: '具有特殊表現或已由其他收藏者養護的歷史檔案，保留作為判讀與標準建立的參考。' }
+src\pages\CollectionPages.tsx:52: const statusMap: Record<string, string> = {
+src\pages\CollectionPages.tsx:53: '培育中': 'Observation',
+src\pages\CollectionPages.tsx:54: 'exhibiting': 'Available',
+src\pages\CollectionPages.tsx:55: 'sold': 'Archived',
+src\pages\CollectionPages.tsx:56: 'hidden': 'Observation',
+src\pages\CollectionPages.tsx:57: '可售': 'Available',
+src\pages\CollectionPages.tsx:58: '已售': 'Archived'
+src\pages\CollectionPages.tsx:6: import { favoritesService } from '../services/favoritesService';
+src\pages\CollectionPages.tsx:62: // Status Filter
+src\pages\CollectionPages.tsx:63: const mappedStatus = statusMap[p.status] || p.status;
+src\pages\CollectionPages.tsx:64: const statusMatch = filter === 'All' || mappedStatus === filter;
+src\pages\CollectionPages.tsx:66: // Taxonomy Category Filter
+src\pages\CollectionPages.tsx:69: return statusMatch && catMatch;
+src\pages\CollectionPages.tsx:7: import { memberApplicationService } from '../services/memberApplicationService';
+src\pages\CollectionPages.tsx:72: const currentStatus = statusTabs.find(c => c.id === filter);
+src\pages\CollectionPages.tsx:9: import { Taxonomy } from '../types';
+src\pages\CollectionPages.tsx:95: {statusTabs.map(cat => (

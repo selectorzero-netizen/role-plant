@@ -1,0 +1,6 @@
+﻿BATCH=02
+GOAL=Detach legacy member flow and legacy admin tools tied to retired public IA.
+WHY=After Batch 01, the remaining active legacy anchors are old member flow (/login -> /member) and admin tools that still edit old public content/policy/posts.
+ACTIVE_AFTER_THIS_BATCH= / , /login (admin access only) , /member (retired notice) , /admin , /admin/plants , /admin/plants/:id , /admin/users , /admin/members , /admin/applications , /admin/inquiries , /admin/media , /admin/taxonomy
+RETIRED_ADMIN_TOOLS= /admin/content , /admin/content/:pageId , /admin/posts , /admin/posts/:id , /admin/settings
+NOT_TOUCHED_THIS_BATCH= Firebase config, services, plant/application/inquiry/profile/taxonomy data, admin core CRUD

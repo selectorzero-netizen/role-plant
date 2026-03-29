@@ -1,0 +1,141 @@
+﻿src\AuthContext.tsx:10: const getDevProfile = (): UserProfile | null => {
+src\AuthContext.tsx:100: const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Profile fetch timeout')), 20000));
+src\AuthContext.tsx:101: const profile = await Promise.race([profilePromise, timeoutPromise]) as UserProfile;
+src\AuthContext.tsx:102: setUserProfile(profile);
+src\AuthContext.tsx:105: console.error("Error fetching or initializing profile:", error);
+src\AuthContext.tsx:106: setUserProfile(null);
+src\AuthContext.tsx:118: await initProfile(firebaseUser);
+src\AuthContext.tsx:120: setUserProfile(null);
+src\AuthContext.tsx:131: initProfile(user);
+src\AuthContext.tsx:147: <AuthContext.Provider value={{ user, userProfile, loading, isAuthReady, authError, login, logout, retryInit }}>
+src\AuthContext.tsx:18: status: 'approved' as Status,
+src\AuthContext.tsx:19: favorites: [],
+src\AuthContext.tsx:33: userProfile: UserProfile | null;
+src\AuthContext.tsx:4: import { UserProfile, UserRole, Status } from './types';
+src\AuthContext.tsx:44: userProfile: null,
+src\AuthContext.tsx:61: userProfile: getDevProfile(),
+src\AuthContext.tsx:84: const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
+src\AuthContext.tsx:90: const initProfile = async (firebaseUser: User) => {
+src\AuthContext.tsx:95: const profilePromise = authService.initializeProfileIfNew(
+src\pages\AdminSettings.tsx:10: { id: 'approvedBenefits', name: '核准後專屬權益' },
+src\pages\AdminSettings.tsx:15: const { membershipPolicy, source } = usePolicy();
+src\pages\AdminSettings.tsx:194: <p className="text-sm text-[#1A1A1A]/50 mb-8 border-b border-[#1A1A1A]/10 pb-4">此區塊控制未登入訪客在 /membership 頁面頂端看到的主視覺宣告。</p>
+src\pages\AdminSettings.tsx:25: if (!originalData && membershipPolicy) {
+src\pages\AdminSettings.tsx:26: const dataCopy = JSON.parse(JSON.stringify(membershipPolicy));
+src\pages\AdminSettings.tsx:280: {activeTab === 'approvedBenefits' && (
+src\pages\AdminSettings.tsx:285: <input className="w-full border p-3 text-sm focus:border-[#5A6B58] outline-none" value={formData.approvedBenefits.title} onChange={e => handleChange(['approvedBenefits', 'title'], e.target.value)} />
+src\pages\AdminSettings.tsx:291: <button onClick={() => addItem(['approvedBenefits', 'items'], { title: '新專屬權益', content: '權益詳情...' })} className="text-sm text-[#5A6B58] flex items-center gap-1 hover:bg-[#5A6B58]/10 px-3 py-1.5 rounded transition-colors"><Plus size={16}/> 加入一項權益</button>
+src\pages\AdminSettings.tsx:294: {formData.approvedBenefits.items.map((item: any, idx: number) => (
+src\pages\AdminSettings.tsx:298: <input className="w-full font-medium text-base mb-2 border-b border-transparent hover:border-[#1A1A1A]/20 focus:border-[#5A6B58] outline-none bg-transparent" value={item.title} onChange={e => handleArrayObjChange(['approvedBenefits', 'items'], idx, 'title', e.target.value)} />
+src\pages\AdminSettings.tsx:299: <textarea className="w-full text-sm text-[#1A1A1A]/70 border border-transparent hover:border-[#1A1A1A]/10 focus:border-[#5A6B58] outline-none h-20 p-2 bg-gray-50/50" value={item.content} onChange={e => handleArrayObjChange(['approvedBenefits', 'items'], idx, 'content', e.target.value)} />
+src\pages\AdminSettings.tsx:30: }, [membershipPolicy]);
+src\pages\AdminSettings.tsx:302: <button onClick={() => moveItem(['approvedBenefits', 'items'], idx, 'up')} className="p-2 border border-[#1A1A1A]/10 hover:bg-[#1A1A1A]/5 rounded" title="向上排列"><ArrowUp size={14}/></button>
+src\pages\AdminSettings.tsx:303: <button onClick={() => moveItem(['approvedBenefits', 'items'], idx, 'down')} className="p-2 border border-[#1A1A1A]/10 hover:bg-[#1A1A1A]/5 rounded" title="向下排列"><ArrowDown size={14}/></button>
+src\pages\AdminSettings.tsx:304: <button onClick={() => removeItem(['approvedBenefits', 'items'], idx)} className="p-2 border border-red-100 text-red-500 hover:bg-red-50 rounded mt-auto" title="刪除權益"><Trash2 size={14}/></button>
+src\pages\AdminSettings.tsx:308: {formData.approvedBenefits.items.length === 0 && <p className="text-sm text-[#1A1A1A]/50 p-6 border border-dashed text-center">目前未設定任何權益。</p>}
+src\pages\AdminSettings.tsx:325: <p className="text-xs text-[#1A1A1A]/50 mb-3 ml-3">位置：顯示於 /login 頁面 Google 授權按鈕下方。</p>
+src\pages\AdminSettings.tsx:326: <div className="ml-3"><textarea className="w-full border p-3 text-sm h-32 focus:border-[#5A6B58] outline-none" value={formData.loginNotice.text} onChange={e => handleChange(['loginNotice', 'text'], e.target.value)} /></div>
+src\pages\AdminSettings.tsx:331: <span className="w-1.5 h-4 bg-orange-400"></span> 審核中狀態 (Pending Banner)
+src\pages\AdminSettings.tsx:333: <p className="text-xs text-[#1A1A1A]/50 mb-3 ml-3">位置：申請者初次登入進入 /member 時看到的黃底說明區塊。</p>
+src\pages\AdminSettings.tsx:335: <div><label className="block text-xs font-medium mb-1">橫幅主標</label><input className="w-full border p-3 text-sm focus:border-orange-400 outline-none" value={formData.pendingBanner.title} onChange={e => handleChange(['pendingBanner', 'title'], e.target.value)} /></div>
+src\pages\AdminSettings.tsx:336: <div><label className="block text-xs font-medium mb-1">詳細安撫說明</label><textarea className="w-full border p-3 text-sm h-32 focus:border-orange-400 outline-none" value={formData.pendingBanner.description} onChange={e => handleChange(['pendingBanner', 'description'], e.target.value)} /></div>
+src\pages\AdminSettings.tsx:38: if (JSON.stringify(originalData.approvedBenefits) !== JSON.stringify(formData.approvedBenefits)) dirty.push('核准後專屬權益');
+src\pages\AdminSettings.tsx:39: if (JSON.stringify(originalData.loginNotice) !== JSON.stringify(formData.loginNotice) ||
+src\pages\AdminSettings.tsx:40: JSON.stringify(originalData.pendingBanner) !== JSON.stringify(formData.pendingBanner)) {
+src\pages\AdminSettings.tsx:67: await policyService.saveMembershipPolicy(formData);
+src\pages\MemberPages.tsx:10: import { favoritesService } from '../services/favoritesService';
+src\pages\MemberPages.tsx:108: <p className="text-xs tracking-widest uppercase text-[#1A1A1A]/50">Member Center</p>
+src\pages\MemberPages.tsx:11: import { memberApplicationService } from '../services/memberApplicationService';
+src\pages\MemberPages.tsx:111: <p className="text-sm font-medium mb-1">{userProfile?.name || 'User'}</p>
+src\pages\MemberPages.tsx:112: <p className="text-xs text-[#1A1A1A]/50 font-mono">{userProfile?.role || 'member'}</p>
+src\pages\MemberPages.tsx:120: onClick={() => setActiveTab('favorites')}
+src\pages\MemberPages.tsx:121: className={`w-full text-left px-4 py-3 text-sm tracking-widest flex items-center gap-3 transition-colors ${activeTab === 'favorites' ? 'bg-[#1A1A1A] text-white' : 'hover:bg-[#1A1A1A]/5'}`}
+src\pages\MemberPages.tsx:127: onClick={() => setActiveTab('applications')}
+src\pages\MemberPages.tsx:128: className={`w-full text-left px-4 py-3 text-sm tracking-widest flex items-center gap-3 transition-colors ${activeTab === 'applications' ? 'bg-[#1A1A1A] text-white' : 'hover:bg-[#1A1A1A]/5'}`}
+src\pages\MemberPages.tsx:141: {isAdminAtLeast(userProfile?.role) && (
+src\pages\MemberPages.tsx:169: {userProfile?.status === 'pending' && (
+src\pages\MemberPages.tsx:171: <h3 className="text-xl font-light mb-2">{MEMBERSHIP_POLICY.pendingBanner.title}</h3>
+src\pages\MemberPages.tsx:173: {MEMBERSHIP_POLICY.pendingBanner.description}
+src\pages\MemberPages.tsx:178: {activeTab === 'favorites' && (
+src\pages\MemberPages.tsx:192: {plant.status}
+src\pages\MemberPages.tsx:20: const { membershipPolicy: MEMBERSHIP_POLICY } = usePolicy();
+src\pages\MemberPages.tsx:208: {activeTab === 'applications' && (
+src\pages\MemberPages.tsx:222: {applications.length > 0 ? applications.map(app => (
+src\pages\MemberPages.tsx:228: <span className="text-xs px-2 py-1 bg-[#EBEBE8] text-[#1A1A1A]/70">{app.status === 'pending' ? '審核中' : app.status}</span>
+src\pages\MemberPages.tsx:249: if (userProfile && newName !== userProfile.name) {
+src\pages\MemberPages.tsx:251: // TODO (Phase 3): Extract to profileService.updateProfile()
+src\pages\MemberPages.tsx:252: await profileService.updateProfile(userProfile.uid, {
+src\pages\MemberPages.tsx:257: console.error("Error updating profile:", error);
+src\pages\MemberPages.tsx:264: <input type="text" name="name" defaultValue={userProfile?.name} className="w-full bg-transparent border-b border-[#1A1A1A]/20 py-3 focus:outline-none focus:border-[#1A1A1A] transition-colors" />
+src\pages\MemberPages.tsx:268: <input type="email" defaultValue={userProfile?.email} disabled className="w-full bg-transparent border-b border-[#1A1A1A]/10 py-3 text-[#1A1A1A]/50 cursor-not-allowed" />
+src\pages\MemberPages.tsx:27: navigate('/member');
+src\pages\MemberPages.tsx:45: <p className="text-xs tracking-widest uppercase text-[#1A1A1A]/50">Member Login</p>
+src\pages\MemberPages.tsx:64: {MEMBERSHIP_POLICY.loginNotice.text}
+src\pages\MemberPages.tsx:71: export function MemberPage() {
+src\pages\MemberPages.tsx:72: const { userProfile, user, logout } = useAuth();
+src\pages\MemberPages.tsx:73: const [activeTab, setActiveTab] = useState<'favorites' | 'applications' | 'settings'>('favorites');
+src\pages\MemberPages.tsx:74: const [applications, setApplications] = useState<any[]>([]);
+src\pages\MemberPages.tsx:77: const { membershipPolicy: MEMBERSHIP_POLICY } = usePolicy();
+src\pages\MemberPages.tsx:80: if (userProfile?.favorites && userProfile.favorites.length > 0) {
+src\pages\MemberPages.tsx:81: favoritesService.getFavoritePlants(userProfile.favorites).then(favs => {
+src\pages\MemberPages.tsx:84: console.error("Error fetching favorites:", err);
+src\pages\MemberPages.tsx:9: import { profileService } from '../services/profileService';
+src\pages\MemberPages.tsx:90: }, [userProfile]);
+src\pages\MemberPages.tsx:93: if (user && activeTab === 'applications') {
+src\pages\MemberPages.tsx:94: memberApplicationService.getApplicationsByUser(user.uid).then(apps => {
+src\pages\MemberPages.tsx:95: setApplications(apps);
+src\pages\MemberPages.tsx:97: console.error("Error fetching applications:", err);
+src\pages\MemberPages.tsx:98: setApplications([]);
+src\PolicyContext.tsx:12: membershipPolicy: MEMBERSHIP_POLICY, // Immediate synchronous fallback
+src\PolicyContext.tsx:19: const [membershipPolicy, setMembershipPolicy] = useState<MembershipPolicySchema>(MEMBERSHIP_POLICY);
+src\PolicyContext.tsx:2: import { MEMBERSHIP_POLICY, MembershipPolicySchema } from './config/policy';
+src\PolicyContext.tsx:25: policyService.getMembershipPolicy().then(res => {
+src\PolicyContext.tsx:27: setMembershipPolicy(res.data);
+src\PolicyContext.tsx:39: <PolicyContext.Provider value={{ membershipPolicy, isLoadingProvider, source }}>
+src\PolicyContext.tsx:6: membershipPolicy: MembershipPolicySchema;
+src\services\authService.ts:1: import { UserProfile } from '../types';
+src\services\authService.ts:12: role: 'member',
+src\services\authService.ts:13: status: 'pending',
+src\services\authService.ts:14: favorites: [],
+src\services\authService.ts:2: import { profileService } from './profileService';
+src\services\authService.ts:20: profile.role = 'admin';
+src\services\authService.ts:21: profile.status = 'approved';
+src\services\authService.ts:22: profile.name = 'DEV Admin Emulator';
+src\services\authService.ts:25: await profileService.createProfile(uid, profile);
+src\services\authService.ts:27: return profile;
+src\services\authService.ts:5: initializeProfileIfNew: async (uid: string, email: string | null, name?: string | null): Promise<UserProfile> => {
+src\services\authService.ts:6: let profile = await profileService.getProfile(uid);
+src\services\authService.ts:7: if (!profile) {
+src\services\authService.ts:8: profile = {
+src\services\policyService.ts:10: const docRef = doc(db, 'settings', 'membership');
+src\services\policyService.ts:14: console.warn('Membership policy not found in Firestore. Using default runtime config.');
+src\services\policyService.ts:15: return { data: MEMBERSHIP_POLICY, source: 'local_fallback' };
+src\services\policyService.ts:3: import { MEMBERSHIP_POLICY, MembershipPolicySchema } from '../config/policy';
+src\services\policyService.ts:32: title: data.hero?.title ?? MEMBERSHIP_POLICY.hero.title,
+src\services\policyService.ts:33: subtitle: data.hero?.subtitle ?? MEMBERSHIP_POLICY.hero.subtitle,
+src\services\policyService.ts:34: description: data.hero?.description ?? MEMBERSHIP_POLICY.hero.description,
+src\services\policyService.ts:37: title: data.audience?.title ?? MEMBERSHIP_POLICY.audience.title,
+src\services\policyService.ts:38: description: data.audience?.description ?? MEMBERSHIP_POLICY.audience.description,
+src\services\policyService.ts:39: items: safeMergeArray(data.audience?.items, MEMBERSHIP_POLICY.audience.items, (item: any) => item),
+src\services\policyService.ts:42: title: data.process?.title ?? MEMBERSHIP_POLICY.process.title,
+src\services\policyService.ts:43: steps: safeMergeArray(data.process?.steps, MEMBERSHIP_POLICY.process.steps, (step: any, idx: number) => ({
+src\services\policyService.ts:44: id: step?.id ?? MEMBERSHIP_POLICY.process.steps[idx]?.id ?? `step-${idx}`,
+src\services\policyService.ts:45: label: step?.label ?? MEMBERSHIP_POLICY.process.steps[idx]?.label ?? `Step ${idx + 1}`,
+src\services\policyService.ts:46: title: step?.title ?? MEMBERSHIP_POLICY.process.steps[idx]?.title ?? '未定義標題',
+src\services\policyService.ts:47: content: step?.content ?? MEMBERSHIP_POLICY.process.steps[idx]?.content ?? '無內容'
+src\services\policyService.ts:50: approvedBenefits: {
+src\services\policyService.ts:51: title: data.approvedBenefits?.title ?? MEMBERSHIP_POLICY.approvedBenefits.title,
+src\services\policyService.ts:52: items: safeMergeArray(data.approvedBenefits?.items, MEMBERSHIP_POLICY.approvedBenefits.items, (item: any, idx: number) => ({
+src\services\policyService.ts:53: title: item?.title ?? MEMBERSHIP_POLICY.approvedBenefits.items[idx]?.title ?? '未定義標題',
+src\services\policyService.ts:54: content: item?.content ?? MEMBERSHIP_POLICY.approvedBenefits.items[idx]?.content ?? '無內容'
+src\services\policyService.ts:57: loginNotice: {
+src\services\policyService.ts:58: text: data.loginNotice?.text ?? MEMBERSHIP_POLICY.loginNotice.text,
+src\services\policyService.ts:60: pendingBanner: {
+src\services\policyService.ts:61: title: data.pendingBanner?.title ?? MEMBERSHIP_POLICY.pendingBanner.title,
+src\services\policyService.ts:62: description: data.pendingBanner?.description ?? MEMBERSHIP_POLICY.pendingBanner.description,
+src\services\policyService.ts:68: return { data: MEMBERSHIP_POLICY, source: 'invalid_remote_data' };
+src\services\policyService.ts:73: console.error('Failed to fetch membership policy. Falling back to default.', error);
+src\services\policyService.ts:74: return { data: MEMBERSHIP_POLICY, source: 'local_fallback' };
+src\services\policyService.ts:78: async saveMembershipPolicy(policy: MembershipPolicySchema): Promise<void> {
+src\services\policyService.ts:79: const docRef = doc(db, 'settings', 'membership');
+src\services\policyService.ts:8: async getMembershipPolicy(): Promise<{ data: MembershipPolicySchema, source: PolicySource }> {

@@ -1,0 +1,32 @@
+FILE: src\services\authService.ts
+LAST_WRITE: 2026-03-21T23:04:46
+-----
+import { UserProfile } from '../types';
+import { profileService } from './profileService';
+
+export const authService = {
+  initializeProfileIfNew: async (uid: string, email: string | null, name?: string | null): Promise<UserProfile> => {
+    let profile = await profileService.getProfile(uid);
+    if (!profile) {
+      profile = {
+        uid,
+        email,
+        name,
+        role: 'member',
+        status: 'pending',
+        favorites: [],
+        createdAt: Date.now()
+      };
+
+      // Seed admin for local emulator DEV testing
+      if (import.meta.env.DEV && email === 'admin@roleplant.dev') {
+        profile.role = 'admin';
+        profile.status = 'approved';
+        profile.name = 'DEV Admin Emulator';
+      }
+
+      await profileService.createProfile(uid, profile);
+    }
+    return profile;
+  }
+};

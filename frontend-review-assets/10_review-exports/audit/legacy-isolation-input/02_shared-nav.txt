@@ -1,0 +1,16 @@
+﻿src\components\Shared.tsx:127: <Link to="/login" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A]/60 hover:text-[#5A6B58] transition-colors">
+src\components\Shared.tsx:133: <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium">
+src\components\Shared.tsx:143: <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium flex items-center gap-3">
+src\components\Shared.tsx:149: <Link to="/member" className="text-xs tracking-[0.15em] uppercase text-[#1A1A1A] hover:text-[#5A6B58] transition-colors font-medium flex items-center gap-2">
+src\components\Shared.tsx:175: <Link to="/login" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A]/50 border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+src\components\Shared.tsx:182: <Link to="/member" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+src\components\Shared.tsx:193: <Link to="/member" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+src\components\Shared.tsx:199: <Link to="/member" className="text-left text-xl tracking-widest uppercase text-[#1A1A1A] border-b border-[#1A1A1A]/10 pb-4 flex justify-between items-center">
+src\components\Shared.tsx:231: <li><Link to="/collection" className="hover:text-white transition-colors">選拔檔案 Collection</Link></li>
+src\components\Shared.tsx:232: <li><Link to="/learn" className="hover:text-white transition-colors">判讀與培育 Learn</Link></li>
+src\components\Shared.tsx:233: <li><Link to="/business" className="hover:text-white transition-colors">合作與業務 Business</Link></li>
+src\components\Shared.tsx:71: { name: 'Collection', path: '/collection', label: '龜甲龍' },
+src\components\Shared.tsx:72: { name: 'Learn', path: '/learn', label: '判讀與培育' },
+src\components\Shared.tsx:73: { name: 'Membership', path: '/membership', label: '會員制度' },
+src\components\Shared.tsx:74: { name: 'About', path: '/about', label: '關於我們' },
+src\components\Shared.tsx:75: { name: 'Business', path: '/business', label: '合作' },

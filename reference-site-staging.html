@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reference Site - Staging Skeleton</title>
+    <!-- Staging skeleton focused strictly on structure, hooks, and data-bindings -->
+</head>
+<body data-barba="wrapper" class="template-index">
+
+    <div class="page_wrap">
+        <!-- 1. page_code_wrap (global layer) -->
+        <div class="page_code_wrap">
+            <div class="page_code_base w-embed"></div>
+            <div class="page_code_custom w-embed"></div>
+        </div>
+
+        <div data-barba="container" class="page-main">
+            <!-- 2. preloader_wrap (global layer) -->
+            <div class="preloader_wrap">
+                <div class="preloader-inner">
+                    <div class="preloader_logo-contain"></div>
+                    <div class="preloader-inner_bg"></div>
+                    <div class="preloader_img-contain">
+                        <img class="preloader-img" data-placeholder="image">
+                        <img class="preloader-img" data-placeholder="image">
+                        <img class="preloader-img" data-placeholder="image">
+                        <img class="preloader-img" data-placeholder="image">
+                        <img class="preloader-img" data-placeholder="image">
+                        <img class="preloader-img" data-placeholder="image">
+                        <img class="preloader-img" data-placeholder="image">
+                        <img class="preloader-img" data-placeholder="image">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. nav-component -->
+            <div class="nav-component">
+            <div img-hover_wrap="" data-nav="closed" class="nav">
+                <div data-menu-toggle="" class="overlay"></div>
+                <nav class="menu">
+                    <div class="menu-bg">
+                        <div class="bg-panel_full">
+                            <div class="bg-panel_full-img"><img class="img-fill" data-placeholder="image">
+                                <div class="menu-extras">
+                                    <div class="bg-panel_contain u-container">
+                                        <div class="menu-bottom_layout u-grid-desktop m-centered">
+                                            <div data-menu-fade="" class="menu-footer_col u-column-6">
+                                                <div class="menu-extras_logo"></div>
+                                            </div>
+                                            <div data-menu-fade="" class="menu-footer_col u-column-4">
+                                                <div class="menu-bot_wrap">
+                                                    <div class="u-text-style-alt"></div>
+                                                </div>
+                                            </div>
+                                            <div data-menu-fade="" class="menu-footer_col u-column-2">
+                                                <div class="product-info u-vflex-right-bottom">
+                                                    <div class="u-text-style-alt"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-panel first"></div>
+                        <div class="bg-panel"></div>
+                    </div>
+                    <div class="menu-inner">
+                        <div class="menu-contain u-container">
+                            <div class="menu-layout u-grid-desktop">
+                                <div data-menu-fade="" class="menu-img_wrap u-column-1">
+                                    <div target-img_wrap="" class="menu-img_inner"></div>
+                                </div>
+                                <div class="menu-list_wrap u-column-5">
+                                    <div img-hover_triggers-wrap="" class="menu-list">
+                                        <div img-hover_trigger="" class="menu-list-item">
+                                            <a class="menu-link w-inline-block">
+                                                <h3 class="u-text-style-h2 is-menulink"></h3>
+                                            </a>
+                                        </div>
+                                        <div img-hover_trigger="" class="menu-list-item">
+                                            <a class="menu-link w-inline-block w--current">
+                                                <h3 class="u-text-style-h2 is-menulink"></h3>
+                                            </a>
+                                        </div>
+                                        <div img-hover_trigger="" class="menu-list-item">
+                                            <a class="menu-link w-inline-block">
+                                                <h3 class="u-text-style-h2 is-menulink"></h3>
+                                            </a>
+                                        </div>
+                                        <div img-hover_trigger="" class="menu-list-item">
+                                            <a class="menu-link w-inline-block">
+                                                <h3 class="u-text-style-h2 is-menulink"></h3>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-menu-fade="" class="menu-close_wrap u-column-1">
+                                    <div h-flip="" data-menu-toggle="" class="menu-close">
+                                        <div class="body-upper"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu-contain u-container">
+                            <div class="menu-bottom_layout u-grid-desktop is-menu">
+                                <div data-menu-fade="" class="menu-footer_col u-column-5 col-start_7">
+                                    <div class="menu-bot_wrap">
+                                        <div data-node-type="commerce-cart-wrapper" data-wf-cart-type="rightSidebar" data-wf-cart-query="" data-wf-page-link-href-prefix="" data-wf-cart-duration="0" class="w-commerce-commercecartwrapper cart-el">
+                                            <a h-flip="" data-node-type="commerce-cart-open-link" class="w-commerce-commercecartopenlink menu-cart is-cart w-inline-block">
+                                                <div class="body-upper w-inline-block"></div>
+                                                <div data-count-hide-rule="empty" class="w-commerce-commercecartopenlinkcount cart-total"></div>
+                                            </a>
+                                            <div data-node-type="commerce-cart-container-wrapper" class="w-commerce-commercecartcontainerwrapper w-commerce-commercecartcontainerwrapper--cartType-rightSidebar cart-wrapper">
+                                                <div data-node-type="commerce-cart-container" class="w-commerce-commercecartcontainer cart-container">
+                                                    <div class="w-commerce-commercecartheader cart-header">
+                                                        <h4 class="w-commerce-commercecartheading body-upper"></h4>
+                                                        <a data-node-type="commerce-cart-close-link" class="w-commerce-commercecartcloselink cart-close w-inline-block">
+                                                            <div class="cart-close_icon body-upper"></div>
+                                                        </a>
+                                                    </div>
+                                                    <div class="w-commerce-commercecartformwrapper cart-form_wrap">
+                                                        <div data-lenis-prevent="" data-wf-collection="database.commerceOrder.userItems" class="w-commerce-commercecartlist cart-list"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div h-flip="" sub-trigger="" class="text-link">
+                                            <div class="body-upper"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div data-menu-fade="" class="menu-footer_col u-column-1">
+                                    <div class="product-info u-vflex-right-bottom">
+                                        <a h-flip="" class="text-link w-inline-block">
+                                            <div class="body-upper"></div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div target-imgs_hidden="" class="target-imgs_hidden">
+                            <img alt="" class="img-fill" data-placeholder="image">
+                            <img alt="" class="img-fill" data-placeholder="image">
+                            <img alt="" class="img-fill" data-placeholder="image">
+                            <img alt="" class="img-fill" data-placeholder="image">
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <nav class="orgc-nav">
+                <div class="nav-contain u-container">
+                    <div class="nav-layout u-grid-column-2">
+                        <div class="nav-col is-mobile">
+                            <div h-fadeout="" data-menu-toggle="" class="menu-toggle">
+                                <div class="menu-toggle_line"></div>
+                                <div class="menu-toggle_line"></div>
+                                <div class="menu-text_wrap">
+                                    <div class="menu-text_inner">
+                                        <p class="body-upper"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nav-col">
+                            <a class="nav-logo_link w-inline-block w--current"></a>
+                        </div>
+                        <div class="nav-col">
+                            <div h-fadeout="" data-menu-toggle="" class="menu-toggle is-desktop">
+                                <div class="menu-toggle_line"></div>
+                                <div class="menu-toggle_line"></div>
+                                <div class="menu-text_wrap">
+                                    <div class="menu-text_inner">
+                                        <p class="body-upper"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div h-fadeout="" class="nav-links_layout">
+                                <a h-flip="" class="nav-link is-desktop w-inline-block">
+                                    <div class="body-upper"></div>
+                                </a>
+                                <div data-node-type="commerce-cart-wrapper" data-wf-cart-type="rightSidebar" data-wf-cart-query="" data-wf-page-link-href-prefix="" data-wf-cart-easing="ease" data-wf-cart-duration="0" class="w-commerce-commercecartwrapper cart-el">
+                                    <a h-flip="" data-node-type="commerce-cart-open-link" class="w-commerce-commercecartopenlink nav-link is-cart w-inline-block">
+                                        <div class="body-upper w-inline-block"></div>
+                                        <div data-count-hide-rule="empty" class="w-commerce-commercecartopenlinkcount cart-total"></div>
+                                    </a>
+                                    <div data-node-type="commerce-cart-container-wrapper" class="w-commerce-commercecartcontainerwrapper w-commerce-commercecartcontainerwrapper--cartType-rightSidebar cart-wrapper">
+                                        <div data-node-type="commerce-cart-container" class="w-commerce-commercecartcontainer cart-container">
+                                            <div class="w-commerce-commercecartheader cart-header">
+                                                <h4 class="w-commerce-commercecartheading body-upper"></h4>
+                                                <a data-node-type="commerce-cart-close-link" class="w-commerce-commercecartcloselink cart-close w-inline-block">
+                                                    <div class="cart-close_icon body-upper"></div>
+                                                </a>
+                                            </div>
+                                            <div class="w-commerce-commercecartformwrapper cart-form_wrap">
+                                                <div data-lenis-prevent="" data-wf-collection="database.commerceOrder.userItems" class="w-commerce-commercecartlist cart-list"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- 4. home-hero -->
+        <section id="home-hero" class="hero-slider" full-slider="" nav-light="" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                <div class="hero-center is-desktop">
+                    <div class="hero-slider_nav-wrap u-container">
+                        <div class="hero-slider_nav-list">
+                            <div class="hero-slider_nav-item active">
+                                <div solo-img_hov="" class="slide-nav_layout">
+                                    <h2 italics="" class="hero-slider_num"></h2>
+                                    <div solo-img="" class="slide-nav_img">
+                                        <img class="img-fill" data-placeholder="image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hero-slider_nav-item">
+                                <div solo-img_hov="" class="slide-nav_layout">
+                                    <h2 italics="" class="hero-slider_num"></h2>
+                                    <div solo-img="" class="slide-nav_img">
+                                        <img class="img-fill" data-placeholder="image">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hero-slider_nav-item">
+                                <div solo-img_hov="" class="slide-nav_layout">
+                                    <h2 italics="" class="hero-slider_num"></h2>
+                                    <div solo-img="" class="slide-nav_img">
+                                        <img class="img-fill" data-placeholder="image">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h2 italics="" class="hero-slider_scroll">Scroll</h2>
+                </div>
+                <div class="hero-center is-mobile">
+                    <h2 italics="" class="hero-slider_scroll is-next slider_btn">Next</h2>
+                </div>
+                <div class="hero-slider_wrap" nav-light="">
+                    <div class="hero-slider_list">
+                        <div class="hero-slider_item" style="display: flex;">
+                            <div class="hero-slide_visual u-cover-absolute">
+                                <div class="g_visual_background"></div>
+                                <img class="hero-visual_el u-cover-absolute" data-placeholder="image">
+                                <div class="hero-visual_el-vid u-cover-absolute"></div>
+                                <div class="slide-overlay"></div>
+                                <h2 italics="" class="hero-slider_num is-mobile"></h2>
+                            </div>
+                            <div split="" class="site-info">
+                                <div class="hero-intro_copy">
+                                    <a class="orgc-detail u-text-style-h2 w-inline-block">
+                                        <div data-text="Shop Now" class="detail-wrap">
+                                            <div class="detail-text is-hero"></div>
+                                        </div>
+                                    </a>
+                                    <h2 class="u-text-style-h2 is-light hero-title"></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-slider_item" style="display: none;">
+                            <div class="hero-slide_visual u-cover-absolute">
+                                <div class="g_visual_background"></div>
+                                <img class="hero-visual_el u-cover-absolute" data-placeholder="image">
+                                <div class="hero-visual_el-vid u-cover-absolute"></div>
+                                <div class="slide-overlay"></div>
+                                <h2 italics="" class="hero-slider_num is-mobile"></h2>
+                            </div>
+                            <div split="" class="site-info">
+                                <div class="hero-intro_copy">
+                                    <a class="orgc-detail u-text-style-h2 w-inline-block">
+                                        <div data-text="About us" class="detail-wrap">
+                                            <div class="detail-text"></div>
+                                        </div>
+                                    </a>
+                                    <h2 class="u-text-style-h2 is-light hero-title"></h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hero-slider_item" style="display: none;">
+                            <div class="hero-slide_visual u-cover-absolute">
+                                <div class="g_visual_background"></div>
+                                <img class="hero-visual_el u-cover-absolute" data-placeholder="image">
+                                <div class="hero-visual_el-vid u-cover-absolute"></div>
+                                <div class="slide-overlay"></div>
+                                <h2 italics="" class="hero-slider_num is-mobile"></h2>
+                            </div>
+                            <div split="" class="site-info">
+                                <div class="hero-intro_copy">
+                                    <a class="orgc-detail u-text-style-h2 w-inline-block">
+                                        <div data-text="Community" class="detail-wrap">
+                                            <div class="detail-text"></div>
+                                        </div>
+                                    </a>
+                                    <h2 class="u-text-style-h2 is-light hero-title p-contents">
+                                        <p></p>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. dark-section_wrap -->
+            <div nav-dark="" class="dark-section_wrap">
+                <div class="page-contain u-container">
+                    <div id="shopify-section-intro-section" class="split-grid u-grid-desktop m-vflex">
+                        <div class="split-col u-column-6">
+                            <div class="full-logo_wrap"></div>
+                        </div>
+                        <div class="split-col u-column-6 m-top_10">
+                            <div class="u-text-style-h3">
+                                <h3 class="p-contents">
+                                    <p></p>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="product-draggable_wrap is-home">
+                        <div class="or-info">
+                            <div class="u-text-align-center">
+                                <div class="text-style_alt-large">
+                                    <p></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div product-slider="" class="product-draggable_el">
+                            <div class="product-slider w-dyn-list" udy-collection="product">
+                                <div class="product-slider_list w-dyn-items">
+                                    <div class="product-card w-dyn-item">
+                                        <div class="product-block">
+                                            <div class="product-img_wrap is-slider">
+                                                <img class="img-contain is-slider" data-commerce-type="variation-image" data-placeholder="image">
+                                                <img class="product-hover_img" data-placeholder="image">
+                                                <a arrow-trigger="" class="slider-link w-inline-block">
+                                                    <div class="product-block_info">
+                                                        <div class="product-info">
+                                                            <div class="body-upper"></div>
+                                                            <p class="body-upper text-grey"></p>
+                                                        </div>
+                                                        <div class="product-btn_flex">
+                                                            <div class="price"></div>
+                                                            <div arrow-wrap="" class="arrow-svg_holder"></div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="products-all_wrap">
+                            <a class="orgc-detail w-inline-block">
+                                <div data-text="View all products" class="detail-wrap body-upper">
+                                    <div class="detail-text"></div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div id="shopify-section-home-image-section" class="split-grid u-grid-desktop">
+                        <div class="split-col u-column-6 is-100">
+                            <a overlay="trigger" class="cta-block w-inline-block">
+                                <div class="body-upper is-desktop">
+                                    <p class="body-upper is-desktop"></p>
+                                </div>
+                                <div cta-cursor_wrap="" class="cta-img_wrap">
+                                    <img class="g_visual_img m-absolute" data-placeholder="image">
+                                    <div overlay="el" class="img-overlay"></div>
+                                    <div cta-cursor_el="" class="cta-hover_el">
+                                        <div class="body-upper"></div>
+                                        <div class="orgc-detail body-upper">
+                                            <div class="detail-text"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="split-col u-column-3">
+                            <a overlay="trigger" class="cta-block w-inline-block">
+                                <div class="body-upper is-desktop">
+                                    <p></p>
+                                </div>
+                                <div cta-cursor_wrap="" class="cta-img_wrap">
+                                    <img class="g_visual_img m-absolute" data-placeholder="image">
+                                    <div overlay="el" class="img-overlay"></div>
+                                    <div cta-cursor_el="" class="cta-hover_el">
+                                        <div class="body-upper"></div>
+                                        <div class="orgc-detail body-upper">
+                                            <div class="detail-text"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="split-col u-column-3 is-100">
+                            <a overlay="trigger" class="cta-block w-inline-block">
+                                <div class="body-upper is-desktop">
+                                    <p></p>
+                                </div>
+                                <div cta-cursor_wrap="" class="cta-img_wrap">
+                                    <img class="g_visual_img m-absolute" data-placeholder="image">
+                                    <div overlay="el" class="img-overlay"></div>
+                                    <div cta-cursor_el="" class="cta-hover_el">
+                                        <div class="body-upper"></div>
+                                        <div class="orgc-detail body-upper">
+                                            <div class="detail-text"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div id="shopify-section-or-text-section" class="u-container">
+                        <div class="or-info">
+                            <div class="u-text-align-center">
+                                <div class="text-style_alt-large">
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="split-grid u-grid-desktop">
+                                <div class="u-column-3 is-hidden">
+                                    <div class="body-upper f-5">
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="u-column-6 text-width">
+                                    <div class="u-vflex-center-top u-text-align-center">
+                                        <div class="body-upper f-5">
+                                            <p></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="u-column-3 u-text-align-right is-hidden">
+                                    <div class="body-upper f-5">
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="logo-icon_wrap"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. home-slider is-large -->
+            <section id="shopify-section-home-slider" class="hero-slider is-large" full-slider="" nav-light="" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                <div class="slides-info is-large">
+                    <div class="slide-left">
+                        <p class="text-style_alt-med"></p>
+                    </div>
+                    <div class="slide-indicator is-desktop">
+                        <p class="text-style_alt-med">0<span class="slide-current"></span></p>
+                    </div>
+                    <div class="swipe-eyebrow is-mobile">
+                        <div class="orgc-detail body-upper">
+                            <div class="detail-text"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-slider_wrap" nav-light="">
+                    <div class="hero-slider_list">
+                        <div class="hero-slider_item" style="display: flex;">
+                            <div class="hero-slide_visual u-cover-absolute is-large">
+                                <img class="hero-visual_el u-cover-absolute" data-placeholder="image">
+                            </div>
+                        </div>
+                        <div class="hero-slider_item" style="display: none;">
+                            <div class="hero-slide_visual u-cover-absolute is-large">
+                                <img class="hero-visual_el u-cover-absolute" data-placeholder="image">
+                            </div>
+                        </div>
+                        <div class="hero-slider_item" style="display: none;">
+                            <div class="hero-slide_visual u-cover-absolute is-large">
+                                <img class="hero-visual_el u-cover-absolute" data-placeholder="image">
+                            </div>
+                        </div>
+                        <div class="hero-slider_item" style="display: none;">
+                            <div class="hero-slide_visual u-cover-absolute is-large">
+                                <img class="hero-visual_el u-cover-absolute" data-placeholder="image">
+                            </div>
+                        </div>
+                        <div class="hero-slider_item" style="display: none;">
+                            <div class="hero-slide_visual u-cover-absolute is-large">
+                                <img class="hero-visual_el u-cover-absolute" data-placeholder="image">
+                            </div>
+                        </div>
+                        <div class="hero-slider_item" style="display: none;">
+                            <div class="hero-slide_visual u-cover-absolute is-large">
+                                <img class="hero-visual_el u-cover-absolute" data-placeholder="image">
+                            </div>
+                        </div>
+                        <div class="hero-slider_item" style="display: none;">
+                            <div class="hero-slide_visual u-cover-absolute is-large">
+                                <img class="hero-visual_el u-cover-absolute" data-placeholder="image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-cursor="Prev" class="slider_btn is-prev"></div>
+                <div data-cursor="Next" class="slider_btn is-next"></div>
+            </section>
+
+            <!-- 7. community section -->
+            <section id="shopify-section-community-section" class="community-section" nav-dark="">
+                <div class="community-contain u-container" nav-dark="">
+                    <div class="section-intro_wrap">
+                        <div class="split-grid u-grid-desktop">
+                            <div class="split-col u-column-6"></div>
+                        </div>
+                    </div>
+                    <div class="split-grid u-grid-desktop"></div>
+                    <div class="split-grid u-grid-desktop is-giving">
+                        <div class="split-col u-column-6">
+                            <div solo-img="" class="small-img_wrap">
+                                <img class="img-fill" data-placeholder="image">
+                            </div>
+                        </div>
+                        <div class="split-col u-column-5">
+                            <div solo-trig="" class="community-col">
+                                <h4 class="body-upper p-contents">
+                                    <p></p>
+                                </h4>
+                                <div class="u-text-style-small f-4">
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="community-head">
+                                <p class="u-text-style-h4"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="community-items_section">
+                        <div data-scroll-overlap="" class="community-item">
+                            <div class="community-h_line"></div>
+                            <div class="split-grid u-grid-desktop">
+                                <div class="split-col u-column-6">
+                                    <div class="community-layout u-grid-column-2">
+                                        <div class="community-col is-hidden">
+                                            <a class="orgc-detail w-inline-block">
+                                                <div class="detail-wrap body-upper" data-text="Visit Website">
+                                                    <div class="detail-text"></div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="community-col">
+                                            <div class="body-upper">
+                                                <h4></h4>
+                                            </div>
+                                            <div class="u-text-style-small f-4">
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="split-col u-column-6">
+                                    <a class="community-img-wrap w-inline-block">
+                                        <img class="img-contain" data-placeholder="image">
+                                        <div class="is-mobile">
+                                            <div class="orgc-detail body-upper">
+                                                <div class="detail-text"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-scroll-overlap="" class="community-item">
+                            <div class="community-h_line is-hidden"></div>
+                            <div class="split-grid u-grid-desktop">
+                                <div class="split-col u-column-6">
+                                    <div class="community-layout u-grid-column-2">
+                                        <div class="community-col is-hidden">
+                                            <a class="orgc-detail w-inline-block">
+                                                <div class="detail-wrap body-upper" data-text="Visit Website">
+                                                    <div class="detail-text"></div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="community-col">
+                                            <div class="body-upper">
+                                                <h4></h4>
+                                            </div>
+                                            <div class="u-text-style-small f-4">
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="split-col u-column-6">
+                                    <a class="community-img-wrap w-inline-block">
+                                        <img class="img-contain" data-placeholder="image">
+                                        <div class="is-mobile">
+                                            <div class="orgc-detail body-upper">
+                                                <div class="detail-text"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-scroll-overlap="" class="community-item">
+                            <div class="community-h_line is-hidden"></div>
+                            <div class="split-grid u-grid-desktop">
+                                <div class="split-col u-column-6">
+                                    <div class="community-layout u-grid-column-2">
+                                        <div class="community-col is-hidden">
+                                            <a class="orgc-detail w-inline-block">
+                                                <div class="detail-wrap body-upper" data-text="Visit Website">
+                                                    <div class="detail-text"></div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="community-col">
+                                            <div class="body-upper">
+                                                <h4></h4>
+                                            </div>
+                                            <div class="u-text-style-small f-4">
+                                                <p></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="split-col u-column-6">
+                                    <a class="community-img-wrap w-inline-block">
+                                        <img class="img-contain" data-placeholder="image">
+                                        <div class="is-mobile">
+                                            <div class="orgc-detail body-upper">
+                                                <div class="detail-text"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div data-scroll-overlap="" class="community-item">
+                            <div class="community-h_line is-hidden"></div>
+                            <div class="split-grid u-grid-desktop">
+                                <div class="split-col u-column-6">
+                                    <div class="community-layout u-grid-column-2">
+                                        <div class="community-col is-hidden">
+                                            <a class="orgc-detail w-inline-block">
+                                                <div class="detail-wrap body-upper" data-text="Visit Website">
+                                                    <div class="detail-text"></div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="community-col">
+                                            <h4 class="body-upper"></h4>
+                                            <p class="u-text-style-small f-4"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="split-col u-column-6">
+                                    <a class="community-img-wrap w-inline-block">
+                                        <img class="img-contain" data-placeholder="image">
+                                        <div class="is-mobile">
+                                            <div class="orgc-detail body-upper">
+                                                <div class="detail-text"></div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="community-item">
+                            <div class="community-h_line is-hidden"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 8. footer -->
+            <footer id="shopify-section-footer-light" class="footer u-theme-light" img-hover_wrap="">
+                <div class="footer-contain u-container">
+                    <div class="split-grid u-grid-desktop m-gap_0">
+                        <div class="split-col u-column-6 m-bot_15">
+                            <div easter-trigger="" class="footer-logo_wrap"></div>
+                        </div>
+                        <div class="split-col u-column-3">
+                            <div class="body-upper">
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="split-col u-column-3">
+                            <div class="signup-head"></div>
+                            <div class="klaviyo-form-SCSKtr klaviyo-form form-version-cid-1"></div>
+                            <div target-img_wrap="" class="footer-menu_imgs_wrap"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-contain u-container">
+                    <div class="footer-bottom">
+                        <div class="split-grid u-grid-desktop">
+                            <div class="split-col u-column-3">
+                                <div class="footer-col">
+                                    <div class="footer-col has-line">
+                                        <div class="footer-body">
+                                            <p class="body-upper"></p>
+                                        </div>
+                                        <div class="footer-h_line is-desktop"></div>
+                                        <div img-hover_triggers-wrap="" class="footer-link_list">
+                                            <a img-hover_trigger="" text-btn="" class="footer-link is-menu w-inline-block">
+                                                <div class="footer-link_layout body-upper">
+                                                    <p></p>
+                                                    <div text-btn-icon="" class="footer-link_icon"></div>
+                                                </div>
+                                            </a>
+                                            <a img-hover_trigger="" text-btn="" class="footer-link is-menu w-inline-block w--current">
+                                                <div class="footer-link_layout body-upper">
+                                                    <p></p>
+                                                    <div text-btn-icon="" class="footer-link_icon"></div>
+                                                </div>
+                                            </a>
+                                            <a img-hover_trigger="" text-btn="" class="footer-link is-menu w-inline-block">
+                                                <div class="footer-link_layout body-upper">
+                                                    <p></p>
+                                                    <div text-btn-icon="" class="footer-link_icon"></div>
+                                                </div>
+                                            </a>
+                                            <a img-hover_trigger="" text-btn="" class="footer-link is-menu w-inline-block">
+                                                <div class="footer-link_layout body-upper">
+                                                    <p></p>
+                                                    <div text-btn-icon="" class="footer-link_icon"></div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="split-col u-column-3">
+                                <div class="footer-col">
+                                    <div class="footer-col has-line">
+                                        <div class="footer-body">
+                                            <p class="body-upper"></p>
+                                        </div>
+                                        <div class="footer-h_line is-desktop"></div>
+                                        <div class="footer-link_list">
+                                            <a text-btn="" class="footer-link is-menu w-inline-block">
+                                                <div class="footer-link_layout body-upper">
+                                                    <p></p>
+                                                    <div text-btn-icon="" class="footer-link_icon"></div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="split-col u-column-3">
+                                <div class="footer-col">
+                                    <div class="footer-col has-line">
+                                        <div class="footer-body">
+                                            <p class="body-upper"></p>
+                                        </div>
+                                        <div class="footer-h_line is-desktop"></div>
+                                        <div class="footer-link_list">
+                                            <a text-btn="" class="footer-link is-menu w-inline-block">
+                                                <div class="footer-link_layout body-upper">
+                                                    <p></p>
+                                                    <div text-btn-icon="" class="footer-link_icon"></div>
+                                                </div>
+                                            </a>
+                                            <a text-btn="" class="footer-link is-menu w-inline-block">
+                                                <div class="footer-link_layout body-upper">
+                                                    <p></p>
+                                                    <div text-btn-icon="" class="footer-link_icon"></div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="split-col u-column-3">
+                                <div class="footer-col">
+                                    <div class="footer-col has-line">
+                                        <div class="footer-body">
+                                            <p class="body-upper"></p>
+                                        </div>
+                                        <div class="footer-h_line is-desktop"></div>
+                                        <div class="footer-link_list">
+                                            <a text-btn="" class="footer-link is-menu w-inline-block">
+                                                <div class="footer-link_layout body-upper">
+                                                    <p></p>
+                                                    <div text-btn-icon="" class="footer-link_icon"></div>
+                                                </div>
+                                            </a>
+                                            <a text-btn="" class="footer-link is-menu w-inline-block">
+                                                <div class="footer-link_layout body-upper">
+                                                    <p></p>
+                                                    <div text-btn-icon="" class="footer-link_icon"></div>
+                                                </div>
+                                            </a>
+                                            <a text-btn="" class="footer-link is-menu w-inline-block">
+                                                <div class="footer-link_layout body-upper">
+                                                    <p></p>
+                                                    <div text-btn-icon="" class="footer-link_icon"></div>
+                                                </div>
+                                            </a>
+                                            <a text-btn="" class="footer-link is-menu w-inline-block">
+                                                <div class="footer-link_layout body-upper">
+                                                    <p></p>
+                                                    <div text-btn-icon="" class="footer-link_icon"></div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="split-grid u-grid-desktop m-gap_05">
+                            <div class="split-col u-column-9">
+                                <div class="footer-col is-centered body-upper">
+                                    <p></p>
+                                </div>
+                            </div>
+                            <div class="split-col u-column-3 u-text-align-right">
+                                <a class="footer-link_block w-inline-block">
+                                    <p class="body-upper text-tiny f-2"></p>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div target-imgs_hidden="" class="target-imgs_hidden">
+                    <img class="img-fill" data-placeholder="image">
+                    <img class="img-fill" data-placeholder="image">
+                    <img class="img-fill" data-placeholder="image">
+                    <img class="img-fill" data-placeholder="image">
+                </div>
+            </footer>
+
+            <!-- 9. easter egg popup -->
+            <div id="shopify-section-easter" class="easter-egg">
+                <div class="easter-bg" data-cursor="close"></div>
+                <div class="easter-outer">
+                    <div class="easter-contain">
+                        <div class="easter-layout u-grid-desktop">
+                            <div class="easter-col u-column-6">
+                                <div class="easter-icon_el"></div>
+                                <div class="easter-text_wrap">
+                                    <div class="body-upper p-contents">
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="easter-col u-column-6">
+                                <div class="easter-img_wrap">
+                                    <img class="img-fill" data-placeholder="image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. cursor -->
+            <div class="cursor">
+                <div class="orgc-detail">
+                    <p class="cursor-text"></p>
+                </div>
+            </div>
+
+        </div><!-- close page-main -->
+    </div><!-- close page_wrap -->
+
+    <!-- 11. signup popup -->
+    <div id="shopify-section-signup-popup" class="signup-popup">
+        <div class="signup-bg" data-cursor="close"></div>
+        <div class="signup-box u-grid-desktop">
+            <div class="signup-col u-column-6">
+                <div class="signup-img_wrap">
+                    <img class="img-fill" data-placeholder="image">
+                </div>
+            </div>
+            <div class="signup-col u-column-6 m-stretch">
+                <div class="signup-content">
+                    <div class="signup-top">
+                        <div class="signup-head">
+                            <div class="body-upper p-contents">
+                                <p></p>
+                            </div>
+                        </div>
+                        <div class="signup-close">
+                            <img class="close-svg" data-placeholder="image">
+                        </div>
+                    </div>
+                    <div class="signup-bot">
+                        <div class="split-col u-column-3 is-form">
+                            <div class="klaviyo-form-SCSKtr klaviyo-form form-version-cid-2"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

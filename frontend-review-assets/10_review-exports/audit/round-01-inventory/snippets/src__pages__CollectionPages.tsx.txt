@@ -1,0 +1,263 @@
+FILE: src\pages\CollectionPages.tsx
+LAST_WRITE: 2026-03-26T02:36:34
+-----
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { SafeImage, plantDatabase as fallbackDatabase } from '../components/Shared';
+import { useAuth } from '../AuthContext';
+import { favoritesService } from '../services/favoritesService';
+import { memberApplicationService } from '../services/memberApplicationService';
+import { plantService } from '../services/plantService';
+import { Taxonomy } from '../types';
+import { taxonomyService } from '../services/taxonomyService';
+import { Filter } from 'lucide-react';
+
+export function CollectionPage() {
+  const navigate = useNavigate();
+  const [filter, setFilter] = useState('All');
+  const [catFilter, setCatFilter] = useState('all');
+  const [plants, setPlants] = useState<any[]>([]);
+  const [categories, setCategories] = useState<Taxonomy[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [livePlants, catData] = await Promise.all([
+          plantService.getPublicPlants(),
+          taxonomyService.getByType('plant_category')
+        ]);
+        
+        if (livePlants.length > 0) {
+          setPlants(livePlants);
+        } else {
+          setPlants(fallbackDatabase);
+        }
+        setCategories(catData);
+      } catch (error) {
+        console.error("Error fetching collection data:", error);
+        setPlants(fallbackDatabase);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
+  }, []);
+
+  const statusTabs = [
+    { id: 'All', name: '?券', desc: '摰???獢??? },
+    { id: 'Available', name: '?舫???, desc: '蝬?摰隡????瑕迤閫撖?蝣箄??亙熒摰?摨佗??桀???帘摰靘?????? },
+    { id: 'Observation', name: '閫撖葉', desc: '甇??脰???隤踵????嚗?閬憭??Ⅱ隤?脫靘抒???嚗銝??箝? },
+    { id: 'Archived', name: '撌脫??, desc: '?瑟??寞?銵函?歇?勗隞??霅瑞?甇瑕瑼?嚗????箏霈??皞遣蝡??? }
+  ];
+
+  const statusMap: Record<string, string> = {
+    '?寡銝?: 'Observation',
+    'exhibiting': 'Available',
+    'sold': 'Archived',
+    'hidden': 'Observation',
+    '?臬': 'Available',
+    '撌脣': 'Archived'
+  };
+
+  const filteredPlants = plants.filter(p => {
+    // Status Filter
+    const mappedStatus = statusMap[p.status] || p.status;
+    const statusMatch = filter === 'All' || mappedStatus === filter;
+    
+    // Taxonomy Category Filter
+    const catMatch = catFilter === 'all' || p.category === catFilter;
+    
+    return statusMatch && catMatch;
+  });
+
+  const currentStatus = statusTabs.find(c => c.id === filter);
+
+  return (
+    <div className="bg-[#EAE8E3] min-h-screen text-[#1A1A1A] pb-32">
+      <div className="max-w-screen-2xl mx-auto px-6 md:px-12 pt-16 lg:pt-32">
+         {/* Title Area */}
+         <div className="mb-16 md:mb-32">
+           <h1 className="text-5xl md:text-7xl font-light tracking-tighter mb-4">?豢?瑼?</h1>
+           <p className="text-xs tracking-[0.3em] uppercase text-[#1A1A1A]/40 font-mono">Role Plant Archive</p>
+         </div>
+
+         <div className="flex flex-col lg:flex-row gap-12 lg:gap-24 relative">
+            
+            {/* Left/Top: Filters (Desktop Sticky sidebar / Mobile Dropdowns) */}
+            <div className="lg:w-1/4 lg:sticky lg:top-32 self-start flex flex-col gap-12">
+               
+               {/* Mobile Dropdowns */}
+               <div className="flex lg:hidden flex-col sm:flex-row gap-4 w-full">
+                 <select 
+                   value={filter} 
+                   onChange={(e) => setFilter(e.target.value)}
+                   className="w-full bg-transparent border border-[#1A1A1A]/10 text-[10px] sm:text-xs py-4 px-4 tracking-widest uppercase appearance-none focus:outline-none focus:border-[#1A1A1A]/30 font-mono"
+                 >
+                   {statusTabs.map(cat => (
+                     <option key={cat.id} value={cat.id}>{cat.name} / {cat.id.toUpperCase()}</option>
+                   ))}
+                 </select>
+                 
+                 <select 
+                   value={catFilter} 
+                   onChange={(e) => setCatFilter(e.target.value)}
+                   className="w-full bg-transparent border border-[#1A1A1A]/10 text-[10px] sm:text-xs py-4 px-4 tracking-widest uppercase appearance-none focus:outline-none focus:border-[#1A1A1A]/30 font-mono"
+                 >
+                   <option value="all">?券撅祉頂 ALL</option>
+                   {categories.map(cat => (
+                     <option key={cat.id} value={cat.key}>{cat.label}</option>
+                   ))}
+                 </select>
+               </div>
+
+               {/* Desktop Fixed Text List */}
+               <div className="hidden lg:block space-y-12">
+                 <div>
+                   <h3 className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/50 font-mono mb-6">Status / ???/h3>
+                   <ul className="space-y-4">
+                     {statusTabs.map(cat => (
+                       <li key={cat.id}>
+                         <button 
+                           onClick={() => setFilter(cat.id)}
+                           className={`text-xs tracking-widest transition-colors block text-left w-full ${filter === cat.id ? 'text-[#1A1A1A] font-medium' : 'text-[#1A1A1A]/30 hover:text-[#1A1A1A]/60'}`}
+                         >
+                           {cat.name} <span className="text-[10px] ml-2 font-mono">{cat.id.toUpperCase()}</span>
+                         </button>
+                       </li>
+                     ))}
+                   </ul>
+                 </div>
+
+                 <div>
+                   <h3 className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/50 font-mono mb-6">Category / 撅祉頂</h3>
+                   <ul className="space-y-4">
+                     <li>
+                       <button 
+                         onClick={() => setCatFilter('all')}
+                         className={`text-xs tracking-widest transition-colors block text-left w-full ${catFilter === 'all' ? 'text-[#1A1A1A] font-medium' : 'text-[#1A1A1A]/30 hover:text-[#1A1A1A]/60'}`}
+                       >
+                         ?券 <span className="text-[10px] ml-2 font-mono uppercase">ALL</span>
+                       </button>
+                     </li>
+                     {categories.map(cat => (
+                       <li key={cat.id}>
+                         <button 
+                           onClick={() => setCatFilter(cat.key)}
+                           className={`text-xs tracking-widest transition-colors block text-left w-full uppercase ${catFilter === cat.key ? 'text-[#1A1A1A] font-medium' : 'text-[#1A1A1A]/30 hover:text-[#1A1A1A]/60'}`}
+                         >
+                           {cat.label}
+                         </button>
+                       </li>
+                     ))}
+                   </ul>
+                 </div>
+               </div>
+            </div>
+
+            {/* Right: Archive List */}
+            <div className="lg:w-3/4 min-h-[60vh]">
+               {loading ? (
+                  <div className="flex justify-center items-center h-64 border border-[#1A1A1A]/10 border-dashed">
+                    <span className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/30 font-mono">Reading Archive...</span>
+                  </div>
+               ) : filteredPlants.length === 0 ? (
+                  <div className="flex flex-col justify-center items-center h-64 border border-[#1A1A1A]/10">
+                    <span className="text-xs tracking-widest uppercase text-[#1A1A1A]/40 mb-2">?亦瑼?鞈?</span>
+                    <span className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/20 font-mono">0 RECORDS FOUND</span>
+                  </div>
+               ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-8 gap-y-24">
+                    {filteredPlants.map((item) => {
+                      const hasImages = item.images && item.images.length > 0;
+                      const coverImage = item.coverImageUrl || (hasImages ? item.images.find((i:any) => i.isCover)?.url || item.images[0].url : item.image);
+                      
+                      // Create a short objective summary out of its properties
+                      const shortDesc = [item.size, item.localName, item.grade].filter(Boolean).join(' ??');
+
+                      return (
+                        <div key={item.id} className="group cursor-pointer flex flex-col" onClick={() => navigate(`/collection/${item.id}`)}>
+                          {/* Image Box */}
+                          <div className="aspect-[3/4] bg-[#DCD7C9] overflow-hidden mb-6 relative border border-[#1A1A1A]/5">
+                            {coverImage ? (
+                              <img src={coverImage} alt={item.name} className="w-full h-full object-cover filter contrast-110 saturate-50" />
+                            ) : (
+                              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
+                                <span className="text-[10px] text-[#1A1A1A]/20 font-mono uppercase tracking-widest mb-2">S/N: {item.serialNumber || 'MISSING'}</span>
+                                <span className="text-sm font-medium text-[#1A1A1A]/30">{item.name}</span>
+                              </div>
+                            )}
+                            
+                            {/* Archived Label on Image */}
+                            {(item.status === '撌脣' || item.status === 'sold' || item.status === 'Archive') && (
+                              <div className="absolute top-4 right-4 bg-[#EAE8E3]/90 text-[#1A1A1A] text-[10px] uppercase tracking-widest px-2 py-1 font-mono">
+                                Archived
+                              </div>
+                            )}
+                          </div>
+                          
+                          {/* Profile Data */}
+                          <div className="flex flex-col flex-grow">
+                             <div className="flex justify-between items-start mb-3">
+                               <p className="text-[10px] text-[#1A1A1A]/40 font-mono uppercase tracking-widest">{item.serialNumber || item.id.substring(0,6)}</p>
+                               <span className="text-[10px] tracking-widest text-[#1A1A1A]/50 border border-[#1A1A1A]/10 px-1.5 py-0.5 uppercase">{item.status}</span>
+                             </div>
+                             
+                             <h3 className="font-light text-xl mb-2 leading-tight">{item.name}</h3>
+                             
+                             <p className="text-[10px] text-[#1A1A1A]/50 font-light leading-relaxed flex-grow line-clamp-1 mb-8 uppercase tracking-widest">
+                               {shortDesc || item.scientificName || 'UNKNOWN-ATTRIBUTES'}
+                             </p>
+                             
+                             <div className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/40 group-hover:text-[#1A1A1A] transition-colors pt-4 flex justify-between items-center mt-auto border-t border-[#1A1A1A]/10">
+                               <span>瑼ａ瑼?</span>
+                               <span className="font-mono">ENTER ??/span>
+                             </div>
+                          </div>
+                        </div>
+                      )
+                    })}
+                  </div>
+               )}
+            </div>
+         </div>
+      </div>
+    </div>
+  );
+}
+
+export function SinglePlantPage() {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { user, userProfile } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [plant, setPlant] = useState<any>(null);
+  const [fetching, setFetching] = useState(true);
+
+  useEffect(() => {
+    const fetchPlant = async () => {
+      if (!id) return;
+      try {
+        // Use plantService for consistency?ingle source of truth
+        const data = await plantService.getPlantById(id);
+        if (data) {
+          setPlant(data);
+        } else {
+          // Fallback to static mock data for legacy IDs
+          const localPlant = fallbackDatabase.find(p => p.id === id);
+          setPlant(localPlant || null);
+        }
+      } catch (error) {
+        console.error("Error fetching plant:", error);
+        const localPlant = fallbackDatabase.find(p => p.id === id);
+        setPlant(localPlant || null);
+      } finally {
+        setFetching(false);
+      }
+    };
+    fetchPlant();
+  }, [id]);
+
+  const handleApply = async () => {
+    if (!user) {

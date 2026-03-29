@@ -1,0 +1,15 @@
+﻿EXPECTED_ACTIVE_AFTER_BATCH_01
+/ -> FrontendHoldPage
+/login -> LoginPage (temporary)
+/member -> MemberHoldPage (temporary)
+/admin/* -> unchanged
+
+EXPECTED_REMOVED_FROM_ACTIVE_ROUTER
+/collection
+/collection/:id
+/learn
+/business
+/posts
+/posts/:slug
+/about
+/membership

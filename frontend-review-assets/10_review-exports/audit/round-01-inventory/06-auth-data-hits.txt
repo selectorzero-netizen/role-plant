@@ -1,0 +1,594 @@
+capture.js:18: console.log('Navigating to Admin Plants...');
+capture.js:19: await page.goto('http://localhost:5173/admin/plants', { waitUntil: 'domcontentloaded' });
+capture_emulator.js:31: // 2. Go to Admin Plants
+capture_emulator.js:32: console.log('Navigating to Admin Plants...');
+capture_emulator.js:33: await page.goto('http://localhost:5173/admin/plants', { waitUntil: 'domcontentloaded' });
+capture_real.js:13: console.log('Navigating to Admin Plants...');
+capture_real.js:14: await page.goto('http://localhost:5173/admin/plants', { waitUntil: 'domcontentloaded' });
+capture_real.js:49: console.log('No plants found in collection to click.');
+firebase.json:2: "firestore": {
+firebase.json:3: "rules": "firestore.rules",
+firebase.json:4: "indexes": "firestore.indexes.json"
+firebase.json:15: "firebase.json",
+firebase.json:31: "firestore": {
+firebase-applet-config.json:5: "authDomain": "role-plant.firebaseapp.com",
+firebase-applet-config.json:6: "firestoreDatabaseId": "(default)",
+firebase-applet-config.json:7: "storageBucket": "role-plant.firebasestorage.app",
+firebase-blueprint.json:8: "uid": { "type": "string", "description": "Firebase Auth UID" },
+firebase-blueprint.json:86: "firestore": {
+firebase-blueprint.json:91: "/plants/{plantId}": {
+firebase-blueprint.json:95: "/applications/{applicationId}": {
+firebase-blueprint.json:97: "description": "Stores user applications for plants."
+firebase-blueprint.json:99: "/inquiries/{inquiryId}": {
+firebase-blueprint.json:101: "description": "Stores business inquiries."
+package.json:8: "dev:all": "start npm run dev && firebase emulators:start",
+package.json:13: "deploy": "firebase deploy",
+package.json:14: "deploy:hosting": "firebase deploy --only hosting",
+package.json:15: "deploy:rules": "firebase deploy --only firestore:rules,storage"
+package.json:25: "firebase": "^12.10.0",
+package-lock.json:18: "firebase": "^12.10.0",
+package-lock.json:719: "node_modules/@firebase/ai": {
+package-lock.json:721: "resolved": "https://registry.npmjs.org/@firebase/ai/-/ai-2.9.0.tgz",
+package-lock.json:725: "@firebase/app-check-interop-types": "0.3.3",
+package-lock.json:726: "@firebase/component": "0.7.1",
+package-lock.json:727: "@firebase/logger": "0.5.0",
+package-lock.json:728: "@firebase/util": "1.14.0",
+package-lock.json:735: "@firebase/app": "0.x",
+package-lock.json:736: "@firebase/app-types": "0.x"
+package-lock.json:739: "node_modules/@firebase/analytics": {
+package-lock.json:741: "resolved": "https://registry.npmjs.org/@firebase/analytics/-/analytics-0.10.20.tgz",
+package-lock.json:745: "@firebase/component": "0.7.1",
+package-lock.json:746: "@firebase/installations": "0.6.20",
+package-lock.json:747: "@firebase/logger": "0.5.0",
+package-lock.json:748: "@firebase/util": "1.14.0",
+package-lock.json:752: "@firebase/app": "0.x"
+package-lock.json:755: "node_modules/@firebase/analytics-compat": {
+package-lock.json:757: "resolved": "https://registry.npmjs.org/@firebase/analytics-compat/-/analytics-compat-0.2.26.tgz",
+package-lock.json:761: "@firebase/analytics": "0.10.20",
+package-lock.json:762: "@firebase/analytics-types": "0.8.3",
+package-lock.json:763: "@firebase/component": "0.7.1",
+package-lock.json:764: "@firebase/util": "1.14.0",
+package-lock.json:768: "@firebase/app-compat": "0.x"
+package-lock.json:771: "node_modules/@firebase/analytics-types": {
+package-lock.json:773: "resolved": "https://registry.npmjs.org/@firebase/analytics-types/-/analytics-types-0.8.3.tgz",
+package-lock.json:777: "node_modules/@firebase/app": {
+package-lock.json:779: "resolved": "https://registry.npmjs.org/@firebase/app/-/app-0.14.9.tgz",
+package-lock.json:783: "@firebase/component": "0.7.1",
+package-lock.json:784: "@firebase/logger": "0.5.0",
+package-lock.json:785: "@firebase/util": "1.14.0",
+package-lock.json:793: "node_modules/@firebase/app-check": {
+package-lock.json:795: "resolved": "https://registry.npmjs.org/@firebase/app-check/-/app-check-0.11.1.tgz",
+package-lock.json:799: "@firebase/component": "0.7.1",
+package-lock.json:800: "@firebase/logger": "0.5.0",
+package-lock.json:801: "@firebase/util": "1.14.0",
+package-lock.json:808: "@firebase/app": "0.x"
+package-lock.json:811: "node_modules/@firebase/app-check-compat": {
+package-lock.json:813: "resolved": "https://registry.npmjs.org/@firebase/app-check-compat/-/app-check-compat-0.4.1.tgz",
+package-lock.json:817: "@firebase/app-check": "0.11.1",
+package-lock.json:818: "@firebase/app-check-types": "0.5.3",
+package-lock.json:819: "@firebase/component": "0.7.1",
+package-lock.json:820: "@firebase/logger": "0.5.0",
+package-lock.json:821: "@firebase/util": "1.14.0",
+package-lock.json:828: "@firebase/app-compat": "0.x"
+package-lock.json:831: "node_modules/@firebase/app-check-interop-types": {
+package-lock.json:833: "resolved": "https://registry.npmjs.org/@firebase/app-check-interop-types/-/app-check-interop-types-0.3.3.tgz",
+package-lock.json:837: "node_modules/@firebase/app-check-types": {
+package-lock.json:839: "resolved": "https://registry.npmjs.org/@firebase/app-check-types/-/app-check-types-0.5.3.tgz",
+package-lock.json:843: "node_modules/@firebase/app-compat": {
+package-lock.json:845: "resolved": "https://registry.npmjs.org/@firebase/app-compat/-/app-compat-0.5.9.tgz",
+package-lock.json:849: "@firebase/app": "0.14.9",
+package-lock.json:850: "@firebase/component": "0.7.1",
+package-lock.json:851: "@firebase/logger": "0.5.0",
+package-lock.json:852: "@firebase/util": "1.14.0",
+package-lock.json:859: "node_modules/@firebase/app-types": {
+package-lock.json:861: "resolved": "https://registry.npmjs.org/@firebase/app-types/-/app-types-0.9.3.tgz",
+package-lock.json:865: "node_modules/@firebase/auth": {
+package-lock.json:867: "resolved": "https://registry.npmjs.org/@firebase/auth/-/auth-1.12.1.tgz",
+package-lock.json:871: "@firebase/component": "0.7.1",
+package-lock.json:872: "@firebase/logger": "0.5.0",
+package-lock.json:873: "@firebase/util": "1.14.0",
+package-lock.json:880: "@firebase/app": "0.x",
+package-lock.json:889: "node_modules/@firebase/auth-compat": {
+package-lock.json:891: "resolved": "https://registry.npmjs.org/@firebase/auth-compat/-/auth-compat-0.6.3.tgz",
+package-lock.json:895: "@firebase/auth": "1.12.1",
+package-lock.json:896: "@firebase/auth-types": "0.13.0",
+package-lock.json:897: "@firebase/component": "0.7.1",
+package-lock.json:898: "@firebase/util": "1.14.0",
+package-lock.json:905: "@firebase/app-compat": "0.x"
+package-lock.json:908: "node_modules/@firebase/auth-interop-types": {
+package-lock.json:910: "resolved": "https://registry.npmjs.org/@firebase/auth-interop-types/-/auth-interop-types-0.2.4.tgz",
+package-lock.json:914: "node_modules/@firebase/auth-types": {
+package-lock.json:916: "resolved": "https://registry.npmjs.org/@firebase/auth-types/-/auth-types-0.13.0.tgz",
+package-lock.json:920: "@firebase/app-types": "0.x",
+package-lock.json:921: "@firebase/util": "1.x"
+package-lock.json:924: "node_modules/@firebase/component": {
+package-lock.json:926: "resolved": "https://registry.npmjs.org/@firebase/component/-/component-0.7.1.tgz",
+package-lock.json:930: "@firebase/util": "1.14.0",
+package-lock.json:937: "node_modules/@firebase/data-connect": {
+package-lock.json:939: "resolved": "https://registry.npmjs.org/@firebase/data-connect/-/data-connect-0.4.0.tgz",
+package-lock.json:943: "@firebase/auth-interop-types": "0.2.4",
+package-lock.json:944: "@firebase/component": "0.7.1",
+package-lock.json:945: "@firebase/logger": "0.5.0",
+package-lock.json:946: "@firebase/util": "1.14.0",
+package-lock.json:950: "@firebase/app": "0.x"
+package-lock.json:953: "node_modules/@firebase/database": {
+package-lock.json:955: "resolved": "https://registry.npmjs.org/@firebase/database/-/database-1.1.1.tgz",
+package-lock.json:959: "@firebase/app-check-interop-types": "0.3.3",
+package-lock.json:960: "@firebase/auth-interop-types": "0.2.4",
+package-lock.json:961: "@firebase/component": "0.7.1",
+package-lock.json:962: "@firebase/logger": "0.5.0",
+package-lock.json:963: "@firebase/util": "1.14.0",
+package-lock.json:971: "node_modules/@firebase/database-compat": {
+package-lock.json:973: "resolved": "https://registry.npmjs.org/@firebase/database-compat/-/database-compat-2.1.1.tgz",
+package-lock.json:977: "@firebase/component": "0.7.1",
+package-lock.json:978: "@firebase/database": "1.1.1",
+package-lock.json:979: "@firebase/database-types": "1.0.17",
+package-lock.json:980: "@firebase/logger": "0.5.0",
+package-lock.json:981: "@firebase/util": "1.14.0",
+package-lock.json:988: "node_modules/@firebase/database-types": {
+package-lock.json:990: "resolved": "https://registry.npmjs.org/@firebase/database-types/-/database-types-1.0.17.tgz",
+package-lock.json:994: "@firebase/app-types": "0.9.3",
+package-lock.json:995: "@firebase/util": "1.14.0"
+package-lock.json:998: "node_modules/@firebase/firestore": {
+package-lock.json:1000: "resolved": "https://registry.npmjs.org/@firebase/firestore/-/firestore-4.12.0.tgz",
+package-lock.json:1004: "@firebase/component": "0.7.1",
+package-lock.json:1005: "@firebase/logger": "0.5.0",
+package-lock.json:1006: "@firebase/util": "1.14.0",
+package-lock.json:1007: "@firebase/webchannel-wrapper": "1.0.5",
+package-lock.json:1016: "@firebase/app": "0.x"
+package-lock.json:1019: "node_modules/@firebase/firestore-compat": {
+package-lock.json:1021: "resolved": "https://registry.npmjs.org/@firebase/firestore-compat/-/firestore-compat-0.4.6.tgz",
+package-lock.json:1025: "@firebase/component": "0.7.1",
+package-lock.json:1026: "@firebase/firestore": "4.12.0",
+package-lock.json:1027: "@firebase/firestore-types": "3.0.3",
+package-lock.json:1028: "@firebase/util": "1.14.0",
+package-lock.json:1035: "@firebase/app-compat": "0.x"
+package-lock.json:1038: "node_modules/@firebase/firestore-types": {
+package-lock.json:1040: "resolved": "https://registry.npmjs.org/@firebase/firestore-types/-/firestore-types-3.0.3.tgz",
+package-lock.json:1044: "@firebase/app-types": "0.x",
+package-lock.json:1045: "@firebase/util": "1.x"
+package-lock.json:1048: "node_modules/@firebase/functions": {
+package-lock.json:1050: "resolved": "https://registry.npmjs.org/@firebase/functions/-/functions-0.13.2.tgz",
+package-lock.json:1054: "@firebase/app-check-interop-types": "0.3.3",
+package-lock.json:1055: "@firebase/auth-interop-types": "0.2.4",
+package-lock.json:1056: "@firebase/component": "0.7.1",
+package-lock.json:1057: "@firebase/messaging-interop-types": "0.2.3",
+package-lock.json:1058: "@firebase/util": "1.14.0",
+package-lock.json:1065: "@firebase/app": "0.x"
+package-lock.json:1068: "node_modules/@firebase/functions-compat": {
+package-lock.json:1070: "resolved": "https://registry.npmjs.org/@firebase/functions-compat/-/functions-compat-0.4.2.tgz",
+package-lock.json:1074: "@firebase/component": "0.7.1",
+package-lock.json:1075: "@firebase/functions": "0.13.2",
+package-lock.json:1076: "@firebase/functions-types": "0.6.3",
+package-lock.json:1077: "@firebase/util": "1.14.0",
+package-lock.json:1084: "@firebase/app-compat": "0.x"
+package-lock.json:1087: "node_modules/@firebase/functions-types": {
+package-lock.json:1089: "resolved": "https://registry.npmjs.org/@firebase/functions-types/-/functions-types-0.6.3.tgz",
+package-lock.json:1093: "node_modules/@firebase/installations": {
+package-lock.json:1095: "resolved": "https://registry.npmjs.org/@firebase/installations/-/installations-0.6.20.tgz",
+package-lock.json:1099: "@firebase/component": "0.7.1",
+package-lock.json:1100: "@firebase/util": "1.14.0",
+package-lock.json:1105: "@firebase/app": "0.x"
+package-lock.json:1108: "node_modules/@firebase/installations-compat": {
+package-lock.json:1110: "resolved": "https://registry.npmjs.org/@firebase/installations-compat/-/installations-compat-0.2.20.tgz",
+package-lock.json:1114: "@firebase/component": "0.7.1",
+package-lock.json:1115: "@firebase/installations": "0.6.20",
+package-lock.json:1116: "@firebase/installations-types": "0.5.3",
+package-lock.json:1117: "@firebase/util": "1.14.0",
+package-lock.json:1121: "@firebase/app-compat": "0.x"
+package-lock.json:1124: "node_modules/@firebase/installations-types": {
+package-lock.json:1126: "resolved": "https://registry.npmjs.org/@firebase/installations-types/-/installations-types-0.5.3.tgz",
+package-lock.json:1130: "@firebase/app-types": "0.x"
+package-lock.json:1133: "node_modules/@firebase/logger": {
+package-lock.json:1135: "resolved": "https://registry.npmjs.org/@firebase/logger/-/logger-0.5.0.tgz",
+package-lock.json:1145: "node_modules/@firebase/messaging": {
+package-lock.json:1147: "resolved": "https://registry.npmjs.org/@firebase/messaging/-/messaging-0.12.24.tgz",
+package-lock.json:1151: "@firebase/component": "0.7.1",
+package-lock.json:1152: "@firebase/installations": "0.6.20",
+package-lock.json:1153: "@firebase/messaging-interop-types": "0.2.3",
+package-lock.json:1154: "@firebase/util": "1.14.0",
+package-lock.json:1159: "@firebase/app": "0.x"
+package-lock.json:1162: "node_modules/@firebase/messaging-compat": {
+package-lock.json:1164: "resolved": "https://registry.npmjs.org/@firebase/messaging-compat/-/messaging-compat-0.2.24.tgz",
+package-lock.json:1168: "@firebase/component": "0.7.1",
+package-lock.json:1169: "@firebase/messaging": "0.12.24",
+package-lock.json:1170: "@firebase/util": "1.14.0",
+package-lock.json:1174: "@firebase/app-compat": "0.x"
+package-lock.json:1177: "node_modules/@firebase/messaging-interop-types": {
+package-lock.json:1179: "resolved": "https://registry.npmjs.org/@firebase/messaging-interop-types/-/messaging-interop-types-0.2.3.tgz",
+package-lock.json:1183: "node_modules/@firebase/performance": {
+package-lock.json:1185: "resolved": "https://registry.npmjs.org/@firebase/performance/-/performance-0.7.10.tgz",
+package-lock.json:1189: "@firebase/component": "0.7.1",
+package-lock.json:1190: "@firebase/installations": "0.6.20",
+package-lock.json:1191: "@firebase/logger": "0.5.0",
+package-lock.json:1192: "@firebase/util": "1.14.0",
+package-lock.json:1197: "@firebase/app": "0.x"
+package-lock.json:1200: "node_modules/@firebase/performance-compat": {
+package-lock.json:1202: "resolved": "https://registry.npmjs.org/@firebase/performance-compat/-/performance-compat-0.2.23.tgz",
+package-lock.json:1206: "@firebase/component": "0.7.1",
+package-lock.json:1207: "@firebase/logger": "0.5.0",
+package-lock.json:1208: "@firebase/performance": "0.7.10",
+package-lock.json:1209: "@firebase/performance-types": "0.2.3",
+package-lock.json:1210: "@firebase/util": "1.14.0",
+package-lock.json:1214: "@firebase/app-compat": "0.x"
+package-lock.json:1217: "node_modules/@firebase/performance-types": {
+package-lock.json:1219: "resolved": "https://registry.npmjs.org/@firebase/performance-types/-/performance-types-0.2.3.tgz",
+package-lock.json:1223: "node_modules/@firebase/remote-config": {
+package-lock.json:1225: "resolved": "https://registry.npmjs.org/@firebase/remote-config/-/remote-config-0.8.1.tgz",
+package-lock.json:1229: "@firebase/component": "0.7.1",
+package-lock.json:1230: "@firebase/installations": "0.6.20",
+package-lock.json:1231: "@firebase/logger": "0.5.0",
+package-lock.json:1232: "@firebase/util": "1.14.0",
+package-lock.json:1236: "@firebase/app": "0.x"
+package-lock.json:1239: "node_modules/@firebase/remote-config-compat": {
+package-lock.json:1241: "resolved": "https://registry.npmjs.org/@firebase/remote-config-compat/-/remote-config-compat-0.2.22.tgz",
+package-lock.json:1245: "@firebase/component": "0.7.1",
+package-lock.json:1246: "@firebase/logger": "0.5.0",
+package-lock.json:1247: "@firebase/remote-config": "0.8.1",
+package-lock.json:1248: "@firebase/remote-config-types": "0.5.0",
+package-lock.json:1249: "@firebase/util": "1.14.0",
+package-lock.json:1253: "@firebase/app-compat": "0.x"
+package-lock.json:1256: "node_modules/@firebase/remote-config-types": {
+package-lock.json:1258: "resolved": "https://registry.npmjs.org/@firebase/remote-config-types/-/remote-config-types-0.5.0.tgz",
+package-lock.json:1262: "node_modules/@firebase/storage": {
+package-lock.json:1264: "resolved": "https://registry.npmjs.org/@firebase/storage/-/storage-0.14.1.tgz",
+package-lock.json:1268: "@firebase/component": "0.7.1",
+package-lock.json:1269: "@firebase/util": "1.14.0",
+package-lock.json:1276: "@firebase/app": "0.x"
+package-lock.json:1279: "node_modules/@firebase/storage-compat": {
+package-lock.json:1281: "resolved": "https://registry.npmjs.org/@firebase/storage-compat/-/storage-compat-0.4.1.tgz",
+package-lock.json:1285: "@firebase/component": "0.7.1",
+package-lock.json:1286: "@firebase/storage": "0.14.1",
+package-lock.json:1287: "@firebase/storage-types": "0.8.3",
+package-lock.json:1288: "@firebase/util": "1.14.0",
+package-lock.json:1295: "@firebase/app-compat": "0.x"
+package-lock.json:1298: "node_modules/@firebase/storage-types": {
+package-lock.json:1300: "resolved": "https://registry.npmjs.org/@firebase/storage-types/-/storage-types-0.8.3.tgz",
+package-lock.json:1304: "@firebase/app-types": "0.x",
+package-lock.json:1305: "@firebase/util": "1.x"
+package-lock.json:1308: "node_modules/@firebase/util": {
+package-lock.json:1310: "resolved": "https://registry.npmjs.org/@firebase/util/-/util-1.14.0.tgz",
+package-lock.json:1321: "node_modules/@firebase/webchannel-wrapper": {
+package-lock.json:1323: "resolved": "https://registry.npmjs.org/@firebase/webchannel-wrapper/-/webchannel-wrapper-1.0.5.tgz",
+package-lock.json:3875: "node_modules/firebase": {
+package-lock.json:3877: "resolved": "https://registry.npmjs.org/firebase/-/firebase-12.10.0.tgz",
+package-lock.json:3881: "@firebase/ai": "2.9.0",
+package-lock.json:3882: "@firebase/analytics": "0.10.20",
+package-lock.json:3883: "@firebase/analytics-compat": "0.2.26",
+package-lock.json:3884: "@firebase/app": "0.14.9",
+package-lock.json:3885: "@firebase/app-check": "0.11.1",
+package-lock.json:3886: "@firebase/app-check-compat": "0.4.1",
+package-lock.json:3887: "@firebase/app-compat": "0.5.9",
+package-lock.json:3888: "@firebase/app-types": "0.9.3",
+package-lock.json:3889: "@firebase/auth": "1.12.1",
+package-lock.json:3890: "@firebase/auth-compat": "0.6.3",
+package-lock.json:3891: "@firebase/data-connect": "0.4.0",
+package-lock.json:3892: "@firebase/database": "1.1.1",
+package-lock.json:3893: "@firebase/database-compat": "2.1.1",
+package-lock.json:3894: "@firebase/firestore": "4.12.0",
+package-lock.json:3895: "@firebase/firestore-compat": "0.4.6",
+package-lock.json:3896: "@firebase/functions": "0.13.2",
+package-lock.json:3897: "@firebase/functions-compat": "0.4.2",
+package-lock.json:3898: "@firebase/installations": "0.6.20",
+package-lock.json:3899: "@firebase/installations-compat": "0.2.20",
+package-lock.json:3900: "@firebase/messaging": "0.12.24",
+package-lock.json:3901: "@firebase/messaging-compat": "0.2.24",
+package-lock.json:3902: "@firebase/performance": "0.7.10",
+package-lock.json:3903: "@firebase/performance-compat": "0.2.23",
+package-lock.json:3904: "@firebase/remote-config": "0.8.1",
+package-lock.json:3905: "@firebase/remote-config-compat": "0.2.22",
+package-lock.json:3906: "@firebase/storage": "0.14.1",
+package-lock.json:3907: "@firebase/storage-compat": "0.4.1",
+package-lock.json:3908: "@firebase/util": "1.14.0"
+src\App.tsx:6: import { AdminLayout, AdminDashboard, AdminUsers, AdminApplications } from './pages/AdminPages';
+src\App.tsx:7: import { AdminPlants } from './pages/AdminPlants';
+src\App.tsx:11: import { AdminInquiries } from './pages/AdminInquiries';
+src\App.tsx:122: path: '/admin/plants',
+src\App.tsx:123: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminPlants /></AdminLayout></ProtectedRoute>
+src\App.tsx:126: path: '/admin/plants/:id',
+src\App.tsx:138: path: '/admin/applications',
+src\App.tsx:139: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminApplications /></AdminLayout></ProtectedRoute>
+src\App.tsx:142: path: '/admin/inquiries',
+src\App.tsx:143: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminInquiries /></AdminLayout></ProtectedRoute>
+src\AuthContext.tsx:2: import { auth } from './firebase';
+src\AuthContext.tsx:3: import { GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged, User } from 'firebase/auth';
+src\AuthContext.tsx:80: // Moved real Firebase logic into a separate internal component so the bypass
+src\AuthContext.tsx:81: // path above never initializes Firebase listeners at all.
+src\AuthContext.tsx:90: const initProfile = async (firebaseUser: User) => {
+src\AuthContext.tsx:96: firebaseUser.uid,
+src\AuthContext.tsx:97: firebaseUser.email,
+src\AuthContext.tsx:98: firebaseUser.displayName
+src\AuthContext.tsx:115: const unsubscribe = onAuthStateChanged(auth, async (firebaseUser) => {
+src\AuthContext.tsx:116: setUser(firebaseUser);
+src\AuthContext.tsx:117: if (firebaseUser) {
+src\AuthContext.tsx:118: await initProfile(firebaseUser);
+src\AuthContext.tsx:138: const provider = new GoogleAuthProvider();
+src\AuthContext.tsx:139: await signInWithPopup(auth, provider);
+src\components\Shared.tsx:82: <span className="font-bold flex items-center gap-2">⚠️ <span className="hidden md:inline">DEVELOPMENT / FIREBASE EMULATOR ACTIVE</span><span className="md:hidden">DEV MODE</span></span>
+src\firebase.ts:2: import { initializeApp } from 'firebase/app';
+src\firebase.ts:3: import { getAuth, connectAuthEmulator } from 'firebase/auth';
+src\firebase.ts:4: import { getFirestore, connectFirestoreEmulator } from 'firebase/firestore';
+src\firebase.ts:5: import { getFunctions, connectFunctionsEmulator } from 'firebase/functions';
+src\firebase.ts:6: import { getStorage, connectStorageEmulator } from 'firebase/storage';
+src\firebase.ts:8: const firebaseConfig = {
+src\firebase.ts:10: authDomain: "role-plant.firebaseapp.com",
+src\firebase.ts:12: storageBucket: "role-plant.firebasestorage.app",
+src\firebase.ts:18: const app = initializeApp(firebaseConfig);
+src\firebase.ts:20: export const db = getFirestore(app);
+src\firebase.ts:25: console.log('DEV MODE: Connecting to Firebase Emulators');
+src\firebase.ts:27: connectFirestoreEmulator(db, '127.0.0.1', 8080);
+src\pages\AdminInquiries.tsx:2: * AdminInquiries.tsx
+src\pages\AdminInquiries.tsx:4: * Admin interface for managing inquiries.
+src\pages\AdminInquiries.tsx:26: export function AdminInquiries() {
+src\pages\AdminInquiries.tsx:27: const [inquiries, setInquiries] = useState<Inquiry[]>([]);
+src\pages\AdminInquiries.tsx:33: const fetchInquiries = async () => {
+src\pages\AdminInquiries.tsx:40: const data = await inquiryService.getInquiries(filters);
+src\pages\AdminInquiries.tsx:41: setInquiries(data);
+src\pages\AdminInquiries.tsx:43: console.error("Error fetching inquiries:", error);
+src\pages\AdminInquiries.tsx:50: fetchInquiries();
+src\pages\AdminInquiries.tsx:55: fetchInquiries();
+src\pages\AdminInquiries.tsx:63: fetchInquiries();
+src\pages\AdminInquiries.tsx:123: ) : inquiries.length === 0 ? (
+src\pages\AdminInquiries.tsx:126: inquiries.map(inquiry => (
+src\pages\AdminPages.tsx:4: import { db } from '../firebase';
+src\pages\AdminPages.tsx:5: import { collection, query, getDocs, updateDoc, doc, addDoc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
+src\pages\AdminPages.tsx:49: { label: '植物管理 (Plants)', to: '/admin/plants', icon: <Leaf size={16} />, permission: 'manage_plants' },
+src\pages\AdminPages.tsx:58: { label: '入會申請 (Applications)', to: '/admin/applications', icon: <ClipboardCheck size={16} />, permission: 'manage_applications' },
+src\pages\AdminPages.tsx:59: { label: '客服諮詢 (Inquiries)', to: '/admin/inquiries', icon: <MessageSquare size={16} />, permission: 'manage_inquiries' },
+src\pages\AdminPages.tsx:163: // navigate('/admin/plants');
+src\pages\AdminPages.tsx:364: export function AdminApplications() {
+src\pages\AdminPages.tsx:365: const [applications, setApplications] = useState<ApplicationWithUser[]>([]);
+src\pages\AdminPages.tsx:374: const data = await adminService.getAllApplications();
+src\pages\AdminPages.tsx:375: setApplications(data);
+src\pages\AdminPages.tsx:377: console.error("Error fetching applications:", error);
+src\pages\AdminPages.tsx:390: const oldApp = applications.find(a => a.id === appId);
+src\pages\AdminPages.tsx:393: await adminService.updateApplicationStatus(appId, newStatus);
+src\pages\AdminPages.tsx:408: setApplications(apps => apps.map(app => app.id === appId ? { ...app, status: newStatus } : app));
+src\pages\AdminPages.tsx:417: const filteredApps = applications.filter(a => filterStatus === 'all' || a.status === filterStatus);
+src\pages\AdminPages.tsx:423: <h1 className="text-3xl font-light tracking-tight mb-2">Plant Applications</h1>
+src\pages\AdminPages.tsx:431: <option value="all">All Applications</option>
+src\pages\AdminPlantEditor.tsx:3: import { plantService } from '../services/plantService';
+src\pages\AdminPlantEditor.tsx:9: import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+src\pages\AdminPlantEditor.tsx:10: import { storage } from '../firebase';
+src\pages\AdminPlantEditor.tsx:39: const data = await plantService.getPlantById(id);
+src\pages\AdminPlantEditor.tsx:95: await plantService.updatePlant(id, plantToSave);
+src\pages\AdminPlantEditor.tsx:163: const fileRef = ref(storage, `plants/${id}/${Date.now()}_${file.name}`);
+src\pages\AdminPlantEditor.tsx:231: <button onClick={() => navigate('/admin/plants')} className="text-[#1A1A1A]/50 hover:text-[#1A1A1A]">
+src\pages\AdminPlantEditor.tsx:335: placeholder="貼上圖片 URL（如 /images/plants/xxx.jpg）"
+src\pages\AdminPlants.tsx:3: import { plantService } from '../services/plantService';
+src\pages\AdminPlants.tsx:7: export function AdminPlants() {
+src\pages\AdminPlants.tsx:8: const [plants, setPlants] = useState<Plant[]>([]);
+src\pages\AdminPlants.tsx:14: const fetchPlants = async () => {
+src\pages\AdminPlants.tsx:17: const data = await plantService.getAllPlantsAdmin();
+src\pages\AdminPlants.tsx:20: setPlants(data);
+src\pages\AdminPlants.tsx:29: fetchPlants();
+src\pages\AdminPlants.tsx:34: const newId = await plantService.createDraftPlant('未命名植株草稿');
+src\pages\AdminPlants.tsx:35: navigate(`/admin/plants/${newId}`);
+src\pages\AdminPlants.tsx:49: await plantService.updatePlant(plant.id, { status: nextStatus });
+src\pages\AdminPlants.tsx:50: setPlants(plants.map(p => p.id === plant.id ? { ...p, status: nextStatus } : p));
+src\pages\AdminPlants.tsx:54: await plantService.updatePlant(plant.id, { featuredOnHome: !plant.featuredOnHome });
+src\pages\AdminPlants.tsx:55: setPlants(plants.map(p => p.id === plant.id ? { ...p, featuredOnHome: !plant.featuredOnHome } : p));
+src\pages\AdminPlants.tsx:58: const filteredPlants = plants.filter(p => {
+src\pages\AdminPlants.tsx:86: <h1 className="text-3xl font-light tracking-tight mb-2">檔案總管 (Plants)</h1>
+src\pages\AdminPlants.tsx:151: ) : filteredPlants.length === 0 ? (
+src\pages\AdminPlants.tsx:154: filteredPlants.map(plant => (
+src\pages\AdminPlants.tsx:207: onClick={() => navigate(`/admin/plants/${plant.id}`)}
+src\pages\AdminSettings.tsx:140: <span className={`px-2 py-0.5 rounded text-[10px] uppercase tracking-widest ${source === 'firestore' ? 'bg-green-100 text-green-800' : 'bg-orange-100 text-orange-800'}`}>
+src\pages\CollectionPages.tsx:7: import { memberApplicationService } from '../services/memberApplicationService';
+src\pages\CollectionPages.tsx:8: import { plantService } from '../services/plantService';
+src\pages\CollectionPages.tsx:17: const [plants, setPlants] = useState<any[]>([]);
+src\pages\CollectionPages.tsx:24: const [livePlants, catData] = await Promise.all([
+src\pages\CollectionPages.tsx:25: plantService.getPublicPlants(),
+src\pages\CollectionPages.tsx:29: if (livePlants.length > 0) {
+src\pages\CollectionPages.tsx:30: setPlants(livePlants);
+src\pages\CollectionPages.tsx:32: setPlants(fallbackDatabase);
+src\pages\CollectionPages.tsx:37: setPlants(fallbackDatabase);
+src\pages\CollectionPages.tsx:61: const filteredPlants = plants.filter(p => {
+src\pages\CollectionPages.tsx:162: ) : filteredPlants.length === 0 ? (
+src\pages\CollectionPages.tsx:169: {filteredPlants.map((item) => {
+src\pages\CollectionPages.tsx:239: // Use plantService for consistency—single source of truth
+src\pages\CollectionPages.tsx:240: const data = await plantService.getPlantById(id);
+src\pages\CollectionPages.tsx:270: await memberApplicationService.createApplication({
+src\pages\CollectionPages.tsx:318: // Map Firestore status to categories
+src\pages\CollectionPages.tsx:507: <button onClick={() => navigate(`/admin/plants/${plant.id}`)} className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/20 hover:text-[#1A1A1A] transition-colors font-mono">
+src\pages\MemberPages.tsx:6: // (Firebase Auth imports removed because auth is now abstracted to AuthContext and MSW)
+src\pages\MemberPages.tsx:7: import { db } from '../firebase';
+src\pages\MemberPages.tsx:8: import { doc, updateDoc } from 'firebase/firestore';
+src\pages\MemberPages.tsx:11: import { memberApplicationService } from '../services/memberApplicationService';
+src\pages\MemberPages.tsx:30: import('../firebase').then(({ auth }) => {
+src\pages\MemberPages.tsx:73: const [activeTab, setActiveTab] = useState<'favorites' | 'applications' | 'settings'>('favorites');
+src\pages\MemberPages.tsx:74: const [applications, setApplications] = useState<any[]>([]);
+src\pages\MemberPages.tsx:75: const [favoritePlants, setFavoritePlants] = useState<any[]>([]);
+src\pages\MemberPages.tsx:81: favoritesService.getFavoritePlants(userProfile.favorites).then(favs => {
+src\pages\MemberPages.tsx:82: setFavoritePlants(favs);
+src\pages\MemberPages.tsx:85: setFavoritePlants([]);
+src\pages\MemberPages.tsx:88: setFavoritePlants([]);
+src\pages\MemberPages.tsx:93: if (user && activeTab === 'applications') {
+src\pages\MemberPages.tsx:94: memberApplicationService.getApplicationsByUser(user.uid).then(apps => {
+src\pages\MemberPages.tsx:95: setApplications(apps);
+src\pages\MemberPages.tsx:97: console.error("Error fetching applications:", err);
+src\pages\MemberPages.tsx:98: setApplications([]);
+src\pages\MemberPages.tsx:127: onClick={() => setActiveTab('applications')}
+src\pages\MemberPages.tsx:128: className={`w-full text-left px-4 py-3 text-sm tracking-widest flex items-center gap-3 transition-colors ${activeTab === 'applications' ? 'bg-[#1A1A1A] text-white' : 'hover:bg-[#1A1A1A]/5'}`}
+src\pages\MemberPages.tsx:181: {favoritePlants.length > 0 ? (
+src\pages\MemberPages.tsx:183: {favoritePlants.map(plant => (
+src\pages\MemberPages.tsx:208: {activeTab === 'applications' && (
+src\pages\MemberPages.tsx:222: {applications.length > 0 ? applications.map(app => (
+src\pages\PublicPages.tsx:7: import { plantService } from '../services/plantService';
+src\pages\PublicPages.tsx:14: const [plants, setPlants] = useState<Plant[]>([]);
+src\pages\PublicPages.tsx:21: const [allPlants, homeCms, learnData] = await Promise.all([
+src\pages\PublicPages.tsx:22: plantService.getPublicPlants(),
+src\pages\PublicPages.tsx:27: setPlants(allPlants.filter(p => p.featuredOnHome).slice(0, 3));
+src\pages\PublicPages.tsx:90: {/* 2. Featured Plants / Collection teaser
+src\pages\PublicPages.tsx:93: {(loading || plants.length > 0) && (
+src\pages\PublicPages.tsx:113: {plants.map((plant, idx) => (
+src\services\adminService.ts:1: import { db } from '../firebase';
+src\services\adminService.ts:5: getDocs,
+src\services\adminService.ts:7: updateDoc,
+src\services\adminService.ts:8: getDoc,
+src\services\adminService.ts:10: } from 'firebase/firestore';
+src\services\adminService.ts:20: const q = query(collection(db, 'profiles'));
+src\services\adminService.ts:21: const snapshot = await getDocs(q);
+src\services\adminService.ts:26: await updateDoc(doc(db, 'profiles', uid), { status, updatedAt: new Date().toISOString() });
+src\services\adminService.ts:30: await updateDoc(doc(db, 'profiles', uid), { role, updatedAt: new Date().toISOString() });
+src\services\adminService.ts:33: // Applications (Plant Procurement)
+src\services\adminService.ts:34: getAllApplications: async (): Promise<ApplicationWithUser[]> => {
+src\services\adminService.ts:35: const q = query(collection(db, 'applications'));
+src\services\adminService.ts:36: const snapshot = await getDocs(q);
+src\services\adminService.ts:41: const userDoc = await getDoc(doc(db, 'profiles', app.userId));
+src\services\adminService.ts:51: updateApplicationStatus: async (appId: string, status: MemberApplication['status']) => {
+src\services\adminService.ts:52: await updateDoc(doc(db, 'applications', appId), {
+src\services\auditService.ts:1: import { db } from '../firebase';
+src\services\auditService.ts:2: import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+src\services\auditService.ts:8: await addDoc(collection(db, 'audit_logs'), {
+src\services\contentService.ts:4: * Manages the `content` Firestore collection with fixed document schemas per page.
+src\services\contentService.ts:7: import { db } from '../firebase';
+src\services\contentService.ts:10: getDoc,
+src\services\contentService.ts:11: setDoc,
+src\services\contentService.ts:12: } from 'firebase/firestore';
+src\services\contentService.ts:126: const snap = await getDoc(doc(db, COL, pageId));
+src\services\contentService.ts:138: await setDoc(doc(db, COL, pageId), content as any, { merge: true });
+src\services\favoritesService.ts:1: import { db } from '../firebase';
+src\services\favoritesService.ts:2: import { doc, updateDoc, arrayUnion, arrayRemove, collection, query, getDocs } from 'firebase/firestore';
+src\services\favoritesService.ts:8: await updateDoc(doc(db, 'profiles', userId), {
+src\services\favoritesService.ts:13: await updateDoc(doc(db, 'profiles', userId), {
+src\services\favoritesService.ts:17: getFavoritePlants: async (favoriteIds: string[]): Promise<Plant[]> => {
+src\services\favoritesService.ts:20: const q = query(collection(db, 'plants'));
+src\services\favoritesService.ts:21: const snapshot = await getDocs(q);
+src\services\favoritesService.ts:22: const allFirestorePlants = snapshot.docs.map(d => ({ id: d.id, ...d.data() } as Plant));
+src\services\favoritesService.ts:23: return allFirestorePlants.filter(p => favoriteIds.includes(p.id));
+src\services\inquiryService.ts:4: * Handles General and Business inquiries.
+src\services\inquiryService.ts:6: import { db } from '../firebase';
+src\services\inquiryService.ts:9: addDoc,
+src\services\inquiryService.ts:10: getDocs,
+src\services\inquiryService.ts:12: updateDoc,
+src\services\inquiryService.ts:17: } from 'firebase/firestore';
+src\services\inquiryService.ts:61: const colRef = collection(db, 'inquiries');
+src\services\inquiryService.ts:62: return addDoc(colRef, docData);
+src\services\inquiryService.ts:66: * Get inquiries for admin with optional filters
+src\services\inquiryService.ts:68: async getInquiries(filters: InquiryFilters = {}) {
+src\services\inquiryService.ts:69: const colRef = collection(db, 'inquiries');
+src\services\inquiryService.ts:70: let q = query(colRef, orderBy('createdAt', 'desc'));
+src\services\inquiryService.ts:73: q = query(q, where('type', '==', filters.type));
+src\services\inquiryService.ts:76: q = query(q, where('status', '==', filters.status));
+src\services\inquiryService.ts:79: const snapshot = await getDocs(q);
+src\services\inquiryService.ts:91: const docRef = doc(db, 'inquiries', id);
+src\services\inquiryService.ts:92: return updateDoc(docRef, {
+src\services\inquiryService.ts:103: const docRef = doc(db, 'inquiries', id);
+src\services\inquiryService.ts:104: return updateDoc(docRef, {
+src\services\mediaService.ts:4: * Handles Media Assets (Images) in Firebase Storage and Firestore.
+src\services\mediaService.ts:6: import { storage, db } from '../firebase';
+src\services\mediaService.ts:12: } from 'firebase/storage';
+src\services\mediaService.ts:15: addDoc,
+src\services\mediaService.ts:16: getDocs,
+src\services\mediaService.ts:18: updateDoc,
+src\services\mediaService.ts:24: } from 'firebase/firestore';
+src\services\mediaService.ts:48: * Upload a file to storage and record in firestore
+src\services\mediaService.ts:71: // Create document in Firestore
+src\services\mediaService.ts:72: const docRef = await addDoc(collection(db, 'media'), {
+src\services\mediaService.ts:94: const colRef = collection(db, 'media');
+src\services\mediaService.ts:96: const q = query(colRef, orderBy('createdAt', 'desc'));
+src\services\mediaService.ts:98: const snapshot = await getDocs(q);
+src\services\mediaService.ts:119: const docRef = doc(db, 'media', id);
+src\services\mediaService.ts:120: return updateDoc(docRef, { isActive, updatedAt: serverTimestamp() });
+src\services\mediaService.ts:124: * Delete media (Storage + Firestore)
+src\services\mediaService.ts:135: // 2. Delete from Firestore
+src\services\mediaService.ts:136: const docRef = doc(db, 'media', id);
+src\services\mediaService.ts:137: return deleteDoc(docRef);
+src\services\memberApplicationService.ts:1: import { db } from '../firebase';
+src\services\memberApplicationService.ts:2: import { collection, query, where, getDocs, addDoc, serverTimestamp } from 'firebase/firestore';
+src\services\memberApplicationService.ts:5: export const memberApplicationService = {
+src\services\memberApplicationService.ts:6: getApplicationsByUser: async (userId: string): Promise<MemberApplication[]> => {
+src\services\memberApplicationService.ts:8: const q = query(collection(db, 'applications'), where('userId', '==', userId));
+src\services\memberApplicationService.ts:9: const snapshot = await getDocs(q);
+src\services\memberApplicationService.ts:14: await addDoc(collection(db, 'applications'), {
+src\services\plantService.ts:1: import { db } from '../firebase';
+src\services\plantService.ts:2: import { collection, doc, getDocs, getDoc, setDoc, addDoc, updateDoc, deleteDoc, query, where, orderBy, serverTimestamp } from 'firebase/firestore';
+src\services\plantService.ts:5: const PLANTS_COLLECTION = 'plants';
+src\services\plantService.ts:7: export const plantService = {
+src\services\plantService.ts:9: async getPublicPlants(): Promise<Plant[]> {
+src\services\plantService.ts:11: const q = query(collection(db, PLANTS_COLLECTION), where('visibility', '==', 'public'));
+src\services\plantService.ts:12: const snapshot = await getDocs(q);
+src\services\plantService.ts:13: const plants = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Plant));
+src\services\plantService.ts:14: return plants.filter(p => p.status === 'exhibiting' || p.status === 'sold');
+src\services\plantService.ts:17: async getFeaturedPlants(): Promise<Plant[]> {
+src\services\plantService.ts:19: const q = query(collection(db, PLANTS_COLLECTION), where('featuredOnHome', '==', true));
+src\services\plantService.ts:20: const snapshot = await getDocs(q);
+src\services\plantService.ts:21: const plants = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Plant));
+src\services\plantService.ts:22: return plants.filter(p => p.visibility === 'public' && (p.status === 'exhibiting' || p.status === 'sold'));
+src\services\plantService.ts:27: const docSnap = await getDoc(doc(db, PLANTS_COLLECTION, id));
+src\services\plantService.ts:33: async getAllPlantsAdmin(): Promise<Plant[]> {
+src\services\plantService.ts:35: const q = query(collection(db, PLANTS_COLLECTION));
+src\services\plantService.ts:36: const snapshot = await getDocs(q);
+src\services\plantService.ts:63: const newDocRef = await addDoc(collection(db, PLANTS_COLLECTION), data);
+src\services\plantService.ts:69: const docRef = doc(db, PLANTS_COLLECTION, id);
+src\services\plantService.ts:70: await updateDoc(docRef, { ...updates, updatedAt: new Date().toISOString() });
+src\services\plantService.ts:75: await deleteDoc(doc(db, PLANTS_COLLECTION, id));
+src\services\policyService.ts:1: import { doc, getDoc, setDoc } from 'firebase/firestore';
+src\services\policyService.ts:2: import { db } from '../firebase';
+src\services\policyService.ts:5: export type PolicySource = 'firestore' | 'local_fallback' | 'partial_fallback' | 'invalid_remote_data';
+src\services\policyService.ts:10: const docRef = doc(db, 'settings', 'membership');
+src\services\policyService.ts:11: const docSnap = await getDoc(docRef);
+src\services\policyService.ts:14: console.warn('Membership policy not found in Firestore. Using default runtime config.');
+src\services\policyService.ts:71: return { data: mergedData, source: isPartial ? 'partial_fallback' : 'firestore' };
+src\services\policyService.ts:79: const docRef = doc(db, 'settings', 'membership');
+src\services\policyService.ts:80: await setDoc(docRef, policy);
+src\services\postService.ts:6: import { db } from '../firebase';
+src\services\postService.ts:9: addDoc,
+src\services\postService.ts:10: getDocs,
+src\services\postService.ts:11: getDoc,
+src\services\postService.ts:13: updateDoc,
+src\services\postService.ts:20: } from 'firebase/firestore';
+src\services\postService.ts:65: const colRef = collection(db, 'posts');
+src\services\postService.ts:66: return addDoc(colRef, docData);
+src\services\postService.ts:73: const colRef = collection(db, 'posts');
+src\services\postService.ts:74: let q = query(colRef, orderBy('createdAt', 'desc'));
+src\services\postService.ts:77: q = query(q, where('status', '==', filters.status));
+src\services\postService.ts:80: q = query(q, where('category', '==', filters.category));
+src\services\postService.ts:83: const snapshot = await getDocs(q);
+src\services\postService.ts:95: const docRef = doc(db, 'posts', id);
+src\services\postService.ts:96: const snap = await getDoc(docRef);
+src\services\postService.ts:105: const colRef = collection(db, 'posts');
+src\services\postService.ts:106: const q = query(
+src\services\postService.ts:108: where('status', '==', 'published'),
+src\services\postService.ts:109: where('slug', '==', slug),
+src\services\postService.ts:112: const snapshot = await getDocs(q);
+src\services\postService.ts:130: const docRef = doc(db, 'posts', id);
+src\services\postService.ts:131: return updateDoc(docRef, updateData);
+src\services\postService.ts:139: const docRef = doc(db, 'posts', id);
+src\services\postService.ts:140: return deleteDoc(docRef);
+src\services\profileService.ts:1: import { db } from '../firebase';
+src\services\profileService.ts:2: import { doc, updateDoc, getDoc, setDoc } from 'firebase/firestore';
+src\services\profileService.ts:7: const d = await getDoc(doc(db, 'profiles', uid));
+src\services\profileService.ts:12: await updateDoc(doc(db, 'profiles', uid), data);
+src\services\profileService.ts:15: await setDoc(doc(db, 'profiles', uid), data);
+src\services\taxonomyService.ts:6: import { db } from '../firebase';
+src\services\taxonomyService.ts:9: addDoc,
+src\services\taxonomyService.ts:10: getDocs,
+src\services\taxonomyService.ts:12: updateDoc,
+src\services\taxonomyService.ts:18: } from 'firebase/firestore';
+src\services\taxonomyService.ts:31: const colRef = collection(db, 'taxonomy');
+src\services\taxonomyService.ts:32: let q = query(
+src\services\taxonomyService.ts:34: where('type', '==', type),
+src\services\taxonomyService.ts:40: q = query(q, where('isActive', '==', true));
+src\services\taxonomyService.ts:43: const snapshot = await getDocs(q);
+src\services\taxonomyService.ts:58: const colRef = collection(db, 'taxonomy');
+src\services\taxonomyService.ts:59: return addDoc(colRef, {
+src\services\taxonomyService.ts:70: const docRef = doc(db, 'taxonomy', id);
+src\services\taxonomyService.ts:71: return updateDoc(docRef, {
+src\services\taxonomyService.ts:81: const docRef = doc(db, 'taxonomy', id);
+src\services\taxonomyService.ts:82: return deleteDoc(docRef);
+src\utils\permissionUtils.ts:10: | 'manage_plants'
+src\utils\permissionUtils.ts:15: | 'manage_applications'
+src\utils\permissionUtils.ts:16: | 'manage_inquiries'
+src\utils\permissionUtils.ts:23: 'manage_plants',
+src\utils\permissionUtils.ts:28: 'manage_applications',
+src\utils\permissionUtils.ts:29: 'manage_inquiries',
+src\utils\permissionUtils.ts:35: 'manage_plants',
+src\utils\permissionUtils.ts:40: 'manage_applications',
+src\utils\permissionUtils.ts:41: 'manage_inquiries'
+test.js:22: await delay(1500); // give it time to load firestore
+test.js:29: let plants = await page.$$('.group.cursor-pointer');
+test.js:30: if(plants.length > 0) {
+test.js:31: await plants[0].click();
+test.js:37: log("! No plants found in Collection.");

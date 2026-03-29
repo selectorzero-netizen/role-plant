@@ -1,0 +1,108 @@
+﻿NO_MATCH: src\firebase.ts
+src\services\contentService.ts:110: intro1Content: 'Content',
+src\services\contentService.ts:112: intro2Content: 'Content',
+src\services\contentService.ts:123: export const contentService = {
+src\services\contentService.ts:124: async getPageContent<T>(pageId: string): Promise<T | null> {
+src\services\contentService.ts:126: const snap = await getDoc(doc(db, COL, pageId));
+src\services\contentService.ts:128: return (DEFAULT_CONTENT[pageId] || null) as T;
+src\services\contentService.ts:132: console.error(`contentService.getPageContent(${pageId}) failed:`, err);
+src\services\contentService.ts:133: return (DEFAULT_CONTENT[pageId] || null) as T;
+src\services\contentService.ts:137: async savePageContent<T>(pageId: string, content: T): Promise<void> {
+src\services\contentService.ts:138: await setDoc(doc(db, COL, pageId), content as any, { merge: true });
+src\services\contentService.ts:17: export interface HomeContent {
+src\services\contentService.ts:2: * contentService.ts
+src\services\contentService.ts:32: export interface AboutContent {
+src\services\contentService.ts:38: export interface BusinessContent {
+src\services\contentService.ts:4: * Manages the `content` Firestore collection with fixed document schemas per page.
+src\services\contentService.ts:45: export interface MembershipContent {
+src\services\contentService.ts:55: export interface LearnContent {
+src\services\contentService.ts:60: intro1Content: string;
+src\services\contentService.ts:62: intro2Content: string;
+src\services\contentService.ts:66: export interface FaqContent {
+src\services\contentService.ts:7: import { db } from '../firebase';
+src\services\contentService.ts:73: const COL = 'content';
+src\services\contentService.ts:75: export const DEFAULT_CONTENT: Record<string, any> = {
+src\services\favoritesService.ts:1: import { db } from '../firebase';
+src\services\favoritesService.ts:13: await updateDoc(doc(db, 'profiles', userId), {
+src\services\favoritesService.ts:14: favorites: arrayRemove(plantId)
+src\services\favoritesService.ts:17: getFavoritePlants: async (favoriteIds: string[]): Promise<Plant[]> => {
+src\services\favoritesService.ts:20: const q = query(collection(db, 'plants'));
+src\services\favoritesService.ts:22: const allFirestorePlants = snapshot.docs.map(d => ({ id: d.id, ...d.data() } as Plant));
+src\services\favoritesService.ts:23: return allFirestorePlants.filter(p => favoriteIds.includes(p.id));
+src\services\favoritesService.ts:6: export const favoritesService = {
+src\services\favoritesService.ts:8: await updateDoc(doc(db, 'profiles', userId), {
+src\services\favoritesService.ts:9: favorites: arrayUnion(plantId)
+src\services\inquiryService.ts:103: const docRef = doc(db, 'inquiries', id);
+src\services\inquiryService.ts:104: return updateDoc(docRef, {
+src\services\inquiryService.ts:4: * Handles General and Business inquiries.
+src\services\inquiryService.ts:6: import { db } from '../firebase';
+src\services\inquiryService.ts:61: const colRef = collection(db, 'inquiries');
+src\services\inquiryService.ts:62: return addDoc(colRef, docData);
+src\services\inquiryService.ts:66: * Get inquiries for admin with optional filters
+src\services\inquiryService.ts:68: async getInquiries(filters: InquiryFilters = {}) {
+src\services\inquiryService.ts:69: const colRef = collection(db, 'inquiries');
+src\services\inquiryService.ts:91: const docRef = doc(db, 'inquiries', id);
+src\services\inquiryService.ts:92: return updateDoc(docRef, {
+src\services\mediaService.ts:119: const docRef = doc(db, 'media', id);
+src\services\mediaService.ts:120: return updateDoc(docRef, { isActive, updatedAt: serverTimestamp() });
+src\services\mediaService.ts:136: const docRef = doc(db, 'media', id);
+src\services\mediaService.ts:137: return deleteDoc(docRef);
+src\services\mediaService.ts:26: export type MediaUsage = 'plant' | 'post' | 'content' | 'general';
+src\services\mediaService.ts:6: import { storage, db } from '../firebase';
+src\services\mediaService.ts:72: const docRef = await addDoc(collection(db, 'media'), {
+src\services\mediaService.ts:94: const colRef = collection(db, 'media');
+src\services\memberApplicationService.ts:1: import { db } from '../firebase';
+src\services\memberApplicationService.ts:14: await addDoc(collection(db, 'applications'), {
+src\services\memberApplicationService.ts:5: export const memberApplicationService = {
+src\services\memberApplicationService.ts:6: getApplicationsByUser: async (userId: string): Promise<MemberApplication[]> => {
+src\services\memberApplicationService.ts:8: const q = query(collection(db, 'applications'), where('userId', '==', userId));
+src\services\plantService.ts:1: import { db } from '../firebase';
+src\services\plantService.ts:11: const q = query(collection(db, PLANTS_COLLECTION), where('visibility', '==', 'public'));
+src\services\plantService.ts:13: const plants = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Plant));
+src\services\plantService.ts:14: return plants.filter(p => p.status === 'exhibiting' || p.status === 'sold');
+src\services\plantService.ts:17: async getFeaturedPlants(): Promise<Plant[]> {
+src\services\plantService.ts:19: const q = query(collection(db, PLANTS_COLLECTION), where('featuredOnHome', '==', true));
+src\services\plantService.ts:21: const plants = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Plant));
+src\services\plantService.ts:22: return plants.filter(p => p.visibility === 'public' && (p.status === 'exhibiting' || p.status === 'sold'));
+src\services\plantService.ts:27: const docSnap = await getDoc(doc(db, PLANTS_COLLECTION, id));
+src\services\plantService.ts:33: async getAllPlantsAdmin(): Promise<Plant[]> {
+src\services\plantService.ts:35: const q = query(collection(db, PLANTS_COLLECTION));
+src\services\plantService.ts:5: const PLANTS_COLLECTION = 'plants';
+src\services\plantService.ts:63: const newDocRef = await addDoc(collection(db, PLANTS_COLLECTION), data);
+src\services\plantService.ts:69: const docRef = doc(db, PLANTS_COLLECTION, id);
+src\services\plantService.ts:7: export const plantService = {
+src\services\plantService.ts:70: await updateDoc(docRef, { ...updates, updatedAt: new Date().toISOString() });
+src\services\plantService.ts:75: await deleteDoc(doc(db, PLANTS_COLLECTION, id));
+src\services\plantService.ts:9: async getPublicPlants(): Promise<Plant[]> {
+src\services\policyService.ts:10: const docRef = doc(db, 'settings', 'membership');
+src\services\policyService.ts:11: const docSnap = await getDoc(docRef);
+src\services\policyService.ts:2: import { db } from '../firebase';
+src\services\policyService.ts:47: content: step?.content ?? MEMBERSHIP_POLICY.process.steps[idx]?.content ?? '無內容'
+src\services\policyService.ts:54: content: item?.content ?? MEMBERSHIP_POLICY.approvedBenefits.items[idx]?.content ?? '無內容'
+src\services\policyService.ts:79: const docRef = doc(db, 'settings', 'membership');
+src\services\policyService.ts:80: await setDoc(docRef, policy);
+src\services\profileService.ts:1: import { db } from '../firebase';
+src\services\profileService.ts:12: await updateDoc(doc(db, 'profiles', uid), data);
+src\services\profileService.ts:15: await setDoc(doc(db, 'profiles', uid), data);
+src\services\profileService.ts:5: export const profileService = {
+src\services\profileService.ts:7: const d = await getDoc(doc(db, 'profiles', uid));
+src\services\taxonomyService.ts:19: import { Taxonomy, TaxonomyType } from '../types';
+src\services\taxonomyService.ts:2: * taxonomyService.ts
+src\services\taxonomyService.ts:24: export const taxonomyService = {
+src\services\taxonomyService.ts:26: * Get taxonomy items by type
+src\services\taxonomyService.ts:28: async getByType(type: TaxonomyType, onlyActive = true) {
+src\services\taxonomyService.ts:31: const colRef = collection(db, 'taxonomy');
+src\services\taxonomyService.ts:47: })) as Taxonomy[];
+src\services\taxonomyService.ts:49: console.error(`taxonomyService.getByType(${type}) failed:`, err);
+src\services\taxonomyService.ts:55: * Create taxonomy item
+src\services\taxonomyService.ts:57: async create(data: Omit<Taxonomy, 'id' | 'createdAt' | 'updatedAt'>) {
+src\services\taxonomyService.ts:58: const colRef = collection(db, 'taxonomy');
+src\services\taxonomyService.ts:59: return addDoc(colRef, {
+src\services\taxonomyService.ts:6: import { db } from '../firebase';
+src\services\taxonomyService.ts:67: * Update taxonomy item
+src\services\taxonomyService.ts:69: async update(id: string, data: Partial<Taxonomy>) {
+src\services\taxonomyService.ts:70: const docRef = doc(db, 'taxonomy', id);
+src\services\taxonomyService.ts:71: return updateDoc(docRef, {
+src\services\taxonomyService.ts:78: * Delete taxonomy item
+src\services\taxonomyService.ts:81: const docRef = doc(db, 'taxonomy', id);
+src\services\taxonomyService.ts:82: return deleteDoc(docRef);

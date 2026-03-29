@@ -1,0 +1,28 @@
+ROOT=C:\Users\User\Desktop\role-plant\role-plant
+PACKAGE_MANAGER=npm
+NAME=react-example
+VERSION=0.0.0
+NODE=v24.14.0
+NPM=not found
+PNPM=not found
+YARN=not found
+
+SCRIPTS:
+  build = tsc -b && vite build
+  clean = rimraf dist
+  deploy = firebase deploy
+  deploy:hosting = firebase deploy --only hosting
+  deploy:rules = firebase deploy --only firestore:rules,storage
+  dev = vite --host 127.0.0.1
+  dev:all = start npm run dev && firebase emulators:start
+  lint = tsc --noEmit
+  preview = vite preview
+
+FRAMEWORK_SIGNALS:
+react=^19.0.0
+react-dom=^19.0.0
+react-router-dom=^7.13.1
+vite=^6.2.0
+typescript=~5.8.2
+firebase=^12.10.0
+tailwindcss=^4.1.14

@@ -1,0 +1,5 @@
+﻿BATCH=03.1
+GOAL=Detach the final residual dependencies left after Batch 03.
+WHY=Batch 03 failed only because PolicyContext chain remained active; Shared.tsx and postService chain also remain as legacy coupling.
+TARGETS=main.tsx -> PolicyContext, favoritesService.ts -> Shared.tsx, AdminPostEditor.tsx -> postService.ts
+SUCCESS=lint passes, build passes, no active src references remain to PolicyContext/Shared/postService/AdminPostEditor

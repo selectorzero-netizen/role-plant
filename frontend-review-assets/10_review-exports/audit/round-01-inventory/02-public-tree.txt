@@ -1,0 +1,8 @@
+[DIR]  public\images
+[DIR]  public\images\content
+[FILE] public\images\content\test-content.png
+[DIR]  public\images\plants
+[FILE] public\images\plants\test-plant.png
+[DIR]  public\images\posts
+[FILE] public\images\posts\test-post.png
+[FILE] public\mockServiceWorker.js

@@ -1,0 +1,60 @@
+﻿src\pages\AdminContentEditor.tsx:103: switch (pageId) {
+src\pages\AdminContentEditor.tsx:104: case 'home': return <HomeForm onSaveStatus={setSaveStatus} />;
+src\pages\AdminContentEditor.tsx:105: case 'about': return <AboutForm onSaveStatus={setSaveStatus} />;
+src\pages\AdminContentEditor.tsx:106: case 'business': return <BusinessForm onSaveStatus={setSaveStatus} />;
+src\pages\AdminContentEditor.tsx:107: case 'membership': return <MembershipForm onSaveStatus={setSaveStatus} />;
+src\pages\AdminContentEditor.tsx:108: case 'learn': return <LearnForm onSaveStatus={setSaveStatus} />;
+src\pages\AdminContentEditor.tsx:109: case 'faq': return <FaqForm onSaveStatus={setSaveStatus} />;
+src\pages\AdminContentEditor.tsx:18: FaqContent
+src\pages\AdminContentEditor.tsx:199: contentService.getPageContent<HomeContent>('home').then(d => {
+src\pages\AdminContentEditor.tsx:211: await contentService.savePageContent('home', data);
+src\pages\AdminContentEditor.tsx:219: entityId: 'home',
+src\pages\AdminContentEditor.tsx:26: { id: 'home', label: 'Home 首頁' },
+src\pages\AdminContentEditor.tsx:27: { id: 'about', label: 'About 關於我們' },
+src\pages\AdminContentEditor.tsx:28: { id: 'business', label: 'Business 合作洽詢' },
+src\pages\AdminContentEditor.tsx:29: { id: 'membership', label: 'Membership 會員制度' },
+src\pages\AdminContentEditor.tsx:30: { id: 'learn', label: 'Learn 判讀與培育' },
+src\pages\AdminContentEditor.tsx:31: { id: 'faq', label: 'FAQ 常見問題' },
+src\pages\AdminContentEditor.tsx:317: contentService.getPageContent<AboutContent>('about').then(d => {
+src\pages\AdminContentEditor.tsx:329: await contentService.savePageContent('about', data);
+src\pages\AdminContentEditor.tsx:337: entityId: 'about',
+src\pages\AdminContentEditor.tsx:411: contentService.getPageContent<BusinessContent>('business').then(d => {
+src\pages\AdminContentEditor.tsx:423: await contentService.savePageContent('business', data);
+src\pages\AdminContentEditor.tsx:431: entityId: 'business',
+src\pages\AdminContentEditor.tsx:520: contentService.getPageContent<MembershipContent>('membership').then(d => {
+src\pages\AdminContentEditor.tsx:532: await contentService.savePageContent('membership', data);
+src\pages\AdminContentEditor.tsx:540: entityId: 'membership',
+src\pages\AdminContentEditor.tsx:613: contentService.getPageContent<LearnContent>('learn').then(d => {
+src\pages\AdminContentEditor.tsx:625: await contentService.savePageContent('learn', data);
+src\pages\AdminContentEditor.tsx:633: entityId: 'learn',
+src\pages\AdminContentEditor.tsx:715: const [data, setData] = useState<FaqContent | null>(null);
+src\pages\AdminContentEditor.tsx:716: const [original, setOriginal] = useState<FaqContent | null>(null);
+src\pages\AdminContentEditor.tsx:720: contentService.getPageContent<FaqContent>('faq').then(d => {
+src\pages\AdminContentEditor.tsx:732: await contentService.savePageContent('faq', data);
+src\pages\AdminContentEditor.tsx:740: entityId: 'faq',
+src\pages\AdminContentEditor.tsx:94: const { pageId } = useParams<{ pageId: string }>();
+src\pages\AdminContentEditor.tsx:98: const pageMeta = PAGE_META.find(p => p.id === pageId);
+src\pages\PublicPages.tsx:23: contentService.getPageContent<HomeContent>('home'),
+src\pages\PublicPages.tsx:24: contentService.getPageContent<LearnContent>('learn')
+src\pages\PublicPages.tsx:292: contentService.getPageContent<MembershipContent>('membership').then(res => {
+src\pages\PublicPages.tsx:374: contentService.getPageContent<AboutContent>('about').then(res => {
+src\pages\PublicPages.tsx:412: contentService.getPageContent<BusinessContent>('business').then(res => {
+src\pages\PublicPages.tsx:426: type: 'business',
+src\pages\PublicPages.tsx:508: const [activeTab, setActiveTab] = useState<'standards' | 'faq'>('standards');
+src\pages\PublicPages.tsx:525: const [faqCms, setFaqCms] = useState<FaqContent>({
+src\pages\PublicPages.tsx:540: contentService.getPageContent<LearnContent>('learn'),
+src\pages\PublicPages.tsx:541: contentService.getPageContent<FaqContent>('faq')
+src\pages\PublicPages.tsx:561: <button onClick={() => setActiveTab('faq')} className={`text-sm tracking-widest uppercase transition-colors ${activeTab === 'faq' ? 'text-[#1A1A1A] font-medium border-b-2 border-[#1A1A1A] pb-1' : 'text-[#1A1A1A]/40 hover:text-[#1A1A1A]'}`}>
+src\pages\PublicPages.tsx:9: import { contentService, HomeContent, AboutContent, BusinessContent, MembershipContent, LearnContent, FaqContent } from '../services/contentService';
+src\services\contentService.ts:106: title: 'Learn',
+src\services\contentService.ts:116: title: 'FAQ',
+src\services\contentService.ts:124: async getPageContent<T>(pageId: string): Promise<T | null> {
+src\services\contentService.ts:126: const snap = await getDoc(doc(db, COL, pageId));
+src\services\contentService.ts:128: return (DEFAULT_CONTENT[pageId] || null) as T;
+src\services\contentService.ts:132: console.error(`contentService.getPageContent(${pageId}) failed:`, err);
+src\services\contentService.ts:133: return (DEFAULT_CONTENT[pageId] || null) as T;
+src\services\contentService.ts:137: async savePageContent<T>(pageId: string, content: T): Promise<void> {
+src\services\contentService.ts:138: await setDoc(doc(db, COL, pageId), content as any, { merge: true });
+src\services\contentService.ts:66: export interface FaqContent {
+src\services\contentService.ts:91: title: 'Business',
+src\services\contentService.ts:97: title: 'Membership',

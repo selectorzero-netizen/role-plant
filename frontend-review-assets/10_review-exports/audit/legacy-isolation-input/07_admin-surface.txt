@@ -1,0 +1,91 @@
+﻿src\App.tsx:10: import { AdminContentList, AdminContentEditor } from './pages/AdminContentEditor';
+src\App.tsx:11: import { AdminInquiries } from './pages/AdminInquiries';
+src\App.tsx:118: path: '/admin',
+src\App.tsx:119: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminDashboard /></AdminLayout></ProtectedRoute>
+src\App.tsx:12: import { AdminPosts } from './pages/AdminPosts';
+src\App.tsx:122: path: '/admin/plants',
+src\App.tsx:123: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminPlants /></AdminLayout></ProtectedRoute>
+src\App.tsx:126: path: '/admin/plants/:id',
+src\App.tsx:127: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminPlantEditor /></AdminLayout></ProtectedRoute>
+src\App.tsx:13: import { AdminPostEditor } from './pages/AdminPostEditor';
+src\App.tsx:130: path: '/admin/users',
+src\App.tsx:131: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminUsers /></AdminLayout></ProtectedRoute>
+src\App.tsx:134: path: '/admin/members',
+src\App.tsx:135: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminUsers /></AdminLayout></ProtectedRoute>
+src\App.tsx:138: path: '/admin/applications',
+src\App.tsx:139: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminApplications /></AdminLayout></ProtectedRoute>
+src\App.tsx:14: import { AdminMedia } from './pages/AdminMedia';
+src\App.tsx:142: path: '/admin/inquiries',
+src\App.tsx:143: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminInquiries /></AdminLayout></ProtectedRoute>
+src\App.tsx:146: path: '/admin/posts',
+src\App.tsx:147: element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminPosts /></AdminLayout></ProtectedRoute>
+src\App.tsx:15: import { AdminTaxonomy } from './pages/AdminTaxonomy';
+src\App.tsx:150: path: '/admin/posts/:id',
+src\App.tsx:151: element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminPostEditor /></AdminLayout></ProtectedRoute>
+src\App.tsx:154: path: '/admin/media',
+src\App.tsx:155: element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminMedia /></AdminLayout></ProtectedRoute>
+src\App.tsx:158: path: '/admin/content',
+src\App.tsx:159: element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminContentList /></AdminLayout></ProtectedRoute>
+src\App.tsx:162: path: '/admin/content/:pageId',
+src\App.tsx:163: element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminContentEditor /></AdminLayout></ProtectedRoute>
+src\App.tsx:166: path: '/admin/settings',
+src\App.tsx:167: element: <ProtectedRoute requireRole="super_admin"><AdminLayout><AdminSettings /></AdminLayout></ProtectedRoute>
+src\App.tsx:170: path: '/admin/taxonomy',
+src\App.tsx:171: element: <ProtectedRoute requireRole="super_admin"><AdminLayout><AdminTaxonomy /></AdminLayout></ProtectedRoute>
+src\App.tsx:6: import { AdminLayout, AdminDashboard, AdminUsers, AdminApplications } from './pages/AdminPages';
+src\App.tsx:7: import { AdminPlants } from './pages/AdminPlants';
+src\App.tsx:8: import { AdminPlantEditor } from './pages/AdminPlantEditor';
+src\App.tsx:9: import { AdminSettings } from './pages/AdminSettings';
+src\App.tsx:93: path: '/posts',
+src\App.tsx:97: path: '/posts/:slug',
+src\pages\AdminContentEditor.tsx:109: case 'faq': return <FaqForm onSaveStatus={setSaveStatus} />;
+src\pages\AdminContentEditor.tsx:118: <button onClick={() => navigate('/admin/content')} className="text-[#1A1A1A]/40 hover:text-[#1A1A1A] transition-colors">
+src\pages\AdminContentEditor.tsx:18: FaqContent
+src\pages\AdminContentEditor.tsx:2: * AdminContentEditor.tsx
+src\pages\AdminContentEditor.tsx:31: { id: 'faq', label: 'FAQ 常見問題' },
+src\pages\AdminContentEditor.tsx:34: export function AdminContentList() {
+src\pages\AdminContentEditor.tsx:44: onClick={() => navigate(`/admin/content/${page.id}`)}
+src\pages\AdminContentEditor.tsx:714: function FaqForm({ onSaveStatus }: any) {
+src\pages\AdminContentEditor.tsx:715: const [data, setData] = useState<FaqContent | null>(null);
+src\pages\AdminContentEditor.tsx:716: const [original, setOriginal] = useState<FaqContent | null>(null);
+src\pages\AdminContentEditor.tsx:720: contentService.getPageContent<FaqContent>('faq').then(d => {
+src\pages\AdminContentEditor.tsx:732: await contentService.savePageContent('faq', data);
+src\pages\AdminContentEditor.tsx:740: entityId: 'faq',
+src\pages\AdminContentEditor.tsx:741: details: 'Updated FAQ page content',
+src\pages\AdminContentEditor.tsx:803: + 新增 FAQ 項目
+src\pages\AdminContentEditor.tsx:813: <Save size={16} /> 儲存 FAQ 內容
+src\pages\AdminContentEditor.tsx:93: export function AdminContentEditor() {
+src\pages\AdminInquiries.tsx:2: * AdminInquiries.tsx
+src\pages\AdminInquiries.tsx:26: export function AdminInquiries() {
+src\pages\AdminPages.tsx:163: // navigate('/admin/plants');
+src\pages\AdminPages.tsx:423: <h1 className="text-3xl font-light tracking-tight mb-2">Plant Applications</h1>
+src\pages\AdminPages.tsx:49: { label: '植物管理 (Plants)', to: '/admin/plants', icon: <Leaf size={16} />, permission: 'manage_plants' },
+src\pages\AdminPages.tsx:50: { label: '內容頁面 (Content)', to: '/admin/content', icon: <FileText size={16} />, permission: 'manage_content' },
+src\pages\AdminPages.tsx:51: { label: '文章管理 (Posts)', to: '/admin/posts', icon: <FileEdit size={16} />, permission: 'manage_posts' },
+src\pages\AdminPages.tsx:52: { label: '媒體管理 (Media)', to: '/admin/media', icon: <Image size={16} />, permission: 'manage_media' },
+src\pages\AdminPages.tsx:58: { label: '入會申請 (Applications)', to: '/admin/applications', icon: <ClipboardCheck size={16} />, permission: 'manage_applications' },
+src\pages\AdminPages.tsx:59: { label: '客服諮詢 (Inquiries)', to: '/admin/inquiries', icon: <MessageSquare size={16} />, permission: 'manage_inquiries' },
+src\pages\AdminPages.tsx:60: { label: '會員管理 (Members)', to: '/admin/users', icon: <Users size={16} />, permission: 'manage_members' },
+src\pages\AdminPages.tsx:68: { label: '分類配置 (Taxonomy)', to: '/admin/taxonomy', icon: <Layers size={16} />, permission: 'manage_taxonomy' },
+src\pages\AdminPages.tsx:69: { label: '系統參數 (Settings)', to: '/admin/settings', icon: <Settings size={16} />, permission: 'manage_settings' },
+src\pages\AdminPages.tsx:7: import { adminService, ApplicationWithUser } from '../services/adminService';
+src\pages\AdminPosts.tsx:107: ) : posts.length === 0 ? (
+src\pages\AdminPosts.tsx:121: {posts.map(post => (
+src\pages\AdminPosts.tsx:156: to={`/admin/posts/${post.id}`}
+src\pages\AdminPosts.tsx:2: * AdminPosts.tsx
+src\pages\AdminPosts.tsx:23: export function AdminPosts() {
+src\pages\AdminPosts.tsx:24: const [posts, setPosts] = useState<Post[]>([]);
+src\pages\AdminPosts.tsx:26: const [filterStatus, setFilterStatus] = useState<PostStatus | 'all'>('all');
+src\pages\AdminPosts.tsx:29: const fetchPosts = async () => {
+src\pages\AdminPosts.tsx:33: status: filterStatus === 'all' ? undefined : filterStatus as PostStatus
+src\pages\AdminPosts.tsx:35: const data = await postService.getPosts(filters);
+src\pages\AdminPosts.tsx:36: setPosts(data);
+src\pages\AdminPosts.tsx:38: console.error("Error fetching posts:", error);
+src\pages\AdminPosts.tsx:4: * Admin interface for managing blog posts.
+src\pages\AdminPosts.tsx:45: fetchPosts();
+src\pages\AdminPosts.tsx:50: await postService.deletePost(id);
+src\pages\AdminPosts.tsx:51: fetchPosts();
+src\pages\AdminPosts.tsx:57: const res = await postService.createPost({
+src\pages\AdminPosts.tsx:61: navigate(`/admin/posts/${res.id}`);
+src\pages\AdminPosts.tsx:8: import { postService, Post, PostStatus } from '../services/postService';
+src\pages\AdminSettings.tsx:14: export function AdminSettings() {

@@ -1,7 +1,6 @@
-import { db } from '../firebase';
+﻿import { db } from '../firebase';
 import { doc, updateDoc, arrayUnion, arrayRemove, collection, query, getDocs } from 'firebase/firestore';
 import { Plant } from '../types';
-import { plantDatabase } from '../components/Shared';
 
 export const favoritesService = {
   addFavorite: async (userId: string, plantId: string) => {
@@ -27,3 +26,4 @@ export const favoritesService = {
     }
   }
 };
+

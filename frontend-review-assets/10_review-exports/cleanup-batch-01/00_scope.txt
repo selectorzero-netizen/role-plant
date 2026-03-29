@@ -1,0 +1,6 @@
+﻿BATCH=01
+GOAL=Detach legacy public frontend shell from active router.
+WHY=Old public routes and nav still dominate the app entry, so new frontend work would keep being dragged back into the legacy IA.
+ACTIVE_AFTER_THIS_BATCH= / , /login , /member , /admin/*
+REMOVED_FROM_ACTIVE_ROUTER_THIS_BATCH= /collection , /collection/:id , /learn , /business , /posts , /posts/:slug , /about , /membership
+NOT_TOUCHED_THIS_BATCH= Firebase config, services, admin pages, old content model, old member flow internals

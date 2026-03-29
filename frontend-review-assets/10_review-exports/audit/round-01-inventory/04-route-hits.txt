@@ -1,0 +1,137 @@
+capture.js:16: await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/70684471-0245-4085-83e2-e71308efcea4/homepage.png' });
+capture.js:35: await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/70684471-0245-4085-83e2-e71308efcea4/admin_editor.png' });
+capture.js:52: await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/70684471-0245-4085-83e2-e71308efcea4/admin_upload.png' });
+capture.js:58: await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/70684471-0245-4085-83e2-e71308efcea4/collection.png' });
+capture_emulator.js:19: await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/70684471-0245-4085-83e2-e71308efcea4/emu_login.png' });
+capture_emulator.js:49: await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/70684471-0245-4085-83e2-e71308efcea4/emu_admin_editor.png' });
+capture_emulator.js:69: await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/70684471-0245-4085-83e2-e71308efcea4/emu_admin_upload.png' });
+capture_emulator.js:108: await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/70684471-0245-4085-83e2-e71308efcea4/emu_admin_cover.png' });
+capture_emulator.js:114: await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/70684471-0245-4085-83e2-e71308efcea4/emu_collection.png' });
+capture_emulator.js:126: await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/70684471-0245-4085-83e2-e71308efcea4/emu_single_plant.png' });
+capture_real.js:18: await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/70684471-0245-4085-83e2-e71308efcea4/real_admin_editor.png' });
+capture_real.js:34: await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/70684471-0245-4085-83e2-e71308efcea4/real_admin_cover.png' });
+capture_real.js:40: await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/70684471-0245-4085-83e2-e71308efcea4/real_collection.png' });
+capture_real.js:54: await page.screenshot({ path: 'C:/Users/User/.gemini/antigravity/brain/70684471-0245-4085-83e2-e71308efcea4/real_single_plant.png' });
+package.json:32: "react-router-dom": "^7.13.1"
+package-lock.json:25: "react-router-dom": "^7.13.1"
+package-lock.json:5711: "node_modules/react-router": {
+package-lock.json:5713: "resolved": "https://registry.npmjs.org/react-router/-/react-router-7.13.1.tgz",
+package-lock.json:5733: "node_modules/react-router-dom": {
+package-lock.json:5735: "resolved": "https://registry.npmjs.org/react-router-dom/-/react-router-dom-7.13.1.tgz",
+package-lock.json:5739: "react-router": "7.13.1"
+package-lock.json:5749: "node_modules/react-router/node_modules/cookie": {
+src\App.tsx:17: import { createBrowserRouter, RouterProvider, Navigate, useLocation } from 'react-router-dom';
+src\App.tsx:21: const ProtectedRoute = ({
+src\App.tsx:71: const router = createBrowserRouter([
+src\App.tsx:73: path: '/',
+src\App.tsx:77: path: '/collection',
+src\App.tsx:81: path: '/collection/:id',
+src\App.tsx:85: path: '/learn',
+src\App.tsx:89: path: '/business',
+src\App.tsx:93: path: '/posts',
+src\App.tsx:97: path: '/posts/:slug',
+src\App.tsx:101: path: '/about',
+src\App.tsx:105: path: '/membership',
+src\App.tsx:109: path: '/login',
+src\App.tsx:113: path: '/member',
+src\App.tsx:114: element: <ProtectedRoute><Layout><MemberPage /></Layout></ProtectedRoute>
+src\App.tsx:116: // Admin Routes
+src\App.tsx:118: path: '/admin',
+src\App.tsx:119: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminDashboard /></AdminLayout></ProtectedRoute>
+src\App.tsx:122: path: '/admin/plants',
+src\App.tsx:123: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminPlants /></AdminLayout></ProtectedRoute>
+src\App.tsx:126: path: '/admin/plants/:id',
+src\App.tsx:127: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminPlantEditor /></AdminLayout></ProtectedRoute>
+src\App.tsx:130: path: '/admin/users',
+src\App.tsx:131: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminUsers /></AdminLayout></ProtectedRoute>
+src\App.tsx:134: path: '/admin/members',
+src\App.tsx:135: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminUsers /></AdminLayout></ProtectedRoute>
+src\App.tsx:138: path: '/admin/applications',
+src\App.tsx:139: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminApplications /></AdminLayout></ProtectedRoute>
+src\App.tsx:142: path: '/admin/inquiries',
+src\App.tsx:143: element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminInquiries /></AdminLayout></ProtectedRoute>
+src\App.tsx:146: path: '/admin/posts',
+src\App.tsx:147: element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminPosts /></AdminLayout></ProtectedRoute>
+src\App.tsx:150: path: '/admin/posts/:id',
+src\App.tsx:151: element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminPostEditor /></AdminLayout></ProtectedRoute>
+src\App.tsx:154: path: '/admin/media',
+src\App.tsx:155: element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminMedia /></AdminLayout></ProtectedRoute>
+src\App.tsx:158: path: '/admin/content',
+src\App.tsx:159: element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminContentList /></AdminLayout></ProtectedRoute>
+src\App.tsx:162: path: '/admin/content/:pageId',
+src\App.tsx:163: element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminContentEditor /></AdminLayout></ProtectedRoute>
+src\App.tsx:166: path: '/admin/settings',
+src\App.tsx:167: element: <ProtectedRoute requireRole="super_admin"><AdminLayout><AdminSettings /></AdminLayout></ProtectedRoute>
+src\App.tsx:170: path: '/admin/taxonomy',
+src\App.tsx:171: element: <ProtectedRoute requireRole="super_admin"><AdminLayout><AdminTaxonomy /></AdminLayout></ProtectedRoute>
+src\App.tsx:176: return <RouterProvider router={router} />;
+src\components\Shared.tsx:2: import { Link, useLocation, useNavigate } from 'react-router-dom';
+src\components\Shared.tsx:56: const navigate = useNavigate();
+src\components\Shared.tsx:71: { name: 'Collection', path: '/collection', label: '龜甲龍' },
+src\components\Shared.tsx:72: { name: 'Learn', path: '/learn', label: '判讀與培育' },
+src\components\Shared.tsx:73: { name: 'Membership', path: '/membership', label: '會員制度' },
+src\components\Shared.tsx:74: { name: 'About', path: '/about', label: '關於我們' },
+src\components\Shared.tsx:75: { name: 'Business', path: '/business', label: '合作' },
+src\main.tsx:3: import { BrowserRouter } from 'react-router-dom';
+src\pages\AdminContentEditor.tsx:7: import { useNavigate, useParams } from 'react-router-dom';
+src\pages\AdminContentEditor.tsx:22: import { useBlocker } from 'react-router-dom';
+src\pages\AdminContentEditor.tsx:35: const navigate = useNavigate();
+src\pages\AdminContentEditor.tsx:44: onClick={() => navigate(`/admin/content/${page.id}`)}
+src\pages\AdminContentEditor.tsx:95: const navigate = useNavigate();
+src\pages\AdminContentEditor.tsx:118: <button onClick={() => navigate('/admin/content')} className="text-[#1A1A1A]/40 hover:text-[#1A1A1A] transition-colors">
+src\pages\AdminPages.tsx:2: import { useNavigate, Routes, Route, Link, useParams, useLocation } from 'react-router-dom';
+src\pages\AdminPages.tsx:27: const navigate = useNavigate();
+src\pages\AdminPages.tsx:33: navigate('/');
+src\pages\AdminPages.tsx:159: const navigate = useNavigate();
+src\pages\AdminPages.tsx:163: // navigate('/admin/plants');
+src\pages\AdminPlantEditor.tsx:2: import { useParams, useNavigate } from 'react-router-dom';
+src\pages\AdminPlantEditor.tsx:6: import { useBlocker } from 'react-router-dom';
+src\pages\AdminPlantEditor.tsx:18: const navigate = useNavigate();
+src\pages\AdminPlantEditor.tsx:231: <button onClick={() => navigate('/admin/plants')} className="text-[#1A1A1A]/50 hover:text-[#1A1A1A]">
+src\pages\AdminPlants.tsx:2: import { useNavigate } from 'react-router-dom';
+src\pages\AdminPlants.tsx:12: const navigate = useNavigate();
+src\pages\AdminPlants.tsx:35: navigate(`/admin/plants/${newId}`);
+src\pages\AdminPlants.tsx:207: onClick={() => navigate(`/admin/plants/${plant.id}`)}
+src\pages\AdminPostEditor.tsx:7: import { useParams, useNavigate, Link, useBlocker } from 'react-router-dom';
+src\pages\AdminPostEditor.tsx:34: const navigate = useNavigate();
+src\pages\AdminPostEditor.tsx:128: navigate(`/admin/posts/${newId}`, { replace: true });
+src\pages\AdminPosts.tsx:7: import { Link, useNavigate } from 'react-router-dom';
+src\pages\AdminPosts.tsx:27: const navigate = useNavigate();
+src\pages\AdminPosts.tsx:61: navigate(`/admin/posts/${res.id}`);
+src\pages\AdminSettings.tsx:80: const handleChange = (path: string[], value: string) => {
+src\pages\AdminSettings.tsx:88: const handleArrayTextChange = (path: string[], idx: number, value: string) => {
+src\pages\AdminSettings.tsx:96: const handleArrayObjChange = (path: string[], idx: number, key: string, value: string) => {
+src\pages\AdminSettings.tsx:104: const moveItem = (path: string[], idx: number, direction: 'up' | 'down') => {
+src\pages\AdminSettings.tsx:116: const removeItem = (path: string[], idx: number) => {
+src\pages\AdminSettings.tsx:124: const addItem = (path: string[], template: any) => {
+src\pages\CollectionPages.tsx:2: import { useNavigate, useParams } from 'react-router-dom';
+src\pages\CollectionPages.tsx:14: const navigate = useNavigate();
+src\pages\CollectionPages.tsx:177: <div key={item.id} className="group cursor-pointer flex flex-col" onClick={() => navigate(`/collection/${item.id}`)}>
+src\pages\CollectionPages.tsx:229: const navigate = useNavigate();
+src\pages\CollectionPages.tsx:261: navigate('/login');
+src\pages\CollectionPages.tsx:277: navigate('/member');
+src\pages\CollectionPages.tsx:288: navigate('/login');
+src\pages\CollectionPages.tsx:298: navigate('/member');
+src\pages\CollectionPages.tsx:305: navigate('/member');
+src\pages\CollectionPages.tsx:370: <button onClick={() => navigate('/collection')} className="flex items-center gap-3 text-[10px] tracking-widest uppercase text-[#1A1A1A]/50 hover:text-[#1A1A1A] transition-colors font-medium">
+src\pages\CollectionPages.tsx:507: <button onClick={() => navigate(`/admin/plants/${plant.id}`)} className="text-[10px] tracking-widest uppercase text-[#1A1A1A]/20 hover:text-[#1A1A1A] transition-colors font-mono">
+src\pages\MemberPages.tsx:2: import { useNavigate } from 'react-router-dom';
+src\pages\MemberPages.tsx:18: const navigate = useNavigate();
+src\pages\MemberPages.tsx:27: navigate('/member');
+src\pages\MemberPages.tsx:76: const navigate = useNavigate();
+src\pages\MemberPages.tsx:143: onClick={() => navigate('/admin')}
+src\pages\MemberPages.tsx:155: navigate('/');
+src\pages\MemberPages.tsx:184: <div key={plant.id} className="group cursor-pointer border border-[#1A1A1A]/10 p-4 flex gap-4" onClick={() => navigate(`/collection/${plant.id}`)}>
+src\pages\MemberPages.tsx:225: <td className="px-4 py-4 font-mono cursor-pointer hover:text-[#5A6B58]" onClick={() => navigate(`/collection/${app.plantId}`)}>{app.plantId}</td>
+src\pages\PostPages.tsx:7: import { Link, useParams } from 'react-router-dom';
+src\pages\PublicPages.tsx:2: import { Link, useNavigate } from 'react-router-dom';
+src\pages\PublicPages.tsx:13: const navigate = useNavigate();
+src\pages\PublicPages.tsx:121: onClick={() => navigate(`/collection/${plant.id}`)}
+src\pages\PublicPages.tsx:232: <button onClick={() => navigate('/collection')} className="group p-12 lg:p-16 border-b md:border-b-0 md:border-r border-[#1A1A1A]/20 hover:bg-[#1A1A1A] hover:text-[#EAE8E3] transition-colors flex flex-col justify-between min-h-[350px] text-left">
+src\pages\PublicPages.tsx:245: <button onClick={() => navigate('/learn')} className="group p-12 lg:p-16 border-b md:border-b-0 md:border-r border-[#1A1A1A]/20 hover:bg-[#1A1A1A] hover:text-[#EAE8E3] transition-colors flex flex-col justify-between min-h-[350px] text-left">
+src\pages\PublicPages.tsx:258: <button onClick={() => navigate('/membership')} className="group p-12 lg:p-16 hover:bg-[#1A1A1A] hover:text-[#EAE8E3] transition-colors flex flex-col justify-between min-h-[350px] text-left">
+src\pages\PublicPages.tsx:279: const navigate = useNavigate();
+src\pages\PublicPages.tsx:353: <button onClick={() => navigate('/login')} className="bg-white text-[#1A1A1A] px-8 py-4 text-sm tracking-widest uppercase hover:bg-[#EBEBE8] transition-colors">
+src\services\mediaService.ts:38: storagePath: string;
+src\services\mediaService.ts:81: storagePath: storagePath
+src\services\mediaService.ts:126: async deleteMedia(id: string, storagePath: string) {

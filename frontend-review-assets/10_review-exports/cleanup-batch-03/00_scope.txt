@@ -1,0 +1,5 @@
+﻿BATCH=03
+GOAL=Final cleanup of retired legacy files and noisy test/placeholder assets.
+WHY=After Batch 01 and Batch 02, retired public/member/content tooling no longer belongs in active repo surface.
+KEEP=Firebase config, core services, active App entry, core admin CRUD, plants/applications/inquiries/media/taxonomy tools
+MODE=Dependency-aware move. If a candidate file is still referenced by active src, it will be BLOCKED instead of moved.
