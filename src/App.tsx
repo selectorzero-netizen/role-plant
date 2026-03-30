@@ -1,6 +1,24 @@
 ﻿import React from 'react';
-import { createBrowserRouter, RouterProvider, Navigate, useLocation, Link } from 'react-router-dom';
-import { useAuth } from './AuthContext';
+import { createBrowserRouter, Navigate, RouterProvider, useParams } from 'react-router-dom';
+import { AppShell } from './frontend-shell/shell/AppShell';
+import { ROUTES, LEGACY_RETIRED_ROUTES } from './frontend-shell/config/siteRoutes';
+import { ProtectedAppRoute, AdminProtectedRoute } from './frontend-shell/routes/ProtectedAppRoute';
+import {
+  LegacyRetiredPage,
+  LoginShellPage,
+  SupportShellPage,
+} from './frontend-shell/pages/RouteShellPages';
+import { SelectionArchivePage, SelectionDossierPage, SelectionListPage } from './frontend-shell/pages/SelectionPages';
+import { LoginGatewayPage } from './frontend-shell/pages/LoginGatewayPage';
+import { AccountPage, ApplicationDetailPage } from './frontend-shell/pages/AccountPages';
+import {
+  CultivationPage,
+  HomePage,
+  MembershipPage,
+  StandardsPage,
+  StoryPage,
+} from './frontend-shell/pages/PublicStaticPages';
+
 import { AdminLayout, AdminDashboard, AdminUsers, AdminApplications } from './pages/AdminPages';
 import { AdminPlants } from './pages/AdminPlants';
 import { AdminPlantEditor } from './pages/AdminPlantEditor';
@@ -8,379 +26,152 @@ import { AdminInquiries } from './pages/AdminInquiries';
 import { AdminMedia } from './pages/AdminMedia';
 import { AdminTaxonomy } from './pages/AdminTaxonomy';
 
-// CLEANUP_BATCH_02
-// Batch 02 detaches legacy member flow and legacy admin tools that were tied to retired public IA.
-// Core admin data tools remain active.
-// /login is temporarily reduced to admin access only.
+// BATCH_B_STATIC_PUBLIC
+// Batch B upgrades static public pages on top of Batch A shell.
+// Selection / Support / Login / Account flows stay in shell/prototype state for Batch C.
 
-type PanelProps = {
-  tag: string;
-  title: string;
-  description: string;
-  primary?: React.ReactNode;
-  secondary?: React.ReactNode;
-};
+const wrapShell = (node: React.ReactNode) => <AppShell>{node}</AppShell>;
 
-const Panel = ({ tag, title, description, primary, secondary }: PanelProps) => (
-  <div className="min-h-screen bg-[#F7F7F5] text-[#1A1A1A] flex items-center justify-center px-6">
-    <div className="max-w-2xl w-full text-center">
-      <p className="text-[11px] tracking-[0.25em] uppercase text-[#1A1A1A]/40 mb-4">{tag}</p>
-      <h1 className="text-3xl md:text-5xl font-light tracking-tight mb-6">{title}</h1>
-      <p className="text-sm md:text-base leading-7 text-[#1A1A1A]/65 mb-10 whitespace-pre-line">
-        {description}
-      </p>
-      {(primary || secondary) && (
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          {primary}
-          {secondary}
-        </div>
-      )}
-    </div>
-  </div>
+const ProtectedAccountOverviewRoute = () => (
+  <ProtectedAppRoute intent="account-access" postLoginTarget={ROUTES.account}>
+    <AccountPage />
+  </ProtectedAppRoute>
 );
 
-const FrontendHoldPage = () => (
-  <Panel
-    tag="Cleanup Batch 02"
-    title="Legacy Public Frontend Detached"
-    description="舊公開前台已從主入口移除。這個階段只保留清理用的暫存入口與核心後台資料工具，新前台會依定版規格重新建立。"
-    primary={
-      <Link
-        to="/login"
-        className="px-6 py-3 bg-[#1A1A1A] text-white text-xs tracking-[0.2em] uppercase hover:bg-[#3A4A37] transition-colors"
-      >
-        Admin Access
-      </Link>
-    }
-    secondary={
-      <Link
-        to="/admin"
-        className="px-6 py-3 border border-[#1A1A1A]/20 text-xs tracking-[0.2em] uppercase hover:bg-[#1A1A1A]/5 transition-colors"
-      >
-        Admin
-      </Link>
-    }
-  />
-);
-
-const LegacyMemberRetiredPage = () => (
-  <Panel
-    tag="Cleanup Batch 02"
-    title="Legacy Member Flow Retired"
-    description="舊的 /member 儀表板與 pending / approved 流程，已不再屬於 active app。\n後續會由新的 account / follow / apply / support 流程取代。"
-    primary={
-      <Link
-        to="/login"
-        className="px-6 py-3 bg-[#1A1A1A] text-white text-xs tracking-[0.2em] uppercase hover:bg-[#3A4A37] transition-colors"
-      >
-        Admin Access
-      </Link>
-    }
-    secondary={
-      <Link
-        to="/"
-        className="px-6 py-3 border border-[#1A1A1A]/20 text-xs tracking-[0.2em] uppercase hover:bg-[#1A1A1A]/5 transition-colors"
-      >
-        Back
-      </Link>
-    }
-  />
-);
-
-const LegacyAdminToolRetiredPage = ({
-  title,
-  description
-}: {
-  title: string;
-  description: string;
-}) => (
-  <div className="max-w-3xl mx-auto px-8 py-16">
-    <p className="text-[11px] tracking-[0.25em] uppercase text-[#1A1A1A]/40 mb-4">Cleanup Batch 02</p>
-    <h1 className="text-3xl font-light tracking-tight mb-6">{title}</h1>
-    <p className="text-sm leading-7 text-[#1A1A1A]/65 mb-10 whitespace-pre-line">{description}</p>
-    <div className="flex gap-4">
-      <Link
-        to="/admin"
-        className="px-6 py-3 bg-[#1A1A1A] text-white text-xs tracking-[0.2em] uppercase hover:bg-[#3A4A37] transition-colors"
-      >
-        Back to Admin
-      </Link>
-    </div>
-  </div>
-);
-
-const AdminAccessPage = () => {
-  const { login, logout, userProfile, isAuthReady, authError, retryInit } = useAuth();
-  const role = userProfile?.role || '';
-  const isAdmin = ['admin', 'editor', 'super_admin'].includes(role);
-
-  if (authError) {
-    return (
-      <Panel
-        tag="Cleanup Batch 02"
-        title="Admin Access Error"
-        description="無法載入登入狀態。這裡暫時只保留管理後台登入，不再承接舊會員流程。"
-        primary={
-          <button
-            onClick={retryInit}
-            className="px-6 py-3 bg-[#1A1A1A] text-white text-xs tracking-[0.2em] uppercase hover:bg-[#3A4A37] transition-colors"
-          >
-            Retry
-          </button>
-        }
-        secondary={
-          <Link
-            to="/"
-            className="px-6 py-3 border border-[#1A1A1A]/20 text-xs tracking-[0.2em] uppercase hover:bg-[#1A1A1A]/5 transition-colors"
-          >
-            Back
-          </Link>
-        }
-      />
-    );
-  }
-
-  if (!isAuthReady) {
-    return (
-      <div className="min-h-screen bg-[#F7F7F5] text-[#1A1A1A] flex items-center justify-center text-sm tracking-[0.2em] uppercase">
-        Checking Access...
-      </div>
-    );
-  }
-
-  if (userProfile && isAdmin) {
-    return (
-      <Panel
-        tag="Cleanup Batch 02"
-        title="Admin Access Ready"
-        description="你已登入可進入管理後台。舊會員儀表板已退場，這裡只保留管理用途。"
-        primary={
-          <Link
-            to="/admin"
-            className="px-6 py-3 bg-[#1A1A1A] text-white text-xs tracking-[0.2em] uppercase hover:bg-[#3A4A37] transition-colors"
-          >
-            Enter Admin
-          </Link>
-        }
-        secondary={
-          <button
-            onClick={() => { logout(); }}
-            className="px-6 py-3 border border-[#1A1A1A]/20 text-xs tracking-[0.2em] uppercase hover:bg-[#1A1A1A]/5 transition-colors"
-          >
-            Sign Out
-          </button>
-        }
-      />
-    );
-  }
-
-  if (userProfile && !isAdmin) {
-    return (
-      <Panel
-        tag="Cleanup Batch 02"
-        title="Legacy Member Entry Removed"
-        description="你已登入，但舊會員中心已退休。\n這一頁現在只作為管理後台登入入口，不再承接公開會員功能。"
-        primary={
-          <button
-            onClick={() => { logout(); }}
-            className="px-6 py-3 bg-[#1A1A1A] text-white text-xs tracking-[0.2em] uppercase hover:bg-[#3A4A37] transition-colors"
-          >
-            Sign Out
-          </button>
-        }
-        secondary={
-          <Link
-            to="/"
-            className="px-6 py-3 border border-[#1A1A1A]/20 text-xs tracking-[0.2em] uppercase hover:bg-[#1A1A1A]/5 transition-colors"
-          >
-            Back
-          </Link>
-        }
-      />
-    );
-  }
+const ProtectedApplicationDetailRoute = () => {
+  const { id = '' } = useParams();
 
   return (
-    <Panel
-      tag="Cleanup Batch 02"
-      title="Admin Access Only"
-      description="這個入口現在只保留給管理後台登入。\n舊的公開會員 / 申請流程已退出 active app，會在新前台中重新定義。"
-      primary={
-        <button
-          onClick={() => { void login(); }}
-          className="px-6 py-3 bg-[#1A1A1A] text-white text-xs tracking-[0.2em] uppercase hover:bg-[#3A4A37] transition-colors"
-        >
-          Sign in with Google
-        </button>
-      }
-      secondary={
-        <Link
-          to="/"
-          className="px-6 py-3 border border-[#1A1A1A]/20 text-xs tracking-[0.2em] uppercase hover:bg-[#1A1A1A]/5 transition-colors"
-        >
-          Back
-        </Link>
-      }
-    />
+    <ProtectedAppRoute
+      intent="application-access"
+      applicationId={id}
+      postLoginTarget={`/account/applications/${id}`}
+    >
+      <ApplicationDetailPage />
+    </ProtectedAppRoute>
   );
 };
 
-const ProtectedRoute = ({
-  children,
-  requireRole
-}: {
-  children: React.ReactNode,
-  requireRole?: string | string[]
-}) => {
-  const { userProfile, isAuthReady, authError, retryInit } = useAuth();
-  const location = useLocation();
-
-  if (authError) {
-    return (
-      <Panel
-        tag="Cleanup Batch 02"
-        title="Admin Auth Error"
-        description="無法載入權限資料。請重新嘗試登入，或返回管理入口。"
-        primary={
-          <button
-            onClick={retryInit}
-            className="px-6 py-3 bg-[#1A1A1A] text-white text-xs tracking-[0.2em] uppercase hover:bg-[#3A4A37] transition-colors"
-          >
-            Retry
-          </button>
-        }
-        secondary={
-          <Link
-            to="/login"
-            state={{ from: location }}
-            className="px-6 py-3 border border-[#1A1A1A]/20 text-xs tracking-[0.2em] uppercase hover:bg-[#1A1A1A]/5 transition-colors"
-          >
-            Back to Login
-          </Link>
-        }
-      />
-    );
-  }
-
-  if (!isAuthReady) {
-    return (
-      <div className="min-h-screen bg-[#F7F7F5] text-[#1A1A1A] flex items-center justify-center text-sm tracking-[0.2em] uppercase">
-        Loading Access...
-      </div>
-    );
-  }
-
-  if (!userProfile) {
-    return <Navigate to="/login" state={{ from: location }} replace />;
-  }
-
-  if (requireRole) {
-    const roles = Array.isArray(requireRole) ? requireRole : [requireRole];
-    const currentRole = userProfile.role || '';
-    const hasRole = roles.includes(currentRole) || currentRole === 'super_admin';
-
-    if (!hasRole) {
-      return (
-        <Panel
-          tag="Cleanup Batch 02"
-          title="403"
-          description="你沒有這個後台工具的權限。"
-          primary={
-            <Link
-              to="/admin"
-              className="px-6 py-3 bg-[#1A1A1A] text-white text-xs tracking-[0.2em] uppercase hover:bg-[#3A4A37] transition-colors"
-            >
-              Back to Admin
-            </Link>
-          }
-        />
-      );
-    }
-  }
-
-  return children;
-};
-
 const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <FrontendHoldPage />
-  },
-  {
-    path: '/login',
-    element: <AdminAccessPage />
-  },
-  {
-    path: '/member',
-    element: <LegacyMemberRetiredPage />
-  },
+  { path: ROUTES.home, element: wrapShell(<HomePage />) },
+  { path: ROUTES.selection, element: wrapShell(<SelectionListPage />) },
+  { path: ROUTES.selectionArchive, element: wrapShell(<SelectionArchivePage />) },
+  { path: ROUTES.selectionDetail, element: wrapShell(<SelectionDossierPage />) },
+  { path: ROUTES.standards, element: wrapShell(<StandardsPage />) },
+  { path: ROUTES.cultivation, element: wrapShell(<CultivationPage />) },
+  { path: ROUTES.membership, element: wrapShell(<MembershipPage />) },
+  { path: ROUTES.support, element: wrapShell(<SupportShellPage />) },
+  { path: ROUTES.story, element: wrapShell(<StoryPage />) },
+  { path: ROUTES.login, element: wrapShell(<LoginGatewayPage />) },
+  { path: ROUTES.account, element: wrapShell(<ProtectedAccountOverviewRoute />) },
+  { path: ROUTES.applicationDetail, element: wrapShell(<ProtectedApplicationDetailRoute />) },
 
-  // Core admin data tools remain active.
+  ...LEGACY_RETIRED_ROUTES.map((item) => ({
+    path: item.legacyPath,
+    element: wrapShell(
+      <LegacyRetiredPage
+        legacyPath={item.legacyPath}
+        replacementTo={item.replacementTo}
+        replacementLabel={item.replacementLabel}
+      />
+    ),
+  })),
+
   {
     path: '/admin',
-    element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminDashboard /></AdminLayout></ProtectedRoute>
+    element: (
+      <AdminProtectedRoute requireRoles={['admin']}>
+        <AdminLayout>
+          <AdminDashboard />
+        </AdminLayout>
+      </AdminProtectedRoute>
+    ),
   },
   {
     path: '/admin/plants',
-    element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminPlants /></AdminLayout></ProtectedRoute>
+    element: (
+      <AdminProtectedRoute requireRoles={['admin']}>
+        <AdminLayout>
+          <AdminPlants />
+        </AdminLayout>
+      </AdminProtectedRoute>
+    ),
   },
   {
     path: '/admin/plants/:id',
-    element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminPlantEditor /></AdminLayout></ProtectedRoute>
+    element: (
+      <AdminProtectedRoute requireRoles={['admin']}>
+        <AdminLayout>
+          <AdminPlantEditor />
+        </AdminLayout>
+      </AdminProtectedRoute>
+    ),
   },
   {
     path: '/admin/users',
-    element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminUsers /></AdminLayout></ProtectedRoute>
+    element: (
+      <AdminProtectedRoute requireRoles={['admin']}>
+        <AdminLayout>
+          <AdminUsers />
+        </AdminLayout>
+      </AdminProtectedRoute>
+    ),
   },
   {
     path: '/admin/members',
-    element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminUsers /></AdminLayout></ProtectedRoute>
+    element: (
+      <AdminProtectedRoute requireRoles={['admin']}>
+        <AdminLayout>
+          <AdminUsers />
+        </AdminLayout>
+      </AdminProtectedRoute>
+    ),
   },
   {
     path: '/admin/applications',
-    element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminApplications /></AdminLayout></ProtectedRoute>
+    element: (
+      <AdminProtectedRoute requireRoles={['admin']}>
+        <AdminLayout>
+          <AdminApplications />
+        </AdminLayout>
+      </AdminProtectedRoute>
+    ),
   },
   {
     path: '/admin/inquiries',
-    element: <ProtectedRoute requireRole="admin"><AdminLayout><AdminInquiries /></AdminLayout></ProtectedRoute>
+    element: (
+      <AdminProtectedRoute requireRoles={['admin']}>
+        <AdminLayout>
+          <AdminInquiries />
+        </AdminLayout>
+      </AdminProtectedRoute>
+    ),
   },
   {
     path: '/admin/media',
-    element: <ProtectedRoute requireRole={['admin', 'editor']}><AdminLayout><AdminMedia /></AdminLayout></ProtectedRoute>
+    element: (
+      <AdminProtectedRoute requireRoles={['admin', 'editor']}>
+        <AdminLayout>
+          <AdminMedia />
+        </AdminLayout>
+      </AdminProtectedRoute>
+    ),
   },
   {
     path: '/admin/taxonomy',
-    element: <ProtectedRoute requireRole="super_admin"><AdminLayout><AdminTaxonomy /></AdminLayout></ProtectedRoute>
+    element: (
+      <AdminProtectedRoute requireRoles={['super_admin']}>
+        <AdminLayout>
+          <AdminTaxonomy />
+        </AdminLayout>
+      </AdminProtectedRoute>
+    ),
   },
 
-  // Legacy admin tools retired in Batch 02.
-  {
-    path: '/admin/content',
-    element: <ProtectedRoute requireRole={['admin', 'editor', 'super_admin']}><AdminLayout><LegacyAdminToolRetiredPage title="Legacy Content Tool Retired" description="舊 content editor 綁定 retired public IA，已從 active app 退場。後續會改由新前台規格決定新的內容承接方式。" /></AdminLayout></ProtectedRoute>
-  },
-  {
-    path: '/admin/content/:pageId',
-    element: <ProtectedRoute requireRole={['admin', 'editor', 'super_admin']}><AdminLayout><LegacyAdminToolRetiredPage title="Legacy Content Tool Retired" description="這個舊內容編輯入口已退休，不再作為 active app 的前台內容來源。" /></AdminLayout></ProtectedRoute>
-  },
-  {
-    path: '/admin/posts',
-    element: <ProtectedRoute requireRole={['admin', 'editor', 'super_admin']}><AdminLayout><LegacyAdminToolRetiredPage title="Legacy Posts Tool Retired" description="舊 posts 系統已退出 active app。若後續需要 Journal，會依新規格另行建立。" /></AdminLayout></ProtectedRoute>
-  },
-  {
-    path: '/admin/posts/:id',
-    element: <ProtectedRoute requireRole={['admin', 'editor', 'super_admin']}><AdminLayout><LegacyAdminToolRetiredPage title="Legacy Posts Tool Retired" description="舊文章編輯入口已退休，不再作為 active app 的內容管道。" /></AdminLayout></ProtectedRoute>
-  },
-  {
-    path: '/admin/settings',
-    element: <ProtectedRoute requireRole="super_admin"><AdminLayout><LegacyAdminToolRetiredPage title="Legacy Membership Policy Tool Retired" description="舊會員政策設定頁綁定 retired public membership flow，已退出 active app。" /></AdminLayout></ProtectedRoute>
-  },
-
-  {
-    path: '*',
-    element: <Navigate to="/" replace />
-  }
+  { path: '*', element: <Navigate to={ROUTES.home} replace /> },
 ]);
 
 export default function App() {
   return <RouterProvider router={router} />;
 }
+

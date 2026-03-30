@@ -1,0 +1,6 @@
+﻿BATCH=B
+GOAL=Implement static public pages on top of Batch A shell.
+SCOPE=Home / Standards / Cultivation / Membership(static shell only) / Story
+NO_FLOW=Selection flow, dossier flow, login flow, first-apply gate, account flow, support flow
+NO_CMS=No contentService / policyService / postService wiring
+HEADER_DECISION=Account CTA semantics retained in Header / MobileNav / Footer

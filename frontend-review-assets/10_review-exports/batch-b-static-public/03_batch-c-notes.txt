@@ -1,0 +1,5 @@
+﻿BATCH_C_PENDING_NOTES
+1. Support hero CTA row must stop self-pointing to /support and be replaced with true split CTA in Batch C.
+2. Login / Follow / Apply / First Apply Gate / Account real flow remains deferred to Batch C.
+3. Selection list/detail real interaction remains deferred to Batch C.
+4. Support public form flow and account-bound support split remain deferred to Batch C.

@@ -1,0 +1,2 @@
+﻿src\frontend-shell\data\selectionReadModel.ts
+src\frontend-shell\pages\SelectionPages.tsx

@@ -1,0 +1,5 @@
+﻿BATCH=C
+STEP=0
+GOAL=Preflight cleanup of public-facing copy only.
+SCOPE=Remove internal phase text from visible UI, replace placeholder public brand label, localize visible review copy to zh-TW.
+NO_REWRITE=No structural rewrite of Batch B pages.

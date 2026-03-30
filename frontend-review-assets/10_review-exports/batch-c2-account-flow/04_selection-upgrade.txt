@@ -1,0 +1,2 @@
+﻿PATCHED: src/frontend-shell/pages/SelectionPages.tsx
+UPGRADED: dossier action module to C2 flow-aware state handling

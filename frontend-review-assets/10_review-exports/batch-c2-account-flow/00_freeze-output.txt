@@ -1,0 +1,2 @@
+﻿OUT_DIR=C:\Users\User\Desktop\role-plant\_batch-c2-freeze\batch-c1-accepted-20260330-082150
+ZIP_FILE=C:\Users\User\Desktop\role-plant\_batch-c2-freeze\batch-c1-accepted-20260330-082150\batch-c1-accepted-20260330-082150.zip

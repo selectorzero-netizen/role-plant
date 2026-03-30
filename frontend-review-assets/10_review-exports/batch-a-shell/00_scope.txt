@@ -1,0 +1,4 @@
+﻿BATCH=A
+GOAL=Build the new frontend shell, route map, shared design system base, auth/guard structure, and legacy isolation entry points.
+SCOPE=No page content detail, no real data wiring, no Batch B/Batch C.
+OUTPUT=src/frontend-shell/** plus rewritten App.tsx and main.tsx in Step 2.

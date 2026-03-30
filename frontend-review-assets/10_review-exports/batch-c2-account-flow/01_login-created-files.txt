@@ -1,0 +1,2 @@
+﻿CREATED: src/frontend-shell/data/accountReadModel.ts
+CREATED: src/frontend-shell/pages/LoginGatewayPage.tsx

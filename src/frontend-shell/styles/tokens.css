@@ -1,0 +1,25 @@
+﻿:root {
+  --shell-ink: #1c1a17;
+  --shell-ink-soft: #5d554c;
+  --shell-paper: #f3efe7;
+  --shell-paper-strong: #ece4d8;
+  --shell-panel: #fffcf8;
+  --shell-clay: #d9cbbb;
+  --shell-border: rgba(28, 26, 23, 0.14);
+  --shell-soil: #2a241f;
+  --shell-chalk: #faf8f4;
+  --shell-chalk-soft: rgba(250, 248, 244, 0.78);
+  --shell-oxide: #8b6f5c;
+  --shell-moss: #6f7b44;
+  --shell-warning: #c3a46a;
+  --shell-error: #7a3e2f;
+}
+
+body {
+  background: var(--shell-paper);
+  color: var(--shell-ink);
+}
+
+::selection {
+  background: rgba(111, 123, 68, 0.22);
+}
